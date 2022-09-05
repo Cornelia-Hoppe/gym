@@ -1,0 +1,26 @@
+.HomePage{
+    font-family: 'Square Peg', cursive;
+    color: rgb(214, 43, 72);
+}
+
+.LandingPage {
+    padding: 20px;
+    height: 350px;
+    display: flex;
+}
+.gymImgOne{
+    height: 100%;
+}
+
+.gymImgOne img{
+    height: 100%;
+}
+.LandingText {
+    display: flex;
+    vertical-align: center;
+}
+
+.LandingText h1 {
+    vertical-align: center;
+    display: flex;
+}
