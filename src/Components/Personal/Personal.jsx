@@ -6,6 +6,7 @@ const Trainers = () => {
     
     
     
+    
     return (
         <div>
             {trainers.map(trainer => (
