@@ -11,7 +11,7 @@ const Trainers = () => {
             {trainers.map(trainer => (
                 <div key={trainer.id}>
                     <img src={trainer.pic} alt={trainer.name}/>
-                    {<strong>{trainer.name}</strong>} is a Certified Strength and Condition Specialist (CSCS) with the National Strength and Conditioning Association. {trainer.gender === 'male' ? 'He':'She'} has an extensive background from training professional and amateur athletes to working professionals with nominal experience in fitness.
+                    {<strong>{trainer.name}</strong>} is a... {trainer.gender === 'male' ? 'He':'She'} has an extensive background from training professional and amateur athletes to working professionals with nominal experience in fitness.
                     <button>Read More</button>
                     <br/><br/><hr/>
                 </div>
@@ -21,4 +21,4 @@ const Trainers = () => {
 }
 
 
-export default Trainers
+export default Trainers;
