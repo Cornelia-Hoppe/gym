@@ -1,4 +1,4 @@
-import './team.css';
+import './personal.css';
 import Team1 from './assets/team1.jpg';
 
 const Team = () => {

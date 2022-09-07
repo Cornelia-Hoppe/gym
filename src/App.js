@@ -1,7 +1,7 @@
 import React from "react"
 import Header from "./Components/Header/Header";
 import Home from "./Components/Home/Homepage";
-import Team from "./Team/Team";
+import Team from "./Personal/Personal";
 
 
 function App() {
