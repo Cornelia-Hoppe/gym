@@ -1,0 +1,78 @@
+@import "../App.css";
+
+.content {
+    background-color: #548CA8;
+  
+    font-size: 20px;
+    margin: 25px 10px -65px 10px;
+    padding-top: 5px;
+    padding-bottom: 25px;
+    border-radius: 12px 12px 12px 12px;
+}
+ul li{
+ 
+   display: block;
+
+}
+
+h1{
+    font-size: 30px;
+    margin: 20px;
+}
+hr{
+    color: rgb(251, 251, 251);
+    
+}
+
+.firstRow{
+    margin: 100px auto;
+    
+    
+}
+
+
+
+.team .container img{
+    height: 85px;
+    
+    padding: 25px;
+    
+   
+
+}
+
+.container {
+    float: left;
+
+}
+.team .box {
+    background:#548CA8;
+    padding: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 12px 12px 12px 12px;
+    float: left;
+    
+}
+.team .box h6 {
+    font-weight: 200px;
+    margin: 10px auto;
+}
+.box h1{
+    margin-top: -5px;
+    
+}
+
+.team .box i{
+    margin: 5px 10px;
+    font-size: 20px;
+}
+ img:hover {
+    cursor: pointer;
+}
+.team .box:hover img{
+    transform: calc(2.1);
+}
+.team .box:hover i{
+    color: rgb(43, 60, 65);
+}

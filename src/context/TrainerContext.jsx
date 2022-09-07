@@ -53,10 +53,10 @@ const TrainerContextProvider = (props) => {
         
     ]
 
-    const [trainers] = useState(trainer_data);
+    const [Personal] = useState(trainer_data);
 
     return (
-        <TrainerContext.Provider value={[...trainers]}>
+        <TrainerContext.Provider value={[...Personal]}>
             {props.children}
         </TrainerContext.Provider>
     )

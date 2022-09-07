@@ -9,6 +9,8 @@ import Footer from '../Footer/Footer';
 
 const Home = () => {
   return (
+
+    
     <>
       <main>
         
@@ -17,7 +19,8 @@ const Home = () => {
                 <div className={style.LandingPage}>
                     <div className={style.gymImgOne}><img src={gym} alt="gym" /></div>
                     <div className={style.LandingText}><h1>HEJ</h1></div>
-                </div>
+          </div>
+          
                
       </div>
       </main>
