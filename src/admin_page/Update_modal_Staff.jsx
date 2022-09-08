@@ -4,13 +4,17 @@ import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase
 import { useState, useEffect } from "react";
 import { GrFormClose } from 'react-icons/gr'
 
-function Update_modal({ id, staffName, age, img}) {
-
-    const staffCollectionRef = collection(db, "staff")
+function Update_modal_staff({ id, staffName, age, img}) {
 
     const [newName, setNewName] = useState("")
     const [newAge, setNewAge] = useState(0)
     const [newImg, setNewImg] = useState('')
+
+    useEffect(() => {
+        setNewName(staffName)
+        setNewAge(age)
+        setNewImg(img)
+    }, [])
 
 
 // UPPDATERAR DATA
@@ -32,9 +36,6 @@ function Update_modal({ id, staffName, age, img}) {
 
 
 //BILD
-
-// PROBLEM :    Fungerar enbart på det första objektet. 
-//              Okänd anledning
 function previewImage() {
     let file = document.getElementById(`${id}-file-modal`).files;
     if (file.length > 0) {
@@ -65,11 +66,18 @@ const closeModal = () => {
                     type="text" 
                     placeholder={staffName} 
                     onChange={(e) => {setNewName(e.target.value)}} 
+                    defaultValue={staffName}
                 />
             </div>
             <div className='modal-img-wrapper'>
                 <h1>Uppdatera bild:</h1>
-                 <input type="file" name="file" id={`${id}-file-modal`} accept="image/*" onChange={previewImage} ></input>
+                 <input 
+                    type="file" 
+                    name="file" 
+                    id={`${id}-file-modal`} 
+                    accept="image/*" 
+                    onChange={previewImage} 
+                ></input>
             </div>
                
             <div className='input-div'>
@@ -78,11 +86,12 @@ const closeModal = () => {
                     type="number" 
                     placeholder={age} 
                     onChange={(e) => {setNewAge(e.target.value)}} 
+                    defaultValue={age}
                 />
             </div>
             <div className="m30">
                 <button onClick={() => {updateStaff('staff')}}>Spara</button>
-                <button onClick={() => {deleteStaff(id, 'staff')}}>Ta bort</button>
+                <button onClick={() => {deleteStaff(id, 'staff')}}>Radera pass</button>
             </div>
             
         </article>
@@ -90,4 +99,4 @@ const closeModal = () => {
   )
 }
 
-export default Update_modal
+export default Update_modal_staff

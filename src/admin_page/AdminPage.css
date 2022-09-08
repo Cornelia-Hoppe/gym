@@ -2,7 +2,11 @@ button{
     margin: 10px;
 }
 
-input{
+input, select{
+    margin: 10px;
+}
+
+.m10{
     margin: 10px;
 }
 
@@ -26,6 +30,7 @@ input{
     justify-content: center;
     align-items: center;
     display: none;
+    z-index: 1;
 }
 
 .update-modal{
@@ -69,9 +74,10 @@ input{
 .staff-card{
     border: solid 2px black;
     width: 250px;
-    padding: 30px;
+    padding: 15px;
     margin: 15px;
     border-radius: 3px;
+    position: relative;
 }
 
 .line{
@@ -93,9 +99,38 @@ input{
     max-height: 50%;
 }
 
+#preview-produkt{
+    border: solid 1px gray;
+    max-height: 200px;
+}
+
 .modal-img-wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.modal-input-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: 10px;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.modal-input-wrapper input{
+    height: 20px;
+}
+
+.img-produkt{
+    width: 40%;
+}
+
+.map-article{
+    display: flex;
+    flex-wrap: wrap;    
+    justify-content: center;
+}
