@@ -3,9 +3,11 @@ const Cards = ({ item, handleClick }) => {
   const { namn, author,  img } = item;
   return (
     
-   
+  
+ 
     
     <div className="cards">
+        
         
       <div className="image_box">
         <img src={img} alt="" />
