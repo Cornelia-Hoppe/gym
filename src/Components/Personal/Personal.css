@@ -1,0 +1,103 @@
+/*
+.container {
+    
+    padding: 25px;
+    background: rgba(84, 140, 168, 0.2);
+    padding: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 12px 12px 12px 12px;
+    position: absolute;
+    margin-top: 50px;
+    
+    
+
+}
+.content {
+    background-color: rgba(84, 140, 168, 0.2);;
+    font-size: 20px;
+    margin: 25px 10px -65px 10px;
+    padding-top: 5px;
+   margin-bottom: 35px;
+    padding-bottom: 25px;
+    border-radius: 12px 12px 12px 12px;
+}
+.box {
+    margin: 25px 15px;
+    font-size: 20px;
+ border-radius: 12px 12px 12px 12px;
+    float: left;
+}
+ul li{
+ 
+   display: block;
+
+}
+.img-fuid{
+    height: 95px;
+    
+    padding: 25px;
+  
+    
+   
+}
+
+.team{
+    float: left;
+    
+} */
+
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+  section {
+    
+    padding: 25px;
+    background: rgba(84, 140, 168, 0.2);
+    padding: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 12px 12px 12px 12px;
+    position: absolute;
+    margin-top: 50px;
+    float: left;
+  }
+  .cards {
+   
+    width: 204px;
+    height: 243px;
+    left: 0px;
+    top: 293px;
+    float: left;
+    
+    
+  }
+  .cards:hover {
+    box-shadow: 0 10px 10px 10px rbga(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  .image_box img {
+    width: 150px;
+    height: 200px;
+    
+  }
+  
+  .image_box img {
+    width: 150px;
+    height: 200px;
+   
+  }
+  .details p:nth-child(1) {
+    font-weight: bold;
+  }
+  .details p:nth-child(2) {
+    color: grey;
+    font-size: 0.8rem;
+  }
+  .details p:nth-child(3) {
+    font-weight: bolx;
+    color: grey;
+  }
+  

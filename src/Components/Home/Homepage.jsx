@@ -2,7 +2,7 @@ import React from 'react'
 
 import style from "./Home.module.css";
 import gym from "../../images/voga1.png";
-import Footer from '../Footer/Footer';
+
 
 
 
@@ -24,7 +24,7 @@ const Home = () => {
                
       </div>
       </main>
-      <Footer/>
+     
       </>
     
     );
