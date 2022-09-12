@@ -63,6 +63,7 @@ ul li{
     position: absolute;
     margin-top: 50px;
     float: left;
+    top:650px;
   }
   .cards {
    
@@ -99,5 +100,80 @@ ul li{
   .details p:nth-child(3) {
     font-weight: bolx;
     color: grey;
+  }
+
+  ul li{
+
+    background: rgba(84, 140, 168, 0.2);
+    border-radius: 10px;
+    direction: initial;
+    display: block;
+  }
+
+    .nav_con{
+    position: absolute;
+    width: 1400px;
+    height: 177px;
+    left: 20px;
+    background: rgba(84, 140, 168, 0.2);
+    border-radius: 10px;
+  }
+  .items1{
+    position: absolute;
+    width: 144px;
+    height: 42px;
+    left: 367px;
+    top: 75px;
+
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  li {
+position: absolute;
+width: 83px;
+height: 26px;
+left: 398px;
+top: 83px;
+
+font-family: 'Work Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 22px;
+line-height: 26px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+letter-spacing: -0.02em;
+
+color: #FFFCF5;
+  }
+  .items2{
+    position: absolute;
+    width: 144px;
+    height: 42px;
+    left: 541px;
+    top: 75px;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+  .items3{
+position: absolute;
+width: 144px;
+height: 42px;
+left: 715px;
+top: 75px;
+
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+
+  .items4{
+position: absolute;
+width: 144px;
+height: 42px;
+left: 889px;
+top: 75px;
+
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
   
