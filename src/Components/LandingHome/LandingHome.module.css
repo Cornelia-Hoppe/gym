@@ -1,7 +1,7 @@
 .LandingPage {
-    position: absolute;
     top: 0px;
     z-index: 1;
+    display: inline-block;
 }
 .gymImgOne{
     width: 100%;
@@ -9,16 +9,13 @@
 
 .gymImgOne img{
     width: 100%;
-    height: auto;
 }
 
 
-
-/* CSS */
 .landingButton {
   background-color: rgba(255, 255, 255, 0.477);
-  position: relative;
-  top: -90px;
+  position: absolute;
+  top: 150px;
   margin-left: 20px;
   border: solid transparent;
   border-radius: 16px;
