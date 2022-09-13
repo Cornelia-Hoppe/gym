@@ -1,0 +1,30 @@
+.Navbar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90%;
+    height: 100vh;
+    background-color: #344257;
+}
+.exit-button{
+    width: 60px;
+    height: 60px;
+    float: right;
+    color: white;
+    cursor: pointer;
+}
+.navbar-logo{
+    display: none;
+}
+.navbar-header{
+    width: 100%;
+    height: 60px;
+}
+.navbar-list{
+    width: 100%;
+    height: 350px;
+}
+.navbar-login{
+    width: 100%;
+    height: 285px;
+}
