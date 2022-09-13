@@ -1,0 +1,79 @@
+.AboutSection{
+    position: relative;
+    text-align: center;
+    background: rgba(84, 140, 168, 0.2);
+    width: 95%;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    font-family: sans-serif;
+}
+
+.AboutInfo{
+    padding-top: 10px;
+    color: black;
+    margin-left: 16px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.AboutInfo h3{
+    margin-top: 0px;
+    margin-bottom: 4px;
+    font-family: sans-serif;
+    text-align: left;
+    font-size: 24px;
+}
+
+.AboutInfo p{
+    font-size: 16px;
+    margin-right: 16px;
+}
+
+.perkOne{
+    justify-content: space-between;
+    display: flex;
+}
+
+.perkTwo{
+    justify-content: space-between;
+    display: flex;
+}
+
+.perkThree{
+    justify-content: space-between;
+    display: flex;
+}
+
+.perkFour{
+    justify-content: space-between;
+    display: flex;
+}
+
+.AboutBox{
+    background: #5D788B;
+    border-radius: 10px;
+    width:50% ;
+    margin-right: 20%;
+    margin-top: 5px;
+    color: white;
+}
+
+.AboutPerks p{
+margin: 4px;
+}
+
+.aboutEnd{
+    margin-top: 10px;
+}
+
+.aboutEnd p{
+margin: 4px;
+}
+
+.aboutEndOne{
+font-weight: 600;
+}
+
