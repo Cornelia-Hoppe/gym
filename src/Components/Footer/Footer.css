@@ -156,6 +156,77 @@ color: #CFEEFF;
   align-items: flex-start;
 }
 
+/* -----------------------------  Footer kontakt ---------------------------------- */
+/* ------------------------------------------------------------------------ */
+
+.footer-contact{
+
+position: absolute;
+width: 221px;
+height: 30px;
+left: 840px;
+top: 126px;
+
+font-family: 'Work Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 30px;
+line-height: 35px;
+text-align: center;
+letter-spacing: -0.02em;
+
+color: #FFFFFF;
+
+}
+
+.footer-desc{
+
+  position: absolute;
+width: 221px;
+height: 138px;
+left: 840px;
+top: 176px;
+
+font-family: 'Work Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 23px;
+text-align: center;
+letter-spacing: -0.02em;
+
+color: #FFFFFF;
+}
+
+.footer-subheading{
+position: absolute;
+width: 241px;
+height: 32px;
+left: 361px;
+top: 87px;
+
+font-family: 'Work Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 30px;
+line-height: 35px;
+letter-spacing: -0.02em;
+
+color: #FFFFFF;
+}
+
+.footer-icon{
+  position: absolute;
+left: 4.17%;
+right: 3.83%;
+top: 4.17%;
+bottom: 3.83%;
+
+background: #CFEEFF;
+
+}
+
+
 @media (min-width:800px){
   .footer{
     height: 60vh;

@@ -1,10 +1,10 @@
 
 
 const Cards = ({ item, handleClick }) => {
-  const { namn, author,  img } = item;
+  const { namn, job,  img } = item;
   return (
     
-    
+  // Trainers Info & img
     <div className="cards">
         
         
@@ -13,7 +13,7 @@ const Cards = ({ item, handleClick }) => {
       </div>
       <div className="details">
         <p>{namn}</p>
-        <p>{author}</p>
+        <p>{job}</p>
        
       </div>
         </div>

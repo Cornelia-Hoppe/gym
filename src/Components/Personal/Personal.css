@@ -65,6 +65,21 @@ ul li{
     float: left;
     top:650px;
   }
+
+  .container section{
+    
+    padding: 25px;
+    background: rgba(84, 140, 168, 0.2);
+    padding: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 12px 12px 12px 12px;
+    position: absolute;
+    margin-top: 50px;
+    
+    
+
+}
   .cards {
    
     width: 204px;
@@ -78,6 +93,13 @@ ul li{
   .cards:hover {
     box-shadow: 0 10px 10px 10px rbga(0, 0, 0, 0.1);
     cursor: pointer;
+  }
+  img{
+    
+width: 227px;
+height: 292px;
+left: 146px;
+top: 486px;
   }
   .image_box img {
     width: 150px;
@@ -176,4 +198,6 @@ top: 75px;
 
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
+
+
   

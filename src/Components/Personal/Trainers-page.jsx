@@ -2,9 +2,7 @@ import React from "react";
 import Trainer from "./Trainers";
 import "./Personal.css";
 import Context from "./Context";
-
-
-
+ //hämtar data
 import list from "./data";
 
 
@@ -18,8 +16,8 @@ const Trainers = ({ handleClick }) => {
      <Context></Context>
       
       </div>       
-    
-      <section>
+    {/* ------------------------------ Trainers Page  ------------------------- */}
+      <section className="container">
         <h1>Ledning</h1>
      
       {list.map((item) =>
