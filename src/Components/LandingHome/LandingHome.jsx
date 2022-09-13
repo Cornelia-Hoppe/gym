@@ -11,7 +11,7 @@ const LandingHome = () => {
       <main>
             <div className={style.LandingPage}>
                     <div className={style.gymImgOne}><img src={gym} alt="gym" /></div>
-                    <button class={style.landingButton} role="button"><p>Bli medlem</p> <br></br> från 300:-/månad</button>
+                    <button className={style.landingButton} role="button"><p>Bli medlem</p> <br></br> från 300:-/månad</button>
             </div>
       </main>
     </>
