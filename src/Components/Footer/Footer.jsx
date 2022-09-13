@@ -9,7 +9,7 @@ function Footer()  {
         <footer className='footer'>
             <div className="footer-container" >
            
-                <ul >
+                <ul>
                    
             <div className="wrapper">
                             <li className="footer-sub-start" path='/'>Startsida</li>
