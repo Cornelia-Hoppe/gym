@@ -85,6 +85,12 @@ useEffect(() => {
     }
 }, [])
 
+// STYLING - RÖD TEXT 
+
+const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({})
+
+
+
   return (
     <>
         <section className='blue-wrapper center'>
@@ -106,7 +112,7 @@ useEffect(() => {
                 return(
                     <>
                     <div key={index} className='pass-card center'>
-                        <h2 className='booking-antal'>{pass.platser}/{pass.maxAntal}</h2>
+                        <h2 className='booking-antal' style={pass.platser == pass.maxAntal ?{ color:'red'} : {color:'white'}} >{pass.platser}/{pass.maxAntal}</h2>
                         <div className='aktv-tid-div'>
                             <h1>{pass.aktivitet}</h1>
                             <h2>{pass.tid}</h2>

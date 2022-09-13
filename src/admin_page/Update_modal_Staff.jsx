@@ -91,7 +91,7 @@ const closeModal = () => {
             </div>
             <div className="m30">
                 <button onClick={() => {updateStaff('staff')}}>Spara</button>
-                <button onClick={() => {deleteStaff(id, 'staff')}}>Radera pass</button>
+                <button onClick={() => {deleteStaff(id, 'staff')}}>Radera anställd</button>
             </div>
             
         </article>
