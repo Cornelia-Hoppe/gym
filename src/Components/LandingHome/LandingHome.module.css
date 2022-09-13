@@ -1,0 +1,39 @@
+.LandingPage {
+    top: 0px;
+    z-index: 1;
+    display: inline-block;
+}
+.gymImgOne{
+    width: 100%;
+}
+
+.gymImgOne img{
+    width: 100%;
+}
+
+
+.landingButton {
+  background-color: rgba(255, 255, 255, 0.477);
+  position: absolute;
+  top: 150px;
+  margin-left: 20px;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 40%;
+  padding: 8px;
+}
+
+.landingButton p{
+    text-decoration: underline;
+    font-size: 20px;
+    margin: 0px;
+}
