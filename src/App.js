@@ -9,9 +9,9 @@ import Footer from './Components/Footer/Footer';
 
 
 function App() {
+
   return (
     <>
-<<<<<<< HEAD
       <Header />
       
       <Home />
@@ -19,10 +19,6 @@ function App() {
       
       <Footer/>
   </> 
-=======
-    <Home />
-    </>
->>>>>>> origin/main
   );
 
 }
