@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom';
 import ListItem from './ListItem';
 import Login from './Login';
 import '../css/Navbar.css';
@@ -8,7 +7,6 @@ import SignUp from './SignUp';
 import {motion} from "framer-motion"
 //Icons
 import { IoIosClose, IoMdHome, IoIosCart } from "react-icons/io";
-import { GrYoga } from "react-icons/gr";
 import { BsPersonCircle, BsFilePerson } from "react-icons/bs";
 import { TbYoga } from "react-icons/tb";
 //installer följande:

@@ -1,19 +1,12 @@
 import React from 'react'
 import style from "./Home.module.css";
-<<<<<<< HEAD
-import gym from "../../images/voga1.png";
-
-
-
-
-=======
 import Footer from '../Footer/Footer';
 import Header from "../Header/Header";
 import LandingHome from '../LandingHome/LandingHome';
 import HomeOffer from '../HomeOffer/HomeOffer';
 import HomeAbout from '../HomeAbout/HomeAbout';
 import HomeGallery from '../HomeGallery/HomeGallery';
->>>>>>> origin/main
+import Menu from '../Navbar/components/Menu';
 
 const Home = () => {
   return (
@@ -22,17 +15,13 @@ const Home = () => {
     <>
       <main>
         <div className={style.HomePage}>
-            <Header />
+            <Menu />
             <LandingHome />
             <HomeOffer />
             <HomeAbout />
             <HomeGallery />
         </div>
       </main>
-<<<<<<< HEAD
-     
-=======
->>>>>>> origin/main
       </>
     
     );

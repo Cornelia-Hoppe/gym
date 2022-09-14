@@ -4,9 +4,9 @@
     align-items: center;
     flex-direction: column;
     position: absolute;
-    top: 7.5%;
+    top: 2.5%;
     width: 90%;
-    height: 60vh;
+    height: 85vh;
     border-radius: 10px;
     background-color: #DDE6E6;
 }
@@ -20,6 +20,7 @@
 .signup-title{
     color: black;
     text-align: center;
+    margin-bottom: 10px;
 }
 .signup-buttons{
     width: 100%;

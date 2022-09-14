@@ -58,28 +58,9 @@ function SignUp( {closeSignup }) {
         {
             id: 6,
             name: "phoneNumber",
-            type: "numbers",
+            type: "number",
             placeholder: "Telefonnummer",
             lable: "Telefonnummer"
-        },
-        {
-            id: 7,
-            name: "adress",
-            type: "text",
-            placeholder: "Ex. Gatavägen 1",
-            lable: "Adress"
-        },
-        {
-            id: 8,
-            name: "postNumber",
-            type: "numbers",
-            placeholder: "Postnummer"
-        },
-        {
-            id: 9,
-            name: "city",
-            type: "text",
-            placeholder: "Stad"
         },
     ];
 
@@ -100,6 +81,15 @@ function SignUp( {closeSignup }) {
               <IoIosClose className="cancel-button" onClick={() => closeSignup(false)} />
             <form className="signup-form" onSubmit={handleSubmit}>
               <h1 className="signup-title">Skapa Konto</h1>
+              {rest.map((input) => (
+                    <FormInput
+                        className="signup-first-inputs"
+                        key={input.id}
+                        {...input}
+                        value={values[inputs.name]}
+                        onChange={onChange}
+                    />
+                ))}
                 {firstThree.map((input) => (
                     <FormInput
                         key={input.id}
