@@ -2,6 +2,9 @@ import { useState } from "react";
 import "../css/signUp.css";
 import FormInput from "./FormInput";
 import { IoIosClose } from "react-icons/io";
+import { db } from '../../../firebase-config'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+import SimpleModal from "../../simpleModal/SimpleModal";
 
 function SignUp( {closeSignup }) {
 
@@ -73,8 +76,32 @@ function SignUp( {closeSignup }) {
 
     const handleSubmit = (e) =>{
       e.preventDefault();
-      console.log(values); //Console-logar ut värdena som skrivits in i fälten vid submit (Email och lösenord)
+      console.log('values: ', values); //Console-logar ut värdena som skrivits in i fälten vid submit (Email och lösenord)
+      createProfil()
+      openModal()
     }
+
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const openModal = () => {
+        setModalIsOpen(true)
+        document.querySelector('#simple-modal').style.display="flex"
+        setTimeout(closeModal, 3000)
+        setTimeout(dispNone, 3500)
+    }
+
+    const closeModal = () => setModalIsOpen(false)
+    const dispNone = () => document.querySelector('#simple-modal').style.display="none"
+
+// LÄGGER TILL ANVÄNDAREN I DATABASEN - START
+
+    const profilerCollectionRef = collection(db, "profiler")
+
+    const createProfil = async () => {
+        await addDoc(profilerCollectionRef, {name: values.firstName, lastName: values.lastName, email:  values.email, phoneNumber: values.phoneNumber, password: values.password });
+    }
+
+// LÄGGER TILL ANVÄNDAREN I DATABASEN - END
+
 
     return (
         <div className="SignUp">
@@ -100,6 +127,9 @@ function SignUp( {closeSignup }) {
                 ))}
             <button className="signup-button">Skapa Konto</button>
             </form>
+            <SimpleModal 
+                modalText={`Välkommen till klubben ${values.firstName}!`} 
+                isOpen={modalIsOpen} />
         </div>
         
     );
