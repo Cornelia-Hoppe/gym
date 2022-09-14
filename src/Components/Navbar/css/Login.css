@@ -40,4 +40,10 @@
     text-decoration: underline;
     margin-left: 20px;
     cursor: pointer;
+    margin-top: 15px;
+}
+@media (min-width: 800px){
+    .Login{
+        margin-top: 20px;
+    }
 }

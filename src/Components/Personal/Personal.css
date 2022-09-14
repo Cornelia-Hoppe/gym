@@ -124,7 +124,7 @@ top: 486px;
     color: grey;
   }
 
-  ul li{
+  .items{
 
     background: rgba(84, 140, 168, 0.2);
     border-radius: 10px;
@@ -150,7 +150,7 @@ top: 486px;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
-  li {
+  .items {
 position: absolute;
 width: 83px;
 height: 26px;

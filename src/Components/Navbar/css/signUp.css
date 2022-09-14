@@ -4,7 +4,7 @@
     align-items: center;
     flex-direction: column;
     position: absolute;
-    top: 2.5%;
+    top: 5%;
     width: 90%;
     height: 85vh;
     border-radius: 10px;
@@ -50,4 +50,14 @@
     background: none;
     color: black;
     font-size: 28px;
+}
+@media (min-width: 800px){
+    .SignUp{
+        position: absolute;
+        top: 20%;
+        left: 25%;
+        height: 95vh;
+        width: 50%;
+        z-index: 2;
+    }
 }

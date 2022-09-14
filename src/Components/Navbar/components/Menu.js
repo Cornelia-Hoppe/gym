@@ -4,14 +4,18 @@ import Navbar from './Navbar'
 
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoIosCart } from "react-icons/io";
-import { FaRegUserCircle } from "react-icons/fa";
 import { HiOutlineUserCircle } from "react-icons/hi";
-import Login from "./Login";
+import DesktopLogin from "./DesktopLogin";
+import SignUp from "./SignUp";
 
 function Menu() {
     const [openNavbar, setOpenNavbar] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
+    const [openSignUp, setOpenSignUp] = useState(false);
     
+    const handleClose = () => {
+      setOpenSignUp(false);
+    }
 
   return (
     <div className="Menu">
@@ -26,6 +30,7 @@ function Menu() {
         }}/>
         </ul>
         <nav className="menu-desktop">
+        {openSignUp && <SignUp closeSignup={ setOpenSignUp }/>}
             <h1 className="menu-desktop-logo">Sportix</h1>
         <ul className="menu-desktop-list">
             <li className="menu-desktop-items"><a className="menu-desktop-item" onClick={() => {setOpenNavbar(true)}}>Startsida</a></li>
@@ -33,16 +38,13 @@ function Menu() {
             <li className="menu-desktop-items"><a className="menu-desktop-item" onClick={() => {setOpenNavbar(true)}}>Personal</a></li>
             <li className="menu-desktop-items"><a className="menu-desktop-item" onClick={() => {setOpenNavbar(true)}}>Webbshop</a></li>
             
-            <HiOutlineUserCircle className="menu-desktop-user" onClick={() => {
-                setOpenLogin(true)
-
-            }} />
+            <HiOutlineUserCircle className="menu-desktop-user" 
+            onClick={() => setOpenLogin((openLogin) => !openLogin)}
+             />
             <IoIosCart className="menu-desktop-cart" />
         </ul>
         </nav>
-        {/* <div className="menu-desktop-login">
-        {openLogin && <Login />}
-        </div> */}
+        { openLogin && < DesktopLogin setOpenSignUp={setOpenSignUp}/>}
     </div>
   )
 }
