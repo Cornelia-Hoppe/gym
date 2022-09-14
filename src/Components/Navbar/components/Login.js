@@ -6,7 +6,7 @@ import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase
 
 function Login({ setOpenSignUp }) {
 
-// HÄMTAR PROFILER START
+// HÄMTAR PROFILER FRÅN DATABASEN START
     const profilerCollectionRef = collection(db, "profiler")
     const [profiler, setProfiler] = useState([])
 
@@ -19,7 +19,7 @@ function Login({ setOpenSignUp }) {
     
         getProfiler()
       }, [])
-// HÄMTAR PROFILER END
+// HÄMTAR PROFILER FRÅN DATABASEN END
 
     const [values, setValues] = useState({
         email: "",
@@ -63,10 +63,9 @@ function Login({ setOpenSignUp }) {
     };
 
     const checkPassword = () => {
-        if (userProfile.lösenord == values.password) {
+        if (userProfile.password == values.password) {
             alert('inloggad!')
             window.localStorage.setItem('user', JSON.stringify(userProfile))
-            console.log(userProfile);
         } else {
             alert('fel lösenord')
         }
