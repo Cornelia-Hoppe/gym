@@ -1,12 +1,22 @@
-import '../css/DesktopLogin.css';
-import Login from './Login';
+import "../css/DesktopLogin.css";
+import Login from "./Login";
+import { motion } from "framer-motion";
 
-
-function DesktopLogin( {setOpenSignUp} ) {
+function DesktopLogin({ setOpenSignUp }) {
   return (
-    <div className="desktop-login">
-        <Login setOpenSignUp={setOpenSignUp} />
-    </div>
+    <motion.div
+      initial={{
+        y: -50,
+        opacity: -0.7,
+      }}
+      animate={{
+        y: 0,
+        opacity: 1,
+      }}
+      className="desktop-login"
+    >
+      <Login setOpenSignUp={setOpenSignUp} />
+    </motion.div>
   );
 }
 

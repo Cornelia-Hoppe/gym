@@ -1,7 +1,7 @@
-import "../css/Login.css";
 import { useState } from "react";
 import LoginInput from "./LoginInput";
-
+import "../css/Login.css";
+//Icons
 function Login({ setOpenSignUp }) {
   const [values, setValues] = useState({
     email: "",
