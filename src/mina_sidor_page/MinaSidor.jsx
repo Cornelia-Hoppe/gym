@@ -3,24 +3,35 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { AiFillEdit } from 'react-icons/ai';
 import './minaSidor.css'
-import TEMP_IMG from '../images/istockphoto-1362531854-612x612.jpg'
 import style from "../Components/HomeOffer/HomeOffer.module.css"
+import UpdateProfileModal from './UpdateProfileModal';
 
 function MinaSidor() {
-
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+  console.log('user: ', user);
 
-  return (
+  const [img, setImg] = useState(user.img)
+
+  console.log(img);
+
+
+
+  const openModal = () => {
+    document.querySelector(`#${user.id}-update-modal`).style.display='flex'
+  }
+
+   return user ? (
     <>
       <section className='profile-wrapper'>
         <article className='profile-left'>
           <h2>Mina sidor</h2>
             <div className='flex-between a-center'>
               <h1 className=''>Kontouppfigter</h1>
-              <AiFillEdit />
+              <AiFillEdit id='update-btn' onClick={openModal} />
+              <UpdateProfileModal id={user.id} img={img} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
             </div>
             <div className='flex-between'>
-              <img className='profile-img' src={TEMP_IMG} alt="" />
+              <img className='profile-img' src={img} alt="" />
               <div>
                 <p>{user.name} {user.lastName}</p>
                 <p>{user.email}</p>
@@ -51,7 +62,11 @@ function MinaSidor() {
 
       </section>
     </>
-  ) 
+  ) : (
+    <>
+      <div>hej</div>
+    </>
+  )
 }
 
 export default MinaSidor
