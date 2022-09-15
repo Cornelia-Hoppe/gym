@@ -6,6 +6,7 @@ import HomeOffer from "../HomeOffer/HomeOffer";
 import HomeAbout from "../HomeAbout/HomeAbout";
 import HomeGallery from "../HomeGallery/HomeGallery";
 import Menu from "../Navbar/components/Menu";
+import HomePersonal from "../HomePersonal/HomePersonal";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
         <HomeOffer />
         <HomeAbout />
         <HomeGallery />
+        <HomePersonal />
       </main>
     </>
   );
