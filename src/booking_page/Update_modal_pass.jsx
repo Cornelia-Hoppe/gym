@@ -4,23 +4,16 @@ import { GrFormClose } from 'react-icons/gr'
 import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useEffect } from 'react'
+import Calendar from 'react-calendar';
 
+function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid, dag }) {
 
-
-function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid }) {
-
-    const [newAktivitet, setNewAktivitet] = useState('')
-    const [newInstruktör, setNewInstruktör] = useState('')
-    const [newMaxAntal, setNewMaxAntal] = useState(0)
-    const [newTid, setNewTid] = useState('')
-
-    useEffect(() => {
-        setNewAktivitet(aktivitet)
-        setNewInstruktör(instruktör)
-        setNewMaxAntal(maxAntal)
-        setNewTid(tid)
-    }, [])
-
+    const [newAktivitet, setNewAktivitet] = useState(aktivitet)
+    const [newInstruktör, setNewInstruktör] = useState(instruktör)
+    const [newMaxAntal, setNewMaxAntal] = useState(maxAntal)
+    const [newTid, setNewTid] = useState(tid)
+    const [newDate, setNewDate] = useState(dag)
+    const [date, setDate] = useState('')
 
 // UPPDATERAR DATA
   const updateStaff = async (DBcollextion) => {
@@ -53,6 +46,13 @@ function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid 
         document.querySelector(`#${id}-update-modal`).style.display="none"
     }
 
+// KALENDER
+
+const onSelect = (e) => {
+    setNewDate(e)
+    console.log(newDate);
+  }
+
   return (
     <section id={`${id}-update-modal`} className='update-modal-wrapper'>
         <article className='update-modal'>
@@ -82,6 +82,11 @@ function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid 
                     onChange={(e) => {setNewInstruktör(e.target.value)}}
                     defaultValue={instruktör}
                 />
+            </div>
+
+            <div className='center'>
+            <p>Dag: </p>
+            <Calendar onChange={setNewDate} value={date} onClickDay={onSelect}/>
             </div>
 
             <div className='modal-input-wrapper'>
