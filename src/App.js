@@ -1,6 +1,6 @@
 import React from "react"
 import Home from "./Components/Home/Homepage";
-import Team from "./Components/Personal/Trainers-page";
+import Team from "./Components/Personal/Trainerspage";
 import Footer from './Components/Footer/Footer';
 
 
@@ -11,18 +11,17 @@ import Footer from './Components/Footer/Footer';
 function App() {
   return (
     <>
-<<<<<<< HEAD
-      <Header />
+
+      
       
       <Home />
       <Team />
       
       <Footer/>
-  </> 
-=======
-    <Home />
+  
+
     </>
->>>>>>> origin/main
+
   );
 
 }
