@@ -1,28 +1,41 @@
 import React from "react";
 import "./Footer.css";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
         <div className="wrapper">
-          <div className="footer-sub-start" id="footer-link">
-            <strong className="footer-subheading">Startsida</strong>
-          </div>
-          <div className="footer-sub-persion" id="footer-link">
-            <strong className="footer-subheading">Personal</strong>
-          </div>
-
-          <div className="footer-sub-bok" id="footer-link">
-            <strong className="footer-subheading">Boka pass</strong>
-          </div>
-          <div className="footer-sub-web" id="footer-link">
-            <strong className="footer-subheading">Webbshop</strong>
-          </div>
-          <div className="footer-sub-mina" id="footer-link">
-            <strong className="footer-subheading">Mina Sidor</strong>
-          </div>
+          <CustomLink to="/">
+            <div className="footer-sub-start" id="footer-link">
+              <strong>Startsida</strong>
+            </div>
+          </CustomLink>
+          <CustomLink to="/bookingpage">
+            <div className="footer-sub-bok" id="footer-link">
+              {" "}
+              <strong>Boka pass</strong>
+            </div>
+          </CustomLink>
+          <CustomLink>
+            <div className="footer-sub-persion" id="footer-link">
+              {" "}
+              <strong>Personal</strong>
+            </div>
+          </CustomLink>
+          <CustomLink>
+            <div className="footer-sub-web" id="footer-link">
+              {" "}
+              <strong>Webbshop</strong>{" "}
+            </div>
+          </CustomLink>
+          <CustomLink>
+            <div className="footer-sub-mina" id="footer-link">
+              <strong>Mina Sidor</strong>
+            </div>
+          </CustomLink>
         </div>
 
         <section id="social-section">
@@ -41,11 +54,12 @@ const Footer = () => {
               <strong className="footer-subheading">Kontakta oss</strong>
             </div>
             <span className="footer-desc">
-              Telefon: 070-111 22 33
-              <div> E-post: info@sportix.se</div>
-              Pusterviksgatan 3 <br></br>
-              413 01 Göteborg
-              <br />
+              <p>
+                Telefon: 070-111 22 33 <br></br>
+                E-post: info@sportix.se <br></br>
+                Pusterviksgatan 3 <br></br>
+                413 01 Göteborg
+              </p>
             </span>
           </div>
         </section>
@@ -55,3 +69,11 @@ const Footer = () => {
 };
 
 export default Footer;
+
+function CustomLink({ to, ...props }) {
+  return (
+    <li>
+      <Link to={to} {...props}></Link>
+    </li>
+  );
+}

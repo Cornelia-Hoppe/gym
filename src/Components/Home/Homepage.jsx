@@ -7,7 +7,7 @@ import HomeAbout from "../HomeAbout/HomeAbout";
 import HomeGallery from "../HomeGallery/HomeGallery";
 import Menu from "../Navbar/components/Menu";
 
-const Home = () => {
+const Homepage = () => {
   return (
     <>
       <main>
@@ -21,4 +21,6 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Homepage;
+
+

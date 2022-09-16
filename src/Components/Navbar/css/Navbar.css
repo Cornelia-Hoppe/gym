@@ -4,12 +4,12 @@
   right: 0;
   width: 90%;
   height: 100vh;
-  background-color: #344257;
+  background-color: rgba(0, 39, 84);
   z-index: 2;
 }
 .exit-button {
-  width: 60px;
-  height: 60px;
+  width: 120px;
+  height: 120px;
   float: right;
   color: white;
   cursor: pointer;
@@ -23,9 +23,26 @@
 }
 .navbar-list {
   width: 100%;
-  height: 350px;
+  height: 400px;
+}
+.navbar-list a {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
 }
 .navbar-login {
   width: 100%;
   height: 285px;
+}
+.icon {
+  width: 44px;
+  height: 44px;
+}
+.item-name {
+  font-size: 28px;
+  margin-left: 2rem;
+}
+
+.login-title {
+  font-size: 28px;
 }
