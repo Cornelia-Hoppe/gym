@@ -3,6 +3,8 @@ import style from "./LandingHome.module.css";
 import gymMobile from "../../images/landing-mobile.jpg";
 import gymDesktop from "../../images/landing-desktop.jpg";
 
+
+
 const LandingHome = () => {
   return (
     <>
@@ -20,6 +22,8 @@ const LandingHome = () => {
             <h3>från 300:-/månad</h3>
           </button>
         </div>
+   
+          
       </main>
     </>
   );
