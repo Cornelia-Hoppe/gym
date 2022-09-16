@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./HomeGallery.module.css";
 import { imgs } from "./GalleryImgs";
-
+import {MdArrowBackIosNew, MdArrowForwardIos} from "react-icons/md";
 const HomeGallery = () => {
 
   const [sliderData, setSliderData] = useState(imgs[0]);
@@ -35,24 +35,27 @@ const HomeGallery = () => {
           <h3>Galleri</h3>
           <p>Kolla in bilder på våra lokaler och vår utrustning!</p>
         </div>
+        <div className={style.galleryImg}>
         <div onClick={PrevBtn} className={style.prevBtn}>
-          <p>Förra</p>
+          <MdArrowBackIosNew />
         </div>
+
+        <img src={sliderData.value} height="300vh" width="100%" />
 
         <div onClick={NextBtn} className={style.nextBtn}>
-          <p>Nästa</p>
+          < MdArrowForwardIos />
         </div>
-        <img src={sliderData.value} height="180" width="300" />
-
+        </div>
         <div className={style.flexrow}>
           {imgs.map((data, i) => (
+            <div className={style.flexImg}>
             <img
               key={data.id}
               src={data.value}
               onClick={() => handleClick(i)}
-              height="70"
-              width="100"
-            />
+              height="50vh"
+              width="100%"
+            /></div>
           ))}
         </div>
       </div>

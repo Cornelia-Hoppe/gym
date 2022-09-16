@@ -1,21 +1,20 @@
 .AboutSection{
-    position: relative;
     text-align: center;
-    background: rgba(84, 140, 168, 0.2);
+    background: #DDE6E6;
     width: 95%;
     margin: auto;
     border-radius: 10px;
     margin-top: 10px;
     padding-bottom: 8px;
     padding-top: 8px;
-    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 .AboutInfo{
     padding-top: 10px;
+    padding-left: 20px;
     color: black;
-    margin-left: 16px;
-    margin-bottom: 10px;
     text-align: left;
 }
 
@@ -23,57 +22,111 @@
     margin-top: 0px;
     margin-bottom: 4px;
     font-family: sans-serif;
+    font-size: 30px;
+    width: 90%;
     text-align: left;
-    font-size: 24px;
 }
 
 .AboutInfo p{
-    font-size: 16px;
-    margin-right: 16px;
+    font-size: 22px;
+    font-weight: lighter;
+    width: 90%;
 }
 
-.perkOne{
+.perkOne, .perkTwo, .perkThree, .perkFour{
     justify-content: space-between;
     display: flex;
-}
+width: 90%;
+align-items: center;
+justify-content: space-between;
+  margin-bottom: 20px;
 
-.perkTwo{
-    justify-content: space-between;
-    display: flex;
-}
-
-.perkThree{
-    justify-content: space-between;
-    display: flex;
-}
-
-.perkFour{
-    justify-content: space-between;
-    display: flex;
 }
 
 .AboutBox{
+    font-size: 22px;
     background: #5D788B;
     border-radius: 10px;
-    width:50% ;
-    margin-right: 20%;
-    margin-top: 5px;
     color: white;
+ text-align: center;
+  width: 74%;
+  height: 12vh;
+  font-weight: 400;
+
+}
+.AboutBox p{
+    margin: 10px 5px 15px 5px;
+    padding: 2px;
 }
 
-.AboutPerks p{
-margin: 4px;
+.arrow {
+    margin-left: 30px;color: #5D788B;
 }
 
+
+
+/* öppettider */
 .aboutEnd{
     margin-top: 10px;
 }
 
-.aboutEnd p{
+.aboutEnd p, h4{
 margin: 4px;
+font-size: 24px;
+
 }
 
-.aboutEndOne{
-font-weight: 600;
+.aboutEndOne {
+font-weight: bolder !important;
 }
 
+@media screen and (min-width: 800px) {
+   .AboutSection{
+width: 97%;
+   }
+   
+  .arrow svg{
+    width: 70px;
+    height: 70px;
+  }
+   .AboutInfo{
+    text-align: left;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+ margin-top: 4vh;
+
+   }
+   .AboutInfo p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+  
+   }
+   .AboutInfo h3{
+         font-size: 40px;
+   }
+    .AboutPerks{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+     
+    }
+    .perkOne, .perkTwo, .perkThree, .perkFour{
+        margin-left: 5vw;
+        width:520px;
+        height: 23vh;
+        font-size: 30px;
+    }
+    .AboutBox{
+        width: 73% ;
+        height: 20vh;
+    font-size: 30px;
+    font-weight: 400;
+        padding-top: 20px;
+    text-align: center;
+    }
+}
