@@ -1,0 +1,43 @@
+.Login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login-form{
+    width: 100%;
+}
+.login-title{
+    padding-left: 20px;
+    font-size: 22px;
+    color: white;
+}
+.login-button{
+    width: 150px;
+    height: 48px;
+    background: rgba(84, 140, 168, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.form-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap:20px;
+    
+}
+.register-button{
+    background: rgba(0, 112, 244, 0.5);
+}
+.login-forgot-password{
+    color: white;
+    align-self: flex-start;
+    text-decoration: underline;
+    margin-left: 20px;
+    cursor: pointer;
+}

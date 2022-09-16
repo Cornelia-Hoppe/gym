@@ -1,29 +1,19 @@
-import React from "react"
-import Home from "./Components/Home/Homepage";
-import Team from "./Components/Personal/Trainerspage";
-import Footer from './Components/Footer/Footer';
-
-
-
-
-
+import React from "react";
+import Homepage from "./Components/Home/Homepage";
+import Footer from "./Components/Footer/Footer";
+import { Routes, Route } from "react-router-dom";
+import BookingPage from "./booking_page/BookingPage";
 
 function App() {
   return (
     <>
-
-      
-      
-      <Home />
-      <Team />
-      
-      <Footer/>
-  
-
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/bookingpage" element={<BookingPage />}/>
+      </Routes>
+      <Footer />
     </>
-
   );
-
 }
 
 export default App;
