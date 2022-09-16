@@ -17,6 +17,7 @@
     margin-left: 16px;
     margin-bottom: 10px;
     font-family: sans-serif;
+    width: 100%;
 }
 
 .HeaderPersonal h3{
@@ -26,6 +27,7 @@
     font-size: 24px;
 }
 
+
 .PersonalButtons button{
     background-size: 160%;
     width: 35%;
@@ -33,10 +35,24 @@
     margin: 10px;
     border-radius: 10px;
     font-size: 20px;
-    opacity: 0.6;
 }
 
+@media screen and (min-width: 800px){
+    .PersonalButtons button{
+        background-size: 160%;
+        width: 10%;
+        height: 200px;
+        margin: 10px;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+}
+
+
+
+
 .PersonalButtons p{
+    margin: auto;
     font-size: 20px;
     opacity: 1.0;
 }
