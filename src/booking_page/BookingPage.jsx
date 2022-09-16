@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 import './bookingPage.css'
 import '../admin_page/AdminPage.css'
 import { db } from '../firebase-config'
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, Timestamp } from 'firebase/firestore'
 import CheckModal from './CheckModal';
 import { BsFillPencilFill } from 'react-icons/bs'
 import Update_modal_pass from './Update_modal_pass';
 
 function BookingPage() {
-
 
     // HÄMTAR DATA
 const staffCollectionRef = collection(db, "pass")
@@ -24,9 +22,8 @@ useEffect(() => {
     };
 
     getStaff()
+    sortPass()
   }, [])
-
-
 
   // BOKA-KNAPPEN
 
@@ -59,15 +56,40 @@ useEffect(() => {
    }
 
 
-   // KALENDER
+// KALENDER
 
    const [date, setDate] = useState(new Date())
+   const [passDenDagen, setPassDenDagen] = useState([])
 
-   console.log(date.getFullYear());
 
-   const onSelect = (e) => {
-    console.log(e);
+   const sortPass = (e) => {
+
+    const filteredPass = DBdata.filter((pass) => {
+        return pass.dag == e 
+    })
+
+    setPassDenDagen(filteredPass)
+
    }
+
+
+// SORTERA PASSEN
+
+   const [passKategorier, setPassKategorier] = useState()
+
+   const sortKategories = (selectedKategori) => {
+
+    setPassKategorier(selectedKategori)
+
+    const filteredPass = DBdata.filter((pass) => {
+        return pass.kategori == selectedKategori
+    })
+
+    setPassDenDagen(filteredPass)
+   }
+   
+
+
 
 // GÖM KNAPPEN FÖR VANLIGA ANVÄNDARE
 const normalUser = 0
@@ -95,24 +117,25 @@ const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({})
     <>
         <section className='blue-wrapper center'>
             <h1>Kalender</h1>
-            <Calendar onChange={setDate} value={date} onClickDay={onSelect}/>
+            <Calendar onChange={setDate} value={date} onClickDay={sortPass}/>
         </section>  
 
         <section className='blue-wrapper center'>
             <h1>Pass</h1>
-            <select className='drop-down' name='välj pass'>
+            <select className='drop-down' name='välj pass' onChange={(e) => sortKategories(e.target.value)}>
                 <option value="null">Välj pass</option>
-                <option value="alt 1">Alternativ 1</option>
-                <option value="alt 2">Alternativ 2</option>
-                <option value="alt 3">Alternativ 3</option>
+                <option value="kondition">Kondition</option>
+                <option value="styrka">Styrka</option>
+                <option value="crossfit">Crossfit</option>
+                <option value="funktionell-träning">Funktionell Träning</option>
             </select>
             
-            {DBdata.map((pass, index) => {
+            {passDenDagen.map((pass, index) => {
 
                 return(
                     <>
                     <div key={index} className='pass-card center'>
-                        <h2 className='booking-antal' style={pass.platser == pass.maxAntal ?{ color:'red'} : {color:'white'}} >{pass.platser}/{pass.maxAntal}</h2>
+                        <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
                         <div className='aktv-tid-div'>
                             <h1>{pass.aktivitet}</h1>
                             <h2>{pass.tid}</h2>
@@ -136,6 +159,7 @@ const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({})
                         maxAntal={pass.maxAntal}
                         platser={pass.platser}
                         tid={pass.tid}
+                        date={pass.dag}
                     />
 
                     </>
