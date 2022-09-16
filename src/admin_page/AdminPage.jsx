@@ -99,12 +99,10 @@ function previewImageProdukt() {
     // PASS
     const createPass = async () => {
 
-   console.log(date);
+      console.log(dateString, dayString, monthString);
 
-    await fixDays()
-
-      // await addDoc(passCollectionRef, {aktivitet: aktivitet, kategori: passKategori, dag: String(date), instruktör: instruktör, maxAntal: Number(maxAntal), tid: tid});
-      // alert ('Sparat!')
+      await addDoc(passCollectionRef, {aktivitet: aktivitet, kategori: passKategori, dag: String(date), instruktör: instruktör, maxAntal: Number(maxAntal), tid: tid, dayString: dayString, monthString: monthString, dateString: dateString});
+      alert ('Sparat!')
 
       clearFields()
     }
@@ -122,36 +120,28 @@ const deleteProdukter = async (id, DBcollextion) => {
 
 // FIXAR DAGARNA TILL VARJE PASS
 
+// PROBLEM : useState uppdateras inte första gången man använder dem. Man måste
+//  klicka två gånger på samma datum för att useState ska uppdateras.
+
 const [dayString, setDayString] = useState('')
-const [monthtring, setMonthString] = useState('')
-const [dateString, setDateString] = useState('')
+const [monthString, setMonthString] = useState('')
+const [dateString, setDateString] = useState(0)
+
+
+
 
    const fixDays = () => {
 
-    console.log('fixDays kör');
-
-   const daysArray = []
-
-   console.log('date i fixDays: ', date);
-
-   console.log('');
-
-
-
-        const dateStr1 = date
-
-        console.log(dateStr1);
-
-        const date1 = new Date(dateStr1)
+        const date1 = new Date(date)
         const timestamp = date1.getTime()
         
-        const date = new Date(timestamp * 1000)
+        const dateTimestamp = new Date(timestamp)
 
-        console.log(date.getDate());
+        setDateString(dateTimestamp.getDate())
 
         let day = ""
 
-        switch (date.getDay()) {
+        switch (dateTimestamp.getDay()) {
             case 0:
                 day = "Söndag"
                 break;
@@ -179,7 +169,7 @@ const [dateString, setDateString] = useState('')
 
         let month = ""
 
-        switch (date.getMonth()) {
+        switch (dateTimestamp.getMonth()) {
             case 0:
                 month = "Januari"
                 break;
@@ -216,12 +206,15 @@ const [dateString, setDateString] = useState('')
             case 11:
                 month = "December"
                 break;
-
-        setMonthString(month)
-
     }
+
+    setMonthString(month)
+
    }
 
+   
+
+   // -----------
 
   const clearFields = () => {
 
@@ -273,8 +266,8 @@ const [dateString, setDateString] = useState('')
 
   const onSelect = (e) => {
     setDate(e)
-    console.log('date is set: ', e);
-    console.log('date: ', date);
+    fixDays()
+
   }
 
   return (
