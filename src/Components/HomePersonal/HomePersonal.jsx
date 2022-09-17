@@ -14,8 +14,8 @@ const HomePersonal = () => {
               <h3>Personal</h3>
         </div>
         <div className={style.PersonalButtons}>
-            <button className={style.persona1} style={{ backgroundImage: `url(${personal1})` }}><p>Ledning</p></button>
-            <button className={style.persona2} style={{ backgroundImage: `url(${personal2})` }}><p>Personliga tränare</p></button>
+            <button className={style.persona1} style={{ backgroundImage: `url(${personal1})` }}><div className={style.pesonaltext}><p>Ledning</p></div></button>
+            <button className={style.persona2} style={{ backgroundImage: `url(${personal2})` }}><p>Tränare</p></button>
             <button className={style.persona3} style={{ backgroundImage: `url(${personal3})` }}><p>Reception</p></button>
             <button className={style.persona4} style={{ backgroundImage: `url(${personal4})` }}><p>Instruktörer</p></button>
         </div>
