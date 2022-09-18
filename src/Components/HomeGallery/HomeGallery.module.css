@@ -54,6 +54,13 @@
     align-items: center;
     justify-content: space-between;
 }
+.selectedImg{
+    border:  5px solid white;
+}
+
+.nonSelected{
+    border: 5px solid transparent;
+}
 
 @media screen and (min-width: 800px) {
 
@@ -96,11 +103,11 @@
         flex-wrap: wrap;
         justify-content: space-around;
     }
- .flexImg {
-    width: 45%;
+ .selectedImg, .nonSelected {
+    max-width: 45%;
     height: 30%;
  }
- .flexImg img {
+ .selectedImg img, .nonSelected img {
     width: 100%;
     height: 100%;
  }

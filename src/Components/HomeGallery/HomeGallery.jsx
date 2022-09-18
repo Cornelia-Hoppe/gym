@@ -48,7 +48,7 @@ const HomeGallery = () => {
         </div>
         <div className={style.flexrow}>
           {imgs.map((data, i) => (
-            <div className={style.flexImg}>
+            <div className={data === sliderData ? style.selectedImg : style.nonSelected }>
             <img
               key={data.id}
               src={data.value}
