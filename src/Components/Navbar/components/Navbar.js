@@ -8,7 +8,7 @@ import SignUp from "./SignUp";
 import { motion } from "framer-motion";
 //Icons
 import { IoIosClose, IoMdHome, IoIosCart } from "react-icons/io";
-import { GrYoga } from "react-icons/gr";
+//import { GrYoga } from "react-icons/gr";
 import { BsPersonCircle, BsFilePerson } from "react-icons/bs";
 import { TbYoga } from "react-icons/tb";
 
@@ -75,6 +75,10 @@ export default NavBar;
 
 function CustomLink({ to, ...props }) {
   return <Link to={to} {...props}></Link>;
+<<<<<<< HEAD
+}
+=======
 }
 
 
+>>>>>>> 03b173ddf1faa6bdce563c29ce22ac390bd46306
