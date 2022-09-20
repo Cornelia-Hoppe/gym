@@ -8,7 +8,7 @@ import SignUp from "./SignUp";
 import { motion } from "framer-motion";
 //Icons
 import { IoIosClose, IoMdHome, IoIosCart } from "react-icons/io";
-import { GrYoga } from "react-icons/gr";
+//import { GrYoga } from "react-icons/gr";
 import { BsPersonCircle, BsFilePerson } from "react-icons/bs";
 import { TbYoga } from "react-icons/tb";
 
@@ -53,7 +53,7 @@ function NavBar({ closeNavbar }) {
           icon={<BsPersonCircle className="icon" />}
         />
         <ListItem name="Personal" icon={<BsFilePerson className="icon" />} />
-        <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
+        <ListItem name="Webbshop"  icon={<IoIosCart className="icon" />} />
       </div>
 
       <div className="navbar-login">
