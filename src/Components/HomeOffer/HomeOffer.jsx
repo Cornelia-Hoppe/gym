@@ -10,7 +10,7 @@ const HomeOffer = () => {
               <h3>Medlemskap & passkort</h3>
               <div className={style.offerContent}>
             <div className={style.OfferInfo}> 
-              <p>Bli medlem och få fri<br></br> tillgång till  gymmet <br></br> och våra pass! <br></br><br></br>Eller köp ett enskilt  <br></br>passkort!</p>
+              <p>Bli medlem och få fri tillgång till  gymmet och våra pass! <br></br><br></br> Eller köp ett enskilt passkort!</p>
               <button className={style.buttonMemberDesktop} role="button"> <p className={style.rowMember}>Bli medlem</p> </button>
           </div>
             <div className={style.OfferCards}>
