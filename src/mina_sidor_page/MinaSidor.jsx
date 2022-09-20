@@ -7,6 +7,7 @@ import style from "../Components/HomeOffer/HomeOffer.module.css"
 import UpdateProfileModal from './UpdateProfileModal';
 import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+import Menu from '../Components/Navbar/components/Menu';
 
 function MinaSidor() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
@@ -75,6 +76,7 @@ function MinaSidor() {
 
    return user ? (
     <>
+      <Menu />
       <section className='profile-wrapper'>
         <article className='profile-left'>
           <h2>Mina sidor</h2>
@@ -126,6 +128,7 @@ function MinaSidor() {
     </>
   ) : (
     <>
+      <Menu />
       <section className='profile-wrapper'>
         <article className='profile-left'>
           <h2>Mina sidor</h2>
