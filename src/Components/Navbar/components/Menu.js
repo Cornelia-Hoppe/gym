@@ -37,7 +37,7 @@ function Menu() {
         <ul className="menu-desktop-list">
           <li className="menu-desktop-items">
             <CustomLink to="/">
-              <p className="menu-desktop-item" >Startsida</p>
+              <p className="menu-desktop-item">Startsida</p>
             </CustomLink>
           </li>
           <li className="menu-desktop-items">
@@ -46,18 +46,21 @@ function Menu() {
             </CustomLink>
           </li>
           <li className="menu-desktop-items">
-            <p className="menu-desktop-item">Personal</p>
+            <CustomLink to="/staff">
+              <p className="menu-desktop-item">Personal</p>
+            </CustomLink>
           </li>
           <li className="menu-desktop-items">
             <p className="menu-desktop-item">Webbshop</p>
           </li>
-
-          <HiOutlineUserCircle
-            className="menu-desktop-user"
-            onClick={() => {
-              setOpenLogin(true);
-            }}
-          />
+          <CustomLink to="/myprofile">
+            <HiOutlineUserCircle
+              className="menu-desktop-user"
+              onClick={() => {
+                setOpenLogin(true);
+              }}
+            />
+          </CustomLink>
           <IoIosCart className="menu-desktop-cart" />
         </ul>
       </nav>
