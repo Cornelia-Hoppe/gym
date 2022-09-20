@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import style from "./HomeGallery.module.css";
 import { imgs } from "./GalleryImgs";
 import {MdArrowBackIosNew, MdArrowForwardIos} from "react-icons/md";
+import { transform } from "framer-motion";
 const HomeGallery = () => {
 
   const [sliderData, setSliderData] = useState(imgs[0]);
+
   const handleClick = (index) => {
     console.log(index);
     const slider = imgs[index];
     setSliderData(slider);
+    
   };
   const PrevBtn = () => {
     if (sliderData.id == 0) {
-      const lastImg = imgs[3];
+      const lastImg = imgs[5];
       setSliderData(lastImg);
     } else {
       const nextImg = imgs[sliderData.id - 1];
@@ -20,7 +23,7 @@ const HomeGallery = () => {
     }
   };
   const NextBtn = () => {
-    if (sliderData.id == 3) {
+    if (sliderData.id == 5) {
       const firstImg = imgs[0];
       setSliderData(firstImg);
     } else {
@@ -53,8 +56,8 @@ const HomeGallery = () => {
               key={data.id}
               src={data.value}
               onClick={() => handleClick(i)}
-              height="50vh"
-              width="100%"
+              height="55vh"
+              width="80vw"
             /></div>
           ))}
         </div>

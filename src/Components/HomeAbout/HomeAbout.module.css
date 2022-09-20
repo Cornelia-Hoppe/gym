@@ -1,10 +1,9 @@
 .AboutSection{
     text-align: center;
     background: #DDE6E6;
-    width: 95%;
     margin: auto;
     border-radius: 10px;
-    margin-top: 10px;
+    margin: 20px 10px auto 10px ;
     padding-bottom: 8px;
     padding-top: 8px;
     display: flex;
@@ -82,7 +81,7 @@ font-weight: bolder !important;
 
 @media screen and (min-width: 800px) {
    .AboutSection{
-width: 97%;
+    margin: 40px 20px auto 20px ;
    }
    
   .arrow svg{

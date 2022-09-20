@@ -1,11 +1,10 @@
+
 .OfferSection{
     position: relative;
     text-align: center;
     background: #DDE6E6;
-    width: 95%;
- margin: auto;
-    border-radius: 10px;
-    margin-top: 10px;
+    border-radius: 10px;    
+    margin: 20px 10px auto 10px ;
     padding-bottom: 8px;
 display: flex;
 flex-direction: column;
@@ -24,7 +23,7 @@ margin: 25px auto 0px auto
     text-align: left;
   font-size: 18px;
   color: black;
-  width: 70%;
+  width: 85%;
   margin-left: 25px;
 }
 
@@ -79,14 +78,17 @@ margin: 25px auto 0px auto
 
 .rowOne {
 text-align: left;
-font-weight: 100;
-font-size: 22px;
+font-weight: 500;
+font-size: 30px;
+margin: 10px;
+
 }
 
 .rowTwo{
     text-align: right;
-    font-weight: 100;
-    font-size: 22px;
+    font-weight: 500;
+    font-size: 30px;
+    margin-top: 20px;
 }
 .buttonMemberDesktop{
    display: none;
@@ -102,7 +104,7 @@ font-size: 22px;
      height: max-content;
     }
    .OfferSection{
-    width: 97%;
+    margin: 40px 20px auto 20px ;
     padding-bottom: 50px;
    }
    .offerContent{
@@ -110,12 +112,11 @@ font-size: 22px;
     display: flex;
    }
   .OfferInfo{
-   width: 25%;
+   width: 20%;
     margin-left: 20px;
   }
    .OfferSection p{
    
-    width: max-content;
     margin-top: 3vh;
     font-size: 30px;
    }
@@ -151,4 +152,10 @@ font-size: 30px;
 font-weight: lighter;
 margin-top: 15px;
    }
+   .rowTwo{
+    text-align: left;
+    font-weight: 100;
+    font-size: 22px;
+margin-left: 10px;
+}
     }
