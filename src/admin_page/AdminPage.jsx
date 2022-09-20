@@ -36,6 +36,11 @@ function AdminPage() {
     const [date, setDate] = useState('')
     const [passKategori, setPassKategori] = useState('')
 
+    const [dayString, setDayString] = useState('')
+    const [monthString, setMonthString] = useState('')
+    const [dateString, setDateString] = useState(0)
+
+
     const passCollectionRef = collection(db, "pass")
     const [pass, setPass ] = useState([])
 
@@ -53,6 +58,8 @@ useEffect(() => {
 
 
   // HÄMTAR PRODUKTER 
+
+
 useEffect(() => {
 
     const getProdukter = async () => {
@@ -81,11 +88,13 @@ function previewImageProdukt() {
 
   // LÄGGER TILL DATA
     // ANSTÄLLDA
+
+
   const createStaff = async () => {
     await addDoc(staffCollectionRef, {name: newName, age: Number(newAge), img: IMG_SRC});
     alert ('Sparat!')
 
-    clearFields()
+    // clearFields()
   }
 
     // PRODUKTER
@@ -113,31 +122,28 @@ const deleteProdukter = async (id, DBcollextion) => {
 
     const staffDoc = doc(db, DBcollextion, id);
     await deleteDoc(staffDoc);
-    alert('Raderad')
+    // alert('Raderad')
   };
 
 // 
 
 // FIXAR DAGARNA TILL VARJE PASS
 
-// PROBLEM : useState uppdateras inte första gången man använder dem. Man måste
-//  klicka två gånger på samma datum för att useState ska uppdateras.
+   const fixDays = (e) => {
 
-const [dayString, setDayString] = useState('')
-const [monthString, setMonthString] = useState('')
-const [dateString, setDateString] = useState(0)
+    console.log(e);
 
+        const date1 = new Date(e)
 
-
-
-   const fixDays = () => {
-
-        const date1 = new Date(date)
+    console.log('date1: ', date1);
+      
         const timestamp = date1.getTime()
         
         const dateTimestamp = new Date(timestamp)
 
+
         setDateString(dateTimestamp.getDate())
+        setDate(e)
 
         let day = ""
 
@@ -261,15 +267,6 @@ const [dateString, setDateString] = useState(0)
     }
 }
 
-// KALENDER
-
-
-  const onSelect = (e) => {
-    setDate(e)
-    fixDays()
-
-  }
-
   return (
     <>
 {/* ------------------------------ PASS -------------------------------- */}
@@ -296,7 +293,7 @@ const [dateString, setDateString] = useState(0)
             </div>
     
             <p>Dag: </p>
-            <Calendar value={date} onClickDay={onSelect}/>
+            <Calendar value={date} onClickDay={fixDays}/>
             
             <div className='modal-input-wrapper'>
               <p>tid:</p>
