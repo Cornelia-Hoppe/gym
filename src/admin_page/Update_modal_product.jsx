@@ -42,6 +42,8 @@ function previewImage() {
     }
 }
 
+// ====================================================== //
+
 
 // UPPDATERAR DATA
 const updateProdukter = async (DBcollextion) => {
@@ -52,6 +54,9 @@ await updateDoc(staffDoc, newFields)
 alert('Sparat!')
 closeModal()
 }
+
+// ====================================================== //
+
 
   return (
     <section id={`${id}-update-modal`} className='update-modal-wrapper'>

@@ -7,7 +7,7 @@ import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase
 import { BsFillPencilFill } from 'react-icons/bs'
 import Update_modal_product from './Update_modal_product';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import Menu from '../Components/Navbar/components/Menu';
 
 
 function AdminPage() {
@@ -36,6 +36,11 @@ function AdminPage() {
     const [date, setDate] = useState('')
     const [passKategori, setPassKategori] = useState('')
 
+    const [dayString, setDayString] = useState('')
+    const [monthString, setMonthString] = useState('')
+    const [dateString, setDateString] = useState(0)
+
+
     const passCollectionRef = collection(db, "pass")
     const [pass, setPass ] = useState([])
 
@@ -53,6 +58,8 @@ useEffect(() => {
 
 
   // HÄMTAR PRODUKTER 
+
+
 useEffect(() => {
 
     const getProdukter = async () => {
@@ -81,11 +88,13 @@ function previewImageProdukt() {
 
   // LÄGGER TILL DATA
     // ANSTÄLLDA
+
+
   const createStaff = async () => {
     await addDoc(staffCollectionRef, {name: newName, age: Number(newAge), img: IMG_SRC});
     alert ('Sparat!')
 
-    clearFields()
+    // clearFields()
   }
 
     // PRODUKTER
@@ -99,12 +108,10 @@ function previewImageProdukt() {
     // PASS
     const createPass = async () => {
 
-   console.log(date);
+      console.log(dateString, dayString, monthString);
 
-    await fixDays()
-
-      // await addDoc(passCollectionRef, {aktivitet: aktivitet, kategori: passKategori, dag: String(date), instruktör: instruktör, maxAntal: Number(maxAntal), tid: tid});
-      // alert ('Sparat!')
+      await addDoc(passCollectionRef, {aktivitet: aktivitet, kategori: passKategori, dag: String(date), instruktör: instruktör, maxAntal: Number(maxAntal), tid: tid, dayString: dayString, monthString: monthString, dateString: dateString});
+      alert ('Sparat!')
 
       clearFields()
     }
@@ -115,43 +122,32 @@ const deleteProdukter = async (id, DBcollextion) => {
 
     const staffDoc = doc(db, DBcollextion, id);
     await deleteDoc(staffDoc);
-    alert('Raderad')
+    // alert('Raderad')
   };
 
 // 
 
 // FIXAR DAGARNA TILL VARJE PASS
 
-const [dayString, setDayString] = useState('')
-const [monthtring, setMonthString] = useState('')
-const [dateString, setDateString] = useState('')
+   const fixDays = (e) => {
 
-   const fixDays = () => {
+    console.log(e);
 
-    console.log('fixDays kör');
+        const date1 = new Date(e)
 
-   const daysArray = []
-
-   console.log('date i fixDays: ', date);
-
-   console.log('');
-
-
-
-        const dateStr1 = date
-
-        console.log(dateStr1);
-
-        const date1 = new Date(dateStr1)
+    console.log('date1: ', date1);
+      
         const timestamp = date1.getTime()
         
-        const date = new Date(timestamp * 1000)
+        const dateTimestamp = new Date(timestamp)
 
-        console.log(date.getDate());
+
+        setDateString(dateTimestamp.getDate())
+        setDate(e)
 
         let day = ""
 
-        switch (date.getDay()) {
+        switch (dateTimestamp.getDay()) {
             case 0:
                 day = "Söndag"
                 break;
@@ -179,7 +175,7 @@ const [dateString, setDateString] = useState('')
 
         let month = ""
 
-        switch (date.getMonth()) {
+        switch (dateTimestamp.getMonth()) {
             case 0:
                 month = "Januari"
                 break;
@@ -216,12 +212,15 @@ const [dateString, setDateString] = useState('')
             case 11:
                 month = "December"
                 break;
-
-        setMonthString(month)
-
     }
+
+    setMonthString(month)
+
    }
 
+   
+
+   // -----------
 
   const clearFields = () => {
 
@@ -268,17 +267,9 @@ const [dateString, setDateString] = useState('')
     }
 }
 
-// KALENDER
-
-
-  const onSelect = (e) => {
-    setDate(e)
-    console.log('date is set: ', e);
-    console.log('date: ', date);
-  }
-
   return (
     <>
+      <Menu />
 {/* ------------------------------ PASS -------------------------------- */}
 
 <section className='center'>
@@ -303,7 +294,7 @@ const [dateString, setDateString] = useState('')
             </div>
     
             <p>Dag: </p>
-            <Calendar value={date} onClickDay={onSelect}/>
+            <Calendar value={date} onClickDay={fixDays}/>
             
             <div className='modal-input-wrapper'>
               <p>tid:</p>
