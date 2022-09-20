@@ -5,12 +5,63 @@ import { AiFillEdit } from 'react-icons/ai';
 import './minaSidor.css'
 import style from "../Components/HomeOffer/HomeOffer.module.css"
 import UpdateProfileModal from './UpdateProfileModal';
+import { db } from '../firebase-config'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+import Menu from '../Components/Navbar/components/Menu';
 
 function MinaSidor() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
-  console.log('user: ', user);
+  const [userBokadePassId, setUserBokadePassId] = useState(user ? user.bokadePass : '')
+  const [userBokadePass, setUserBokadePass] = useState('')
 
   const [img, setImg] = useState('No image')
+
+  useEffect(() => {
+    if (userBokadePass) getPassAndSet()
+  }, [])
+
+// START - HÄMTAR ANVÄNDARENS BOKADE PASS 
+
+  const passCollectionRef = collection(db, "pass")
+  const [pass, setPass] = useState([])
+
+  useEffect(() => {
+
+    const getPass = async () => {
+      const data = await getDocs(passCollectionRef)
+      setPass(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+    };
+
+    getPass()
+  }, [])
+
+  
+
+  console.log('pass: ', pass);
+  console.log('userBokadePassId: ', userBokadePassId);
+
+  const getPassAndSet = () => {
+
+    userBokadePassId.map((bokatPass) => {
+
+      const findPass = pass.find((pass, index) => {
+
+        console.log('yes .find körs');
+        console.log('bokatPass: ', index, bokatPass);
+
+        console.log('pass.id: ', index, pass.id);
+        return pass.id == bokatPass
+      })
+      console.log('findPass: ', findPass);
+
+    })
+
+    
+  }
+
+// END - HÄMTAR ANVÄNDARENS BOKADE PASS 
+
+
 
   useEffect(() => {
     if (!user) {
@@ -26,6 +77,7 @@ function MinaSidor() {
 
    return user ? (
     <>
+      <Menu />
       <section className='profile-wrapper'>
         <article className='profile-left'>
           <h2>Mina sidor</h2>
@@ -44,8 +96,17 @@ function MinaSidor() {
             </div>
             <div>              
 
-              
+            <div className='bokade-pass'>
+                <h1>Bokade pass</h1>
 
+                {/* {userBokadePass.map((pass, index) => {
+                  return(
+                    <p>{pass}</p>
+                  )
+                })} */}
+
+                
+            </div>
 
             </div>
         </article>
@@ -68,6 +129,7 @@ function MinaSidor() {
     </>
   ) : (
     <>
+      <Menu />
       <section className='profile-wrapper'>
         <article className='profile-left'>
           <h2>Mina sidor</h2>

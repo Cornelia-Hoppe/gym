@@ -1,68 +1,78 @@
-
-*{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+* {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.list button{
-  
-width: 144px;
-height: 42px;
-background: #548CA8;
+.list button {
+  margin-left: 2rem;
+  cursor: pointer;
+  width: 144px;
+  height: 42px;
+  background: white;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
 }
+
+.list button:hover {
+  border: 4px solid rgba(115, 167, 193);
+
+  transition: 0.1s;
+}
+
 
 .container {
-  margin-top: 5px;
-  position: absolute;
-  width: 1400px;
-  height: 1243px;
-
-background: rgba(84, 140, 168, 0.2);
-border-radius: 10px;
-
+  width: 95%;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  margin-left: 8px;
+  background: rgba(84, 140, 168, 0.2);
+  border-radius: 10px;
 }
 
-.image_box ul  {
+.image_box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-flex-direction: row;
-align-items: flex-start;
-padding: 7.95726px;
-gap: 7.96px;
-float: left;
-
+.image_box ul {
+  width: 140px;
+  padding: 0;
+  margin: 10px;
 }
 
 .image_box img {
-      width: 150px;
-      height: 200px;
-      float: left;
-      
-    }
-    
-   
-    .details p:nth-child(1) {
-      font-weight: bold;
-    }
-    .details p:nth-child(2) {
-      color: grey;
-      font-size: 0.8rem;
-    }
-    .details p:nth-child(3) {
-      font-weight: bolx;
-      color: grey;
-    }
+  width: 140px;
+  height: 160px;
+}
 
-  .nav_con {
-  
-  width: 1400px;
-  height: 177px;
-  
+.details p:nth-child(1) {
+  font-weight: bold;
+}
+.details p:nth-child(2) {
+  color: grey;
+  font-size: 0.8rem;
+}
+.details p:nth-child(3) {
+  font-weight: bolx;
+  color: grey;
+}
 
+.nav_con {
+  width: 95%;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  margin-left: 8px;
   background: rgba(84, 140, 168, 0.2);
   border-radius: 10px;
- 
+}
 
-    }
-  
-  
-
-    
+@media (min-width: 800px) {
+  .image_box {
+    justify-content: left;
+  }
+}

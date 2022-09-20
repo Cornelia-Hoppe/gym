@@ -109,3 +109,13 @@
     cursor: pointer;
 }
 
+.update-modal-wrapper-pass{
+    width: 90vw;
+    height: 87vh;
+    background-color: rgb(227 227 227);
+    border-radius: 3px;
+    overflow: auto;
+    position: relative;
+    top: 30px;
+    position: fixed;
+}

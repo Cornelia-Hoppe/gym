@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
 import "./bookingPage.css";
 import "../admin_page/AdminPage.css";
 import { db } from "../firebase-config";
@@ -18,25 +17,46 @@ import Update_modal_pass from "./Update_modal_pass";
 import Menu from "../Components/Navbar/components/Menu";
 
 function BookingPage() {
-  // HÄMTAR DATA
-  const staffCollectionRef = collection(db, "pass");
-  const [DBdata, setDBData] = useState([]);
+  // HÄMTAR STAFF
+  const passCollectionRef = collection(db, "pass");
+  const [pass, setPass] = useState([]);
 
   useEffect(() => {
     const getStaff = async () => {
-      const data = await getDocs(staffCollectionRef);
-      setDBData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      const data = await getDocs(passCollectionRef);
+      setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
     getStaff();
     sortPass()
   }, []);
 
+   // HÄMTAR PROFILER
+   const profilerCollectionRef = collection(db, "profiler");
+   const [profiler, setProfiler] = useState([]);
+ 
+   useEffect(() => {
+     const getProfiler = async () => {
+       const data = await getDocs(profilerCollectionRef);
+       setProfiler(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+     };
+ 
+     getProfiler();
+   }, []);
+
+   const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
+   
+  //  console.log('inloggadUser: ', inloggadUser);
+  // console.log(profiler);
+
   // BOKA-KNAPPEN
 
   const [bokadText, setBokadText] = useState("");
 
-  const handleBokaBtn = async (id, DBcollextion, platser, bokad) => {
+  const handleBokaBtn = async (passId, DBcollextion, platser, bokad) => {
+
+    addPassToProfile(passId)
+
     if (bokad === true) {
       platser--;
       bokad = false;
@@ -46,7 +66,7 @@ function BookingPage() {
     }
 
     // UPPDATERAR DATA
-    const staffDoc = doc(db, DBcollextion, id);
+    const staffDoc = doc(db, DBcollextion, passId);
     const newFields = { platser: platser, bokad: bokad };
     await updateDoc(staffDoc, newFields);
 
@@ -54,6 +74,38 @@ function BookingPage() {
 
     setBokadText(bokad ? "bokat" : "avbokat");
   };
+
+  const addPassToProfile = async (passId) => {
+
+    const inloggadId = inloggadUser.id
+    const entill = 'en till!'
+
+    const tidigarePass = inloggadUser.bokadePass
+
+    const newPassLista = []
+
+    console.log('tidigarePass innan push: ', tidigarePass);
+
+    if (tidigarePass) {
+      tidigarePass.map((item, index) => {
+        newPassLista.push(passId)
+        newPassLista.push(item)
+      })
+    } else {
+      newPassLista.push(passId)
+    }
+
+    console.log('newPassLista efter pushar: ', newPassLista);
+
+      // UPPDATERAR DATA
+      const staffDoc = doc(db, 'profiler', inloggadId);
+      const newFields = { bokadePass: newPassLista };
+      await updateDoc(staffDoc, newFields);
+    
+    };
+
+
+  // ------
 
   const openUpdateModal = (id) => {
     document.querySelector(`#${id}-update-modal`).style.display = "flex";
@@ -67,7 +119,7 @@ function BookingPage() {
 
  const sortPass = (e) => {
 
-  const filteredPass = DBdata.filter((pass) => {
+  const filteredPass = pass.filter((pass) => {
       return pass.dag == e 
   })
 
@@ -84,7 +136,7 @@ const sortKategories = (selectedKategori) => {
 
  setPassKategorier(selectedKategori)
 
- const filteredPass = DBdata.filter((pass) => {
+ const filteredPass = pass.filter((pass) => {
      return pass.kategori == selectedKategori
  })
 
@@ -98,7 +150,7 @@ const sortKategories = (selectedKategori) => {
   const normalUser = 0;
   const admin = 1;
 
-  const user = admin;
+  const user = normalUser;
 
   const [BTN_STYLE, setBTN_STYLE] = useState({});
 
@@ -109,6 +161,8 @@ const sortKategories = (selectedKategori) => {
       setBTN_STYLE({ display: "none" });
     }
   }, []);
+
+  // ÄR MAN 
 
   // STYLING - RÖD TEXT
 
@@ -149,7 +203,7 @@ const sortKategories = (selectedKategori) => {
                             className='pass-redigera-btn'>Ändra <BsFillPencilFill className='pen-icon'/>
                             
                         </button>
-                        <button onClick={() => handleBokaBtn(pass.id, "pass", pass.platser, pass.bokad)} className='booking-btn'>
+                        <button onClick={() => handleBokaBtn(pass.id, "pass", pass.platser)} className='booking-btn'>
                             {pass.bokad ? 'Avboka' : 'Boka'}
                             </button>
                     </div>
