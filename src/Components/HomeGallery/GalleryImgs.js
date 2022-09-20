@@ -8,4 +8,6 @@ export const imgs =  [
     { id: 1, value: img2 },
     { id: 2, value: img3 },
     { id: 3, value: img4 },
+    { id: 4, value: img1 },
+    { id: 5, value: img2 }
   ];
