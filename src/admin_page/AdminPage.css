@@ -135,6 +135,10 @@ input, select{
     justify-content: center;
 }
 
+#preview {
+height: 200px;
+    width: auto;
+}
 .kalender{
     
 }
