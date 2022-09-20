@@ -14,10 +14,50 @@ const HomePersonal = () => {
           <h3>Personal</h3>
         </div>
         <div className={style.PersonalButtons}>
-            <button className={style.personal1}><p>Ledning</p></button>
-            <button className={style.personal2}><p>Tränare</p></button>
-            <button className={style.personal3}><p>Reception</p></button>
-            <button className={style.personal4}><p>Instruktörer</p></button>
+          <CustomLink to="/staff">
+            <button
+              className={style.persona1}
+              style={{
+                backgroundImage: `url(${personal1})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className={style.pesonaltext}>
+                <p>Ledning</p>
+              </div>
+            </button>
+          </CustomLink>
+          <button
+            className={style.persona2}
+            style={{
+              backgroundImage: `url(${personal2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <p>Tränare</p>
+          </button>
+          <button
+            className={style.persona3}
+            style={{
+              backgroundImage: `url(${personal3})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <p>Reception</p>
+          </button>
+          <button
+            className={style.persona4}
+            style={{
+              backgroundImage: `url(${personal4})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <p>Instruktörer</p>
+          </button>
         </div>
       </div>
     </>
@@ -26,3 +66,6 @@ const HomePersonal = () => {
 
 export default HomePersonal;
 
+function CustomLink({ to, ...props }) {
+  return <Link to={to} {...props}></Link>;
+}
