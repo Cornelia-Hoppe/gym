@@ -9,6 +9,7 @@ import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import Menu from '../Components/Navbar/components/Menu';
 
+
 function MinaSidor() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [userBokadePassId, setUserBokadePassId] = useState(user ? user.bokadePass : '')
