@@ -2,15 +2,19 @@
     position: relative;
     color: white;
     text-align: center;
-    background: rgba(84, 140, 168, 0.2);
+    background: #DDE6E6;
     width: 95%;
     margin: auto;
     border-radius: 10px;
     margin-top: 10px;
     padding-bottom: 8px;
     padding-top: 8px;
+    
 }
-
+.prevBtn svg, .nextBtn svg{
+    width: 70px;
+    height: 70px;
+  }
 .GalleryInfo{
     padding-top: 10px;
     color: black;
@@ -33,7 +37,73 @@
     margin-top: 0px;
     margin-bottom: 4px;
 }
-
-.flexrow{
-    
+.galleryImg{
+    position: relative;
 }
+.nextBtn  {
+    position: absolute; /* Remove the element from normal flow */
+    top: 45%; right: 0;
+}
+.prevBtn {
+
+    position: absolute; /* Remove the element from normal flow */
+    top: 45%; left: 0;
+}
+.flexrow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 800px) {
+
+    .GallerySection{
+        height: 480px;
+        width: 97%;
+        display: flex;
+        flex-direction: row;
+       justify-content: space-between;
+    }
+    .GalleryInfo{
+        width: 16%;
+        text-align: left;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+     margin-top: 4vh;
+    }
+    .GalleryInfo p{
+        font-size: 30px;
+    }
+    .GalleryInfo h3{
+        font-size: 40px;
+    }
+    .galleryImg{
+        width: 43%;
+        display: flex;
+     align-items: center;
+     justify-content: center;
+    }
+    .galleryImg img{
+     height: 380px;
+    }
+    .flexrow{
+
+        width: 390px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+ .flexImg {
+    width: 45%;
+    height: 30%;
+ }
+ .flexImg img {
+    width: 100%;
+    height: 100%;
+ }
+}
+
+

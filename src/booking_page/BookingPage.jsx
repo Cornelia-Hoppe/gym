@@ -29,6 +29,7 @@ function BookingPage() {
     };
 
     getStaff();
+    sortPass()
   }, []);
 
   // BOKA-KNAPPEN
@@ -58,15 +59,40 @@ function BookingPage() {
     document.querySelector(`#${id}-update-modal`).style.display = "flex";
   };
 
-  // KALENDER
+ // KALENDER
 
-  const [date, setDate] = useState(new Date());
+ const [date, setDate] = useState(new Date())
+ const [passDenDagen, setPassDenDagen] = useState([])
 
-  console.log(date.getFullYear());
 
-  const onSelect = (e) => {
-    console.log(e);
-  };
+ const sortPass = (e) => {
+
+  const filteredPass = DBdata.filter((pass) => {
+      return pass.dag == e 
+  })
+
+  setPassDenDagen(filteredPass)
+
+ }
+
+
+// SORTERA PASSEN
+
+const [passKategorier, setPassKategorier] = useState()
+
+const sortKategories = (selectedKategori) => {
+
+ setPassKategorier(selectedKategori)
+
+ const filteredPass = DBdata.filter((pass) => {
+     return pass.kategori == selectedKategori
+ })
+
+ setPassDenDagen(filteredPass)
+}
+
+
+
 
   // GÖM KNAPPEN FÖR VANLIGA ANVÄNDARE
   const normalUser = 0;
@@ -90,71 +116,61 @@ function BookingPage() {
 
   return (
     <>
-      <Menu />
-      <section className="blue-wrapper center">
-        <h1>Kalender</h1>
-        <Calendar onChange={setDate} value={date} onClickDay={onSelect} />
-      </section>
+    <Menu />
+        <section className='blue-wrapper center'>
+            <h1>Kalender</h1>
+            <Calendar onChange={setDate} value={date} onClickDay={sortPass}/>
+        </section>  
 
-      <section className="blue-wrapper center">
-        <h1>Pass</h1>
-        <select className="drop-down" name="välj pass">
-          <option value="null">Välj pass</option>
-          <option value="alt 1">Alternativ 1</option>
-          <option value="alt 2">Alternativ 2</option>
-          <option value="alt 3">Alternativ 3</option>
-        </select>
+        <section className='blue-wrapper center'>
+            <h1>Pass</h1>
+            <select className='drop-down' name='välj pass' onChange={(e) => sortKategories(e.target.value)}>
+                <option value="null">Välj pass</option>
+                <option value="kondition">Kondition</option>
+                <option value="styrka">Styrka</option>
+                <option value="crossfit">Crossfit</option>
+                <option value="funktionell-träning">Funktionell Träning</option>
+            </select>
+            
+            {passDenDagen.map((pass, index) => {
 
-        {DBdata.map((pass, index) => {
-          return (
-            <>
-              <div key={index} className="pass-card center">
-                <h2
-                  className="booking-antal"
-                  style={
-                    pass.platser == pass.maxAntal
-                      ? { color: "red" }
-                      : { color: "white" }
-                  }
-                >
-                  {pass.platser}/{pass.maxAntal}
-                </h2>
-                <div className="aktv-tid-div">
-                  <h1>{pass.aktivitet}</h1>
-                  <h2>{pass.tid}</h2>
-                </div>
-                <p>instruktör: {pass.instruktör}</p>
-                <button
-                  style={BTN_STYLE}
-                  onClick={() => openUpdateModal(pass.id)}
-                  className="pass-redigera-btn"
-                >
-                  Ändra <BsFillPencilFill className="pen-icon" />
-                </button>
-                <button
-                  onClick={() =>
-                    handleBokaBtn(pass.id, "pass", pass.platser, pass.bokad)
-                  }
-                  className="booking-btn"
-                >
-                  {pass.bokad ? "Avboka" : "Boka"}
-                </button>
-              </div>
+                return(
+                    <>
+                    <div key={index} className='pass-card center'>
+                        <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
+                        <div className='aktv-tid-div'>
+                            <h1>{pass.aktivitet}</h1>
+                            <h2>{pass.tid}</h2>
+                        </div>
+                        <p>instruktör: {pass.instruktör}</p>
+                        <button 
+                            style={BTN_STYLE}
+                            onClick={() => openUpdateModal(pass.id)}
+                            className='pass-redigera-btn'>Ändra <BsFillPencilFill className='pen-icon'/>
+                            
+                        </button>
+                        <button onClick={() => handleBokaBtn(pass.id, "pass", pass.platser, pass.bokad)} className='booking-btn'>
+                            {pass.bokad ? 'Avboka' : 'Boka'}
+                            </button>
+                    </div>
 
-              <Update_modal_pass
-                id={pass.id}
-                aktivitet={pass.aktivitet}
-                instruktör={pass.instruktör}
-                maxAntal={pass.maxAntal}
-                platser={pass.platser}
-                tid={pass.tid}
-              />
-            </>
-          );
-        })}
+                    <Update_modal_pass 
+                        id={pass.id} 
+                        aktivitet={pass.aktivitet}  
+                        instruktör={pass.instruktör}
+                        maxAntal={pass.maxAntal}
+                        platser={pass.platser}
+                        tid={pass.tid}
+                        date={pass.dag}
+                    />
 
-        <CheckModal bokadText={bokadText} />
-      </section>
+                    </>
+                )
+            })}
+        
+                    <CheckModal bokadText={bokadText} />
+
+        </section>
     </>
   );
 }

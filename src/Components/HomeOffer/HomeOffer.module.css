@@ -1,102 +1,154 @@
 .OfferSection{
     position: relative;
-    color: white;
     text-align: center;
-    background: rgba(84, 140, 168, 0.2);
+    background: #DDE6E6;
     width: 95%;
-    margin: auto;
+ margin: auto;
     border-radius: 10px;
     margin-top: 10px;
     padding-bottom: 8px;
-    padding-top: 8px;
+display: flex;
+flex-direction: column;
 }
 
-.OfferInfo{
-    padding-top: 10px;
-    color: black;
-    margin-left: 16px;
-    margin-bottom: 10px;
-}
-
-
-.OfferInfo h3{
-    margin-top: 0px;
-    margin-bottom: 4px;
+.OfferSection h3{
     font-family: sans-serif;
     text-align: left;
-    font-size: 24px;
+    color: black;
+    font-size: 30px;
+    width: 90%;
+margin: 25px auto 0px auto
 }
 
-.OfferInfo p{
+.OfferInfo {
     text-align: left;
-    font-size: 16px;
-    margin-top: 0px;
-    margin-bottom: 4px;
+  font-size: 18px;
+  color: black;
+  width: 70%;
+  margin-left: 25px;
 }
 
-.OfferSection button{
+.OfferOne, .OfferTwo, .OfferThree, .OfferFour {
     border: solid transparent;
     border-radius: 16px;
     border-width: 0 0 4px;
     color: #FFFFFF;
-    cursor: pointer;
     font-family: sans-serif;
-    font-size: 15px;
+    font-size: 25px;
     font-weight: 700;
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
+    margin-bottom: 10px; 
+    width: 80%; 
     padding: 8px;
-    margin-top: 0px;
-    margin-bottom: 10px;
+    height: 14vh;
 }
 
 .OfferOne{
     background: rgba(0, 112, 244, 0.3);
-    width: 70%;
+
 }
 
 .OfferTwo{
     background: rgba(0, 112, 244, 0.5);
-    width: 70%;
+
 }
 .OfferThree{
     background: rgba(0, 112, 244, 0.75);
-    width: 70%;
+
 }
 .OfferFour{
     background: #5D788B;
-    width: 70%;
+ 
 }
 
 .buttonMember{
     background: #548CA8;
-    width: 50%;
+     width: 60%; 
+     border: solid transparent;
+     border-radius: 16px;
+     border-width: 0 0 4px;
+     color: #FFFFFF;
+     font-family: sans-serif;
+     font-size: 20px;
+     height: 7vh;
+     margin-bottom: 10px; 
+     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.126);
 }
-.rowMember{
-    padding-top: 2px;
-    padding-bottom: 2px;
-    font-size: 22px;
-}
-
-
-.OfferSection p{
-    margin: 0px;
-    font-family: sans-serif;
-}
-
 
 .rowOne {
 text-align: left;
 font-weight: 100;
-padding-left: 10px;
-padding-top: 4px;
 font-size: 22px;
 }
 
 .rowTwo{
     text-align: right;
     font-weight: 100;
-    padding-right: 10px;
     font-size: 22px;
 }
+.buttonMemberDesktop{
+   display: none;
+   }
+
+
+
+@media screen and (min-width: 800px) {
+    .OfferSection h3{
+     margin-left: 20px;
+     font-size: 40px;
+     margin-top: 4vh;
+     height: max-content;
+    }
+   .OfferSection{
+    width: 97%;
+    padding-bottom: 50px;
+   }
+   .offerContent{
+    width: 100%;
+    display: flex;
+   }
+  .OfferInfo{
+   width: 25%;
+    margin-left: 20px;
+  }
+   .OfferSection p{
+   
+    width: max-content;
+    margin-top: 3vh;
+    font-size: 30px;
+   }
+   .OfferOne, .OfferTwo, .OfferThree, .OfferFour {
+    width: 20%;
+    height: 100%;
+   }
+   .OfferCards{
+    width: 70%;
+    display: flex;
+    margin-top: 25px;
+    justify-content:space-between;
+    align-items: center;
+
+}
+   .buttonMember{
+display: none;
+   }
+   .buttonMemberDesktop{
+    height: 9vh;
+    background: #548CA8;
+     padding: 0px 40px 0px 40px;
+border: solid transparent;
+border-radius: 16px;
+color: #FFFFFF;
+cursor: pointer;
+display: flex;
+box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.126);
+   }
+   .buttonMemberDesktop p{
+text-align: center;
+font-size: 30px;
+font-weight: lighter;
+margin-top: 15px;
+   }
+    }
