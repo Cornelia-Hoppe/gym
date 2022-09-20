@@ -31,8 +31,30 @@ function MinaSidor() {
     getPass()
   }, [])
 
+  useEffect(() => {
+    getPassAndSet()
+  }, [])
+
+  // console.log('pass: ', pass);
+  // console.log('userBokadePassId: ', userBokadePassId);
+
   const getPassAndSet = () => {
 
+    userBokadePassId.map((bokatPass) => {
+
+      const findPass = pass.find((pass, index) => {
+
+        // console.log('yes .find körs');
+        // console.log('bokatPass: ', index, bokatPass);
+
+        // console.log('pass.id: ', index, pass.id);
+        return pass.id == bokatPass
+      })
+      // console.log('findPass: ', findPass);
+
+    })
+
+    
   }
 
 // END - HÄMTAR ANVÄNDARENS BOKADE PASS 

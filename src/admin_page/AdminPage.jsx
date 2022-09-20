@@ -7,7 +7,7 @@ import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase
 import { BsFillPencilFill } from 'react-icons/bs'
 import Update_modal_product from './Update_modal_product';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import Menu from '../Components/Navbar/components/Menu';
 
 
 function AdminPage() {
@@ -269,6 +269,7 @@ const deleteProdukter = async (id, DBcollextion) => {
 
   return (
     <>
+      <Menu />
 {/* ------------------------------ PASS -------------------------------- */}
 
 <section className='center'>
