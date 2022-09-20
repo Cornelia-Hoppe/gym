@@ -8,7 +8,7 @@ export default function NotFound() {
   return (
     <>
       <Menu />
-      <div className="profile-wrapper">
+      <div className="notfound">
         <h1>404 Page not found</h1>
       </div>
     </>

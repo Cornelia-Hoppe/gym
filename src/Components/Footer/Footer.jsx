@@ -19,7 +19,7 @@ const Footer = () => {
               <strong>Boka pass</strong>
             </div>
           </CustomLink>
-          <CustomLink>
+          <CustomLink to="/staff">
             <div className="footer-sub-persion" id="footer-link">
               {" "}
               <strong>Personal</strong>
