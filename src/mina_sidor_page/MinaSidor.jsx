@@ -11,11 +11,14 @@ import Menu from '../Components/Navbar/components/Menu';
 
 function MinaSidor() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
-  const [userBokadePassId, setUserBokadePassId] = useState(user.bokadePass)
+  const [userBokadePassId, setUserBokadePassId] = useState(user ? user.bokadePass : '')
   const [userBokadePass, setUserBokadePass] = useState('')
 
   const [img, setImg] = useState('No image')
 
+  useEffect(() => {
+    if (userBokadePass) getPassAndSet()
+  }, [])
 
 // START - HÄMTAR ANVÄNDARENS BOKADE PASS 
 
@@ -32,12 +35,10 @@ function MinaSidor() {
     getPass()
   }, [])
 
-  useEffect(() => {
-    getPassAndSet()
-  }, [])
+  
 
-  // console.log('pass: ', pass);
-  // console.log('userBokadePassId: ', userBokadePassId);
+  console.log('pass: ', pass);
+  console.log('userBokadePassId: ', userBokadePassId);
 
   const getPassAndSet = () => {
 
@@ -45,13 +46,13 @@ function MinaSidor() {
 
       const findPass = pass.find((pass, index) => {
 
-        // console.log('yes .find körs');
-        // console.log('bokatPass: ', index, bokatPass);
+        console.log('yes .find körs');
+        console.log('bokatPass: ', index, bokatPass);
 
-        // console.log('pass.id: ', index, pass.id);
+        console.log('pass.id: ', index, pass.id);
         return pass.id == bokatPass
       })
-      // console.log('findPass: ', findPass);
+      console.log('findPass: ', findPass);
 
     })
 
