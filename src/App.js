@@ -9,12 +9,13 @@ import NotFound from "./NotFound/NotFound";
 import ScrollToTop from "./Components/ScrollToTop";
 import 'react-calendar/dist/Calendar.css';
 
-
+import AdminPage from './admin_page/AdminPage'
 
 
 function App() {
   return (
     <>
+     {/* <AdminPage /> */}
       <ScrollToTop>
         <Routes>
           <Route path="/" element={<Homepage />} />
