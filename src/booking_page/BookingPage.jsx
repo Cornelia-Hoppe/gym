@@ -171,7 +171,9 @@ const sortKategories = (selectedKategori) => {
   return (
     <>
     <Menu />
+    <article className="booking-page-container">
         <section className='blue-wrapper center'>
+          <h1>Boka Pass</h1>
             <h1>Kalender</h1>
             <Calendar onChange={setDate} value={date} onClickDay={sortPass}/>
         </section>  
@@ -225,6 +227,7 @@ const sortKategories = (selectedKategori) => {
                     <CheckModal bokadText={bokadText} />
 
         </section>
+        </article>
     </>
   );
 }
