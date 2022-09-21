@@ -95,6 +95,7 @@ function previewImageProdukt() {
     alert ('Sparat!')
 
     // clearFields()
+    window.location.reload();
   }
 
     // PRODUKTER
@@ -103,6 +104,7 @@ function previewImageProdukt() {
     alert ('Sparat!')
 
     clearFields()
+    window.location.reload();
   }
 
     // PASS
