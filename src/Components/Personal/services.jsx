@@ -1,8 +1,8 @@
 import { list } from "./data";
 
 export function getTrainer() {
-  const pokemonList = list;
-  return pokemonList;
+  const trainerList = list;
+  return trainerList;
 }
 
 export function filterTrainer(persionType) {
