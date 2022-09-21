@@ -37,8 +37,8 @@ function MinaSidor() {
 // ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
   //  DEN VIKTIGA DATAN  //
-  console.log('pass: ', pass);
-  console.log('userBokadePassId: ', userBokadePassId);
+  // console.log('pass: ', pass);
+  // console.log('userBokadePassId: ', userBokadePassId);
 
   const getPassAndSet = () => {
 

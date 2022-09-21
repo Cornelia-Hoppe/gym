@@ -47,8 +47,8 @@ function BookingPage() {
 
    const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
    
-   console.log('inloggadUser: ', inloggadUser);
-   console.log('profiler: ,', profiler);
+  //  console.log('inloggadUser: ', inloggadUser);
+  //  console.log('profiler: ,', profiler);
 
   // BOKA-KNAPPEN
 
@@ -85,7 +85,7 @@ function BookingPage() {
 
     console.log('addPassToProfile Kör');
 
-    console.log('inloggadUser: ', inloggadUser);
+    // console.log('inloggadUser: ', inloggadUser);
 
 
     const inloggadId = inloggadUser.id
