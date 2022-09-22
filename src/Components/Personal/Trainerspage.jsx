@@ -7,19 +7,24 @@ import Menu from "../Navbar/components/Menu";
 
 
 export default function App() {
-  
+
+  const [selected, setSelected] = useState(null);
+
   const [trainersPerson, setTrainersPerson] = useState(null);
   useEffect(() => {
     setTrainersPerson(getTrainer());
   }, []);
 
   function handleTrainer(e) {
-    
+
     let typeTrainer = e.target.value;
-    
-   typeTrainer !== ""
-     ? setTrainersPerson(filterTrainer(typeTrainer))
+
+    typeTrainer !== ""
+      ? setTrainersPerson(filterTrainer(typeTrainer))
+
       : setTrainersPerson(getTrainer());
+
+    setSelected(typeTrainer);
   }
 
   return (
@@ -28,16 +33,25 @@ export default function App() {
       {/* Trainers nav  */}
       <div className="nav_con list">
         <h1> Vårat team</h1>
- 
-          {buttons &&
-            buttons.map((type, index) => (
-              <>         {/*props */}
-                <button key={index} value={type.value} onClick={handleTrainer}>
-                  {type.name}                  {/* attach this filter to buttons */}
-                </button>
-              </>
-            ))}
-        
+
+
+        {buttons &&
+          buttons.map((type, index) => (
+            <>
+              <button
+                key={index}
+                value={type.value}
+                onClick={handleTrainer}
+                style={{
+                  backgroundColor:
+                    selected === type.value ? "rgba(115, 167, 193)" : "",
+                }}
+              >
+                {type.name}
+              </button>
+            </>
+          ))}
+
       </div>
       {/* Trainers Info & img */}
 

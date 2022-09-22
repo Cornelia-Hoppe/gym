@@ -8,12 +8,11 @@ import { IoIosCart } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import Login from "./Login";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Menu() {
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
-
 
   return (
     <div className="Menu">
@@ -29,14 +28,16 @@ function Menu() {
         />
       </ul>
       <nav className="menu-desktop">
-        <img
-          className="menu-desktop-logo"
-          src={DeskLogo}
-          alt="desktop-logo"
-        ></img>
+        <CustomLink to="/home">
+          <img
+            className="menu-desktop-logo"
+            src={DeskLogo}
+            alt="desktop-logo"
+          ></img>
+        </CustomLink>
         <ul className="menu-desktop-list">
           <li className="menu-desktop-items">
-            <CustomLink to="/">
+            <CustomLink to="/home">
               <p className="menu-desktop-item">Startsida</p>
             </CustomLink>
           </li>
@@ -74,8 +75,5 @@ function Menu() {
 export default Menu;
 
 function CustomLink({ to, ...props }) {
-  return (
-      <Link to={to} {...props}>
-      </Link>
-  );
+  return <NavLink to={to} {...props}></NavLink>;
 }
