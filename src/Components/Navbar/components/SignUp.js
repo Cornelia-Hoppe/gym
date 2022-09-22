@@ -13,6 +13,8 @@ import SimpleModal from "../../simpleModal/SimpleModal";
 import "../css/signUp.css";
 //Icons
 import { IoIosClose } from "react-icons/io";
+import { db } from '../../../firebase-config'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 
 function SignUp({ closeSignup }) {
   const [values, setValues] = useState({
@@ -82,27 +84,10 @@ function SignUp({ closeSignup }) {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("values: ", values); //Console-logar ut värdena som skrivits in i fälten vid submit (Email och lösenord)
-    createProfil();
-    openModal();
-  };
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const openModal = () => {
-    setModalIsOpen(true);
-    document.querySelector("#simple-modal").style.display = "flex";
-    setTimeout(closeModal, 3000);
-    setTimeout(dispNone, 3500);
-  };
-
-  const closeModal = () => setModalIsOpen(false);
-  const dispNone = () =>
-    (document.querySelector("#simple-modal").style.display = "none");
-
-  // LÄGGER TILL ANVÄNDAREN I DATABASEN - START
-  const profilerCollectionRef = collection(db, "profiler");
+    const handleSubmit = (e) =>{
+      e.preventDefault();
+      console.log(values); //Console-logar ut värdena som skrivits in i fälten vid submit (Email och lösenord)
+    }
 
   const createProfil = async () => {
     await addDoc(profilerCollectionRef, {

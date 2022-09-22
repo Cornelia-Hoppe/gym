@@ -1,17 +1,24 @@
+.SignUpWrapper{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.6);
+}
+
 .SignUp {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     position: absolute;
-    top: 75%;
-    left: 5%;
-    width: 90%;
-    height: 85vh;
     border-radius: 10px;
     background-color: #DDE6E6;
-    z-index: 3;
-    box-shadow: 0px 0px 1000px 1000px rgba(0, 0, 0, 0.5);
+    padding: 5px;
 }
 .signup-form{
     display: flex;
@@ -65,3 +72,4 @@
         z-index: 2;
     }
 }
+

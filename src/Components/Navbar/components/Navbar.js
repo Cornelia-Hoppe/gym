@@ -1,22 +1,26 @@
 import React from "react";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { useNavigate, Link } from "react-router-dom";
 import ListItem from "./ListItem";
 import Login from "./Login";
-import SignUp from "./SignUp";
 import "../css/Navbar.css";
+import SignUp from "./SignUp";
+import { motion } from "framer-motion";
 //Icons
 import { IoIosClose, IoMdHome, IoIosCart } from "react-icons/io";
+//import { GrYoga } from "react-icons/gr";
 import { BsPersonCircle, BsFilePerson } from "react-icons/bs";
 import { TbYoga } from "react-icons/tb";
 
-//Installer följande:
+//Routes
+
+//installer följande:
 //npm install react-icons --save
 // npm install -S react-router-dom
 //nmp install framer-motion
 
-function NavBar({ closeNavbar, setOpenSignUp }) {
-  // const [openSignUp, setOpenSignUp] = useState(false);
+function NavBar({ closeNavbar }) {
+  const [openSignUp, setOpenSignUp] = useState(false);
 
   return (
     <motion.div
@@ -30,7 +34,7 @@ function NavBar({ closeNavbar, setOpenSignUp }) {
       }}
       className="Navbar"
     >
-      {/* {openSignUp && <SignUp closeSignup={ setOpenSignUp }/>} */}
+      {openSignUp && <SignUp closeSignup={setOpenSignUp} />}
       <div className="navbar-header">
         <IoIosClose
           className="exit-button"
@@ -38,15 +42,28 @@ function NavBar({ closeNavbar, setOpenSignUp }) {
         />
       </div>
       <div className="navbar-list">
-        <ListItem name="Startsida" icon={<IoMdHome className="icon" />} />
-        <ListItem name="Boka pass" icon={<TbYoga className="icon" />} />
-        <ListItem
-          name="Mina sidor"
-          icon={<BsPersonCircle className="icon" />}
-        />
-        <ListItem name="Personal" icon={<BsFilePerson className="icon" />} />
+        <CustomLink to="/">
+          <ListItem
+  
+            name="Startsida"
+            icon={<IoMdHome className="icon" />}
+          />
+        </CustomLink>
+        <CustomLink to="/bookingpage">
+          <ListItem name="Boka pass" icon={<TbYoga className="icon" />} />
+        </CustomLink>
+        <CustomLink to="/myprofile">
+          <ListItem
+            name="Mina sidor"
+            icon={<BsPersonCircle className="icon" />}
+          />
+        </CustomLink>
+        <CustomLink to="/staff">
+          <ListItem name="Personal" icon={<BsFilePerson className="icon" />} />
+        </CustomLink>
         <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
       </div>
+
       <div className="navbar-login">
         <Login setOpenSignUp={setOpenSignUp} />
       </div>
@@ -55,3 +72,9 @@ function NavBar({ closeNavbar, setOpenSignUp }) {
 }
 
 export default NavBar;
+
+function CustomLink({ to, ...props }) {
+  return <Link to={to} {...props}></Link>;
+}
+
+

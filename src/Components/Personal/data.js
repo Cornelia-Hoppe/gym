@@ -1,101 +1,106 @@
-const list = [
-    {
-      id: 1,
-      namn: "Sven Svensson",
-      job: "CEO",
-      
-      img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-      amount: 1,
-    },
-    {
-      id: 2,
-      namn: "Sven Svensson",
-      job: "CEO",
-      
-      img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-      amount: 1,
-    },
-    {
-      id: 3,
-      namn: "Sven Svensson",
-      job: "CEO",
-      
-      img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-      amount: 1,
-    },
-    {
-      id: 4,
-      namn: "Sven Svensson",
-      job: "CEO",
-      
-      img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-      amount: 1,
+export const list = [
+  {
+    id: 1,
+    namn: "Sven Svensson",
+    job: "Ledning",
+   
+  img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
   },
   {
-    id: 5,
-    namn: "Sven Svensson",
-    job: "CEO",
+    id: 2,
+    namn: "S",
+    job: "Reception",
     
-    img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-    amount: 1,
+    img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
   },
   {
-    id: 6,
-    namn: "Sven Svensson",
-    job: "CEO",
-    
-    img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-    amount: 1,
+    id: 3,
+    namn: "S",
+    job: "Reception",
+   
+    img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
   },
   {
-    id: 7,
-    namn: "Sven Svensson",
-    job: "CEO",
+    id: 4,
+    namn: "S",
+    job: "Instruktörer",
     
-    img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-    amount: 1,
-  },
-  {
-    id: 8,
-    namn: "Sven Svensson",
-    job: "CEO",
-    
-    img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-    amount: 1,
-  },
-  {
-    id: 9,
-    namn: "Sven Svensson",
-    job: "CEO",
-    
-    img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-    amount: 1,
-  },
-  {
-    id: 10,
-    namn: "Sven Svensson",
-    job: "CEO",
-    
-    img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-    amount: 1,
-  },
-  {
-    id: 11,
-    namn: "Sven Svensson",
-    job: "CEO",
-    
-    img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-    amount: 1,
-  },
-  {
-    id: 12,
-    namn: "Sven Svensson",
-    job: "CEO",
-    
-    img: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1200/https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg",
-    amount: 1,
-  },
+    img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
+},
+{
+  id: 5,
+  namn: "Sven Svensson",
+  job: "Ledning",
+  
+img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
+},
+{
+  id: 6,
+  namn: "S",
+  job: "Ledning",
+ 
+img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
+},
+{
+  id: 7,
+  namn: "S",
+  job: "Tränare",
+
+  img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
+},
+{
+  id: 8,
+  namn: "S",
+  job: "Tränare",
+  
+  img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
+},
+{
+  id: 9,
+  namn: "S",
+  job: "Tränare",
+ 
+  img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
+},
+{
+  id: 10,
+  namn: "S",
+  job: "Instruktörer",
+  
+  img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
+},
+{
+  id: 11,
+  namn: "S",
+  job: "Instruktörer",
+  
+  img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
+},
+{
+  id: 12,
+  namn: "S",
+  job: "Instruktörer",
+ 
+  img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
+}
 ];
 
-export default list;
-
+export const buttons = [
+  {
+    name: "Ledning",
+    value: "Ledning"
+  },
+  {
+    name: "Tränare",
+    value: "Tränare"
+  },
+  {
+    name: "Reception",
+    value: "Reception"
+  },
+ 
+  {
+    name: "Instruktörer",
+    value: "Instruktörer"
+  }
+];

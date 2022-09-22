@@ -1,53 +1,24 @@
 import { useState } from "react";
-import Navbar from "./Navbar";
-import SignUp from "./SignUp";
-import Cart from "../../Webbshop/components/Cart"
-import DesktopLogin from "./DesktopLogin";
 import "../css/Menu.css";
-import {useCart} from "react-use-cart";
-//Icons
+import Navbar from "./Navbar";
+import MobLogo from "../../../images/logo-mobile.png";
+import DeskLogo from "../../../images/logo-desktop.png";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoIosCart } from "react-icons/io";
 import { HiOutlineUserCircle } from "react-icons/hi";
+import Login from "./Login";
+import { Link, NavLink } from "react-router-dom";
 
-function Menu({ setOpenCart }) {
-  const { totalItems } = useCart();
-
+function Menu() {
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
-  const [openSignUp, setOpenSignUp] = useState(false);
-
-  function openSignUpFunction() {
-    setOpenSignUp(true);
-    setOpenLogin(false);
-    setOpenNavbar(false);
-    //   document.body.style.overflow = "hidden";
-  }
-
-  // function closeSignUpFunction(){
-  //   document.body.style.overflow = "auto";
-  //   setOpenSignUp(false);
-  // }
 
   return (
     <div className="Menu">
-      {openSignUp && <SignUp closeSignup={setOpenSignUp} />}
-      {openNavbar && (
-        <Navbar
-          setOpenSignUp={openSignUpFunction}
-          closeNavbar={setOpenNavbar}
-        />
-      )}
-      
+      {openNavbar && <Navbar closeNavbar={setOpenNavbar} />}
       <ul className="menu-mobile">
-        <span className="menu-cart">
-        <IoIosCart className="menu-mobile-cart" 
-        onClick={() => {
-          setOpenCart(true)
-        }}/>
-        <span className="menu-mobile-cart-totalitems">{totalItems}</span>
-        </span>
-        <h1 className="menu-mobile-logo">Sportix</h1>
+        <IoIosCart className="menu-mobile-cart" />
+        <img className="menu-mobile-logo" src={MobLogo} alt="mobile-logo"></img>
         <AiOutlineMenu
           className="menu-mobile-button"
           onClick={() => {
@@ -55,69 +26,56 @@ function Menu({ setOpenCart }) {
           }}
         />
       </ul>
-      {/* DESKTOP */}
       <nav className="menu-desktop">
-        {openSignUp && <SignUp closeSignup={setOpenSignUp} />}
-        <h1 className="menu-desktop-logo">Sportix</h1>
+        <CustomLink to="/home">
+          <img
+            className="menu-desktop-logo"
+            src={DeskLogo}
+            alt="desktop-logo"
+          ></img>
+        </CustomLink>
         <ul className="menu-desktop-list">
           <li className="menu-desktop-items">
-            <a
-              className="menu-desktop-item"
-              onClick={() => {
-                setOpenNavbar(true);
-              }}
-            >
-              Startsida
-            </a>
+            <CustomLink to="/home">
+              <p className="menu-desktop-item">Startsida</p>
+            </CustomLink>
           </li>
           <li className="menu-desktop-items">
-            <a
-              className="menu-desktop-item"
-              onClick={() => {
-                setOpenNavbar(true);
-              }}
-            >
-              Boka pass
-            </a>
+            <CustomLink to="/bookingpage">
+              <p className="menu-desktop-item">Boka pass</p>
+            </CustomLink>
           </li>
           <li className="menu-desktop-items">
-            <a
-              className="menu-desktop-item"
-              onClick={() => {
-                setOpenNavbar(true);
-              }}
-            >
-              Personal
-            </a>
-          </li>
-          <li className="menu-desktop-items">
-            <a
-              className="menu-desktop-item"
-              onClick={() => {
-                setOpenNavbar(true);
-              }}
-            >
-              Webbshop
-            </a>
+            <CustomLink to="/staff">
+              <p className="menu-desktop-item">Personal</p>
+            </CustomLink>
           </li>
 
-          <HiOutlineUserCircle
-            className="menu-desktop-user"
-            onClick={() => setOpenLogin((openLogin) => !openLogin)}
-          />
-
-          <span className="menu-cart">
-          <IoIosCart onClick={() => {
-          setOpenCart(true)
-        }} className="menu-desktop-cart" />
-        
-        <span className="menu-mobile-cart-totalitems">{totalItems}</span>
-        </span>
+          <li className="menu-desktop-items">
+            <CustomLink to="/webshop">
+              <p className="menu-desktop-item">Webbshop</p>
+            </CustomLink>
+          </li>
+          <CustomLink to="/myprofile">
+            <HiOutlineUserCircle
+              className="menu-desktop-user"
+              onClick={() => {
+                setOpenLogin(true);
+              }}
+            />
+          </CustomLink>
+          <IoIosCart className="menu-desktop-cart" />
         </ul>
       </nav>
-      {openLogin && <DesktopLogin setOpenSignUp={openSignUpFunction} />}
+      {/* <div className="menu-desktop-login">
+        {openLogin && <Login />}
+        </div> */}
     </div>
   );
 }
 
 export default Menu;
+
+function CustomLink({ to, ...props }) {
+  return <NavLink to={to} {...props}></NavLink>;
+}
