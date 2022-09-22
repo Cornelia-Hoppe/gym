@@ -8,15 +8,16 @@ import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import Menu from '../Components/Navbar/components/Menu';
 import icon from "./icon.png"
+import closeLoadingScreen from '../Components/loading_screen/CloseLoadingModal'
+
 function MinaSidor() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [userBokadePassId, setUserBokadePassId] = useState(user ? user.bokadePass : '')
   const [userBokadePass, setUserBokadePass] = useState('')
 
-  const [img, setImg] = useState(icon)
-
   useEffect(() => {
     if (userBokadePass) getPassAndSet()
+
   }, [])
 
 // START - HÄMTAR ANVÄNDARENS BOKADE PASS 
@@ -62,33 +63,44 @@ function MinaSidor() {
 
 // ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
-
-
-useEffect(() => {
-  if (!user) {
-    setImg(icon)
-  } else {
-    setImg(user.img)
-  }
-}, [])
-
   const openModal = () => {
     document.querySelector(`#${user.id}-update-modal`).style.display='flex'
   }
 
+  const closeModal = () => {
+    setTimeout(setFromStorage, 1000)
+}
+
+  const setFromStorage = () => {
+    closeLoadingScreen()
+    document.querySelector(`#${user.id}-update-modal`).style.display="none"
+    setUser(JSON.parse(localStorage.getItem('user')))
+  }
+
+// UPPDATERA EFTER LOGIN
+
+  const updateAfterLogin = () => {
+    setUser(JSON.parse(localStorage.getItem('user')))
+    setTimeout(setImgDelay, 500)
+  }
+
+  const setImgDelay = () => {
+    console.log(user);
+  }
+
    return user ? (
     <>
-      <Menu />
+      <Menu updateAfterLogin={updateAfterLogin} />
       <section className='profile-wrapper'>
         <article className='profile-left'>
           <h2>Mina sidor</h2>
             <div className='flex-between a-center'>
               <h4 className=''>Kontouppgifter</h4>
               <AiFillEdit id='update-btn' onClick={openModal} />
-              <UpdateProfileModal id={user.id} img={img} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
+              <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
             </div>
             <div className='flex-between'>
-              <img className='profile-img' src={img} alt="No image" />
+              <img className='profile-img' src={user ? user.img : icon} alt="No image" />
               <div>
                 <p>{user.name} {user.lastName}</p>
                 <p>{user.email}</p>
@@ -130,16 +142,16 @@ useEffect(() => {
     </>
   ) : (
     <>
-      <Menu />
+      <Menu updateAfterLogin={updateAfterLogin} />
       <section className='profile-wrapper'>
-      <article className='profile-left'>
+        <article className='profile-left'>
           <h3>Mina sidor</h3>
             <div className='flex-between a-center'>
               <h4 className=''>Kontouppgifter</h4>
               <AiFillEdit id='update-btn' onClick={openModal} />
             </div>
             <div className='flex-between'>
-              <img className='profile-img' src={img}  alt="No image" />
+              <img className='profile-img' src={user ? user.img : icon}  alt="No image" />
             </div>
             <div>
 

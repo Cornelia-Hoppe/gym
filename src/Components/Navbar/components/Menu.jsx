@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from "react";
 import "../css/Menu.css";
 import Navbar from "./Navbar";
@@ -10,14 +11,13 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 import Login from "./Login";
 import { Link } from "react-router-dom";
 
-function Menu() {
+function Menu({ updateAfterLogin }) {
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
 
-
   return (
     <div className="Menu">
-      {openNavbar && <Navbar closeNavbar={setOpenNavbar} />}
+      {openNavbar && <Navbar closeNavbar={setOpenNavbar} updateAfterLogin={updateAfterLogin} />}
       <ul className="menu-mobile">
         <IoIosCart className="menu-mobile-cart" />
         <img className="menu-mobile-logo" src={MobLogo} alt="mobile-logo"></img>

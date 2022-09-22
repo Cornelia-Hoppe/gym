@@ -8,11 +8,15 @@ import MinaSidor from "./mina_sidor_page/MinaSidor";
 import NotFound from "./NotFound/NotFound";
 import ScrollToTop from "./Components/ScrollToTop";
 import 'react-calendar/dist/Calendar.css';
+import LoadingScreen from "./Components/loading_screen/LoadingScreen";
 
+import AdminPage from './admin_page/AdminPage'
 
 function App() {
   return (
     <>
+      <AdminPage />
+      <LoadingScreen />
       <ScrollToTop>
         <Routes>
           <Route path="/" element={<Homepage />} />
