@@ -51,8 +51,11 @@ function Menu() {
               <p className="menu-desktop-item">Personal</p>
             </CustomLink>
           </li>
+
           <li className="menu-desktop-items">
-            <p className="menu-desktop-item">Webbshop</p>
+            <CustomLink to="/webshop">
+              <p className="menu-desktop-item">Webbshop</p>
+            </CustomLink>
           </li>
           <CustomLink to="/myprofile">
             <HiOutlineUserCircle
