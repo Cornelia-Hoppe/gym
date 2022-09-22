@@ -76,3 +76,5 @@ export default NavBar;
 function CustomLink({ to, ...props }) {
   return <Link to={to} {...props}></Link>;
 }
+
+
