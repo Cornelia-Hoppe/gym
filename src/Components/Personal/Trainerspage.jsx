@@ -4,19 +4,21 @@ import { buttons } from "./data";
 import { getTrainer, filterTrainer } from "./services";
 import Menu from "../Navbar/components/Menu";
 
+
+
 export default function App() {
-  let [isClicked, setIsClicked] = useState(false);
+  
   const [trainersPerson, setTrainersPerson] = useState(null);
   useEffect(() => {
     setTrainersPerson(getTrainer());
   }, []);
 
   function handleTrainer(e) {
-    let changeColor;
+    
     let typeTrainer = e.target.value;
-    let clickedButton = e.target;
-    typeTrainer !== ""
-      ? setTrainersPerson(filterTrainer(typeTrainer))
+    
+   typeTrainer !== ""
+     ? setTrainersPerson(filterTrainer(typeTrainer))
       : setTrainersPerson(getTrainer());
   }
 
@@ -29,9 +31,9 @@ export default function App() {
  
           {buttons &&
             buttons.map((type, index) => (
-              <>
+              <>         {/*props */}
                 <button key={index} value={type.value} onClick={handleTrainer}>
-                  {type.name}
+                  {type.name}                  {/* attach this filter to buttons */}
                 </button>
               </>
             ))}
@@ -46,6 +48,7 @@ export default function App() {
           {trainersPerson &&
             trainersPerson.map((type) => (
               <ul key={type.id}>
+               
                 <img src={type.img} alt="" />
 
                 <div className="details">
