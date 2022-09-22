@@ -1,14 +1,18 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
 import SignUp from "./SignUp";
+import Cart from "../../Webbshop/components/Cart"
 import DesktopLogin from "./DesktopLogin";
 import "../css/Menu.css";
+import {useCart} from "react-use-cart";
 //Icons
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoIosCart } from "react-icons/io";
 import { HiOutlineUserCircle } from "react-icons/hi";
 
-function Menu() {
+function Menu({ setOpenCart }) {
+  const { totalItems } = useCart();
+
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
   const [openSignUp, setOpenSignUp] = useState(false);
@@ -34,8 +38,15 @@ function Menu() {
           closeNavbar={setOpenNavbar}
         />
       )}
+      
       <ul className="menu-mobile">
-        <IoIosCart className="menu-mobile-cart" />
+        <span className="menu-cart">
+        <IoIosCart className="menu-mobile-cart" 
+        onClick={() => {
+          setOpenCart(true)
+        }}/>
+        <span className="menu-mobile-cart-totalitems">{totalItems}</span>
+        </span>
         <h1 className="menu-mobile-logo">Sportix</h1>
         <AiOutlineMenu
           className="menu-mobile-button"
@@ -94,7 +105,14 @@ function Menu() {
             className="menu-desktop-user"
             onClick={() => setOpenLogin((openLogin) => !openLogin)}
           />
-          <IoIosCart className="menu-desktop-cart" />
+
+          <span className="menu-cart">
+          <IoIosCart onClick={() => {
+          setOpenCart(true)
+        }} className="menu-desktop-cart" />
+        
+        <span className="menu-mobile-cart-totalitems">{totalItems}</span>
+        </span>
         </ul>
       </nav>
       {openLogin && <DesktopLogin setOpenSignUp={openSignUpFunction} />}

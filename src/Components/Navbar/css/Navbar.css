@@ -1,11 +1,11 @@
 .Navbar{
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 90%;
     height: 100vh;
     background-color: #344257;
-    z-index: 2;
+    z-index: 5;
 }
 .exit-button{
     width: 60px;
