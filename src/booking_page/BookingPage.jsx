@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
 import "./bookingPage.css";
 import "../admin_page/AdminPage.css";
 import { db } from "../firebase-config";
@@ -47,11 +48,15 @@ function BookingPage() {
    const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
    
   //  console.log('inloggadUser: ', inloggadUser);
-  // console.log(profiler);
+  //  console.log('profiler: ,', profiler);
 
   // BOKA-KNAPPEN
 
   const [bokadText, setBokadText] = useState("");
+
+  // PROBLEM: Localstorage uppdateras ej när man bokar pass. Detta gör att man måste
+  //  logga ut, uppdatera sidan, logga in, uppdatera sidan och sedan boka nästa pass
+  //  för att boka ett till pass. 
 
   const handleBokaBtn = async (passId, DBcollextion, platser, bokad) => {
 
@@ -69,6 +74,7 @@ function BookingPage() {
     const staffDoc = doc(db, DBcollextion, passId);
     const newFields = { platser: platser, bokad: bokad };
     await updateDoc(staffDoc, newFields);
+// ---
 
     document.querySelector("#check-modal").style.display = "flex";
 
@@ -77,16 +83,23 @@ function BookingPage() {
 
   const addPassToProfile = async (passId) => {
 
+    console.log('addPassToProfile Kör');
+
+    // console.log('inloggadUser: ', inloggadUser);
+
+
     const inloggadId = inloggadUser.id
     const entill = 'en till!'
+    
+
 
     const tidigarePass = inloggadUser.bokadePass
 
     const newPassLista = []
 
-    console.log('tidigarePass innan push: ', tidigarePass);
 
     if (tidigarePass) {
+      console.log('tidigarePass == true');
       tidigarePass.map((item, index) => {
         newPassLista.push(passId)
         newPassLista.push(item)
@@ -95,17 +108,15 @@ function BookingPage() {
       newPassLista.push(passId)
     }
 
-    console.log('newPassLista efter pushar: ', newPassLista);
-
       // UPPDATERAR DATA
       const staffDoc = doc(db, 'profiler', inloggadId);
       const newFields = { bokadePass: newPassLista };
       await updateDoc(staffDoc, newFields);
     
     };
+    
 
-
-  // ------
+//--
 
   const openUpdateModal = (id) => {
     document.querySelector(`#${id}-update-modal`).style.display = "flex";
@@ -171,13 +182,20 @@ const sortKategories = (selectedKategori) => {
   return (
     <>
     <Menu />
+    <article className="booking-page-container"> 
+     <div className="booking-page-header-desktop">
+          <h1>Boka Pass</h1>
+          </div>
+          <div className="booking-content">
         <section className='blue-wrapper center'>
-            <h1>Kalender</h1>
+        
+          <div className="booking-page-header-mobile">
+            <h1>Kalender</h1></div>
             <Calendar onChange={setDate} value={date} onClickDay={sortPass}/>
         </section>  
 
         <section className='blue-wrapper center'>
-            <h1>Pass</h1>
+        <div className="booking-page-header-mobile"> <h1>Pass</h1> </div>
             <select className='drop-down' name='välj pass' onChange={(e) => sortKategories(e.target.value)}>
                 <option value="null">Välj pass</option>
                 <option value="kondition">Kondition</option>
@@ -192,6 +210,7 @@ const sortKategories = (selectedKategori) => {
                     <>
                     <div key={index} className='pass-card center'>
                         <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
+                        <img clasName='booking-icon' src={require("./"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
                         <div className='aktv-tid-div'>
                             <h1>{pass.aktivitet}</h1>
                             <h2>{pass.tid}</h2>
@@ -209,6 +228,7 @@ const sortKategories = (selectedKategori) => {
                     </div>
 
                     <Update_modal_pass 
+                        key={Math.random()}
                         id={pass.id} 
                         aktivitet={pass.aktivitet}  
                         instruktör={pass.instruktör}
@@ -225,6 +245,8 @@ const sortKategories = (selectedKategori) => {
                     <CheckModal bokadText={bokadText} />
 
         </section>
+        </div>
+        </article>
     </>
   );
 }

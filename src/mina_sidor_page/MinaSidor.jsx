@@ -34,10 +34,11 @@ function MinaSidor() {
     getPass()
   }, [])
 
-  
+// ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
-  console.log('pass: ', pass);
-  console.log('userBokadePassId: ', userBokadePassId);
+  //  DEN VIKTIGA DATAN  //
+  // console.log('pass: ', pass);
+  // console.log('userBokadePassId: ', userBokadePassId);
 
   const getPassAndSet = () => {
 
@@ -58,7 +59,8 @@ function MinaSidor() {
     
   }
 
-// END - HÄMTAR ANVÄNDARENS BOKADE PASS 
+
+// ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
 
 
@@ -134,7 +136,7 @@ useEffect(() => {
           <h3>Mina sidor</h3>
             <div className='flex-between a-center'>
               <h4 className=''>Kontouppgifter</h4>
-              {/* <AiFillEdit id='update-btn' onClick={openModal} /> */}
+              <AiFillEdit id='update-btn' onClick={openModal} />
             </div>
             <div className='flex-between'>
               <img className='profile-img' src={img}  alt="No image" />

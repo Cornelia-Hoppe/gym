@@ -7,7 +7,8 @@ import Personal from "./Components/Personal/Trainerspage";
 import MinaSidor from "./mina_sidor_page/MinaSidor";
 import NotFound from "./NotFound/NotFound";
 import ScrollToTop from "./Components/ScrollToTop";
-import "react-calendar/dist/Calendar.css";
+
+import 'react-calendar/dist/Calendar.css';
 
 function App() {
   return (
