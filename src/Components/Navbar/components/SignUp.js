@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../css/signUp.css";
 import FormInput from "./FormInput";
 import { IoIosClose } from "react-icons/io";
+import { db } from '../../../firebase-config'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 
 function SignUp( {closeSignup }) {
 
@@ -92,11 +94,30 @@ function SignUp( {closeSignup }) {
 
     const handleSubmit = (e) =>{
       e.preventDefault();
+      
       console.log(values); //Console-logar ut värdena som skrivits in i fälten vid submit (Email och lösenord)
+      createProfil()
     }
 
+// START: SPARAR I DATABASEN
+
+     // PASS
+     const createProfil = async () => {
+
+        const passCollectionRef = collection(db, "profiler")
+  
+        await addDoc(passCollectionRef, {email: values.email, password: values.password});
+        alert ('Sparat!')
+  
+        // clearFields()
+      }
+
+// END: SPARAR I DATABASEN
+
+
     return (
-        <div className="SignUp">
+        <article className="SignUpWrapper">
+            <div className="SignUp">
               <IoIosClose className="cancel-button" onClick={() => closeSignup(false)} />
             <form className="signup-form" onSubmit={handleSubmit}>
               <h1 className="signup-title">Skapa Konto</h1>
@@ -106,11 +127,13 @@ function SignUp( {closeSignup }) {
                         {...input}
                         value={values[inputs.name]}
                         onChange={onChange}
-                    />
-                ))}
-            <button className="signup-button">Skapa Konto</button>
-            </form>
-        </div>
+                        />
+                    ))}
+                <button className="signup-button">Skapa Konto</button>
+                </form>
+            </div>
+        </article>
+        
         
     );
 }

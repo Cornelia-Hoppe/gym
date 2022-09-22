@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
 import "./bookingPage.css";
 import "../admin_page/AdminPage.css";
 import { db } from "../firebase-config";
@@ -47,11 +48,15 @@ function BookingPage() {
    const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
    
   //  console.log('inloggadUser: ', inloggadUser);
-  // console.log(profiler);
+  //  console.log('profiler: ,', profiler);
 
   // BOKA-KNAPPEN
 
   const [bokadText, setBokadText] = useState("");
+
+  // PROBLEM: Localstorage uppdateras ej när man bokar pass. Detta gör att man måste
+  //  logga ut, uppdatera sidan, logga in, uppdatera sidan och sedan boka nästa pass
+  //  för att boka ett till pass. 
 
   const handleBokaBtn = async (passId, DBcollextion, platser, bokad) => {
 
@@ -69,6 +74,7 @@ function BookingPage() {
     const staffDoc = doc(db, DBcollextion, passId);
     const newFields = { platser: platser, bokad: bokad };
     await updateDoc(staffDoc, newFields);
+// ---
 
     document.querySelector("#check-modal").style.display = "flex";
 
@@ -77,16 +83,23 @@ function BookingPage() {
 
   const addPassToProfile = async (passId) => {
 
+    console.log('addPassToProfile Kör');
+
+    // console.log('inloggadUser: ', inloggadUser);
+
+
     const inloggadId = inloggadUser.id
     const entill = 'en till!'
+    
+
 
     const tidigarePass = inloggadUser.bokadePass
 
     const newPassLista = []
 
-    console.log('tidigarePass innan push: ', tidigarePass);
 
     if (tidigarePass) {
+      console.log('tidigarePass == true');
       tidigarePass.map((item, index) => {
         newPassLista.push(passId)
         newPassLista.push(item)
@@ -95,17 +108,15 @@ function BookingPage() {
       newPassLista.push(passId)
     }
 
-    console.log('newPassLista efter pushar: ', newPassLista);
-
       // UPPDATERAR DATA
       const staffDoc = doc(db, 'profiler', inloggadId);
       const newFields = { bokadePass: newPassLista };
       await updateDoc(staffDoc, newFields);
     
     };
+    
 
-
-  // ------
+//--
 
   const openUpdateModal = (id) => {
     document.querySelector(`#${id}-update-modal`).style.display = "flex";
@@ -209,6 +220,7 @@ const sortKategories = (selectedKategori) => {
                     </div>
 
                     <Update_modal_pass 
+                        key={Math.random()}
                         id={pass.id} 
                         aktivitet={pass.aktivitet}  
                         instruktör={pass.instruktör}
