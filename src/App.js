@@ -7,12 +7,14 @@ import Personal from "./Components/Personal/Trainerspage";
 import MinaSidor from "./mina_sidor_page/MinaSidor";
 import NotFound from "./NotFound/NotFound";
 import ScrollToTop from "./Components/ScrollToTop";
-import Webbshop from "./Components/Webbshop/Webbshop";
-import "react-calendar/dist/Calendar.css";
+import 'react-calendar/dist/Calendar.css';
+import LoadingScreen from "./Components/loading_screen/LoadingScreen";
+import Webbshop from "./Components/Webbshop/Webbshop"
 
 function App() {
   return (
     <>
+      <LoadingScreen />
       <ScrollToTop>
         <Routes>
           <Route path="/home" element={<Homepage />} />
@@ -22,6 +24,7 @@ function App() {
           <Route path="/myprofile" element={<MinaSidor />} />
           <Route path="/webshop" element={<Webbshop />} />
           <Route path="*" element={<NotFound />} />
+          {/* <Route path="/webbshop" element={<Webbshop />} /> */}
         </Routes>
       </ScrollToTop>
       <Footer />
