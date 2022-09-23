@@ -56,13 +56,12 @@ export default function App() {
       {/* Trainers Info & img */}
 
       <div className=" container" >
-        <div className="ledning" >
+      
       {trainersPerson &&
             trainersPerson.map((type) => (
               <h2 >{type.title}</h2>
               ))}
-             
-             </div>
+            
 
         <div className="image_box">
           {trainersPerson &&
