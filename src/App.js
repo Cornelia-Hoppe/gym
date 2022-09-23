@@ -9,13 +9,11 @@ import NotFound from "./NotFound/NotFound";
 import ScrollToTop from "./Components/ScrollToTop";
 import 'react-calendar/dist/Calendar.css';
 import LoadingScreen from "./Components/loading_screen/LoadingScreen";
-
-import AdminPage from './admin_page/AdminPage'
+import Webbshop from "./Components/Webbshop/Webbshop"
 
 function App() {
   return (
     <>
-      <AdminPage />
       <LoadingScreen />
       <ScrollToTop>
         <Routes>
@@ -24,6 +22,7 @@ function App() {
           <Route path="/staff" element={<Personal />} />
           <Route path="/myprofile" element={<MinaSidor />} />
           <Route path="*" element={<NotFound />} />
+          {/* <Route path="/webbshop" element={<Webbshop />} /> */}
         </Routes>
       </ScrollToTop>
       <Footer />

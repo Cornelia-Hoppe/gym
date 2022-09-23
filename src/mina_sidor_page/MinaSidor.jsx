@@ -9,6 +9,7 @@ import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase
 import Menu from '../Components/Navbar/components/Menu';
 import icon from "./icon.png"
 import closeLoadingScreen from '../Components/loading_screen/CloseLoadingModal'
+import Login from '../Components/Navbar/components/Login'
 
 function MinaSidor() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
@@ -145,17 +146,9 @@ function MinaSidor() {
       <Menu updateAfterLogin={updateAfterLogin} />
       <section className='profile-wrapper'>
         <article className='profile-left'>
-          <h3>Mina sidor</h3>
-            <div className='flex-between a-center'>
-              <h4 className=''>Kontouppgifter</h4>
-              <AiFillEdit id='update-btn' onClick={openModal} />
-            </div>
-            <div className='flex-between'>
-              <img className='profile-img' src={user ? user.img : icon}  alt="No image" />
-            </div>
-            <div>
+          
+          <Login />
 
-            </div>
         </article>
 
         <article className='profile-right'>
