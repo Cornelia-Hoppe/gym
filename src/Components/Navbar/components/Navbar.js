@@ -19,7 +19,7 @@ import { TbYoga } from "react-icons/tb";
 // npm install -S react-router-dom
 //nmp install framer-motion
 
-function NavBar({ closeNavbar }) {
+function NavBar({ closeNavbar, updateAfterLogin }) {
   const [openSignUp, setOpenSignUp] = useState(false);
 
   return (
@@ -65,7 +65,7 @@ function NavBar({ closeNavbar }) {
       </div>
 
       <div className="navbar-login">
-        <Login setOpenSignUp={setOpenSignUp} />
+        <Login setOpenSignUp={setOpenSignUp} updateAfterLogin={updateAfterLogin} />
       </div>
     </motion.div>
   );
