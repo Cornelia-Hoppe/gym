@@ -33,11 +33,34 @@
   height: 40px;
 }
 
-.HeaderPersonal h3 {
-  margin-top: 0px;
-  margin-bottom: 4px;
-  text-align: left;
-  font-size: 24px;
+.PersonalButtons button {
+  border: none;
+  cursor: pointer;
+  background-size: 160%;
+  width: 35%;
+  height: 170px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+  background: linear-gradient(Transparent 50%, Transparent 50%);
+}
+
+.personal1{
+    background: linear-gradient(to right,  rgba(186,209,220,0.6),
+    rgba(186,209,220,0.6)),url(../../images/personal1.jpg);
+}
+
+.personal2{
+    background: linear-gradient(to right,  rgba(186,209,220,0.6),
+    rgba(186,209,220,0.6)),url(../../images/personal2.jpg);
+}
+.personal3{
+    background: linear-gradient(to right,  rgba(186,209,220,0.6),
+    rgba(186,209,220,0.6)),url(../../images/personal3.jpg);
+}
+.personal4{
+    background: linear-gradient(to right,  rgba(186,209,220,0.6),
+    rgba(186,209,220,0.6)),url(../../images/personal4.jpg);
 }
 
 .PersonalButtons button {

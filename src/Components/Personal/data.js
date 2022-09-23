@@ -8,14 +8,14 @@ export const list = [
   },
   {
     id: 2,
-    namn: "s",
+    namn: "S",
     job: "Reception",
     
     img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
   },
   {
     id: 3,
-    namn: "s",
+    namn: "S",
     job: "Reception",
    
     img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",

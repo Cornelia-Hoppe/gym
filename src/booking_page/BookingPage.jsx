@@ -182,13 +182,20 @@ const sortKategories = (selectedKategori) => {
   return (
     <>
     <Menu />
+    <article className="booking-page-container"> 
+     <div className="booking-page-header-desktop">
+          <h1>Boka Pass</h1>
+          </div>
+          <div className="booking-content">
         <section className='blue-wrapper center'>
-            <h1>Kalender</h1>
+        
+          <div className="booking-page-header-mobile">
+            <h1>Kalender</h1></div>
             <Calendar onChange={setDate} value={date} onClickDay={sortPass}/>
         </section>  
 
         <section className='blue-wrapper center'>
-            <h1>Pass</h1>
+        <div className="booking-page-header-mobile"> <h1>Pass</h1> </div>
             <select className='drop-down' name='välj pass' onChange={(e) => sortKategories(e.target.value)}>
                 <option value="null">Välj pass</option>
                 <option value="kondition">Kondition</option>
@@ -203,6 +210,7 @@ const sortKategories = (selectedKategori) => {
                     <>
                     <div key={index} className='pass-card center'>
                         <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
+                        <img clasName='booking-icon' src={require("./"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
                         <div className='aktv-tid-div'>
                             <h1>{pass.aktivitet}</h1>
                             <h2>{pass.tid}</h2>
@@ -237,6 +245,8 @@ const sortKategories = (selectedKategori) => {
                     <CheckModal bokadText={bokadText} />
 
         </section>
+        </div>
+        </article>
     </>
   );
 }
