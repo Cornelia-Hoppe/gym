@@ -70,9 +70,17 @@
   background: rgba(84, 140, 168, 0.2);
   border-radius: 10px;
 }
+.ledning h2{
+  
+  display:table-caption;
+  
+
+}
 
 @media (min-width: 800px) {
   .image_box {
     justify-content: left;
   }
 }
+
+

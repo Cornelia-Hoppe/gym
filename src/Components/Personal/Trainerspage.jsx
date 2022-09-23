@@ -17,9 +17,11 @@ export default function App() {
     
     let typeTrainer = e.target.value;
     
-   typeTrainer !== ""
-     ? setTrainersPerson(filterTrainer(typeTrainer))
+    typeTrainer !== "All"
+    
+      ? setTrainersPerson(filterTrainer(typeTrainer))
       : setTrainersPerson(getTrainer());
+    
   }
 
   return (
@@ -33,7 +35,7 @@ export default function App() {
             buttons.map((type, index) => (
               <>         {/*props */}
                 <button key={index} value={type.value} onClick={handleTrainer}>
-                  {type.name}                  {/* attach this filter to buttons */}
+                  {type.name}              {/* attach this filter to buttons */}
                 </button>
               </>
             ))}
@@ -41,16 +43,24 @@ export default function App() {
       </div>
       {/* Trainers Info & img */}
 
-      <div className=" container">
-        <h1>Ledning</h1>
+      <div className=" container" >
+        <div className="ledning" >
+      {trainersPerson &&
+            trainersPerson.map((type) => (
+              <h2 >{type.title}</h2>
+              ))}
+             
+             </div>
 
         <div className="image_box">
           {trainersPerson &&
             trainersPerson.map((type) => (
+             
               <ul key={type.id}>
-               
+             
+                
                 <img src={type.img} alt="" />
-
+                
                 <div className="details">
                   <p>{type.namn}</p>
                   <p>{type.job}</p>
@@ -58,7 +68,7 @@ export default function App() {
               </ul>
             ))}
         </div>
-      </div>
+        </div>
     </>
   );
 }
