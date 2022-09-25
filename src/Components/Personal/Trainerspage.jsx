@@ -59,7 +59,7 @@ export default function App() {
       
       {trainersPerson &&
             trainersPerson.map((type) => (
-              <h2 >{type.title}</h2>
+              <h1 >{type.title}</h1>
               ))}
             
 
