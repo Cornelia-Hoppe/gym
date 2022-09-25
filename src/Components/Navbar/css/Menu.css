@@ -45,6 +45,10 @@ svg {
 .menu-desktop {
   display: none;
 }
+.active p {
+  text-decoration: underline;
+  
+}
 
 @media (min-width: 1000px) {
   .menu-mobile {
@@ -77,9 +81,7 @@ svg {
     color: rgba(115, 167, 193);
     transition: 0.2s;
   }
-  .menu-desktop-list p {
-    text-decoration: none;
-  }
+
   .menu-desktop-list p:hover {
     color: rgba(115, 167, 193);
     transition: 0.1s;
