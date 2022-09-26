@@ -8,6 +8,7 @@ import HomeGallery from "../HomeGallery/HomeGallery";
 import Menu from "../Navbar/components/Menu";
 import HomePersonal from "../HomePersonal/HomePersonal";
 import Arrow from "../ScrollArrow/Arrow"
+import HomeOpenH from "../HomeOpenH/HomeOpenH";
 
 const Homepage = () => {
   return (
@@ -16,7 +17,7 @@ const Homepage = () => {
         <Arrow />
         <Menu />
         <LandingHome />
-        <HomeOffer />
+        <HomeOpenH />
         <HomeAbout />
         <HomeGallery />
         <HomePersonal />

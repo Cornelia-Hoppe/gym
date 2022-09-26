@@ -6,6 +6,7 @@
   margin: auto;
   border-radius: 10px;
   margin-top: 10px;
+  margin-bottom: 10px;
   padding-bottom: 8px;
   padding-top: 8px;
   font-family: sans-serif;
@@ -19,13 +20,27 @@
   text-align: center;
 }
 
-.HeaderPersonal {
+
+.HeaderPersonal{
   padding-top: 10px;
+  padding-left: 20px;
   color: black;
-  margin-left: 16px;
-  margin-bottom: 10px;
+  text-align: left;
+}
+
+.HeaderPersonal h3{
+  margin-top: 0px;
+  margin-bottom: 4px;
   font-family: sans-serif;
-  width: 100%;
+  font-size: 30px;
+  width: 90%;
+  text-align: left;
+}
+
+.HeaderPersonal p{
+  font-size: 22px;
+  font-weight: lighter;
+  width: 90%;
 }
 
 #personal-image {
