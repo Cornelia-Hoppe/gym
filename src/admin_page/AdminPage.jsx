@@ -17,6 +17,7 @@ function AdminPage() {
     const [newName, setNewName] = useState("")
     const [newAge, setNewAge] = useState(0)    
     const [newText, setNewText] = useState("")
+    const [newStaffCategory, setStaffCategory] = useState("")
 
     const staffCollectionRef = collection(db, "staff")
     const [staff, setStaff] = useState([])
@@ -103,7 +104,7 @@ function previewImageProdukt() {
 
   const createStaff = async () => {
     openLoadingModal()
-    await addDoc(staffCollectionRef, {name: newName, age: Number(newAge), img: IMG_SRC, text: newText});
+    await addDoc(staffCollectionRef, {name: newName, age: Number(newAge), img: IMG_SRC, text: newText, kategori: newStaffCategory});
     clearFields()
     getStaff()
     closeLoadingModal()
@@ -111,19 +112,15 @@ function previewImageProdukt() {
 
     // PRODUKTER
 
-  // name: "Vattenflaska", 
-  // price: "129", 
-  // id: 1, 
-  // type: "equipment", (kategori)
-  // img: img, 
-  // brand: "Sportix Equipment", (varumärke)
-  // color: "Blå", 
-  // shortDesc: "Aluminium water bottle"
+// type: "equipment", (kategori)
+// brand: "Sportix Equipment", (varumärke)
+// color: "Blå", 
+// shortDesc: "Aluminium water bottle"
 
 
   const createProduct = async () => {
     openLoadingModal()
-    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, pris: Number(pris), produktNamn: produktNamn});
+    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, pris: Number(pris), produktNamn: produktNamn, type: productType, brand: productBrand, color: productColor, shortDesc, productshortDesc});
 
 
     getProdukter()
@@ -170,7 +167,7 @@ const deleteProdukter = async (id, DBcollextion) => {
         openLoadingModal()
         const staffDoc = doc(db, DBcollextion, id);
         await deleteDoc(staffDoc);
-        getStaff()
+        getPass()
         closeLoadingModal()
     }
   }
@@ -376,8 +373,6 @@ const search = (text) => {
 
 }
 
-console.log(pass);
-
   return (
     <>
       <Menu />
@@ -458,7 +453,7 @@ console.log(pass);
                         platser={pass.platser}
                         tid={pass.tid}
                         date={pass.dag}
-                        getStaff={getStaff}
+                        getPass={getPass}
                     />
 
                     </>
@@ -566,6 +561,18 @@ console.log(pass);
               <h1>Lägg till ny anställd +</h1>
               <input id='staff-input-1' type="text" placeholder='Name...' onChange={(e) => {setNewName(e.target.value)}}  />
               <input id='staff-input-2' type="number" placeholder='Age...' onChange={(e) => {setNewAge(e.target.value)}}  />
+              
+              <div className='modal-input-wrapper'>
+                <p className='m10'>Kategori:</p>
+                <select className='drop-down input-select' name='välj pass' onChange={(e) => setStaffCategory(e.target.value)}>
+                  <option value="null">Ange den anställdes kategori</option>
+                  <option value="ledning">Ledning</option>
+                  <option value="tränare">Tränare</option>
+                  <option value="reception">Reception</option>
+                  <option value="instruktör">Instruktör</option>
+                </select>
+              </div>
+              
               <textarea id='staff-input-3' type="text" placeholder='Skriv om dig...' onChange={(e) => {setNewText(e.target.value)}}  />
 
               <input 
