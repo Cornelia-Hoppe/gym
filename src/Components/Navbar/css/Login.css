@@ -6,6 +6,8 @@
 }
 .login-form{
     width: 100%;
+    max-width: 380px;
+    
 }
 .login-title{
     padding-left: 20px;
@@ -26,10 +28,16 @@
 }
 .form-buttons{
     width: 100%;
+    max-width: 370px;
     display: flex;
     justify-content: center;
     gap:20px;
-    
+    flex-direction: column;
+}
+.form-buttons-box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 .register-button{
     background: rgba(0, 112, 244, 0.5);
