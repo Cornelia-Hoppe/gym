@@ -205,7 +205,7 @@ const sortKategories = (selectedKategori) => {
                     <>
                     <div key={index} className='pass-card center'>
                         <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
-                        <img clasName='booking-icon' src={require("./"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
+                        <img clasName='booking-icon' src={require("./"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/>
                         <div className='aktv-tid-div'>
                             <h1>{pass.aktivitet}</h1>
                             <p>{pass.dayString}, {pass.dateString} {pass.monthString} <br />

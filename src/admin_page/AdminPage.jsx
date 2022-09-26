@@ -99,6 +99,7 @@ function previewImageProdukt() {
   // LÄGGER TILL DATA
     // ANSTÄLLDA
 
+    // LÄGG TILL KATEGORI
 
   const createStaff = async () => {
     openLoadingModal()
@@ -109,6 +110,17 @@ function previewImageProdukt() {
   }
 
     // PRODUKTER
+
+  // name: "Vattenflaska", 
+  // price: "129", 
+  // id: 1, 
+  // type: "equipment", (kategori)
+  // img: img, 
+  // brand: "Sportix Equipment", (varumärke)
+  // color: "Blå", 
+  // shortDesc: "Aluminium water bottle"
+
+
   const createProduct = async () => {
     openLoadingModal()
     await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, pris: Number(pris), produktNamn: produktNamn});
@@ -151,6 +163,17 @@ const deleteProdukter = async (id, DBcollextion) => {
       closeLoadingModal()
     }
   };
+
+// PASS
+  const deletePass = async (id, DBcollextion) => {
+    if (window.confirm('Radera pass?')){
+        openLoadingModal()
+        const staffDoc = doc(db, DBcollextion, id);
+        await deleteDoc(staffDoc);
+        getStaff()
+        closeLoadingModal()
+    }
+  }
 
 // 
 
@@ -373,10 +396,13 @@ console.log(pass);
             <div className='modal-input-wrapper'>
               <p>Kategori:</p>
               <select className='drop-down input-select' name='välj pass' onChange={(e) => setPassKategori(e.target.value)}>
-                <option value="övrigt">Välj kategori</option>
-                <option value="kondition">Kondition</option>
-                <option value="styrka">Styrka</option>
-                <option value="crossfit">Crossfit</option>
+                <option value="">Välj kategori</option>
+                <option value="Kondition">Kondition</option>
+                <option value="Spinning">Kondition</option>
+                <option value="Styrka">Styrka</option>
+                <option value="Flexebilitet">Styrka</option>
+                <option value="Mindfullnes">Styrka</option>
+                <option value="Crossfit">Crossfit</option>
                 <option value="funktionell-träning">Funktionell träning</option>
             </select>
             </div>
@@ -408,7 +434,7 @@ console.log(pass);
                 <>
                 <div key={index} className='pass-card center'>
                         <h2 className='booking-antal' >Max: {pass.maxAntal}</h2>
-                        <img clasName='booking-icon' src={require("../booking_page/"+pass.aktivitet +".png")} alt="" height="40px" width="30px"/>
+                        {/* <img clasName='booking-icon' src={require(pass.kategori ? "../booking_page/"+pass.kategori +".png" : "../booking_page/baseIcon.png" )} alt="" height="40px" width="30px"/> */}
                         <div className='aktv-tid-div'>
                             <h1>{pass.aktivitet}</h1>
                             <p>{pass.dayString}, {pass.dateString} {pass.monthString} <br />
@@ -417,9 +443,10 @@ console.log(pass);
                         <h2>instruktör: {pass.instruktör}</h2>
                         <button 
                             onClick={() => openUpdateModalPass(pass.id)}
-                            className='pass-redigera-btn myButton'><BsFillPencilFill className='pen-icon'/>
-                            
+                            className='myButton admin-edit-btn'><BsFillPencilFill className='pen-icon'/>
                         </button>
+                        <button className='staff-btn-delete myButtonDelete' onClick={() => {deletePass(pass.id, 'pass')}}>Radera</button>
+
                     </div>
 
                     <Update_modal_pass 

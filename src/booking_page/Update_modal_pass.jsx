@@ -45,7 +45,7 @@ function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid,
         closeLoadingModal()
         
     }
-  };
+  }
 
 //
 

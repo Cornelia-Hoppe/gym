@@ -6,6 +6,5 @@ export default function closeLoadingModal(){
     
     document.querySelector('#loading-screen').style.opacity="0"
     setTimeout(none, 300)
-
     
 }
