@@ -3,10 +3,32 @@ import "./Personal.css";
 import { buttons } from "./data";
 import { getTrainer, filterTrainer } from "./services";
 import Menu from "../Navbar/components/Menu";
+//import Edit from "./Edition";
+
+
+import { db } from '../../firebase-config'
+import { collection, getDocs } from 'firebase/firestore'
+
 
 
 
 export default function App() {
+  
+
+  const staffCollectionRef = collection(db, "staff")
+  const [staff, setStaff] = useState([])
+
+  const getStaff = async () => {
+    const data = await getDocs(staffCollectionRef)
+    setStaff(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+  };
+
+useEffect(() => {
+
+    getStaff()
+  }, [])
+
+  console.log(staff);
 
   const [selected, setSelected] = useState(null);
 
@@ -56,11 +78,12 @@ export default function App() {
       {/* Trainers Info & img */}
 
       <div className=" container" >
-      
+      {/* <div className="text">
       {trainersPerson &&
             trainersPerson.map((type) => (
-              <h1 >{type.title}</h1>
-              ))}
+              <h4 >{type.kategori}</h4>
+            ))}
+            </div>*/}
             
 
         <div className="image_box">
@@ -69,16 +92,23 @@ export default function App() {
              
               <ul key={type.id}>
              
-                
-                <img src={type.img} alt="" />
+              <img src={type.img} alt="" />
                 
                 <div className="details">
-                  <p>{type.namn}</p>
-                  <p>{type.job}</p>
+                  <p>{type.name}, {type.age}</p>
+                  
+                  <p>{type.kategori}</p>
+
+                  
+                
+             
+                  
+                  
                 </div>
               </ul>
             ))}
         </div>
+      
         </div>
     </>
   );

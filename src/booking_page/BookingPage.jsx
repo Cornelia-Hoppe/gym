@@ -194,9 +194,13 @@ const sortKategories = (selectedKategori) => {
             <select className='drop-down' name='välj pass' onChange={(e) => sortKategories(e.target.value)}>
                 <option value="null">Välj pass</option>
                 <option value="kondition">Kondition</option>
-                <option value="styrka">Styrka</option>
+                <option value="spinning">Styrka</option>
+                <option value="styrka">Crossfit</option>
+                <option value="flexebilitet">Funktionell Träning</option>
+                <option value="mindfullnes">Mindfullnes</option>
                 <option value="crossfit">Crossfit</option>
-                <option value="funktionell-träning">Funktionell Träning</option>
+                <option value="funktionell-träning">Funktionell träning</option>
+
             </select>
             
             {passDenDagen.map((pass, index) => {
@@ -205,33 +209,15 @@ const sortKategories = (selectedKategori) => {
                     <>
                     <div key={index} className='pass-card center'>
                         <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
-                        <img clasName='booking-icon' src={require("./"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/>
+                        {/* <img clasName='booking-icon' src={require("./"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/> */}
                         <div className='aktv-tid-div'>
                             <h1>{pass.aktivitet}</h1>
                             <p>{pass.dayString}, {pass.dateString} {pass.monthString} <br />
                             {pass.tid}</p>
                         </div>
                         <h2>instruktör: {pass.instruktör}</h2>
-                        <button 
-                            style={BTN_STYLE}
-                            onClick={() => openUpdateModal(pass.id)}
-                            className='pass-redigera-btn myButton'><BsFillPencilFill className='pen-icon'/>
-                            
-                        </button>
                         <button class="myButton booking-btn" onClick={() => handleBokaBtn(pass.id, "pass", pass.platser)}> {pass.bokad ? 'Avboka' : 'Boka'}</button>
                     </div>
-
-                    <Update_modal_pass 
-                        key={Math.random()}
-                        id={pass.id} 
-                        aktivitet={pass.aktivitet}  
-                        instruktör={pass.instruktör}
-                        maxAntal={pass.maxAntal}
-                        platser={pass.platser}
-                        tid={pass.tid}
-                        date={pass.dag}
-                        getStaff={getStaff}
-                    />
 
                     </>
                 )
