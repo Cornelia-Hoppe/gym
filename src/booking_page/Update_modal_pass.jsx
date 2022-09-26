@@ -5,8 +5,10 @@ import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useEffect } from 'react'
 import Calendar from 'react-calendar';
+import openLoadingModal from '../Components/loading_screen/OpenLoadingModal'
+import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal'
 
-function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid, dag }) {
+function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid, dag, getStaff }) {
 
     const [newAktivitet, setNewAktivitet] = useState(aktivitet)
     const [newInstruktör, setNewInstruktör] = useState(instruktör)
@@ -17,6 +19,7 @@ function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid,
 
 // UPPDATERAR DATA
   const updateStaff = async (DBcollextion) => {
+    openLoadingModal()
     const staffDoc = doc(db, DBcollextion, id)
     const newFields = {
         aktivitet: newAktivitet, 
@@ -25,25 +28,29 @@ function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid,
         tid: newTid
         }
     await updateDoc(staffDoc, newFields)
-        
-    alert('Sparat!')
+    getStaff()
+    closeLoadingModal()
+    alert('Pass uppdaterat!')
     closeModal()
   }
 
 // RADERAR DATA
   const deleteStaff = async (id, DBcollextion) => {
-    const staffDoc = doc(db, DBcollextion, id);
-    await deleteDoc(staffDoc);
-
-    alert('pass borttaget')
-    closeModal()
+    if (window.confirm('Radera pass?')){
+        openLoadingModal()
+        const staffDoc = doc(db, DBcollextion, id);
+        await deleteDoc(staffDoc);
+        getStaff()
+        closeModal()
+        closeLoadingModal()
+        
+    }
   };
-
 
 //
 
     const closeModal = () => {
-        document.querySelector(`#${id}-update-modal`).style.display="none"
+        document.querySelector(`#update-modal-${id}`).style.display="none"
     }
 
 // KALENDER
@@ -54,7 +61,7 @@ const onSelect = (e) => {
   }
 
   return (
-    <section id={`${id}-update-modal`} className='update-modal-wrapper'>
+    <section id={`update-modal-${id}`} className='update-modal-wrapper'>
         <article className='update-modal'>
             <GrFormClose className='close-icon' onClick={closeModal} />
             <h1>Redigera aktivitet</h1>

@@ -8,12 +8,15 @@ import { BsFillPencilFill } from 'react-icons/bs'
 import Update_modal_product from './Update_modal_product';
 import Calendar from 'react-calendar';
 import Menu from '../Components/Navbar/components/Menu';
-
+import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
+import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
+import Update_modal_pass from '../booking_page/Update_modal_pass';
 
 function AdminPage() {
   // TILL ANSTÄLLDA
     const [newName, setNewName] = useState("")
     const [newAge, setNewAge] = useState(0)    
+    const [newText, setNewText] = useState("")
 
     const staffCollectionRef = collection(db, "staff")
     const [staff, setStaff] = useState([])
@@ -46,12 +49,14 @@ function AdminPage() {
 
 // HÄMTAR DATA
   // HÄMTAR ANSTÄLLDA
-useEffect(() => {
 
-    const getStaff = async () => {
-      const data = await getDocs(staffCollectionRef)
-      setStaff(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    };
+  const getStaff = async () => {
+    const data = await getDocs(staffCollectionRef)
+    setStaff(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+    setAllStaff(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+  };
+
+useEffect(() => {
 
     getStaff()
   }, [])
@@ -59,16 +64,21 @@ useEffect(() => {
 
   // HÄMTAR PRODUKTER 
 
+  const getProdukter = async () => {
+    const data = await getDocs(produkterCollectionRef)
+    setProdukter(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+    setAllProdukter(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
+  };
 
 useEffect(() => {
-
-    const getProdukter = async () => {
-      const data = await getDocs(produkterCollectionRef)
-      setProdukter(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    };
-
+    getPass();
     getProdukter()
-  }, [])
+  }, []);
+
+  const getPass = async () => {
+    const data = await getDocs(passCollectionRef);
+    setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
 
 
 // BILD PRODUKTER
@@ -91,38 +101,55 @@ function previewImageProdukt() {
 
 
   const createStaff = async () => {
-    await addDoc(staffCollectionRef, {name: newName, age: Number(newAge), img: IMG_SRC});
-    alert ('Sparat!')
-
-    // clearFields()
+    openLoadingModal()
+    await addDoc(staffCollectionRef, {name: newName, age: Number(newAge), img: IMG_SRC, text: newText});
+    clearFields()
+    getStaff()
+    closeLoadingModal()
   }
 
     // PRODUKTER
   const createProduct = async () => {
+    openLoadingModal()
     await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, pris: Number(pris), produktNamn: produktNamn});
-    alert ('Sparat!')
 
+
+    getProdukter()
     clearFields()
+    closeLoadingModal()
   }
 
     // PASS
     const createPass = async () => {
-
-      console.log(dateString, dayString, monthString);
-
+      openLoadingModal()
       await addDoc(passCollectionRef, {aktivitet: aktivitet, kategori: passKategori, dag: String(date), instruktör: instruktör, maxAntal: Number(maxAntal), tid: tid, dayString: dayString, monthString: monthString, dateString: dateString});
-      alert ('Sparat!')
-
       clearFields()
+      alert('Pass tillagt!')
+      closeLoadingModal()
     }
 
 
   // RADERAR DATA
+    // PRODUKTER
 const deleteProdukter = async (id, DBcollextion) => {
-
+  if (window.confirm('Radera?')){
+    openLoadingModal()
     const staffDoc = doc(db, DBcollextion, id);
     await deleteDoc(staffDoc);
-    // alert('Raderad')
+    getProdukter()
+    closeLoadingModal()
+  }
+  };
+
+  // STAFF
+  const deleteStaff = async (id, DBcollextion) => {
+    if (window.confirm('Radera?')){
+      openLoadingModal()
+      const staffDoc = doc(db, DBcollextion, id);
+      await deleteDoc(staffDoc);
+      getStaff()
+      closeLoadingModal()
+    }
   };
 
 // 
@@ -130,18 +157,9 @@ const deleteProdukter = async (id, DBcollextion) => {
 // FIXAR DAGARNA TILL VARJE PASS
 
    const fixDays = (e) => {
-
-    console.log(e);
-
         const date1 = new Date(e)
-
-    console.log('date1: ', date1);
-      
         const timestamp = date1.getTime()
-        
         const dateTimestamp = new Date(timestamp)
-
-
         setDateString(dateTimestamp.getDate())
         setDate(e)
 
@@ -238,15 +256,24 @@ const deleteProdukter = async (id, DBcollextion) => {
     for (let i=0; i < allImages.length; i++) {
       allImages[i].src = "" ;
     }
+
+    document.querySelector('#staff-input-1').value=""
+    document.querySelector('#staff-input-2').value=""
+    document.querySelector('#staff-input-3').value=""
     
   }
+  
 
   const openUpdateModal = (id) => {
-    document.querySelector(`#${id}-update-modal`).style.display='flex'
+    document.querySelector(`#update-modal-${id}`).style.display='flex'
   }
 
   const openProductUpdateModal = (id) => {
-    document.querySelector(`#${id}-update-modal`).style.display="flex"
+    document.querySelector(`#update-modal-${id}`).style.display="flex"
+  }
+
+  const openUpdateModalPass = (id) => {
+    document.querySelector(`#update-modal-${id}`).style.display="flex"
   }
 
 
@@ -266,6 +293,67 @@ const deleteProdukter = async (id, DBcollextion) => {
         fileReader.readAsDataURL(file[0]);
     }
 }
+
+// SÖKFUNKTION PRODUKTER
+
+const [allProdukter, setAllProdukter] = useState()
+const [prevTextLenthProdukter, setPrevTextLenthProdukter] = useState(-1)
+
+const searchProdukter = (text) => {
+  const e = text.toLowerCase()
+
+  setPrevTextLenthProdukter(prevCount => prevCount + 1)
+
+  const produkterNames = produkter.map((item) => item.produktNamn.toLowerCase())
+
+  let filteredProdukter = []
+
+  produkterNames.map((item, index) => {
+    if (item.includes(e) === true) {
+      filteredProdukter.push(produkter[index])
+        }
+  })
+
+  if (prevTextLenthProdukter == text.length) {
+    document.querySelector('#serchIdProdukter').value="" 
+    setPrevTextLenthProdukter(-1)
+    setProdukter(allProdukter) 
+   } else {
+    setProdukter(filteredProdukter)
+   }
+}
+
+// SÖKFUNKTION ANSTÄLLDA
+
+const [allStaff, setAllStaff] = useState()
+const [prevTextLenth, setPrevTextLenth] = useState(-1)
+
+const search = (text) => {
+  const e = text.toLowerCase()
+
+  setPrevTextLenth(prevCount => prevCount + 1)
+
+  const staffNames = staff.map((item) => item.name.toLowerCase())
+
+  let filteredStaff = []
+
+  staffNames.map((item, index) => {
+    if (item.includes(e) === true) {
+          filteredStaff.push(staff[index])
+        }
+  })
+
+  if (prevTextLenth == text.length) {
+    document.querySelector('#serchId').value="" 
+    setPrevTextLenth(-1)
+    setStaff(allStaff) 
+   } else {
+    setStaff(filteredStaff)
+   }
+
+}
+
+console.log(pass);
 
   return (
     <>
@@ -314,6 +402,43 @@ const deleteProdukter = async (id, DBcollextion) => {
           <button onClick={createPass}>Lägg till pass</button>
           </div>
 
+          <article>
+            {pass.map((pass, index) => {
+              return (
+                <>
+                <div key={index} className='pass-card center'>
+                        <h2 className='booking-antal' >Max: {pass.maxAntal}</h2>
+                        <img clasName='booking-icon' src={require("../booking_page/"+pass.aktivitet +".png")} alt="" height="40px" width="30px"/>
+                        <div className='aktv-tid-div'>
+                            <h1>{pass.aktivitet}</h1>
+                            <p>{pass.dayString}, {pass.dateString} {pass.monthString} <br />
+                            {pass.tid}</p>
+                        </div>
+                        <h2>instruktör: {pass.instruktör}</h2>
+                        <button 
+                            onClick={() => openUpdateModalPass(pass.id)}
+                            className='pass-redigera-btn myButton'><BsFillPencilFill className='pen-icon'/>
+                            
+                        </button>
+                    </div>
+
+                    <Update_modal_pass 
+                        key={Math.random()}
+                        id={pass.id} 
+                        aktivitet={pass.aktivitet}  
+                        instruktör={pass.instruktör}
+                        maxAntal={pass.maxAntal}
+                        platser={pass.platser}
+                        tid={pass.tid}
+                        date={pass.dag}
+                        getStaff={getStaff}
+                    />
+
+                    </>
+              )
+            })}
+          </article>
+
         </section>
 
 
@@ -361,6 +486,17 @@ const deleteProdukter = async (id, DBcollextion) => {
           </div>
 
           <article className='map-article'>
+
+          <form>
+                <input
+                  id='serchIdProdukter'
+                  type="text"
+                  name="search"
+                  placeholder='sök...'
+                  onChange={(e) => searchProdukter(e.target.value)}
+                />
+              </form>
+
             {produkter.map((produkt, index) => {
               return( 
                 <>
@@ -370,8 +506,9 @@ const deleteProdukter = async (id, DBcollextion) => {
                     <p className='m10'>{produkt.kategori}</p>
                   <img className='img-produkt' src={produkt.img} alt={`Bild på ${produkt.produktNamn}`} />
                 
-                  <button className='pass-redigera-btn' onClick={() => openProductUpdateModal(produkt.id)}>Ändra <BsFillPencilFill className='pen-icon' /></button>
-                  <button className='booking-btn' onClick={() => {deleteProdukter(produkt.id, 'produkter')}}>Radera produkt</button>
+                  <button class="myButton admin-edit-btn" onClick={() => openProductUpdateModal(produkt.id)}><BsFillPencilFill className='pen-icon' /></button>
+
+                  <button className='staff-btn-delete myButtonDelete' onClick={() => {deleteProdukter(produkt.id, 'produkter')}}>Radera</button>
                 </div>
 
                 <Update_modal_product 
@@ -380,6 +517,7 @@ const deleteProdukter = async (id, DBcollextion) => {
                     kategori={produkt.kategori}
                     pris={produkt.pris}
                     produktNamn={produkt.produktNamn}
+                    getProdukter={getProdukter}
                 />
               </>
               )
@@ -399,8 +537,9 @@ const deleteProdukter = async (id, DBcollextion) => {
 
             <div className="m30">
               <h1>Lägg till ny anställd +</h1>
-              <input type="text" placeholder='Name...' onChange={(e) => {setNewName(e.target.value)}}  />
-              <input type="number" placeholder='Age...' onChange={(e) => {setNewAge(e.target.value)}}  />
+              <input id='staff-input-1' type="text" placeholder='Name...' onChange={(e) => {setNewName(e.target.value)}}  />
+              <input id='staff-input-2' type="number" placeholder='Age...' onChange={(e) => {setNewAge(e.target.value)}}  />
+              <textarea id='staff-input-3' type="text" placeholder='Skriv om dig...' onChange={(e) => {setNewText(e.target.value)}}  />
 
               <input 
                 type="file" 
@@ -418,17 +557,31 @@ const deleteProdukter = async (id, DBcollextion) => {
             </div> 
 
                 <article className='map-article'>
+
+              <form>
+                <input
+                  id='serchId'
+                  type="text"
+                  name="search"
+                  placeholder='sök...'
+                  onChange={(e) => search(e.target.value)}
+                />
+              </form>
+
                   {staff.map((staff, index) => {
                     return (
                       <>
                         <div key={index} className='center staff-card' id={`${staff.id}-div`}>
                             <h1 id={`${staff.id}-name`}>{staff.name}, {staff.age} år</h1>
                             <img className='staff-img' src={staff.img} alt={`bild på ${staff.name}`} />
-                            <button className='pass-redigera-btn' onClick={() => openUpdateModal(staff.id)}>Ändra <BsFillPencilFill className='pen-icon' /></button>
+                            <p className='staff-text'>{staff.text}</p>
+                            <button className='admin-edit-btn myButton' onClick={() => openUpdateModal(staff.id)}><BsFillPencilFill className='pen-icon' /></button>
+                            <button className='staff-btn-delete myButtonDelete' onClick={() => {deleteStaff(staff.id, 'staff')}}>Radera</button>
+
                         </div>
                         
-                        <div id={`${staff.id}-modal-div`}>
-                            <Update_modal_Staff id={staff.id} staffName={staff.name} age={staff.age} img={staff.img} />
+                        <div id={`modal-div-${staff.id}`}>
+                            <Update_modal_Staff id={staff.id} staffName={staff.name} age={staff.age} img={staff.img} getStaff={getStaff} />
                         </div>
                       </>
                       )
