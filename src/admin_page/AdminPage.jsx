@@ -27,6 +27,10 @@ function AdminPage() {
     const [kategori, setKategori] = useState('')
     const [pris, setPris] = useState(0)
     const [produktNamn, setProduktNamn] = useState('')
+    
+    const [productBrand, setproductBrand] = useState('')
+    // const [productColor, setproductColor] = useState('')
+    const [productshortDesc, setproductshortDesc] = useState('')
 
     const produkterCollectionRef = collection(db, "produkter")
     const [produkter, setProdukter ] = useState([])
@@ -120,7 +124,7 @@ function previewImageProdukt() {
 
   const createProduct = async () => {
     openLoadingModal()
-    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, pris: Number(pris), produktNamn: produktNamn, type: productType, brand: productBrand, color: productColor, shortDesc, productshortDesc});
+    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, pris: Number(pris), produktNamn: produktNamn, type: kategori, brand: productBrand, shortDesc: productshortDesc});
 
 
     getProdukter()
@@ -488,7 +492,19 @@ const search = (text) => {
                 <option value="kvinnor">Kvinnor</option>
               </select>
             </div>
-            
+
+            <div className='modal-input-wrapper'>
+              <p>Kort beskrivning</p>
+              <input className="input" type="text" onChange={(e) => setproductBrand(e.target.value)} />
+            </div>
+
+            {/* Alternativ att lägga till färger */}
+
+            <div className='modal-input-wrapper'>
+              <p>Varumärke:</p>
+              <input className="input" type="text" onChange={(e) => setproductshortDesc(e.target.value)} />
+            </div>
+
             <div className='modal-input-wrapper'>
               <p>Pris:</p>
               <input className="input" type="number" required onChange={(e) => setPris(e.target.value)} />
