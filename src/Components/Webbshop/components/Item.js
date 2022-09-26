@@ -12,7 +12,7 @@ function Item(props) {
             <img className="item-img" alt="Product" src={props.img}/>
         </article>
         <div className="info-container">
-            <h2 className="item-title">{props.name}</h2>
+            <h2 className="item-title">{props.produktNamn}</h2>
             <p className="item-price">{props.price}:-</p>
             </div>
         </div>

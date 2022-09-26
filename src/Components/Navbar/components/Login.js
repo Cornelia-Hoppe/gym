@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import LoginInput from "./LoginInput";
 import { db } from '../../../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+import UpdateLocalStorage from "../../../functions/UpdateLocalStorage";
 
-function Login({ setOpenSignUp }) {
+function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
 
 // HÄMTAR PROFILER FRÅN DATABASEN START
     const profilerCollectionRef = collection(db, "profiler")
@@ -45,7 +46,7 @@ function Login({ setOpenSignUp }) {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-    const [userProfile, setUserProfile] = useState([])
+    let userProfile = []
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -57,7 +58,7 @@ function Login({ setOpenSignUp }) {
         if (!profile) {
             alert('Wrong email')
         } else {
-            setUserProfile(profile)
+            userProfile = profile
             checkPassword()
         }
     };
@@ -66,38 +67,70 @@ function Login({ setOpenSignUp }) {
         if (userProfile.password == values.password) {
             alert('inloggad!')
             window.localStorage.setItem('user', JSON.stringify(userProfile))
+            setIsLogedIn(true)
+            updateAfterLogin()
+            clearFields()
+
         } else {
             alert('fel lösenord')
         }
     }
 
+// LOGGA UT 
+    const [isLogedIn, setIsLogedIn] = useState()
+    const STYLE_NONE = {display:'none'}
+    const STYLE_WIDTH = {width:'100%'}
+    const STYLE_DARK = {color:'black'}
 
+    useEffect(() => {
+        if (!localStorage.getItem('user')) setIsLogedIn(false)
+        else setIsLogedIn(true)
+    }, [])
+
+    const logOut = () => {
+        window.confirm("Logga ut?")
+        localStorage.removeItem('user')
+        updateAfterLogin()
+        setIsLogedIn(false)
+    }
     
+// CLEAR FEILDS
+
+    const clearFields = () => {
+        document.querySelector('#login-input-1').value=''
+        document.querySelector('#login-input-2').value=''
+    }
+
     return (
         <div className="Login">
             <form className="login-form">
-                <h1 className="login-title">Logga in</h1>
-                {inputs.map((input) => (
+                <h1 className="login-title" style={darkText}>{ isLogedIn ? '' : 'Logga in'}</h1>
+                {inputs.map((input, index) => (
                     <LoginInput
+                        id={index}
                         key={input.id}
                         {...input}
                         value={values[inputs.name]}
                         onChange={onChange}
+                        style={isLogedIn ? STYLE_NONE : null}
                     />
                 ))}
             </form>
             <div className="form-buttons">
-                <button className="login-button" onClick={handleSubmit}>Logga in</button>
-                <button
-                    onClick={() => {
-                        setOpenSignUp(true);
-                    }}
-                    className="register-button login-button"
-                >
+                <div className="form-buttons-box">
+                    <button className="login-button" onClick={isLogedIn ? logOut : handleSubmit} style={isLogedIn ? STYLE_WIDTH : null} >{isLogedIn ? 'Logga ut' : 'Logga in'}</button>
+                    <button
+                    style={ isLogedIn ? STYLE_NONE : null}
+                        onClick={() => {
+                            setOpenSignUp(true);
+                        }}
+                        className="register-button login-button"
+                    >
                     Bli medlem
-                </button>
+                    </button>
+                </div>
+                <p className="login-forgot-password" style={darkText}>{ isLogedIn ? '' : 'Glömt lösenord?'}</p>
             </div>
-            <p className="login-forgot-password">Glömt lösenord?</p>
         </div>
     );
 }

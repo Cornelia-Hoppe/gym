@@ -48,18 +48,18 @@ function ItemList() {
 
 
   const database = [
-    { name: "Vattenflaska", price: "129", id: 1, type: "equipment", img: img, brand: "Sportix Equipment", color: "Blå", shortDesc: "Aluminium water bottle"},
-    { name: "Hopprep", price: "149", id: 2, type: "equipment", img: img2, brand: "Sportix Equipment", color: "Svart", shortDesc: "High quality jump rope"},
-    { name: "Track Shorts", price: "499", id: 3, type: "bottom", img: img3, brand: "Sportswear of Sportix", color: "Grön", shortDesc: "Long track shorts"},
-    { name: "Shorts", price: "249", id: 4, type: "bottom", img: img4, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "Regular fit shorts" },
-    { name: "T-shirt", price: "199", id: 5, type: "top", img: img6, brand: "Sportswear of Sportix", color: "Vit", shortDesc: "T-shirt in polyester" },
-    { name: "Kroppad Tröja", price: "249", id: 6, type: "top", img: img5, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "Sleeved croped shirt" },
-    { name: "Vindjacka", price: "799", id: 7, type: "top", img: img11, brand: "Sportswear of Sportix", color: "Mörkblå", shortDesc: "Windbraker with hood"},
-    { name: "Leggings", price: "399", id: 8, type: "bottom", img: img7, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "High-waist women leggings" },
-    { name: "Track Jacket", price: "699", id: 9, type: "top", img: img9, brand: "Sportswear of Sportix", color: "Grön", shortDesc: "Track jacket with zip" },
-    { name: "Strumpor", price: "199", id: 10, type: "equipment", img: img10, brand: "Sportix Equipment", color: "Svart", shortDesc: "5-pack sport socks" },
-    { name: "Foamroller", price: "349", id: 11, type: "equipment", img: img8, brand: "Sportix Equipment", color: "Beige", shortDesc: "Foamroller with texture" },
-    { name: "Zip Tröja", price: "449", id: 12, type: "top", img: img12, brand: "Sportswear of Sportix", color: "Röd", shortDesc: "Zipshirt without hood" },
+    { produktNamn: "Vattenflaska", price: "129", id: 1, type: "equipment", img: img, brand: "Sportix Equipment", color: "Blå", shortDesc: "Aluminium water bottle"},
+    { produktNamn: "Hopprep", price: "149", id: 2, type: "equipment", img: img2, brand: "Sportix Equipment", color: "Svart", shortDesc: "High quality jump rope"},
+    { produktNamn: "Track Shorts", price: "499", id: 3, type: "bottom", img: img3, brand: "Sportswear of Sportix", color: "Grön", shortDesc: "Long track shorts"},
+    { produktNamn: "Shorts", price: "249", id: 4, type: "bottom", img: img4, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "Regular fit shorts" },
+    { produktNamn: "T-shirt", price: "199", id: 5, type: "top", img: img6, brand: "Sportswear of Sportix", color: "Vit", shortDesc: "T-shirt in polyester" },
+    { produktNamn: "Kroppad Tröja", price: "249", id: 6, type: "top", img: img5, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "Sleeved croped shirt" },
+    { produktNamn: "Vindjacka", price: "799", id: 7, type: "top", img: img11, brand: "Sportswear of Sportix", color: "Mörkblå", shortDesc: "Windbraker with hood"},
+    { produktNamn: "Leggings", price: "399", id: 8, type: "bottom", img: img7, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "High-waist women leggings" },
+    { produktNamn: "Track Jacket", price: "699", id: 9, type: "top", img: img9, brand: "Sportswear of Sportix", color: "Grön", shortDesc: "Track jacket with zip" },
+    { produktNamn: "Strumpor", price: "199", id: 10, type: "equipment", img: img10, brand: "Sportix Equipment", color: "Svart", shortDesc: "5-pack sport socks" },
+    { produktNamn: "Foamroller", price: "349", id: 11, type: "equipment", img: img8, brand: "Sportix Equipment", color: "Beige", shortDesc: "Foamroller with texture" },
+    { produktNamn: "Zip Tröja", price: "449", id: 12, type: "top", img: img12, brand: "Sportswear of Sportix", color: "Röd", shortDesc: "Zipshirt without hood" },
   ];
 
   function itemModal(itemId){
@@ -92,7 +92,7 @@ function ItemList() {
           <WebbshopModal
             closeModal={setOpenModal}
             id={item.id}
-            name={item.name}
+            produktNamn={item.produktNamn}
             price={item.price}
             img={item.img}
             brand={item.brand}
@@ -110,7 +110,7 @@ function ItemList() {
       {clothesTop.map((item, index) => (
         <Item
         itemModal={itemModal}
-        name={item.name}
+        produktNamn={item.produktNamn}
           id={item.id}
           price={item.price}
           key={index}
@@ -124,7 +124,7 @@ function ItemList() {
       {clothesBottom.map((item, index) => (
         <Item
         itemModal={itemModal}
-        name={item.name}
+        produktNamn={item.produktNamn}
         id={item.id}
         price={item.price}
         key={index}
@@ -139,7 +139,7 @@ function ItemList() {
   <Item
     itemModal={itemModal}
     id={item.id}
-    name={item.name}
+    produktNamn={item.produktNamn}
     price={item.price}
     key={index}
     item={item}

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from "react";
 import "../css/Menu.css";
 import Navbar from "./Navbar";
@@ -5,12 +6,13 @@ import MobLogo from "../../../images/logo-mobile.png";
 import DeskLogo from "../../../images/logo-desktop.png";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoIosCart } from "react-icons/io";
+import { FaRegUserCircle } from "react-icons/fa";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import Login from "./Login";
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "react-use-cart";
 
-function Menu( {setOpenCart} ) {
+function Menu({ updateAfterLogin, setOpenCart} ) {
   const { totalItems } = useCart();
 
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -18,7 +20,7 @@ function Menu( {setOpenCart} ) {
 
   return (
     <div className="Menu">
-      {openNavbar && <Navbar closeNavbar={setOpenNavbar} />}
+      {openNavbar && <Navbar closeNavbar={setOpenNavbar} updateAfterLogin={updateAfterLogin} />}
       <ul className="menu-mobile">
         <span className="menu-cart">
         <IoIosCart className="menu-mobile-cart" 

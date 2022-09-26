@@ -1,6 +1,7 @@
 export const list = [
   {
     id: 1,
+    title:"Ledning",
     namn: "Sven Svensson",
     job: "Ledning",
    
@@ -8,27 +9,31 @@ export const list = [
   },
   {
     id: 2,
-    namn: "S",
+    title: "Reception",
+    namn: "Sven Svensson",
     job: "Reception",
     
     img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
   },
   {
     id: 3,
-    namn: "S",
+    title: "Reception",
+    namn: "Sven Svensson",
     job: "Reception",
    
     img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
   },
   {
     id: 4,
-    namn: "S",
+    title: "Instruktörer",
+    namn: "Sven Svensson",
     job: "Instruktörer",
     
     img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 5,
+  
   namn: "Sven Svensson",
   job: "Ledning",
   
@@ -36,49 +41,56 @@ img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 6,
-  namn: "S",
+ 
+  namn: "Sven Svensson",
   job: "Ledning",
  
 img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 7,
-  namn: "S",
+  title:"Tränare",
+  namn: "Sven Svensson",
   job: "Tränare",
 
   img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 8,
-  namn: "S",
+  
+  namn: "Sven Svensson",
   job: "Tränare",
   
   img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 9,
-  namn: "S",
+  
+  namn: "Sven Svensson",
   job: "Tränare",
  
   img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 10,
-  namn: "S",
+  title: "Instruktörer",
+  namn: "Sven Svensson",
   job: "Instruktörer",
   
   img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 11,
-  namn: "S",
+  title: "Instruktörer",
+  namn: "Sven Svensson",
   job: "Instruktörer",
   
   img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 12,
-  namn: "S",
+  title: "Instruktörer",
+  namn: "Sven Svensson",
   job: "Instruktörer",
  
   img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
@@ -87,19 +99,23 @@ img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 
 export const buttons = [
   {
+    
     name: "Ledning",
     value: "Ledning"
   },
   {
+   
     name: "Tränare",
     value: "Tränare"
   },
   {
+    
     name: "Reception",
     value: "Reception"
   },
  
   {
+    
     name: "Instruktörer",
     value: "Instruktörer"
   }

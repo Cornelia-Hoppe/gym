@@ -55,16 +55,23 @@ export default function App() {
       </div>
       {/* Trainers Info & img */}
 
-      <div className=" container">
-        <h1>Ledning</h1>
+      <div className=" container" >
+      
+      {trainersPerson &&
+            trainersPerson.map((type) => (
+              <h1 >{type.title}</h1>
+              ))}
+            
 
         <div className="image_box">
           {trainersPerson &&
             trainersPerson.map((type) => (
+             
               <ul key={type.id}>
-               
+             
+                
                 <img src={type.img} alt="" />
-
+                
                 <div className="details">
                   <p>{type.namn}</p>
                   <p>{type.job}</p>
@@ -72,7 +79,7 @@ export default function App() {
               </ul>
             ))}
         </div>
-      </div>
+        </div>
     </>
   );
 }
