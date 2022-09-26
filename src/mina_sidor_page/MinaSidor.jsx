@@ -41,29 +41,24 @@ function MinaSidor() {
   //  DEN VIKTIGA DATAN  //
   // console.log('pass: ', pass);
   // console.log('userBokadePassId: ', userBokadePassId);
-
+let HI = []
   const getPassAndSet = () => {
-
     userBokadePassId.map((bokatPass) => {
+      
+pass.find((pass, index) => {
+        if (pass.id == bokatPass){
+     HI.push(pass)
 
-      const findPass = pass.find((pass, index) => {
-
-        console.log('yes .find körs');
-        console.log('bokatPass: ', index, bokatPass);
-
-        console.log('pass.id: ', index, pass.id);
-        return pass.id == bokatPass
+      } 
       })
-      console.log('findPass: ', findPass);
-
+    
     })
-
     
   }
-
-
+  
+  getPassAndSet()
 // ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
-
+console.log(HI)
   const openModal = () => {
     document.querySelector(`#${user.id}-update-modal`).style.display='flex'
   }
@@ -112,14 +107,19 @@ function MinaSidor() {
 
             <div className='bokade-pass'>
                 <h1>Bokade pass</h1>
-
-                {/* {userBokadePass.map((pass, index) => {
-                  return(
-                    <p>{pass}</p>
-                  )
-                })} */}
-
-                
+                {HI.map(pass => {
+           return (
+            <div key={pass.id} className='pass-card center'>
+            <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
+            <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
+            <div className='aktv-tid-div'>
+                <h1>{pass.aktivitet}</h1>
+                <h2>{pass.tid}</h2>
+            </div>
+            <p>instruktör: {pass.instruktör}</p>
+        </div>
+           )
+       })} 
             </div>
 
             </div>
@@ -171,3 +171,4 @@ function MinaSidor() {
 }
 
 export default MinaSidor
+
