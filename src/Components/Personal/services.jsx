@@ -6,6 +6,6 @@ export function getTrainer() {
 }
 
 export function filterTrainer(persionType) {
-  let trainersPersion = getTrainer().filter(type => type.job === persionType);
+  let trainersPersion = getTrainer().filter(type => type.kategori === persionType);
   return trainersPersion;
 }
