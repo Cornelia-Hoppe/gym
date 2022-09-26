@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Personal.css";
 import { buttons } from "./data";
 import { getTrainer, filterTrainer } from "./services";
-import Menu from "../Navbar/components/Menu";
+
+import Edit from "./Edition";
+
 
 
 
@@ -80,6 +82,8 @@ export default function App() {
               </ul>
             ))}
         </div>
+        <p>Om mig</p>
+        <Edit/>
         </div>
     </>
   );

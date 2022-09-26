@@ -2,7 +2,7 @@ import React from "react";
 import Homepage from "./Components/Home/Homepage";
 import Footer from "./Components/Footer/Footer";
 import { Routes, Route, Navigate } from "react-router-dom";
-import BookingPage from "./booking_page/BookingPage";
+import BookingPage from "./";
 import Personal from "./Components/Personal/Trainerspage";
 import MinaSidor from "./mina_sidor_page/MinaSidor";
 import NotFound from "./NotFound/NotFound";
