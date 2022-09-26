@@ -5,7 +5,7 @@ import { db } from '../../../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import UpdateLocalStorage from "../../../functions/UpdateLocalStorage";
 
-function Login({ setOpenSignUp, updateAfterLogin }) {
+function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
 
 // HÄMTAR PROFILER FRÅN DATABASEN START
     const profilerCollectionRef = collection(db, "profiler")
@@ -79,6 +79,8 @@ function Login({ setOpenSignUp, updateAfterLogin }) {
 // LOGGA UT 
     const [isLogedIn, setIsLogedIn] = useState()
     const STYLE_NONE = {display:'none'}
+    const STYLE_WIDTH = {width:'100%'}
+    const STYLE_DARK = {color:'black'}
 
     useEffect(() => {
         if (!localStorage.getItem('user')) setIsLogedIn(false)
@@ -102,7 +104,7 @@ function Login({ setOpenSignUp, updateAfterLogin }) {
     return (
         <div className="Login">
             <form className="login-form">
-                <h1 className="login-title">Logga in</h1>
+                <h1 className="login-title" style={darkText}>{ isLogedIn ? '' : 'Logga in'}</h1>
                 {inputs.map((input, index) => (
                     <LoginInput
                         id={index}
@@ -110,22 +112,25 @@ function Login({ setOpenSignUp, updateAfterLogin }) {
                         {...input}
                         value={values[inputs.name]}
                         onChange={onChange}
+                        style={isLogedIn ? STYLE_NONE : null}
                     />
                 ))}
             </form>
             <div className="form-buttons">
-                <button className="login-button" onClick={isLogedIn ? logOut : handleSubmit}>{isLogedIn ? 'Logga ut' : 'Logga in'}</button>
-                <button
-                style={ isLogedIn ? STYLE_NONE : null}
-                    onClick={() => {
-                        setOpenSignUp(true);
-                    }}
-                    className="register-button login-button"
-                >
+                <div className="form-buttons-box">
+                    <button className="login-button" onClick={isLogedIn ? logOut : handleSubmit} style={isLogedIn ? STYLE_WIDTH : null} >{isLogedIn ? 'Logga ut' : 'Logga in'}</button>
+                    <button
+                    style={ isLogedIn ? STYLE_NONE : null}
+                        onClick={() => {
+                            setOpenSignUp(true);
+                        }}
+                        className="register-button login-button"
+                    >
                     Bli medlem
-                </button>
+                    </button>
+                </div>
+                <p className="login-forgot-password" style={darkText}>{ isLogedIn ? '' : 'Glömt lösenord?'}</p>
             </div>
-            <p className="login-forgot-password">Glömt lösenord?</p>
         </div>
     );
 }

@@ -6,25 +6,26 @@ import './AdminPage.css'
 import '../booking_page/BookingPage'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useEffect } from 'react'
+import openLoadingModal from '../Components/loading_screen/OpenLoadingModal'
+import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal'
 
-
-function Update_modal_product({ id, img, kategori, pris, produktNamn }) {
+function Update_modal_product({ id, img, kategori, price, produktNamn, getProdukter }) {
 
     const [newProduktNamn, setNewProduktNamn] = useState({produktNamn})
     const [newKategori, setNewKategori] = useState({kategori})
-    const [newPris, setNewPris] = useState({pris})
+    const [newPris, setNewPris] = useState({price})
     const [newImg, setNewImg] = useState({img})
 
     useEffect(() => {
         setNewProduktNamn(produktNamn)
         setNewKategori(kategori)
-        setNewPris(pris)
+        setNewPris(price)
         setNewImg(img)
     }, [])
 
 
     const closeModal = () => {
-        document.querySelector(`#${id}-update-modal`).style.display="none"
+        document.querySelector(`#update-modal-${id}`).style.display="none"
     }
 
     
@@ -47,23 +48,28 @@ function previewImage() {
 
 // UPPDATERAR DATA
 const updateProdukter = async (DBcollextion) => {
+openLoadingModal()
 const staffDoc = doc(db, DBcollextion, id)
-const newFields = {img: newImg, kategori: newKategori, pris: Number(newPris), produktNamn: newProduktNamn}
+const newFields = {img: newImg, kategori: newKategori, price: Number(newPris), produktNamn: newProduktNamn}
 await updateDoc(staffDoc, newFields)
-    
-alert('Sparat!')
+
 closeModal()
+getProdukter()
+closeLoadingModal()
+
+setTimeout(() => alert('Sparat!'), 5)
+
 }
 
 // ====================================================== //
 
 
   return (
-    <section id={`${id}-update-modal`} className='update-modal-wrapper'>
+    <section id={`update-modal-${id}`} className='update-modal-wrapper'>
         <article className='update-modal'>
             <GrFormClose className='close-icon' onClick={closeModal} />
             <h1>{produktNamn}</h1>
-            <h1>Pris: {pris} kr</h1>
+            <h1>Pris: {price} kr</h1>
             <p>Kategori: {kategori}</p>
             <img className='staff-img' id={`${id}-preview-modal`} src={img} alt={`bild på ${produktNamn}`} />
             
@@ -91,9 +97,9 @@ closeModal()
                 <h1>Ändra Pris:</h1>
                 <input 
                     type="number" 
-                    placeholder={pris} 
+                    placeholder={price} 
                     onChange={(e) => {setNewPris(e.target.value)}} 
-                    defaultValue={pris}
+                    defaultValue={price}
                 />
             </div>
 
