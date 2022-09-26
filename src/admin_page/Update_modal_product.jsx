@@ -9,17 +9,17 @@ import { useEffect } from 'react'
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal'
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal'
 
-function Update_modal_product({ id, img, kategori, pris, produktNamn, getProdukter }) {
+function Update_modal_product({ id, img, kategori, price, produktNamn, getProdukter }) {
 
     const [newProduktNamn, setNewProduktNamn] = useState({produktNamn})
     const [newKategori, setNewKategori] = useState({kategori})
-    const [newPris, setNewPris] = useState({pris})
+    const [newPris, setNewPris] = useState({price})
     const [newImg, setNewImg] = useState({img})
 
     useEffect(() => {
         setNewProduktNamn(produktNamn)
         setNewKategori(kategori)
-        setNewPris(pris)
+        setNewPris(price)
         setNewImg(img)
     }, [])
 
@@ -50,7 +50,7 @@ function previewImage() {
 const updateProdukter = async (DBcollextion) => {
 openLoadingModal()
 const staffDoc = doc(db, DBcollextion, id)
-const newFields = {img: newImg, kategori: newKategori, pris: Number(newPris), produktNamn: newProduktNamn}
+const newFields = {img: newImg, kategori: newKategori, price: Number(newPris), produktNamn: newProduktNamn}
 await updateDoc(staffDoc, newFields)
 
 closeModal()
@@ -69,7 +69,7 @@ setTimeout(() => alert('Sparat!'), 5)
         <article className='update-modal'>
             <GrFormClose className='close-icon' onClick={closeModal} />
             <h1>{produktNamn}</h1>
-            <h1>Pris: {pris} kr</h1>
+            <h1>Pris: {price} kr</h1>
             <p>Kategori: {kategori}</p>
             <img className='staff-img' id={`${id}-preview-modal`} src={img} alt={`bild på ${produktNamn}`} />
             
@@ -97,9 +97,9 @@ setTimeout(() => alert('Sparat!'), 5)
                 <h1>Ändra Pris:</h1>
                 <input 
                     type="number" 
-                    placeholder={pris} 
+                    placeholder={price} 
                     onChange={(e) => {setNewPris(e.target.value)}} 
-                    defaultValue={pris}
+                    defaultValue={price}
                 />
             </div>
 
