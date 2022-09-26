@@ -3,7 +3,7 @@ import "./Personal.css";
 import { buttons } from "./data";
 import { getTrainer, filterTrainer } from "./services";
 import Menu from "../Navbar/components/Menu";
-import Edit from "./Edition";
+//import Edit from "./Edition";
 import { db } from '../../firebase-config'
 import { collection, getDocs } from 'firebase/firestore'
 
@@ -75,13 +75,13 @@ useEffect(() => {
       {/* Trainers Info & img */}
 
       <div className=" container" >
-        <div className="ledning" >
+        <div className="text">
       {trainersPerson &&
             trainersPerson.map((type) => (
-              <h2 >{type.title}</h2>
-              ))}
-             
-             </div>
+              <h4 >{type.title}</h4>
+            ))}
+          </div>
+            
 
         <div className="image_box">
           {trainersPerson &&
@@ -99,8 +99,7 @@ useEffect(() => {
               </ul>
             ))}
         </div>
-        <p>Om mig</p>
-        <Edit/>
+      
         </div>
     </>
   );

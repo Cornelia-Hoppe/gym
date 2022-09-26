@@ -62,6 +62,8 @@ function NavBar({ closeNavbar, updateAfterLogin }) {
           <ListItem name="Personal" icon={<BsFilePerson className="icon" />} />
         </CustomLink>
         <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
+
+        
       </div>
 
       <div className="navbar-login">

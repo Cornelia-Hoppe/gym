@@ -17,7 +17,7 @@ export const list = [
   },
   {
     id: 3,
-    title: "Reception",
+    
     namn: "Sven Svensson",
     job: "Reception",
    
@@ -41,15 +41,14 @@ img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 6,
- 
-  namn: "Sven Svensson",
+ namn: "Sven Svensson",
   job: "Ledning",
  
 img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 7,
-  title:"Tränare",
+  title: "Tränare",
   namn: "Sven Svensson",
   job: "Tränare",
 
@@ -73,7 +72,7 @@ img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 10,
-  title: "Instruktörer",
+  
   namn: "Sven Svensson",
   job: "Instruktörer",
   
@@ -81,7 +80,7 @@ img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 11,
-  title: "Instruktörer",
+ 
   namn: "Sven Svensson",
   job: "Instruktörer",
   
@@ -89,7 +88,7 @@ img: "https://cdn.pixabay.com/photo/2019/04/18/11/31/beard-4136705_960_720.jpg",
 },
 {
   id: 12,
-  title: "Instruktörer",
+ 
   namn: "Sven Svensson",
   job: "Instruktörer",
  
