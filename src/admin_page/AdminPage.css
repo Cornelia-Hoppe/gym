@@ -10,6 +10,10 @@ input, select{
     margin: 10px;
 }
 
+.left{
+    left: 20px;
+}
+
 .center{
     display: flex;
     flex-direction: column;
@@ -20,11 +24,12 @@ input, select{
 }
 
 .update-modal-wrapper{
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     position: fixed;
     top: 0px;
     left: 0px;
+    padding: 0 0 40px 0;
     background-color: rgba(0, 0, 0, .5);
     display: flex;
     justify-content: center;
@@ -35,12 +40,19 @@ input, select{
 
 .update-modal{
     width: 90vw;
-    min-height: 80vh;
+    height: 87vh;
     background-color: rgb(227 227 227);
     border-radius: 3px;
     position: relative;
+    overflow: auto;
+    top: 63px;
+    margin: 0 0 100px 0;
 }
 
+.update-modal h1{
+    margin: 10px;
+    font-size: 23px;
+}
 .input-div{
     display: flex;
     margin: 10px;
@@ -68,7 +80,8 @@ input, select{
 }
 
 .pen-icon{
-    font-size: 10px;
+    width: 19px;
+    height: 19px;
 }
 
 .staff-card{
@@ -78,6 +91,10 @@ input, select{
     margin: 15px;
     border-radius: 3px;
     position: relative;
+}
+
+.staff-text{
+    margin: 10px 0 65px 0;
 }
 
 .line{
@@ -141,4 +158,4 @@ height: 200px;
 }
 .kalender{
     
-}
+} 

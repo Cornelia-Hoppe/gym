@@ -3,12 +3,15 @@ import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useState, useEffect } from "react";
 import { GrFormClose } from 'react-icons/gr'
+import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
+import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
 
-function Update_modal_staff({ id, staffName, age, img}) {
+function Update_modal_staff({ id, staffName, age, img, getStaff, text}) {
 
     const [newName, setNewName] = useState("")
     const [newAge, setNewAge] = useState(0)
     const [newImg, setNewImg] = useState('')
+    const [newText, setNewText] = useState(text)
 
     useEffect(() => {
         setNewName(staffName)
@@ -20,19 +23,16 @@ function Update_modal_staff({ id, staffName, age, img}) {
 // UPPDATERAR DATA
 
   const updateStaff = async (DBcollextion) => {
+    openLoadingModal()
     const staffDoc = doc(db, DBcollextion, id)
-    const newFields = {age: newAge, img: newImg, name: newName}
+    const newFields = {age: newAge, img: newImg, name: newName, newText: newText}
     await updateDoc(staffDoc, newFields)
-        
-    alert('Sparat!')
+    
+    getStaff()
     closeModal()
+    getStaff()
+    closeLoadingModal()
   }
-
-// RADERAR DATA
-  const deleteStaff = async (id, DBcollextion) => {
-    const staffDoc = doc(db, DBcollextion, id);
-    await deleteDoc(staffDoc);
-  };
 
 
 //BILD
@@ -49,12 +49,13 @@ function previewImage() {
     }
 }
 
+
 const closeModal = () => {
-    document.querySelector(`#${id}-update-modal`).style.display="none"
+    document.querySelector(`#update-modal-${id}`).style.display="none"
 }
 
   return (
-    <section id={`${id}-update-modal`} className='update-modal-wrapper'>
+    <section id={`update-modal-${id}`} className='update-modal-wrapper'>
         <article className='update-modal'>
             <GrFormClose className='close-icon' onClick={closeModal} />
             <h1>{staffName}, {age} år</h1>
@@ -91,7 +92,6 @@ const closeModal = () => {
             </div>
             <div className="m30">
                 <button onClick={() => {updateStaff('staff')}}>Spara</button>
-                <button onClick={() => {deleteStaff(id, 'staff')}}>Radera anställd</button>
             </div>
             
         </article>
