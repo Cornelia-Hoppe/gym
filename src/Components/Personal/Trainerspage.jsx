@@ -2,13 +2,30 @@ import React, { useState, useEffect } from "react";
 import "./Personal.css";
 import { buttons } from "./data";
 import { getTrainer, filterTrainer } from "./services";
-
+import Menu from "../Navbar/components/Menu";
 import Edit from "./Edition";
-
+import { db } from '../../firebase-config'
+import { collection, getDocs } from 'firebase/firestore'
 
 
 
 export default function App() {
+
+
+  const staffCollectionRef = collection(db, "staff")
+  const [staff, setStaff] = useState([])
+
+  const getStaff = async () => {
+    const data = await getDocs(staffCollectionRef)
+    setStaff(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+  };
+
+useEffect(() => {
+
+    getStaff()
+  }, [])
+
+  console.log(staff);
 
   const [selected, setSelected] = useState(null);
 
