@@ -46,6 +46,9 @@ h4{
   
   
 }
+.text{
+  display: inline-block;
+}
 
 
 
@@ -93,6 +96,8 @@ h4{
   margin-bottom: 1rem;
   
 }
+
+
 
 
 
