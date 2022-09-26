@@ -1,41 +1,30 @@
-import React from 'react'
+import React from "react";
 import style from "./Home.module.css";
-<<<<<<< HEAD
-import gym from "../../images/voga1.png";
+import Footer from "../Footer/Footer";
+import LandingHome from "../LandingHome/LandingHome";
+import HomeOffer from "../HomeOffer/HomeOffer";
+import HomeAbout from "../HomeAbout/HomeAbout";
+import HomeGallery from "../HomeGallery/HomeGallery";
+import Menu from "../Navbar/components/Menu";
+import HomePersonal from "../HomePersonal/HomePersonal";
+import Arrow from "../ScrollArrow/Arrow"
 
-
-
-
-=======
-import Footer from '../Footer/Footer';
-import Header from "../Header/Header";
-import LandingHome from '../LandingHome/LandingHome';
-import HomeOffer from '../HomeOffer/HomeOffer';
-import HomeAbout from '../HomeAbout/HomeAbout';
-import HomeGallery from '../HomeGallery/HomeGallery';
->>>>>>> origin/main
-
-const Home = () => {
+const Homepage = () => {
   return (
-
-    
     <>
       <main>
-        <div className={style.HomePage}>
-            <Header />
-            <LandingHome />
-            <HomeOffer />
-            <HomeAbout />
-            <HomeGallery />
-        </div>
+        <Arrow />
+        <Menu />
+        <LandingHome />
+        <HomeOffer />
+        <HomeAbout />
+        <HomeGallery />
+        <HomePersonal />
       </main>
-<<<<<<< HEAD
-     
-=======
->>>>>>> origin/main
-      </>
-    
-    );
-  };
-  
-  export default Home;
+    </>
+  );
+};
+
+export default Homepage;
+
+
