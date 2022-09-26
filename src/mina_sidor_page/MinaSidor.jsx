@@ -87,13 +87,18 @@ console.log(HI)
    return user ? (
     <>
       <Menu updateAfterLogin={updateAfterLogin} />
+      <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
       <section className='profile-wrapper'>
         <article className='profile-left'>
-          <h2>Mina sidor</h2>
+          <div className='flex-between update-and-title'>
+            <h2>Mina sidor</h2>
+            <AiFillEdit id='update-btn' onClick={openModal} />
+          </div>
+          
             <div className='flex-between a-center'>
               <h4 className=''>Kontouppgifter</h4>
-              <AiFillEdit id='update-btn' onClick={openModal} />
-              <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
+              
+              
             </div>
             <div className='flex-between'>
               <img className='profile-img' src={user ? user.img : icon} alt="No image" />
@@ -147,7 +152,7 @@ console.log(HI)
       <section className='profile-wrapper'>
         <article className='profile-left'>
           
-          <Login />
+          <Login updateAfterLogin={updateAfterLogin} darkText={{color:'black'}} />
 
         </article>
 
