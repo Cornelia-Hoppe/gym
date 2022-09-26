@@ -6,7 +6,7 @@ const LoginInput = (props) => {
     
     return( //Uppbyggnaden utav varje inputfält.
         <div className="LoginInput"> 
-            <input className="login-input" {...inputProps} onChange={onChange} />
+            <input className="login-input" {...inputProps} onChange={onChange} id={`login-input-${props.id}`} />
         </div>
     )
 }

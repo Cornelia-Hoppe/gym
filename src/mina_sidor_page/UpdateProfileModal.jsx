@@ -4,28 +4,33 @@ import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase
 import { useState, useEffect } from "react";
 import { GrFormClose } from 'react-icons/gr'
 import '../admin_page/AdminPage.css'
+import UpdateLocalStorage from '../functions/UpdateLocalStorage'
+import openLoadingModal from '../Components/loading_screen/OpenLoadingModal'
 
+function UpdateProfileModal({closeModal, id, email, name, lastName, password, phoneNumber, img }) {
 
-function UpdateProfileModal({ id, email, name, lastName, password, phoneNumber, img }) {
-
-    const [newName, setNewName] = useState(name)
-    const [newEmail, setNewEmail] = useState(email)
-    const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber)
-    const [newImg, setNewImg] = useState('')
-    const [newLastName, setNewLastName] = useState(lastName)
-    const [newPassword, setNewPassword] = useState(password)
+    const [newName, setNewName] = useState(name ? name : '')
+    const [newEmail, setNewEmail] = useState(email ? email : '')
+    const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber ? phoneNumber : '')
+    const [newImg, setNewImg] = useState(img ? img : '')
+    const [newLastName, setNewLastName] = useState(lastName ? lastName : '')
+    const [newPassword, setNewPassword] = useState(password ? password : '')
 
 
 
 // UPPDATERAR DATA
 
   const updateStaff = async (DBcollextion) => {
+
+    openLoadingModal()
+
     const staffDoc = doc(db, DBcollextion, id)
     const newFields = {img: newImg, name: newName, lastName: newLastName, email: newEmail, password: newPassword, phoneNumber: newPhoneNumber}
     await updateDoc(staffDoc, newFields)
-        
-    alert('Sparat!')
+    
+    UpdateLocalStorage(id)
     closeModal()
+
   }
 
 // RADERAR DATA
@@ -33,11 +38,6 @@ function UpdateProfileModal({ id, email, name, lastName, password, phoneNumber, 
     const staffDoc = doc(db, DBcollextion, id);
     await deleteDoc(staffDoc);
   };
-
-
-const closeModal = () => {
-    document.querySelector(`#${id}-update-modal`).style.display="none"
-}
 
 // BILD
 function previewImage() {
