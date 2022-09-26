@@ -8,7 +8,7 @@ import Calendar from 'react-calendar';
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal'
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal'
 
-function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid, dag, getPass }) {
+function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid, dag, getPass, prevDayString, prevMonthSpring, prevDateString }) {
 
     const [newAktivitet, setNewAktivitet] = useState(aktivitet)
     const [newInstruktör, setNewInstruktör] = useState(instruktör)
@@ -17,15 +17,18 @@ function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid,
     const [newDate, setNewDate] = useState(dag)
     const [date, setDate] = useState('')
 
-    const [dayString, setDayString] = useState('')
-    const [monthString, setMonthString] = useState('')
-    const [dateString, setDateString] = useState(0)
+    const [dayString, setDayString] = useState(prevDayString)
+    const [monthString, setMonthString] = useState(prevMonthSpring)
+    const [dateString, setDateString] = useState(prevDateString)
 
 // UPPDATERAR DATA
   const updatePass = async (DBcollextion) => {
     openLoadingModal()
     fixDays()
     const staffDoc = doc(db, DBcollextion, id)
+    console.log('newAktivitet: ', newAktivitet, 'newInstruktör: ', newInstruktör, 'newMaxAntal: ', newMaxAntal
+    , 'newTid: ' ,newTid, 'newDate: ', newDate, 'dayString: ', dayString, 'dateString: ', dateString, 'monthString: ', monthString
+    );
     const newFields = {
         aktivitet: newAktivitet, 
         instruktör: newInstruktör, 
