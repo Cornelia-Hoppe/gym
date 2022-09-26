@@ -1,13 +1,5 @@
 import { useState } from "react";
-import { db } from "../../../firebase-config";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  doc,
-  deleteDoc,
-} from "firebase/firestore";
+
 import FormInput from "./FormInput";
 import SimpleModal from "../../simpleModal/SimpleModal";
 import "../css/signUp.css";
@@ -89,15 +81,15 @@ function SignUp({ closeSignup }) {
       console.log(values); //Console-logar ut värdena som skrivits in i fälten vid submit (Email och lösenord)
     }
 
-  const createProfil = async () => {
-    await addDoc(profilerCollectionRef, {
-      name: values.firstName,
-      lastName: values.lastName,
-      email: values.email,
-      phoneNumber: values.phoneNumber,
-      password: values.password,
-    });
-  };
+  // const createProfil = async () => {
+  //   await addDoc(profilerCollectionRef, {
+  //     name: values.firstName,
+  //     lastName: values.lastName,
+  //     email: values.email,
+  //     phoneNumber: values.phoneNumber,
+  //     password: values.password,
+  //   });
+  // };
   // LÄGGER TILL ANVÄNDAREN I DATABASEN - END
   return (
     <div className="SignUp">
@@ -128,7 +120,7 @@ function SignUp({ closeSignup }) {
       </form>
       <SimpleModal
         modalText={`Välkommen till klubben ${values.firstName}!`}
-        isOpen={modalIsOpen}
+        // isOpen={modalIsOpen}
       />
     </div>
   );

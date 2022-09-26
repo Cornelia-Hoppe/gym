@@ -5,7 +5,7 @@
   width: 90%;
   height: 100vh;
   background-color: rgba(0, 39, 84);
-  z-index: 2;
+  z-index: 10;
 }
 .exit-button {
   width: 120px;

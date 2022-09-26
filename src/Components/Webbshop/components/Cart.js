@@ -38,7 +38,7 @@ function Cart({ closeCart }) {
           />
         </div>
         <div className="cart-header-2">
-          <p className="cart-header-p">{totalUniqueItems} produkter</p>
+          <p className="cart-header-p">{totalUniqueItems} produkter ({totalItems} totalt)</p>
         </div>
       </div>
       <div className="cart-items">
@@ -49,7 +49,7 @@ function Cart({ closeCart }) {
               <div className="cart-item-rows">
                 <div>
                   <div className="cart-item-row-1">
-                    <h4 className="cart-item-name">{item.name}</h4>
+                    <h3 className="cart-item-name">{item.name}</h3>
                     <BsTrash
                       onClick={() => removeItem(item.id)}
                       className="cart-item-delete"
@@ -86,7 +86,7 @@ function Cart({ closeCart }) {
         <div className="cart-checkout-price-container">
           <p>Totalt belopp</p>
           <div>
-          <h4 className="cart-checkout-price">{cartTotal}kr</h4>
+          <h3 className="cart-checkout-price">{cartTotal}kr</h3>
           </div>
         </div>
         <div className="cart-checkout-buttons">

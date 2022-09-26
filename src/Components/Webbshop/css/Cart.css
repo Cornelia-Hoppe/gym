@@ -1,3 +1,6 @@
+*{
+    margin: 0;
+}
 .Cart{
     position: fixed;
     width: 100%;
@@ -21,11 +24,11 @@
 }
 .cart-header-title{
     font-size: 22px;
-    margin: 0;
 }
 .cart-header-exit{
     width: 40px;
     height: auto;
+    cursor: pointer;
 }
 .cart-header-2{
     padding: 5px 0 10px 0;
@@ -71,6 +74,7 @@
 }
 .cart-item-delete{
     width: 25px;
+    cursor: pointer;
 }
 .cart-item-row-3{
     display: flex;
@@ -83,9 +87,9 @@
     display: flex;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.1);
-    width: 75px;
     justify-content: center;
-    border-radius: 15px;
+    border-radius: 20px;
+    height: 44px;
     gap: 10px;
 }
 .cart-item-quantity{
@@ -95,6 +99,7 @@
     width: 18px;
     background: none;
     border: none;
+    cursor: pointer;
 }
 .cart-checkout-price-container{
     display: flex;
@@ -118,6 +123,7 @@
     border-radius: 10px;
     margin-bottom: 10px;
     font-size: 16px;
+    cursor: pointer;
 }
 .cart-checkout-button{
     background: rgba(0, 39, 84, 0.5);

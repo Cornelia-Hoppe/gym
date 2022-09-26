@@ -61,7 +61,9 @@ function NavBar({ closeNavbar }) {
         <CustomLink to="/staff">
           <ListItem name="Personal" icon={<BsFilePerson className="icon" />} />
         </CustomLink>
+        <CustomLink to="/webshop">
         <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
+        </CustomLink>
       </div>
 
       <div className="navbar-login">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Item from "./Item";
 import WebbshopModal from "./WebbshopModal";
 import "../css/ItemList.css";
@@ -15,8 +15,29 @@ import img9 from "../images/trackjacket.png"
 import img10 from "../images/socks.png"
 import img11 from "../images/windbraker.png"
 import img12 from "../images/zipshirt.png"
+import { db } from '../../../firebase-config'
+import { collection, getDocs } from 'firebase/firestore'
 
 function ItemList() {
+
+//   // START: HÄMTAR PRODUKTER 
+
+//   const produkterCollectionRef = collection(db, "produkter")
+//     const [database, setDatabase ] = useState([])
+
+//   const getProdukter = async () => {
+//     const data = await getDocs(produkterCollectionRef)
+//     setDatabase(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+//   };
+
+// useEffect(() => {
+//     getProdukter()
+//   }, []);
+
+//   console.log('database: ', database);
+
+  // END: HÄMTAR PRODUKTER 
+
 
   const [openModal, setOpenModal] = useState(false);
   
@@ -27,7 +48,6 @@ function ItemList() {
 
 
   const database = [
-    //TODO: Implementera images.
     { name: "Vattenflaska", price: "129", id: 1, type: "equipment", img: img, brand: "Sportix Equipment", color: "Blå", shortDesc: "Aluminium water bottle"},
     { name: "Hopprep", price: "149", id: 2, type: "equipment", img: img2, brand: "Sportix Equipment", color: "Svart", shortDesc: "High quality jump rope"},
     { name: "Track Shorts", price: "499", id: 3, type: "bottom", img: img3, brand: "Sportswear of Sportix", color: "Grön", shortDesc: "Long track shorts"},
