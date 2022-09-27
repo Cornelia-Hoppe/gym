@@ -10,8 +10,10 @@ import Menu from '../Components/Navbar/components/Menu';
 import icon from "./icon.png"
 import closeLoadingScreen from '../Components/loading_screen/CloseLoadingModal'
 import Login from '../Components/Navbar/components/Login'
+import SavedModal from '../Components/loading_screen/SavedModal';
 
 function MinaSidor() {
+  const [showModal, setshowModal] = useState(false)
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [userBokadePassId, setUserBokadePassId] = useState(user ? user.bokadePass : '')
   const [userBokadePass, setUserBokadePass] = useState('')
@@ -58,7 +60,8 @@ pass.find((pass, index) => {
   
   getPassAndSet()
 // ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
-console.log(HI)
+console.log(userBokadePassId)
+console.log(pass)
   const openModal = () => {
     document.querySelector(`#${user.id}-update-modal`).style.display='flex'
   }
@@ -69,6 +72,7 @@ console.log(HI)
 
   const setFromStorage = () => {
     closeLoadingScreen()
+    setshowModal(true)
     document.querySelector(`#${user.id}-update-modal`).style.display="none"
     setUser(JSON.parse(localStorage.getItem('user')))
   }
@@ -91,8 +95,9 @@ console.log(HI)
         <article className='profile-left'>
           <h2>Mina sidor</h2>
             <div className='flex-between a-center'>
-              <h4 className=''>Kontouppgifter</h4>
-              <AiFillEdit id='update-btn' onClick={openModal} />
+              <h4 className=''>Kontouppgifter</h4> 
+             {showModal && <SavedModal setshowModal={setshowModal}/> }
+               <AiFillEdit id='update-btn' onClick={openModal} />
               <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
             </div>
             <div className='flex-between'>

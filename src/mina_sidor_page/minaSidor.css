@@ -37,6 +37,8 @@
     flex-wrap: wrap;
 }
 
+
+/* modal  */
 #update-btn{
     cursor: pointer;
 }
@@ -45,8 +47,40 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 50vw;
+    background-color: #DDE6E6;
+}
+ .input-div {
+display: flex;
+flex-direction: column;
+width: 40%;
+}
+.input-div input {
+width: 90%;
+  height: 44px;
+  background-color: #05060f1b;
+  border-radius: .5rem;
+  padding: 0 1rem;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
+  
+}
+.input-div input:hover, .input-div input:focus, .input-div:hover .input {
+    outline: none;
+    border-color: #05060f64;
+  }
+  
+  .input-div:hover .label, .input-div:focus {
+    color: #05060fc2;
+  }
+.input-divs{
+    display: flex;
+    flex-wrap: wrap;
 }
 
+
+/*  */
 .OfferSection{
     text-align: center;
     background: #DDE6E6;

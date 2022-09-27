@@ -70,9 +70,9 @@ function previewImage() {
                     onChange={previewImage} 
                 ></input>
             </div>
-
+<div className='input-divs'>
             <div className='input-div'>
-                <h1>Ändra namn:</h1>
+                <h1> Namn</h1>
                 <input 
                     type="text" 
                     placeholder={name} 
@@ -82,7 +82,7 @@ function previewImage() {
             </div>
 
             <div className='input-div'>
-                <h1>Ändra efternamn:</h1>
+                <h1> Efternamn</h1>
                 <input 
                     type="text" 
                     placeholder={lastName} 
@@ -92,7 +92,7 @@ function previewImage() {
             </div>
 
             <div className='input-div'>
-                <h1>Ändra Email:</h1>
+                <h1> Email</h1>
                 <input 
                     type="text" 
                     placeholder={email} 
@@ -102,7 +102,7 @@ function previewImage() {
             </div>
 
             <div className='input-div'>
-                <h1>Ändra telefonnummer:</h1>
+                <h1> Telefonnummer</h1>
                 <input 
                     type="text" 
                     placeholder={phoneNumber} 
@@ -112,7 +112,7 @@ function previewImage() {
             </div>
 
             <div className='input-div'>
-                <h1>Ändra lösenord:</h1>
+                <h1> Lösenord</h1>
                 <input 
                     type="password" 
                     placeholder={password} 
@@ -120,7 +120,7 @@ function previewImage() {
                     defaultValue={password}
                 />
             </div>
-
+            </div>
 
                
             <div className="m30">
