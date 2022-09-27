@@ -8,9 +8,10 @@ import Calendar from 'react-calendar';
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal'
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal'
 
-function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid, dag, getPass, prevDayString, prevMonthSpring, prevDateString }) {
+function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid, dag, getPass, prevDayString, prevMonthSpring, prevDateString, kategori }) {
 
     const [newAktivitet, setNewAktivitet] = useState(aktivitet)
+    const [newpassKategori, setNewPassKategori] = useState(kategori)
     const [newInstruktör, setNewInstruktör] = useState(instruktör)
     const [newMaxAntal, setNewMaxAntal] = useState(maxAntal)
     const [newTid, setNewTid] = useState(tid)
@@ -37,7 +38,8 @@ function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid,
         dag: String(newDate),
         dateString: dayString,
         dayString: dateString,
-        monthString: monthString
+        monthString: monthString,
+        kategori: newpassKategori
         }
     await updateDoc(staffDoc, newFields)
     getPass()
@@ -149,12 +151,6 @@ function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid,
     <section id={`update-modal-${id}`} className='update-modal-wrapper'>
         <article className='update-modal'>
             <GrFormClose className='close-icon' onClick={closeModal} />
-            <h1>Redigera aktivitet</h1>
-            <div className='modal-input-wrapper'>Aktivitet: {aktivitet}</div>
-            <div className='modal-input-wrapper'>instruktör: {instruktör}</div>
-            <div className='modal-input-wrapper'>tid: {tid}</div>
-            <div className='modal-input-wrapper'>Bokade: {platser}</div>
-            <div className='modal-input-wrapper'>Max antal: {maxAntal}</div>
 
             <div className='modal-input-wrapper'>
                 <h1>Ändra namn på aktivitet:</h1>
@@ -164,6 +160,20 @@ function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid,
                     onChange={(e) => {setNewAktivitet(e.target.value)}}
                     defaultValue={aktivitet} 
                 />
+            </div>
+
+            <div className='modal-input-wrapper'>
+              <h1>Ändra kategori:</h1>
+              <select className='drop-down input-select' name='välj pass' onChange={(e) => setNewPassKategori(e.target.value)}>
+                <option value="">Välj kategori</option>
+                <option value="kondition">Kondition</option>
+                <option value="spinning">Spinning</option>
+                <option value="styrka">Styrka</option>
+                <option value="flexebilitet">Flexebilitet</option>
+                <option value="mindfullnes">Mindfullnes</option>
+                <option value="crossfit">Crossfit</option>
+                <option value="funktionell-träning">Funktionell träning</option>
+            </select>
             </div>
 
             <div className='modal-input-wrapper'>
