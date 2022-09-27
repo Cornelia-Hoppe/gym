@@ -124,7 +124,10 @@ setTimeout(() => alert('Sparat!'), 5)
 
             <div className='modal-input-wrapper'>
               <h1>Ändra storlek:</h1>
-              <input className="input" type="text" onChange={(e) => setNewOrderSise(e.target.value)} defaultValue={orderSise} />
+              <select className='drop-down input-select' name='välj pass' onChange={(e) => setOrderSise(e.target.value)}>
+                <option value="S,M,L,XL">S,M,L,XL</option>
+                <option value="oneSise">One sise</option>
+              </select>
             </div>
 
             <div className='modal-input-wrapper'>

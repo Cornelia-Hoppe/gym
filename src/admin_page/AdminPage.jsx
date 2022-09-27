@@ -553,7 +553,10 @@ const search = (text) => {
 
             <div className='modal-input-wrapper'>
               <p>Storlek:</p>
-              <input className="input" type="text" onChange={(e) => setOrderSise(e.target.value)} />
+              <select className='drop-down input-select' name='välj pass' onChange={(e) => setOrderSise(e.target.value)}>
+                <option value="S,M,L,XL">S,M,L,XL</option>
+                <option value="oneSise">One sise</option>
+              </select>
             </div>
 
             <div className='modal-input-wrapper'>
