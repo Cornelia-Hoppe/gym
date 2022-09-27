@@ -62,9 +62,9 @@ closeModal()
     <section id={`${id}-update-modal`} className='update-modal-wrapper'>
         <article className='update-modal'>
             <GrFormClose className='close-icon' onClick={closeModal} />
-            <h1>{produktNamn}</h1>
-            <h1>Pris: {pris} kr</h1>
-            <p>Kategori: {kategori}</p>
+            <h1 className='modal-produktNamn'>{produktNamn}</h1>
+            <h1 className='modal-pris'>Pris: {pris} kr</h1>
+            <p className='modal-kategori'>Kategori: {kategori}</p>
             <img className='staff-img' id={`${id}-preview-modal`} src={img} alt={`bild på ${produktNamn}`} />
             
             <div className='input-div'>
@@ -108,7 +108,7 @@ closeModal()
             </div>
 
             <div className="m30">
-                <button onClick={() => {updateProdukter('produkter')}}>Spara</button>
+                <button className='modal-button' onClick={() => {updateProdukter('produkter')}}>Spara</button>
             </div>
             
         </article>
