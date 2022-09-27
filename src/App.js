@@ -19,7 +19,6 @@ function App() {
 
   return (
     <>
-      <AdminPage />
       <LoadingScreen />
       <ScrollToTop>
         <Routes>
