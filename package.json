@@ -1,7 +1,7 @@
 {
   "name": "gym",
   "version": "0.1.0",
-  "homepage": "https://cornelia-hoppe.github.io/gym/" ,
+  "homepage": "https://cornelia-hoppe.github.io/gym/",
   "private": true,
   "dependencies": {
     "@firebase/firestore": "^3.5.0",
@@ -10,7 +10,6 @@
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.10.0",
     "framer-motion": "^7.3.4",
-    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-calendar": "^3.8.0",
     "react-dom": "^18.0.0",
@@ -23,8 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
+    "predeploy": "npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

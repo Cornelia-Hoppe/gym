@@ -15,8 +15,14 @@ function WebbshopModal(props) {
   const oneSize = ["Onesize"];
 
   const [openDesc, setOpenDesc] = useState(false);
-
+  
   const { addItem } = useCart();
+  
+  const [selected, setSelected] = useState(null);
+  function handleTrainer(e) {
+    setSelected(e.target.innerText);
+  }
+
 
   function addItemToCart() {
     addItem(props.item);
@@ -31,11 +37,22 @@ function WebbshopModal(props) {
         </div>
       ));
     } else {
-      return sizes.map((size) => (
-        <div className="modal-size-block">{size}</div>
+      return sizes.map((size, index) => (
+        <div className="modal-size-block"
+        key={index}
+        onClick={handleTrainer}
+        style={{
+          color: selected === size ? "white" : "",
+          border: selected === size ? "none" : "",
+          backgroundColor:
+            selected === size ? "rgba(0, 39, 84, 0.5)" : "",
+            
+        }}
+        >{size}</div>
       ));
     }
   }
+
 
   return (
     <motion.div
@@ -59,12 +76,12 @@ function WebbshopModal(props) {
       <div className="desktop-info-container">
         <div className="modal-info-container">
           <div className="modal-info">
-            <h1 className="modal-info-title">{props.brand}</h1>
+            <h1 className="modal-info-title">{props.shortDesc}</h1>
             <h1 className="modal-info-price">{props.price}:-</h1>
           </div>
           <div>
             <p className="modal-info-desc">
-              {props.shortDesc} - {props.color}
+              {props.brand} - {props.color}
             </p>
           </div>
         </div>

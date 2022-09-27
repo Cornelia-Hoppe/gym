@@ -5,6 +5,7 @@ import { IoIosClose } from "react-icons/io";
 import { BsTrash } from "react-icons/bs";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { SiKlarna } from "react-icons/si";
+import emptyCart from "../images/empty-cart.png";
 
 import "../css/Cart.css";
 //INSTALLERA npm install react-use-car
@@ -17,7 +18,18 @@ function Cart({ closeCart }) {
     cartTotal,
     updateItemQuantity,
     removeItem,
+    isEmpty
   } = useCart();
+
+  function ifEmptyCart() {
+    if (isEmpty) {
+      return(
+        <div className="empty-cart-container">
+          <img src={emptyCart} className="empty-cart-image"/>
+          <h1 className="empty-cart-title">Din varukorg är tom!</h1>
+        </div>);
+    }
+  }
 
   return (
     <motion.div
@@ -42,6 +54,7 @@ function Cart({ closeCart }) {
         </div>
       </div>
       <div className="cart-items">
+        {ifEmptyCart()}
         {items.map((item, index) => {
           return (
             <div className="cart-item" key={index}>
@@ -49,7 +62,7 @@ function Cart({ closeCart }) {
               <div className="cart-item-rows">
                 <div>
                   <div className="cart-item-row-1">
-                    <h3 className="cart-item-name">{item.name}</h3>
+                    <h3 className="cart-item-name">{item.produktNamn}</h3>
                     <BsTrash
                       onClick={() => removeItem(item.id)}
                       className="cart-item-delete"
@@ -96,9 +109,6 @@ function Cart({ closeCart }) {
           </div></button>
         </div>
       </div>
-        <h5>
-          Cart ({totalUniqueItems}) Total Items: ({totalItems})
-        </h5>
     </motion.div>
   );
 }

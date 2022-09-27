@@ -39,7 +39,11 @@
 .cart-header-exit, .cart-header-edit, .cart-header-p, .cart-item-size-color{
     color: rgb(74, 74, 74);
 }
-
+.cart-items{
+    max-height: 480px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
 .cart-item-img{
     width: 150px;
     height: 150px;
@@ -149,10 +153,28 @@
 .klarna-icon{
     width: 20px;
 }
+.empty-cart-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 200px;
+}
+.empty-cart-title{
+    font-size: 18px;
+}
+.empty-cart-image{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+}
 @media (min-width: 800px){
     .Cart{
         width: 30%;
         right: 0;
         box-shadow: 0px 0px 1px 100000px rgb(0 0 0 / 50%);
+    }
+    .cart-items{
+        max-height: 400px;
     }
 }

@@ -2,19 +2,6 @@ import React, { useState, useEffect } from "react";
 import Item from "./Item";
 import WebbshopModal from "./WebbshopModal";
 import "../css/ItemList.css";
-//Images
-import img from "../images/waterbottle.png"
-import img2 from "../images/jumprope.png"
-import img3 from "../images/trackshorts.png"
-import img4 from "../images/shorts.png"
-import img5 from "../images/cropedshirt.png"
-import img6 from "../images/tshirt.png"
-import img7 from "../images/leggings.png"
-import img8 from "../images/foamroller.png"
-import img9 from "../images/trackjacket.png"
-import img10 from "../images/socks.png"
-import img11 from "../images/windbraker.png"
-import img12 from "../images/zipshirt.png"
 import { db } from '../../../firebase-config'
 import { collection, getDocs } from 'firebase/firestore'
 
@@ -22,19 +9,19 @@ function ItemList() {
 
 //   // START: HÄMTAR PRODUKTER 
 
-//   const produkterCollectionRef = collection(db, "produkter")
-//     const [database, setDatabase ] = useState([])
+  const produkterCollectionRef = collection(db, "produkter")
+    const [database, setDatabase ] = useState([])
 
-//   const getProdukter = async () => {
-//     const data = await getDocs(produkterCollectionRef)
-//     setDatabase(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-//   };
+  const getProdukter = async () => {
+    const data = await getDocs(produkterCollectionRef)
+    setDatabase(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+  };
 
-// useEffect(() => {
-//     getProdukter()
-//   }, []);
+useEffect(() => {
+    getProdukter()
+  }, []);
 
-//   console.log('database: ', database);
+  console.log('database: ', database);
 
   // END: HÄMTAR PRODUKTER 
 
@@ -47,20 +34,20 @@ function ItemList() {
   const currentModal = [];
 
 
-  const database = [
-    { produktNamn: "Vattenflaska", price: "129", id: 1, type: "equipment", img: img, brand: "Sportix Equipment", color: "Blå", shortDesc: "Aluminium water bottle"},
-    { produktNamn: "Hopprep", price: "149", id: 2, type: "equipment", img: img2, brand: "Sportix Equipment", color: "Svart", shortDesc: "High quality jump rope"},
-    { produktNamn: "Track Shorts", price: "499", id: 3, type: "bottom", img: img3, brand: "Sportswear of Sportix", color: "Grön", shortDesc: "Long track shorts"},
-    { produktNamn: "Shorts", price: "249", id: 4, type: "bottom", img: img4, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "Regular fit shorts" },
-    { produktNamn: "T-shirt", price: "199", id: 5, type: "top", img: img6, brand: "Sportswear of Sportix", color: "Vit", shortDesc: "T-shirt in polyester" },
-    { produktNamn: "Kroppad Tröja", price: "249", id: 6, type: "top", img: img5, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "Sleeved croped shirt" },
-    { produktNamn: "Vindjacka", price: "799", id: 7, type: "top", img: img11, brand: "Sportswear of Sportix", color: "Mörkblå", shortDesc: "Windbraker with hood"},
-    { produktNamn: "Leggings", price: "399", id: 8, type: "bottom", img: img7, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "High-waist women leggings" },
-    { produktNamn: "Track Jacket", price: "699", id: 9, type: "top", img: img9, brand: "Sportswear of Sportix", color: "Grön", shortDesc: "Track jacket with zip" },
-    { produktNamn: "Strumpor", price: "199", id: 10, type: "equipment", img: img10, brand: "Sportix Equipment", color: "Svart", shortDesc: "5-pack sport socks" },
-    { produktNamn: "Foamroller", price: "349", id: 11, type: "equipment", img: img8, brand: "Sportix Equipment", color: "Beige", shortDesc: "Foamroller with texture" },
-    { produktNamn: "Zip Tröja", price: "449", id: 12, type: "top", img: img12, brand: "Sportswear of Sportix", color: "Röd", shortDesc: "Zipshirt without hood" },
-  ];
+  // const database = [
+  //   { produktNamn: "Vattenflaska", price: "129", id: 1, type: "equipment", img: img, brand: "Sportix Equipment", color: "Blå", shortDesc: "Aluminium water bottle"},
+  //   { produktNamn: "Hopprep", price: "149", id: 2, type: "equipment", img: img2, brand: "Sportix Equipment", color: "Svart", shortDesc: "High quality jump rope"},
+  //   { produktNamn: "Track Shorts", price: "499", id: 3, type: "bottom", img: img3, brand: "Sportswear of Sportix", color: "Grön", shortDesc: "Long track shorts"},
+  //   { produktNamn: "Shorts", price: "249", id: 4, type: "bottom", img: img4, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "Regular fit shorts" },
+  //   { produktNamn: "T-shirt", price: "199", id: 5, type: "top", img: img6, brand: "Sportswear of Sportix", color: "Vit", shortDesc: "T-shirt in polyester" },
+  //   { produktNamn: "Kroppad Tröja", price: "249", id: 6, type: "top", img: img5, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "Sleeved croped shirt" },
+  //   { produktNamn: "Vindjacka", price: "799", id: 7, type: "top", img: img11, brand: "Sportswear of Sportix", color: "Mörkblå", shortDesc: "Windbraker with hood"},
+  //   { produktNamn: "Leggings", price: "399", id: 8, type: "bottom", img: img7, brand: "Sportswear of Sportix", color: "Svart", shortDesc: "High-waist women leggings" },
+  //   { produktNamn: "Track Jacket", price: "699", id: 9, type: "top", img: img9, brand: "Sportswear of Sportix", color: "Grön", shortDesc: "Track jacket with zip" },
+  //   { produktNamn: "Strumpor", price: "199", id: 10, type: "equipment", img: img10, brand: "Sportix Equipment", color: "Svart", shortDesc: "5-pack sport socks" },
+  //   { produktNamn: "Foamroller", price: "349", id: 11, type: "equipment", img: img8, brand: "Sportix Equipment", color: "Beige", shortDesc: "Foamroller with texture" },
+  //   { produktNamn: "Zip Tröja", price: "449", id: 12, type: "top", img: img12, brand: "Sportswear of Sportix", color: "Röd", shortDesc: "Zipshirt without hood" },
+  // ];
 
   function itemModal(itemId){
     const modalId = itemId;

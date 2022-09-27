@@ -25,7 +25,7 @@ function AdminPage() {
   // TILL PRODUKTER
     const [IMG_SRC_produkt, setIMG_SRC_produkt] = useState('')
     const [kategori, setKategori] = useState('')
-    const [pris, setPris] = useState(0)
+    const [price, setPris] = useState(0)
     const [produktNamn, setProduktNamn] = useState('')
     
     const [productBrand, setproductBrand] = useState('')
@@ -83,6 +83,7 @@ useEffect(() => {
   const getPass = async () => {
     const data = await getDocs(passCollectionRef);
     setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    setAllPass(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
   };
 
 
@@ -124,7 +125,7 @@ function previewImageProdukt() {
 
   const createProduct = async () => {
     openLoadingModal()
-    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, pris: Number(pris), produktNamn: produktNamn, type: kategori, brand: productBrand, shortDesc: productshortDesc});
+    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, price: Number(price), produktNamn: produktNamn, type: kategori, brand: productBrand, shortDesc: productshortDesc});
 
 
     getProdukter()
@@ -137,6 +138,7 @@ function previewImageProdukt() {
       openLoadingModal()
       await addDoc(passCollectionRef, {aktivitet: aktivitet, kategori: passKategori, dag: String(date), instruktör: instruktör, maxAntal: Number(maxAntal), tid: tid, dayString: dayString, monthString: monthString, dateString: dateString});
       clearFields()
+      getPass()
       alert('Pass tillagt!')
       closeLoadingModal()
     }
@@ -318,6 +320,35 @@ const deleteProdukter = async (id, DBcollextion) => {
     }
 }
 
+// SÖKFUNKTION PASS
+
+const [allPass, setAllPass] = useState()
+const [prevTextLenthPass, setPrevTextLenthPass] = useState(-1)
+
+const searchPass = (text) => {
+  const e = text.toLowerCase()
+
+  setPrevTextLenthPass(prevCount => prevCount + 1)
+
+  const passNames = pass.map((item) => item.aktivitet.toLowerCase())
+
+  let filteredPass = []
+
+  passNames.map((item, index) => {
+    if (item.includes(e) === true) {
+      filteredPass.push(pass[index])
+        }
+  })
+
+  if (prevTextLenthPass == text.length) {
+    document.querySelector('#serchIdPass').value="" 
+    setPrevTextLenthPass(-1)
+    setPass(allPass) 
+   } else {
+    setPass(filteredPass)
+   }
+}
+
 // SÖKFUNKTION PRODUKTER
 
 const [allProdukter, setAllProdukter] = useState()
@@ -396,12 +427,12 @@ const search = (text) => {
               <p>Kategori:</p>
               <select className='drop-down input-select' name='välj pass' onChange={(e) => setPassKategori(e.target.value)}>
                 <option value="">Välj kategori</option>
-                <option value="Kondition">Kondition</option>
-                <option value="Spinning">Kondition</option>
-                <option value="Styrka">Styrka</option>
-                <option value="Flexebilitet">Styrka</option>
-                <option value="Mindfullnes">Styrka</option>
-                <option value="Crossfit">Crossfit</option>
+                <option value="kondition">Kondition</option>
+                <option value="spinning">Spinning</option>
+                <option value="styrka">Styrka</option>
+                <option value="flexebilitet">Flexebilitet</option>
+                <option value="mindfullnes">Mindfullnes</option>
+                <option value="crossfit">Crossfit</option>
                 <option value="funktionell-träning">Funktionell träning</option>
             </select>
             </div>
@@ -428,6 +459,17 @@ const search = (text) => {
           </div>
 
           <article>
+            
+            <form>
+              <input
+                id='serchIdPass'
+                type="text"
+                name="search"
+                placeholder='Sök namn på pass...'
+                onChange={(e) => searchPass(e.target.value)}
+              />
+            </form>
+
             {pass.map((pass, index) => {
               return (
                 <>
@@ -457,7 +499,11 @@ const search = (text) => {
                         platser={pass.platser}
                         tid={pass.tid}
                         date={pass.dag}
+                        dag={pass.dag}
                         getPass={getPass}
+                        prevDayString={pass.dayString}
+                        prevMonthSpring={pass.monthString}
+                        prevDateString={pass.dateString}
                     />
 
                     </>
@@ -487,9 +533,9 @@ const search = (text) => {
               <p className='m10'>Kategori:</p>
               <select className='drop-down input-select' name='välj pass' onChange={(e) => setKategori(e.target.value)}>
                 <option value="null">Välj kategori</option>
-                <option value="utrustning">Utrustning</option>
-                <option value="men">Män</option>
-                <option value="kvinnor">Kvinnor</option>
+                <option value="equipment">Utrustning</option>
+                <option value="top">Överdel</option>
+                <option value="bottom">Underdel</option>
               </select>
             </div>
 
@@ -530,7 +576,7 @@ const search = (text) => {
                   id='serchIdProdukter'
                   type="text"
                   name="search"
-                  placeholder='sök...'
+                  placeholder='Sök nmn på produkt...'
                   onChange={(e) => searchProdukter(e.target.value)}
                 />
               </form>
@@ -540,7 +586,7 @@ const search = (text) => {
                 <>
                 <div key={index} className='center staff-card' id={`${produkt.id}-div`}>
                     <h1 className='m10'>{produkt.produktNamn}</h1>
-                    <h1 className='m10'>{produkt.pris} kr</h1>
+                    <h1 className='m10'>{produkt.price} kr</h1>
                     <p className='m10'>{produkt.kategori}</p>
                   <img className='img-produkt' src={produkt.img} alt={`Bild på ${produkt.produktNamn}`} />
                 
@@ -553,7 +599,7 @@ const search = (text) => {
                     id={produkt.id}
                     img={produkt.img}
                     kategori={produkt.kategori}
-                    pris={produkt.pris}
+                    price={produkt.price}
                     produktNamn={produkt.produktNamn}
                     getProdukter={getProdukter}
                 />
@@ -613,7 +659,7 @@ const search = (text) => {
                   id='serchId'
                   type="text"
                   name="search"
-                  placeholder='sök...'
+                  placeholder='Sök namn på personal...'
                   onChange={(e) => search(e.target.value)}
                 />
               </form>
