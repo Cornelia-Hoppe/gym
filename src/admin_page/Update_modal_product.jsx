@@ -9,12 +9,16 @@ import { useEffect } from 'react'
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal'
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal'
 
-function Update_modal_product({ id, img, kategori, price, produktNamn, getProdukter }) {
+function Update_modal_product({ id, img, kategori, price, produktNamn, getProdukter, productBrand, productshortDesc, productColor, orderSise }) {
 
     const [newProduktNamn, setNewProduktNamn] = useState({produktNamn})
     const [newKategori, setNewKategori] = useState({kategori})
     const [newPris, setNewPris] = useState({price})
     const [newImg, setNewImg] = useState({img})
+    const [newProductBrand, setNewProductBrand] = useState(productBrand)
+    const [newProductColor, setNewProductColor] = useState(productColor)
+    const [newProductshortDesc, setNewProductshortDesc] = useState(productshortDesc)
+    const [newOrderSise, setNewOrderSise] = useState(orderSise)
 
     useEffect(() => {
         setNewProduktNamn(produktNamn)
@@ -50,7 +54,7 @@ function previewImage() {
 const updateProdukter = async (DBcollextion) => {
 openLoadingModal()
 const staffDoc = doc(db, DBcollextion, id)
-const newFields = {img: newImg, kategori: newKategori, price: Number(newPris), produktNamn: newProduktNamn}
+const newFields = {img: newImg, kategori: newKategori, price: Number(newPris), produktNamn: newProduktNamn, brand: newProductBrand, shortDesc: newProductshortDesc, color: newProductColor, orderSise: newOrderSise }
 await updateDoc(staffDoc, newFields)
 
 closeModal()
@@ -70,7 +74,7 @@ setTimeout(() => alert('Sparat!'), 5)
             <GrFormClose className='close-icon' onClick={closeModal} />
             <h1>{produktNamn}</h1>
             <h1>Pris: {price} kr</h1>
-            <p>Kategori: {kategori}</p>
+            <h1>Kategori: {kategori}</h1>
             <img className='staff-img' id={`${id}-preview-modal`} src={img} alt={`bild på ${produktNamn}`} />
             
             <div className='input-div'>
@@ -111,6 +115,26 @@ setTimeout(() => alert('Sparat!'), 5)
                 <option value="men">Män</option>
                 <option value="kvinnor">Kvinnor</option>
               </select>
+            </div>
+
+            <div className='modal-input-wrapper'>
+              <h1>Ändra beskrivning</h1>
+              <input className="input" type="text" onChange={(e) => setNewProductshortDesc(e.target.value)} defaultValue={productshortDesc} />
+            </div>
+
+            <div className='modal-input-wrapper'>
+              <h1>Ändra storlek:</h1>
+              <input className="input" type="text" onChange={(e) => setNewOrderSise(e.target.value)} defaultValue={orderSise} />
+            </div>
+
+            <div className='modal-input-wrapper'>
+              <h1>Ändra varumärke:</h1>
+              <input className="input" type="text" onChange={(e) => setNewProductBrand(e.target.value)} defaultValue={productBrand} />
+            </div>
+
+            <div className='modal-input-wrapper'>
+              <h1>Ändra färg:</h1>
+              <input className="input" type="text" onChange={(e) => setNewProductColor(e.target.value)} defaultValue={productColor} />
             </div>
 
             <div className="m30">

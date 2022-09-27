@@ -18,6 +18,7 @@ function AdminPage() {
     const [newAge, setNewAge] = useState(0)    
     const [newText, setNewText] = useState("")
     const [newStaffCategory, setStaffCategory] = useState("")
+    const [level, setLevel] = useState(0)
 
     const staffCollectionRef = collection(db, "staff")
     const [staff, setStaff] = useState([])
@@ -27,9 +28,10 @@ function AdminPage() {
     const [kategori, setKategori] = useState('')
     const [price, setPris] = useState(0)
     const [produktNamn, setProduktNamn] = useState('')
+    const [orderSise, setOrderSise] = useState('')
     
     const [productBrand, setproductBrand] = useState('')
-    // const [productColor, setproductColor] = useState('')
+    const [productColor, setproductColor] = useState('')
     const [productshortDesc, setproductshortDesc] = useState('')
 
     const produkterCollectionRef = collection(db, "produkter")
@@ -109,23 +111,16 @@ function previewImageProdukt() {
 
   const createStaff = async () => {
     openLoadingModal()
-    await addDoc(staffCollectionRef, {name: newName, age: Number(newAge), img: IMG_SRC, text: newText, kategori: newStaffCategory});
+    await addDoc(staffCollectionRef, {name: newName, age: Number(newAge), img: IMG_SRC, text: newText, kategori: newStaffCategory, level: Number(level)});
     clearFields()
     getStaff()
     closeLoadingModal()
   }
 
     // PRODUKTER
-
-// type: "equipment", (kategori)
-// brand: "Sportix Equipment", (varumärke)
-// color: "Blå", 
-// shortDesc: "Aluminium water bottle"
-
-
   const createProduct = async () => {
     openLoadingModal()
-    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, price: Number(price), produktNamn: produktNamn, type: kategori, brand: productBrand, shortDesc: productshortDesc});
+    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, price: Number(price), produktNamn: produktNamn, type: kategori, brand: productBrand, shortDesc: productshortDesc, color: productColor, orderSise: orderSise});
 
 
     getProdukter()
@@ -408,6 +403,7 @@ const search = (text) => {
 
 }
 
+
   return (
     <>
       <Menu />
@@ -504,6 +500,7 @@ const search = (text) => {
                         prevDayString={pass.dayString}
                         prevMonthSpring={pass.monthString}
                         prevDateString={pass.dateString}
+                        kategori={pass.kategori}
                     />
 
                     </>
@@ -540,21 +537,31 @@ const search = (text) => {
             </div>
 
             <div className='modal-input-wrapper'>
-              <p>Kort beskrivning</p>
+              <p>Varumärke: </p>
               <input className="input" type="text" onChange={(e) => setproductBrand(e.target.value)} />
-            </div>
-
-            {/* Alternativ att lägga till färger */}
-
-            <div className='modal-input-wrapper'>
-              <p>Varumärke:</p>
-              <input className="input" type="text" onChange={(e) => setproductshortDesc(e.target.value)} />
             </div>
 
             <div className='modal-input-wrapper'>
               <p>Pris:</p>
               <input className="input" type="number" required onChange={(e) => setPris(e.target.value)} />
             </div>
+
+            <div className='modal-input-wrapper'>
+              <p>Färg:</p>
+              <input className="input" type="text" onChange={(e) => setproductColor(e.target.value)} />
+            </div>
+
+            <div className='modal-input-wrapper'>
+              <p>Storlek:</p>
+              <input className="input" type="text" onChange={(e) => setOrderSise(e.target.value)} />
+            </div>
+
+            <div className='modal-input-wrapper'>
+              <p>Kort beskrivning: </p>
+              <textarea className="input" type="text" onChange={(e) => setproductshortDesc(e.target.value)} cols="30" rows="3"></textarea>
+            </div>
+            
+
             <div className='modal-input-wrapper column'>
                <input 
                   className='input-file'
@@ -602,6 +609,10 @@ const search = (text) => {
                     price={produkt.price}
                     produktNamn={produkt.produktNamn}
                     getProdukter={getProdukter}
+                    productBrand={produkt.brand}
+                    productshortDesc={produkt.shortDesc}
+                    productColor={productColor}
+                    setOrderSise={orderSise}
                 />
               </>
               )
@@ -634,8 +645,20 @@ const search = (text) => {
                   <option value="instruktör">Instruktör</option>
                 </select>
               </div>
-              
-              <textarea id='staff-input-3' type="text" placeholder='Skriv om dig...' onChange={(e) => {setNewText(e.target.value)}}  />
+
+              <div className='modal-input-wrapper'>
+                <p>Kort beskrivning om dig: </p>
+                <textarea id='staff-input-3' type="text" placeholder='Skriv om dig...' onChange={(e) => {setNewText(e.target.value)}}  />
+              </div>
+
+              <div className='modal-input-wrapper'>
+                <p className='m10'>Ange level: <br /> Level 1: Kundnivå <br /> Level 2: Kan skapa pass <br /> Level 3: Kan skapa pass, anställda och produkter </p>
+                <select className='drop-down input-select' name='välj pass' onChange={(e) => setLevel(e.target.value)}>
+                  <option value="1">Level 1</option>
+                  <option value="2">Level 2</option>
+                  <option value="3">Level 3</option>
+                </select>
+              </div>
 
               <input 
                 type="file" 
@@ -677,7 +700,16 @@ const search = (text) => {
                         </div>
                         
                         <div id={`modal-div-${staff.id}`}>
-                            <Update_modal_Staff id={staff.id} staffName={staff.name} age={staff.age} img={staff.img} getStaff={getStaff} />
+                            <Update_modal_Staff 
+                                id={staff.id} 
+                                staffName={staff.name} 
+                                age={staff.age} 
+                                img={staff.img} 
+                                getStaff={getStaff} 
+                                text={newText}
+                                kategori={newStaffCategory}
+                                level={level}
+                              />
                         </div>
                       </>
                       )

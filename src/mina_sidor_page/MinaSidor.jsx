@@ -89,7 +89,7 @@ function MinaSidor() {
     console.log(user);
   }
 
-   return user ? (
+   return user ? ( 
     <>
       <Menu updateAfterLogin={updateAfterLogin} />
       <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
