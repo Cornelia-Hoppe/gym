@@ -1,5 +1,4 @@
-/*
-import "./Login.css";
+import "./css/Login.css";
 import "./LoginInput.css";
 import { auth } from "../../firebase-config";
 import { useState } from "react";
@@ -59,7 +58,7 @@ function Login() {
     document.querySelector("#login-input-2").value = "";
   };
 */
-/*
+
   return (
     <div className="Login">
       <form className="login-form">
@@ -110,8 +109,8 @@ function Login() {
 }
 
 export default Login;
-*/
 
+/*
 import "./css/Login.css";
 import { useState, useEffect } from "react";
 import LoginInput from "./LoginInput";
@@ -264,3 +263,4 @@ function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
 }
 
 export default Login;
+*/
