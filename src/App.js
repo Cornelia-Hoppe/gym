@@ -11,11 +11,11 @@ import 'react-calendar/dist/Calendar.css';
 import LoadingScreen from "./Components/loading_screen/LoadingScreen";
 import Webbshop from "./Components/Webbshop/Webbshop"
 import AdminPage from "./admin_page/AdminPage"
-import CheckUser from "./functions/CheckUser";
+
 
 function App() {
 
-  CheckUser()
+ 
 
   return (
     <>
