@@ -11,16 +11,57 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import LoggedInModal from "./LoggedInModal";
 import { BiLock } from "react-icons/bi";
 
+import { db } from '../../firebase-config'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLogedIn, setIsLogedIn] = useState();
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading, error] = useAuthState(auth); 
+
+ 
+
+  // ============ START: SET LOCAL STORAGE ============ //
+
+  const profilerCollectionRef = collection(db, "profiler")
+  const [profiler, setProfiler] = useState()
+  const [inloggadUser, setInloggadUser] = useState()
+
+  const getProfiler = async () => {
+    const data = await getDocs(profilerCollectionRef)
+    setProfiler(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+  };
+
+  const setLocalStorage = () => {
+
+
+    const inloggadUser = profiler.find((item) => {
+      console.log('item.email: ', item.email);
+      console.log('auth: ', auth.currentUser.email);
+
+      return item.email == auth.currentUser.email
+    })
+    setInloggadUser(inloggadUser)
+    localStorage.setItem('user', JSON.stringify(inloggadUser))
+  }
+
+  console.log('inloggadUser: ', inloggadUser);
+
+
+  // ============ END: SET LOCAL STORAGE ============ //
+
+
+  useEffect(() => {
+    getProfiler()
+  }, [])
 
   const signIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((auth) => {
+
+        setLocalStorage()
         //LoggedInModal.style.set("block");
         clearFields();
 
@@ -32,7 +73,7 @@ function Login() {
   const signOutClick = () => {
     auth.signOut();
     navigate("/home");
-    console.log(auth);
+    localStorage.removeItem('user')
   };
 
   const register = () => {
@@ -106,7 +147,7 @@ function Login() {
           <>
             <br />
             <button style={user ? null : STYLE_NOT_LOGGED_IN_FLEX}
-              onClick={() => auth.signOut()}
+              onClick={signOutClick}
               className="register-button login-button"
             >
               Logga ut
