@@ -409,11 +409,11 @@ const search = (text) => {
       <Menu />
 {/* ------------------------------ PASS -------------------------------- */}
 
-<section className='center'>
+<section className='center-newpass'>
 
           <div className='m30'>
             <h1>Lägg till nytt pass</h1>
-
+            <div className='style-admin-add'>
             <div className='modal-input-wrapper'>
               <p>Aktivitet:</p>
               <input className="input" type="text" onChange={(e) => setAktivitet(e.target.value)} />
@@ -432,12 +432,13 @@ const search = (text) => {
                 <option value="funktionell-träning">Funktionell träning</option>
             </select>
             </div>
+            </div>
     
             <p>Dag: </p>
             <Calendar value={date} onClickDay={fixDays}/>
-            
+            <div className='style-admin-add'>
             <div className='modal-input-wrapper'>
-              <p>tid:</p>
+              <p>Tid:</p>
               <input className="input" type="text" required onChange={(e) => setTid(e.target.value)} />
             </div>
 
@@ -451,7 +452,8 @@ const search = (text) => {
               <input className="input" type="number" required onChange={(e) => setMaxAntal(e.target.value)} />
             </div>
            
-          <button onClick={createPass}>Lägg till pass</button>
+            <button onClick={createPass} className="admin-buttons">Lägg till pass</button>
+            </div>
           </div>
 
           <article>
@@ -515,7 +517,7 @@ const search = (text) => {
 
 {/* ------------------------------ PRODUKTER ------------------------- */}
 
-        <section className='center'>
+        <section className='center-products'>
             <h1>Produkter</h1>
 
           <div className='m30'>
@@ -553,7 +555,10 @@ const search = (text) => {
 
             <div className='modal-input-wrapper'>
               <p>Storlek:</p>
-              <input className="input" type="text" onChange={(e) => setOrderSise(e.target.value)} />
+              <select className='drop-down input-select' name='välj pass' onChange={(e) => setOrderSise(e.target.value)}>
+                <option value="S,M,L,XL">S,M,L,XL</option>
+                <option value="oneSise">One sise</option>
+              </select>
             </div>
 
             <div className='modal-input-wrapper'>
@@ -573,10 +578,8 @@ const search = (text) => {
               <img className='input-img' src='' id="preview-produkt" />
             </div>
            
-          <button onClick={createProduct}>Spara</button>
+          <button onClick={createProduct} className="admin-buttons">Spara</button>
           </div>
-
-          <article className='map-article'>
 
           <form>
                 <input
@@ -587,7 +590,10 @@ const search = (text) => {
                   onChange={(e) => searchProdukter(e.target.value)}
                 />
               </form>
+          <article className='map-article'>
 
+          
+          
             {produkter.map((produkt, index) => {
               return( 
                 <>
@@ -626,7 +632,7 @@ const search = (text) => {
 
 {/* ------------------------------ ANSTÄLLDA ------------------------- */}
 
-        <section className='center'>
+        <section className='center-employes'>
             <h1>Anställda</h1>
 
 
@@ -650,9 +656,9 @@ const search = (text) => {
                 <p>Kort beskrivning om dig: </p>
                 <textarea id='staff-input-3' type="text" placeholder='Skriv om dig...' onChange={(e) => {setNewText(e.target.value)}}  />
               </div>
-
-              <div className='modal-input-wrapper'>
-                <p className='m10'>Ange level: <br /> Level 1: Kundnivå <br /> Level 2: Kan skapa pass <br /> Level 3: Kan skapa pass, anställda och produkter </p>
+              <p style={{fontWeight:'bold'}}>Ange level: </p>
+              <div className='modal-input-wrapper-level'>
+                <p className='m10'> Level 1: Kundnivå <br /> Level 2: Kan skapa pass <br /> Level 3: Kan skapa pass, anställda och produkter </p>
                 <select className='drop-down input-select' name='välj pass' onChange={(e) => setLevel(e.target.value)}>
                   <option value="1">Level 1</option>
                   <option value="2">Level 2</option>
@@ -672,12 +678,9 @@ const search = (text) => {
 
 
 
-              <button onClick={createStaff}>Lägg till</button>
+              <button onClick={createStaff} className="admin-buttons">Lägg till</button>
             </div> 
-
-                <article className='map-article'>
-
-              <form>
+            <form>
                 <input
                   id='serchId'
                   type="text"
@@ -686,6 +689,9 @@ const search = (text) => {
                   onChange={(e) => search(e.target.value)}
                 />
               </form>
+
+                <article className='map-article'>
+
 
                   {staff.map((staff, index) => {
                     return (
