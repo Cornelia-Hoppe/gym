@@ -1,7 +1,7 @@
 import "./css/Login.css";
 import "./LoginInput.css";
 import { auth } from "../../firebase-config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
@@ -15,14 +15,13 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //const [isLogedIn, setIsLogedIn] = useState();
+  const [isLogedIn, setIsLogedIn] = useState();
   const [user, loading, error] = useAuthState(auth);
 
   const signIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((auth) => {
         //LoggedInModal.style.set("block");
-        //setIsLogedIn(true);
         //clearFields();
 
         navigate("/home"); //dispaly.LoggedInModal(), lägg till denna innan navigate  setIsLogedIn(true)  clearFields()
@@ -37,6 +36,11 @@ function Login() {
   };
 
   const register = () => {
+
+    console.log(document.querySelector('#SignUpWrapperId'));
+
+    document.querySelector('#SignUpWrapperId').style.display='flex'
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((auth) => {
         console.log(auth);
@@ -59,10 +63,20 @@ function Login() {
   };
 */
 
+<<<<<<< HEAD
+=======
+  let STYLE_LOGGED_IN_NONE = {}
+  let STYLE_NOT_LOGGED_IN_FLEX = {}
+
+    if (user)  STYLE_LOGGED_IN_NONE = {display:'none'}
+    if (!user)  STYLE_NOT_LOGGED_IN_FLEX = {display:'none'}
+
+
+>>>>>>> 5f4f2be0059f8b4a2615e6c03c227a48a634a179
   return (
     <div className="Login">
-      <form className="login-form">
-        <h1 className="login-title">Logga in</h1>
+      <h1 className="login-title">{user ? `Välkommen ${user.email}` : 'Logga in?'}</h1>
+      <form style={user ? STYLE_LOGGED_IN_NONE : null } className="login-form">
         <div className="LoginInput">
           <label className="login-label">E-mail</label>
           <input
@@ -84,17 +98,16 @@ function Login() {
       </form>
       <div className="form-buttons">
         <div className="form-buttons-box">
-          <button className="login-button" onClick={signIn}>
+          <button style={user ? STYLE_LOGGED_IN_NONE : null } className="login-button" onClick={signIn}>
             Logga in
           </button>
-          <button onClick={register} className="register-button login-button">
+          <button style={user ? STYLE_LOGGED_IN_NONE : null } onClick={register} className="register-button login-button">
             Bli medlem
           </button>
 
           <>
-            <p>Välkomen {user?.email}</p>
             <br />
-            <button
+            <button style={user ? null : STYLE_NOT_LOGGED_IN_FLEX}
               onClick={() => auth.signOut()}
               className="register-button login-button"
             >
@@ -110,6 +123,7 @@ function Login() {
 
 export default Login;
 
+<<<<<<< HEAD
 /*
 import "./css/Login.css";
 import { useState, useEffect } from "react";
@@ -129,138 +143,163 @@ function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
   // HÄMTAR PROFILER FRÅN DATABASEN START
   const profilerCollectionRef = collection(db, "profiler");
   const [profiler, setProfiler] = useState([]);
+=======
+>>>>>>> 5f4f2be0059f8b4a2615e6c03c227a48a634a179
 
-  useEffect(() => {
-    const getProfiler = async () => {
-      const data = await getDocs(profilerCollectionRef);
-      setProfiler(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
+// import "./css/Login.css";
+// import { useState, useEffect } from "react";
+// import LoginInput from "./LoginInput";
+// import { db } from "../../firebase-config";
+// import {
+//   collection,
+//   getDocs,
+//   addDoc,
+//   updateDoc,
+//   doc,
+//   deleteDoc,
+// } from "firebase/firestore";
+// import UpdateLocalStorage from "../../functions/UpdateLocalStorage";
 
-    getProfiler();
-  }, []);
-  // HÄMTAR PROFILER FRÅN DATABASEN END
+// function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
+//   // HÄMTAR PROFILER FRÅN DATABASEN START
+//   const profilerCollectionRef = collection(db, "profiler");
+//   const [profiler, setProfiler] = useState([]);
 
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  });
+//   useEffect(() => {
+//     const getProfiler = async () => {
+//       const data = await getDocs(profilerCollectionRef);
+//       setProfiler(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+//     };
 
-  const inputs = [
-    {
-      id: 1,
-      name: "email",
-      type: "email",
-      placeholder: "Email",
-    },
-    {
-      id: 2,
-      name: "password",
-      type: "password",
-      placeholder: "Lösenord",
-    },
-  ];
+//     getProfiler();
+//   }, []);
+//   // HÄMTAR PROFILER FRÅN DATABASEN END
 
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
+//   const [values, setValues] = useState({
+//     email: "",
+//     password: "",
+//   });
 
-  let userProfile = [];
+//   const inputs = [
+//     {
+//       id: 1,
+//       name: "email",
+//       type: "email",
+//       placeholder: "Email",
+//     },
+//     {
+//       id: 2,
+//       name: "password",
+//       type: "password",
+//       placeholder: "Lösenord",
+//     },
+//   ];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+//   const onChange = (e) => {
+//     setValues({ ...values, [e.target.name]: e.target.value });
+//   };
 
-    const profile = profiler.find((item) => {
-      return item.email === values.email;
-    });
+//   let userProfile = [];
 
-    if (!profile) {
-      alert("Wrong email");
-    } else {
-      userProfile = profile;
-      checkPassword();
-    }
-  };
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
 
-  const checkPassword = () => {
-    if (userProfile.password == values.password) {
-      alert("inloggad!");
-      window.localStorage.setItem("user", JSON.stringify(userProfile));
-      setIsLogedIn(true);
-      updateAfterLogin();
-      clearFields();
-    } else {
-      alert("fel lösenord");
-    }
-  };
+//     const profile = profiler.find((item) => {
+//       return item.email === values.email;
+//     });
 
-  // LOGGA UT
-  const [isLogedIn, setIsLogedIn] = useState();
-  const STYLE_NONE = { display: "none" };
-  const STYLE_WIDTH = { width: "100%" };
-  const STYLE_DARK = { color: "black" };
+//     if (!profile) {
+//       alert("Wrong email");
+//     } else {
+//       userProfile = profile;
+//       checkPassword();
+//     }
+//   };
 
-  useEffect(() => {
-    if (!localStorage.getItem("user")) setIsLogedIn(false);
-    else setIsLogedIn(true);
-  }, []);
+//   const checkPassword = () => {
+//     if (userProfile.password == values.password) {
+//       alert("inloggad!");
+//       window.localStorage.setItem("user", JSON.stringify(userProfile));
+//       setIsLogedIn(true);
+//       updateAfterLogin();
+//       clearFields();
+//     } else {
+//       alert("fel lösenord");
+//     }
+//   };
 
-  const logOut = () => {
-    window.confirm("Logga ut?");
-    localStorage.removeItem("user");
-    updateAfterLogin();
-    setIsLogedIn(false);
-  };
-
-  // CLEAR FEILDS
-
-  const clearFields = () => {
-    document.querySelector("#login-input-1").value = "";
-    document.querySelector("#login-input-2").value = "";
-  };
-
-  return (
-    <div className="Login">
-      <form className="login-form">
-        <h1 className="login-title" style={darkText}>
-          {isLogedIn ? "" : "Logga in"}
-        </h1>
-        {inputs.map((input, index) => (
-          <LoginInput
-            id={index}
-            key={input.id}
-            {...input}
-            value={values[inputs.name]}
-            onChange={onChange}
-            style={isLogedIn ? STYLE_NONE : null}
-          />
-        ))}
-      </form>
-      <div className="form-buttons">
-        <div className="form-buttons-box">
-          <button
-            className="login-button"
-            onClick={isLogedIn ? logOut : handleSubmit}
-            style={isLogedIn ? STYLE_WIDTH : null}
-          >
-            {isLogedIn ? "Logga ut" : "Logga in"}
-          </button>
-          <button
-            style={isLogedIn ? STYLE_NONE : null}
-            onClick={() => {
-              setOpenSignUp(true);
-            }}
-            className="register-button login-button"
-          >
-            Bli medlem
-          </button>
-        </div>
-        <p className="login-forgot-password" style={darkText}>
-          {isLogedIn ? "" : "Glömt lösenord?"}
-        </p>
-      </div>
-    </div>
-  );
-}
-
+<<<<<<< HEAD
 export default Login;
 */
+=======
+//   // LOGGA UT
+//   const [isLogedIn, setIsLogedIn] = useState();
+//   const STYLE_NONE = { display: "none" };
+//   const STYLE_WIDTH = { width: "100%" };
+//   const STYLE_DARK = { color: "black" };
+
+//   useEffect(() => {
+//     if (!localStorage.getItem("user")) setIsLogedIn(false);
+//     else setIsLogedIn(true);
+//   }, []);
+
+//   const logOut = () => {
+//     window.confirm("Logga ut?");
+//     localStorage.removeItem("user");
+//     updateAfterLogin();
+//     setIsLogedIn(false);
+//   };
+
+//   // CLEAR FEILDS
+
+//   const clearFields = () => {
+//     document.querySelector("#login-input-1").value = "";
+//     document.querySelector("#login-input-2").value = "";
+//   };
+
+//   return (
+//     <div className="Login">
+//       <form className="login-form">
+//         <h1 className="login-title" style={darkText}>
+//           {isLogedIn ? "" : "Logga in"}
+//         </h1>
+//         {inputs.map((input, index) => (
+//           <LoginInput
+//             id={index}
+//             key={input.id}
+//             {...input}
+//             value={values[inputs.name]}
+//             onChange={onChange}
+//             style={isLogedIn ? STYLE_NONE : null}
+//           />
+//         ))}
+//       </form>
+//       <div className="form-buttons">
+//         <div className="form-buttons-box">
+//           <button
+//             className="login-button"
+//             onClick={isLogedIn ? logOut : handleSubmit}
+//             style={isLogedIn ? STYLE_WIDTH : null}
+//           >
+//             {isLogedIn ? "Logga ut" : "Logga in"}
+//           </button>
+//           <button
+//             style={isLogedIn ? STYLE_NONE : null}
+//             onClick={() => {
+//               setOpenSignUp(true);
+//             }}
+//             className="register-button login-button"
+//           >
+//             Bli medlem
+//           </button>
+//         </div>
+//         <p className="login-forgot-password" style={darkText}>
+//           {isLogedIn ? "" : "Glömt lösenord?"}
+//         </p>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Login;
+>>>>>>> 5f4f2be0059f8b4a2615e6c03c227a48a634a179
