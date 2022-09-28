@@ -1,4 +1,4 @@
-import "../css/formInput.css"
+import "./css/formInput.css"
 
 const FormInput = (props) => {
 
