@@ -22,12 +22,12 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((auth) => {
         //LoggedInModal.style.set("block");
-        //clearFields();
+        clearFields();
 
         navigate("/home"); //dispaly.LoggedInModal(), lägg till denna innan navigate  setIsLogedIn(true)  clearFields()
       })
       .catch((error) => console.error(error));
-  };
+    };
 
   const signOutClick = () => {
     auth.signOut();
@@ -57,11 +57,10 @@ function Login() {
 
   // CLEAR FEILDS
 
-  /* const clearFields = () => {
+    const clearFields = () => {
     document.querySelector("#login-input-1").value = "";
     document.querySelector("#login-input-2").value = "";
   };
-*/
 
 <<<<<<< HEAD
 =======
@@ -80,7 +79,8 @@ function Login() {
         <div className="LoginInput">
           <label className="login-label">E-mail</label>
           <input
-            className="login-input"
+            className="login-input" 
+            id={'login-input-1'}
             onChange={(event) => setEmail(event.target.value)}
             autoComplete="off"
             type="email"
@@ -89,6 +89,7 @@ function Login() {
           <label className="login-label">Password</label>
           <input
             className="login-input"
+            id={'login-input-2'}
             onChange={(event) => setPassword(event.target.value)}
             autoComplete="off"
             type="password"
