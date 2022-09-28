@@ -8,27 +8,48 @@ import {
   IoIosClose,
 } from "react-icons/io";
 
+import { db } from '../../../firebase-config'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+
 import "../css/WebbshopModal.css";
 
 function WebbshopModal(props) {
-  const sizes = ["S", "M", "L", "XL"];
+
+// START UPDATE PRODUCTS
+
+  const updateChosenSize = async (id) => {
+    const staffDoc = doc(db, 'produkter', id)
+    const newFields = { chosenSize: global.chosenSize }
+    await updateDoc(staffDoc, newFields)
+  }
+
+// END UPDATE PRODUCTS
   const oneSize = ["Onesize"];
+  
+  let newSizes = props.orderSize.split(",");
+  
 
   const [openDesc, setOpenDesc] = useState(false);
-  
+  const [selected, setSelected] = useState(null);
   const { addItem } = useCart();
   
-  const [selected, setSelected] = useState(null);
-  function handleTrainer(e) {
-    setSelected(e.target.innerText);
+  
+  function handleSizes(e) {
+    let chosenSize = e.target.innerText;
+    set()
+    global.chosenSize = chosenSize;
+    setSelected(chosenSize);
+    updateChosenSize(props.item.id)
   }
-
-
+  
+  
   function addItemToCart() {
-    addItem(props.item);
+      addItem(props.item);
     props.closeModal(false);
   }
-
+  
+  
+  
   function renderSize() {
     if (props.type === "equipment") {
       return oneSize.map((size) => (
@@ -37,10 +58,10 @@ function WebbshopModal(props) {
         </div>
       ));
     } else {
-      return sizes.map((size, index) => (
+      return newSizes.map((size, index) => (
         <div className="modal-size-block"
         key={index}
-        onClick={handleTrainer}
+        onClick={handleSizes}
         style={{
           color: selected === size ? "white" : "",
           border: selected === size ? "none" : "",

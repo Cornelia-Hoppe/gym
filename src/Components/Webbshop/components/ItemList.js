@@ -21,7 +21,7 @@ useEffect(() => {
     getProdukter()
   }, []);
 
-  console.log('database: ', database);
+  console.log(database);
 
   // END: HÄMTAR PRODUKTER 
 
@@ -88,7 +88,8 @@ useEffect(() => {
             item={item}
             key={index}
             type={item.type}
-            size={item.size}
+            orderSize={item.orderSise}
+
           />
         ))}
       <div className="list-section">

@@ -47,7 +47,7 @@ function Cart({ closeCart }) {
           <IoIosClose
             className="cart-header-exit"
             onClick={() => closeCart(false)}
-          />
+            />
         </div>
         <div className="cart-header-2">
           <p className="cart-header-p">{totalUniqueItems} produkter ({totalItems} totalt)</p>
@@ -66,10 +66,10 @@ function Cart({ closeCart }) {
                     <BsTrash
                       onClick={() => removeItem(item.id)}
                       className="cart-item-delete"
-                    />
+                      />
                   </div>
                   <div className="cart-item-row-2">
-                    <p className="cart-item-size-color">S | {item.color}</p>
+                    <p className="cart-item-size-color">{item.chosenSize} | {item.color}</p>
                   </div>
                 </div>
                 <div className="cart-item-row-3">
