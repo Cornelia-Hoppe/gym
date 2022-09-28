@@ -1,15 +1,13 @@
 
 /*  */
-
 .profile-wrapper{
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin: auto;
+    width: 95%;
 }
 .profile-wrapper h3{
-    font-family: sans-serif;
-    text-align: left;
-    color: black;
     font-size: 30px;
   margin-left: 20px;
 }
@@ -17,14 +15,12 @@
     margin-bottom: 10px;
 }
 
-.profile-left, .profile-right{
+.profile-left, .profile-right, .bokade-pass{
     border-radius: 10px;
-    width: 95%;
     margin-bottom: 20px;
     background: #DDE6E6;
-
+width: 100%;
 }
-
 
 .profile-img{
     width: 200px;
@@ -78,9 +74,10 @@ width: 90%;
     display: flex;
     flex-wrap: wrap;
 }
+/* modal */
 
 
-/*  */
+/* offer member cards start */
 .OfferSection{
     text-align: center;
     background: #DDE6E6;
@@ -143,60 +140,61 @@ font-size: 20px;
     font-weight: 400;
     font-size: 25px;
 }
-
-.flex-between.a-center {
-    display: none;
-}
+/* offer membercards end */
 
 .update-and-title{
     display: flex;
     align-items: center;
 }
+.flex-between{
+    display: flex;
+    flex-direction: row;
+}
+.user-information {
+    width: max-content;
+    font-size: 20px;
+
+}
+.profile-left svg{
+    color: #548CA8;
+}
+
+.profile-img{
+margin-right: 30px;
+}
+.Desktop-heading-mypages {
+    display: none;
+}
 
 @media screen and (min-width: 800px) {
-    .profile-wrapper{
-        flex-direction: column;
+    .Desktop-heading-mypages {
+        display: flex;
+       
     }
-    
+    .profile-wrapper h3{
+        font-size: 30px;
+        font-weight:100; 
+    }
+    .mypages-container{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
 .profile-wrapper{
    width: 97%;
    border-radius: 10px;
    background: #DDE6E6;
    margin: 40px auto 40px auto;
-
+  flex-direction: column;
+  align-items: baseline;
 }
-
-.flex-between.a-center {
+.bokade-pass{
     display: flex;
-}
-.flex-between{
-    margin-left: 40px;
-    margin-top: 20px;
-}
-.profile-left, .profile-right
-{
-    width: 100%;
-}
-.OfferSection {
-    width: 35%;
-    margin-left: 20px ;
-}
-.OfferSection h3, .flex-between.a-center h4{
-   font-weight: lighter;
-   font-size: 30px;
+    flex-direction: column;
+    align-items: center;
+
 }
 
-    .rowTwo{
-     
-        font-size: 30px;
-    }
-    .rowOne, .rowTwo {
-        margin-left: 15px;
-    }
-
-.OfferOne, .OfferTwo, .OfferThree, .OfferFour {
-    height: 16vh;
-width: 43%;
-}
+ 
 }
 
