@@ -12,6 +12,9 @@ import {useAuthState} from 'react-firebase-hooks/auth';
 import { auth } from "../../firebase-config";
 
 
+import HomeOpenH from "../HomeOpenH/HomeOpenH";
+
+
 const Homepage = () => {
  /* const [user, loading, error] = useAuthState(auth);
   console.log(user)
@@ -28,7 +31,7 @@ const Homepage = () => {
         <Arrow />
         <Menu />
         <LandingHome />
-        <HomeOffer />
+        <HomeOpenH />
         <HomeAbout />
         <HomeGallery />
         <HomePersonal />

@@ -12,6 +12,7 @@ const HomePersonal = () => {
       <div className={style.PersonalSection}>
         <div className={style.HeaderPersonal}>
           <h3>Personal</h3>
+          <p>Vi är ett team av mycket professionella personliga tränare och instruktörer med en mycket bred kunskap kring vad som blir bästa vägen fram för dig och för din hälsa. </p>
         </div>
         <div className={style.PersonalButtons}>
           <CustomLink to="/staff">
