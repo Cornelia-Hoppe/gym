@@ -28,16 +28,36 @@ function UpdateProfileModal({closeModal, id, email, name, lastName, password, ph
     const newFields = {img: newImg, name: newName, lastName: newLastName, email: newEmail, password: newPassword, phoneNumber: newPhoneNumber}
     await updateDoc(staffDoc, newFields)
     
-    UpdateLocalStorage(id)
-    closeModal()
-
+    UpdateLocalStorage(id) 
+    setTimeout(close, 3000)
+    
   }
 
-// RADERAR DATA
-  const deleteStaff = async (id, DBcollextion) => {
-    const staffDoc = doc(db, DBcollextion, id);
-    await deleteDoc(staffDoc);
-  };
+// STÄNGER FÖRST NÄR LOCAL STORAGE HAR UPPDATERATS
+  const close = () => {
+    if (localStorage.getItem('user')) closeModal()
+    else setTimeout(close4sec, 2000)
+  }
+
+  const close4sec = () => {
+    if (localStorage.getItem('user')) closeModal()
+    else setTimeout(close6sec, 2000)
+  }
+
+  const close6sec = () => {
+    if (localStorage.getItem('user')) closeModal()
+    else setTimeout(close8sec, 2000)
+  }
+
+  const close8sec = () => {
+    if (localStorage.getItem('user')) closeModal()
+    else setTimeout(close10sec, 2000)
+  }
+
+  const close10sec = () => {
+    closeModal()
+    alert('Kunde inte uppdatera, ladda om sidan och försök igen')
+  }
 
 // BILD
 function previewImage() {
@@ -70,9 +90,9 @@ function previewImage() {
                     onChange={previewImage} 
                 ></input>
             </div>
-
+<div className='input-divs'>
             <div className='input-div'>
-                <h1>Ändra namn:</h1>
+                <h1> Namn</h1>
                 <input 
                     type="text" 
                     placeholder={name} 
@@ -82,7 +102,7 @@ function previewImage() {
             </div>
 
             <div className='input-div'>
-                <h1>Ändra efternamn:</h1>
+                <h1> Efternamn</h1>
                 <input 
                     type="text" 
                     placeholder={lastName} 
@@ -92,7 +112,7 @@ function previewImage() {
             </div>
 
             <div className='input-div'>
-                <h1>Ändra Email:</h1>
+                <h1> Email</h1>
                 <input 
                     type="text" 
                     placeholder={email} 
@@ -102,7 +122,7 @@ function previewImage() {
             </div>
 
             <div className='input-div'>
-                <h1>Ändra telefonnummer:</h1>
+                <h1> Telefonnummer</h1>
                 <input 
                     type="text" 
                     placeholder={phoneNumber} 
@@ -112,7 +132,7 @@ function previewImage() {
             </div>
 
             <div className='input-div'>
-                <h1>Ändra lösenord:</h1>
+                <h1> Lösenord</h1>
                 <input 
                     type="password" 
                     placeholder={password} 
@@ -120,7 +140,7 @@ function previewImage() {
                     defaultValue={password}
                 />
             </div>
-
+            </div>
 
                
             <div className="m30">
