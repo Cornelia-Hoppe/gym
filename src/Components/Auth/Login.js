@@ -70,8 +70,6 @@ function Login() {
     if (user)  STYLE_LOGGED_IN_NONE = {display:'none'}
     if (!user)  STYLE_NOT_LOGGED_IN_FLEX = {display:'none'}
 
-
->>>>>>> 5f4f2be0059f8b4a2615e6c03c227a48a634a179
   return (
     <div className="Login">
       <h1 className="login-title">{user ? `Välkommen ${user.email}` : 'Logga in?'}</h1>
@@ -123,29 +121,6 @@ function Login() {
 }
 
 export default Login;
-
-<<<<<<< HEAD
-/*
-import "./css/Login.css";
-import { useState, useEffect } from "react";
-import LoginInput from "./LoginInput";
-import { db } from "../../firebase-config";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  doc,
-  deleteDoc,
-} from "firebase/firestore";
-import UpdateLocalStorage from "../../functions/UpdateLocalStorage";
-
-function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
-  // HÄMTAR PROFILER FRÅN DATABASEN START
-  const profilerCollectionRef = collection(db, "profiler");
-  const [profiler, setProfiler] = useState([]);
-=======
->>>>>>> 5f4f2be0059f8b4a2615e6c03c227a48a634a179
 
 // import "./css/Login.css";
 // import { useState, useEffect } from "react";
@@ -229,10 +204,6 @@ function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
 //     }
 //   };
 
-<<<<<<< HEAD
-export default Login;
-*/
-=======
 //   // LOGGA UT
 //   const [isLogedIn, setIsLogedIn] = useState();
 //   const STYLE_NONE = { display: "none" };
@@ -303,4 +274,3 @@ export default Login;
 // }
 
 // export default Login;
->>>>>>> 5f4f2be0059f8b4a2615e6c03c227a48a634a179
