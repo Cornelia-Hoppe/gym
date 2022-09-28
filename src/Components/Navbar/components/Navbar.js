@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import ListItem from "./ListItem";
-import Login from "./Login";
+import Login from "../../Auth/Login";
 import "../css/Navbar.css";
 import SignUp from "./SignUp";
 import { motion } from "framer-motion";
@@ -43,11 +43,7 @@ function NavBar({ closeNavbar, updateAfterLogin }) {
       </div>
       <div className="navbar-list">
         <CustomLink to="/">
-          <ListItem
-  
-            name="Startsida"
-            icon={<IoMdHome className="icon" />}
-          />
+          <ListItem name="Startsida" icon={<IoMdHome className="icon" />} />
         </CustomLink>
         <CustomLink to="/bookingpage">
           <ListItem name="Boka pass" icon={<TbYoga className="icon" />} />
@@ -65,7 +61,10 @@ function NavBar({ closeNavbar, updateAfterLogin }) {
       </div>
 
       <div className="navbar-login">
-        <Login setOpenSignUp={setOpenSignUp} updateAfterLogin={updateAfterLogin} />
+        <Login
+          setOpenSignUp={setOpenSignUp}
+          updateAfterLogin={updateAfterLogin}
+        />
       </div>
     </motion.div>
   );
@@ -76,5 +75,3 @@ export default NavBar;
 function CustomLink({ to, ...props }) {
   return <Link to={to} {...props}></Link>;
 }
-
-

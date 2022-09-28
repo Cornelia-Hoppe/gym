@@ -9,7 +9,7 @@ import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase
 import Menu from '../Components/Navbar/components/Menu';
 import icon from "./icon.png"
 import closeLoadingScreen from '../Components/loading_screen/CloseLoadingModal'
-import Login from '../Components/Navbar/components/Login'
+import Login from '../Components/Auth/Login'
 import SavedModal from '../Components/loading_screen/SavedModal';
 import Memberships from './Memberships';
 

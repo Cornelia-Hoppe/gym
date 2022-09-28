@@ -1,3 +1,132 @@
+import "./Login.css";
+import "./LoginInput.css";
+import { auth } from "../../firebase-config";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import LoggedInModal from "./LoggedInModal";
+import { BiLock } from "react-icons/bi";
+
+function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  //const [isLogedIn, setIsLogedIn] = useState();
+  const [user, loading, error] = useAuthState(auth);
+
+  const signIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((auth) => {
+        //LoggedInModal.style.set("block");
+        //setIsLogedIn(true);
+        //clearFields();
+
+        navigate("/home"); //dispaly.LoggedInModal(), lägg till denna innan navigate  setIsLogedIn(true)  clearFields()
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const signOutClick = () => {
+    auth.signOut();
+    navigate("/home");
+    console.log(auth);
+  };
+
+  const register = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((auth) => {
+        console.log(auth);
+        // clearFields();
+        // setIsLogedIn(true);
+        navigate("/home");
+      })
+      .catch((error) => console.error(error));
+  };
+
+  // HÄMTAR PROFILER FRÅN DATABASEN START
+  // HÄMTAR PROFILER FRÅN DATABASEN END
+  // LOGGA UT
+
+  // CLEAR FEILDS
+
+  /* const clearFields = () => {
+    document.querySelector("#login-input-1").value = "";
+    document.querySelector("#login-input-2").value = "";
+  };
+*/
+  return (
+    <div className="Login">
+      <form className="login-form">
+        <h1 className="login-title">Logga in</h1>
+        <div className="LoginInput">
+          <label className="login-label">E-mail</label>
+          <input
+            className="login-input"
+            onChange={(event) => setEmail(event.target.value)}
+            autoComplete="off"
+            type="email"
+            name="email"
+          />
+          <label className="login-label">Password</label>
+          <input
+            className="login-input"
+            onChange={(event) => setPassword(event.target.value)}
+            autoComplete="off"
+            type="password"
+            name="password"
+          />
+        </div>
+      </form>
+      <div className="form-buttons">
+        <div className="form-buttons-box">
+          <button className="login-button" onClick={signIn}>
+            Logga in
+          </button>
+          <button onClick={register} className="register-button login-button">
+            Bli medlem
+          </button>
+
+          <>
+            <p>Välkomen {user?.email}</p>
+            <br />
+            <button
+              onClick={() => auth.signOut()}
+              className="register-button login-button"
+            >
+              Logga ut
+            </button>
+          </>
+        </div>
+        <p className="login-forgot-password"></p>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
+
+/*
+
+    useEffect(() => {
+        if (!localStorage.getItem('user')) setIsLogedIn(false)
+        else setIsLogedIn(true)
+    }, [])
+
+    const logOut = () => {
+        window.confirm("Logga ut?")
+        localStorage.removeItem('user')
+        updateAfterLogin()
+        setIsLogedIn(false)
+    }
+    
+
+
+
+
 import "../css/Login.css";
 import { useState, useEffect } from "react";
 import LoginInput from "./LoginInput";
@@ -136,3 +265,4 @@ function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
 }
 
 export default Login;
+*/
