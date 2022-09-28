@@ -124,7 +124,7 @@ function SignUp({ closeSignup }) {
   // END: SPARAR I DATABASEN
 
   return (
-    <article className="SignUpWrapper">
+    <article className="SignUpWrapper" id="SignUpWrapperId">
       <div className="SignUp">
         <IoIosClose
           className="cancel-button"
