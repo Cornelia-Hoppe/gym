@@ -9,7 +9,7 @@ import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase
 import Menu from '../Components/Navbar/components/Menu';
 import icon from "./icon.png"
 import closeLoadingScreen from '../Components/loading_screen/CloseLoadingModal'
-import Login from '../Components/Navbar/components/Login'
+import Login from '../Components/Auth/Login'
 
 function MinaSidor() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))

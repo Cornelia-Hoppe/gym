@@ -7,15 +7,13 @@ import Personal from "./Components/Personal/Trainerspage";
 import MinaSidor from "./mina_sidor_page/MinaSidor";
 import NotFound from "./NotFound/NotFound";
 import ScrollToTop from "./Components/ScrollToTop";
-import 'react-calendar/dist/Calendar.css';
+import "react-calendar/dist/Calendar.css";
 import LoadingScreen from "./Components/loading_screen/LoadingScreen";
-import Webbshop from "./Components/Webbshop/Webbshop"
-import AdminPage from "./admin_page/AdminPage"
+import Webbshop from "./Components/Webbshop/Webbshop";
 
 function App() {
   return (
     <>
-      <AdminPage />
       <LoadingScreen />
       <ScrollToTop>
         <Routes>
