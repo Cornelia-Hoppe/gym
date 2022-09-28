@@ -16,20 +16,31 @@ import CheckModal from "./CheckModal";
 import { BsFillPencilFill } from "react-icons/bs";
 import Update_modal_pass from "./Update_modal_pass";
 import Menu from "../Components/Navbar/components/Menu";
+import openLoadingModal from "../Components/loading_screen/OpenLoadingModal";
+import closeLoadingModal from "../Components/loading_screen/CloseLoadingModal";
 
 function BookingPage() {
   // HÄMTAR STAFF
   const passCollectionRef = collection(db, "pass");
   const [pass, setPass] = useState([]);
 
-  useEffect(() => {
-    const getStaff = async () => {
-      const data = await getDocs(passCollectionRef);
-      setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-
-    getStaff();
+  const getStaff = async () => {
+    openLoadingModal()
+    console.log('getPass körs');
+    const data = await getDocs(passCollectionRef);
+    setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     sortPass()
+    closeLoadingModal()
+  };
+
+  const getStaffFirstTime = async () => {
+    const data = await getDocs(passCollectionRef);
+    setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    sortPass()
+  };
+
+  useEffect(() => {
+    getStaffFirstTime()
   }, []);
 
    // HÄMTAR PROFILER
@@ -46,17 +57,10 @@ function BookingPage() {
    }, []);
 
    const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
-   
-  //  console.log('inloggadUser: ', inloggadUser);
-  //  console.log('profiler: ,', profiler);
 
   // BOKA-KNAPPEN
 
   const [bokadText, setBokadText] = useState("");
-
-  // PROBLEM: Localstorage uppdateras ej när man bokar pass. Detta gör att man måste
-  //  logga ut, uppdatera sidan, logga in, uppdatera sidan och sedan boka nästa pass
-  //  för att boka ett till pass. 
 
   const handleBokaBtn = async (passId, DBcollextion, platser, bokad) => {
 
@@ -83,23 +87,14 @@ function BookingPage() {
 
   const addPassToProfile = async (passId) => {
 
-    console.log('addPassToProfile Kör');
-
-    // console.log('inloggadUser: ', inloggadUser);
-
-
     const inloggadId = inloggadUser.id
-    const entill = 'en till!'
     
-
-
     const tidigarePass = inloggadUser.bokadePass
 
     const newPassLista = []
 
 
     if (tidigarePass) {
-      console.log('tidigarePass == true');
       tidigarePass.map((item, index) => {
         newPassLista.push(passId)
         newPassLista.push(item)
@@ -119,7 +114,7 @@ function BookingPage() {
 //--
 
   const openUpdateModal = (id) => {
-    document.querySelector(`#${id}-update-modal`).style.display = "flex";
+    document.querySelector(`#update-modal-${id}`).style.display = "flex";
   };
 
  // KALENDER
@@ -156,27 +151,6 @@ const sortKategories = (selectedKategori) => {
 
 
 
-
-  // GÖM KNAPPEN FÖR VANLIGA ANVÄNDARE
-  const normalUser = 0;
-  const admin = 1;
-
-  const user = normalUser;
-
-  const [BTN_STYLE, setBTN_STYLE] = useState({});
-
-  useEffect(() => {
-    if (user === 1) {
-      setBTN_STYLE({ display: "block" });
-    } else {
-      setBTN_STYLE({ display: "none" });
-    }
-  }, []);
-
-  // ÄR MAN 
-
-  // STYLING - RÖD TEXT
-
   const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
 
   return (
@@ -199,9 +173,13 @@ const sortKategories = (selectedKategori) => {
             <select className='drop-down' name='välj pass' onChange={(e) => sortKategories(e.target.value)}>
                 <option value="null">Välj pass</option>
                 <option value="kondition">Kondition</option>
-                <option value="styrka">Styrka</option>
+                <option value="spinning">Styrka</option>
+                <option value="styrka">Crossfit</option>
+                <option value="flexebilitet">Funktionell Träning</option>
+                <option value="mindfullnes">Mindfullnes</option>
                 <option value="crossfit">Crossfit</option>
-                <option value="funktionell-träning">Funktionell Träning</option>
+                <option value="funktionell-träning">Funktionell träning</option>
+
             </select>
             
             {passDenDagen.map((pass, index) => {
@@ -210,33 +188,15 @@ const sortKategories = (selectedKategori) => {
                     <>
                     <div key={index} className='pass-card center'>
                         <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
-                        <img clasName='booking-icon' src={require("./"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
+                        {/* <img clasName='booking-icon' src={require("./"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/> */}
                         <div className='aktv-tid-div'>
                             <h1>{pass.aktivitet}</h1>
-                            <h2>{pass.tid}</h2>
+                            <p>{pass.dayString}, {pass.dateString} {pass.monthString} <br />
+                            {pass.tid}</p>
                         </div>
-                        <p>instruktör: {pass.instruktör}</p>
-                        <button 
-                            style={BTN_STYLE}
-                            onClick={() => openUpdateModal(pass.id)}
-                            className='pass-redigera-btn'>Ändra <BsFillPencilFill className='pen-icon'/>
-                            
-                        </button>
-                        <button onClick={() => handleBokaBtn(pass.id, "pass", pass.platser)} className='booking-btn'>
-                            {pass.bokad ? 'Avboka' : 'Boka'}
-                            </button>
+                        <h2>instruktör: {pass.instruktör}</h2>
+                        <button class="myButton booking-btn" onClick={() => handleBokaBtn(pass.id, "pass", pass.platser)}> {pass.bokad ? 'Avboka' : 'Boka'}</button>
                     </div>
-
-                    <Update_modal_pass 
-                        key={Math.random()}
-                        id={pass.id} 
-                        aktivitet={pass.aktivitet}  
-                        instruktör={pass.instruktör}
-                        maxAntal={pass.maxAntal}
-                        platser={pass.platser}
-                        tid={pass.tid}
-                        date={pass.dag}
-                    />
 
                     </>
                 )

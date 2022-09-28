@@ -30,11 +30,18 @@
   margin: 20px 10px auto 10px;
   padding-bottom: 8px;
   padding-top: 8px;
+  
+    
+ 
 }
 
 .container h1 {
   margin-left: 1rem;
+  display:table-caption;
+  
 }
+
+
 
 .image_box {
   display: flex;
@@ -78,10 +85,23 @@
 .nav_con h1 {
   margin-left: 1rem;
   margin-bottom: 1rem;
+  
 }
+h4{
+  display:table-caption;
+  
+  
+}
+.text{
+  display: inline-block;
+}
+
+
 
 @media (min-width: 800px) {
   .image_box {
     justify-content: left;
   }
 }
+
+

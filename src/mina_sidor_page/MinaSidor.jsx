@@ -41,29 +41,24 @@ function MinaSidor() {
   //  DEN VIKTIGA DATAN  //
   // console.log('pass: ', pass);
   // console.log('userBokadePassId: ', userBokadePassId);
-
+let HI = []
   const getPassAndSet = () => {
-
     userBokadePassId.map((bokatPass) => {
+      
+pass.find((pass, index) => {
+        if (pass.id == bokatPass){
+     HI.push(pass)
 
-      const findPass = pass.find((pass, index) => {
-
-        console.log('yes .find körs');
-        console.log('bokatPass: ', index, bokatPass);
-
-        console.log('pass.id: ', index, pass.id);
-        return pass.id == bokatPass
+      } 
       })
-      console.log('findPass: ', findPass);
-
+    
     })
-
     
   }
-
-
+  
+  getPassAndSet()
 // ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
-
+console.log(HI)
   const openModal = () => {
     document.querySelector(`#${user.id}-update-modal`).style.display='flex'
   }
@@ -89,16 +84,21 @@ function MinaSidor() {
     console.log(user);
   }
 
-   return user ? (
+   return user ? ( 
     <>
       <Menu updateAfterLogin={updateAfterLogin} />
+      <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
       <section className='profile-wrapper'>
         <article className='profile-left'>
-          <h2>Mina sidor</h2>
+          <div className='flex-between update-and-title'>
+            <h2>Mina sidor</h2>
+            <AiFillEdit id='update-btn' onClick={openModal} />
+          </div>
+          
             <div className='flex-between a-center'>
               <h4 className=''>Kontouppgifter</h4>
-              <AiFillEdit id='update-btn' onClick={openModal} />
-              <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
+              
+              
             </div>
             <div className='flex-between'>
               <img className='profile-img' src={user ? user.img : icon} alt="No image" />
@@ -112,14 +112,19 @@ function MinaSidor() {
 
             <div className='bokade-pass'>
                 <h1>Bokade pass</h1>
-
-                {/* {userBokadePass.map((pass, index) => {
-                  return(
-                    <p>{pass}</p>
-                  )
-                })} */}
-
-                
+                {HI.map(pass => {
+           return (
+            <div key={pass.id} className='pass-card center'>
+            <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
+            <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
+            <div className='aktv-tid-div'>
+                <h1>{pass.aktivitet}</h1>
+                <h2>{pass.tid}</h2>
+            </div>
+            <p>instruktör: {pass.instruktör}</p>
+        </div>
+           )
+       })} 
             </div>
 
             </div>
@@ -147,7 +152,7 @@ function MinaSidor() {
       <section className='profile-wrapper'>
         <article className='profile-left'>
           
-          <Login />
+          <Login updateAfterLogin={updateAfterLogin} darkText={{color:'black'}} />
 
         </article>
 
@@ -171,3 +176,4 @@ function MinaSidor() {
 }
 
 export default MinaSidor
+
