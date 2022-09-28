@@ -27,7 +27,7 @@ function Login() {
         navigate("/home"); //dispaly.LoggedInModal(), lägg till denna innan navigate  setIsLogedIn(true)  clearFields()
       })
       .catch((error) => console.error(error));
-    };
+  };
 
   const signOutClick = () => {
     auth.signOut();
@@ -36,10 +36,9 @@ function Login() {
   };
 
   const register = () => {
+    console.log(document.querySelector("#SignUpWrapperId"));
 
-    console.log(document.querySelector('#SignUpWrapperId'));
-
-    document.querySelector('#SignUpWrapperId').style.display='flex'
+    document.querySelector("#SignUpWrapperId").style.display = "flex";
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((auth) => {
@@ -57,28 +56,28 @@ function Login() {
 
   // CLEAR FEILDS
 
-    const clearFields = () => {
+  const clearFields = () => {
     document.querySelector("#login-input-1").value = "";
     document.querySelector("#login-input-2").value = "";
   };
 
-<<<<<<< HEAD
-=======
-  let STYLE_LOGGED_IN_NONE = {}
-  let STYLE_NOT_LOGGED_IN_FLEX = {}
+  let STYLE_LOGGED_IN_NONE = {};
+  let STYLE_NOT_LOGGED_IN_FLEX = {};
 
-    if (user)  STYLE_LOGGED_IN_NONE = {display:'none'}
-    if (!user)  STYLE_NOT_LOGGED_IN_FLEX = {display:'none'}
+  if (user) STYLE_LOGGED_IN_NONE = { display: "none" };
+  if (!user) STYLE_NOT_LOGGED_IN_FLEX = { display: "none" };
 
   return (
     <div className="Login">
-      <h1 className="login-title">{user ? `Välkommen ${user.email}` : 'Logga in?'}</h1>
-      <form style={user ? STYLE_LOGGED_IN_NONE : null } className="login-form">
+      <h1 className="login-title">
+        {user ? `Välkommen ${user.email}` : "Logga in?"}
+      </h1>
+      <form style={user ? STYLE_LOGGED_IN_NONE : null} className="login-form">
         <div className="LoginInput">
           <label className="login-label">E-mail</label>
           <input
-            className="login-input" 
-            id={'login-input-1'}
+            className="login-input"
+            id={"login-input-1"}
             onChange={(event) => setEmail(event.target.value)}
             autoComplete="off"
             type="email"
@@ -87,7 +86,7 @@ function Login() {
           <label className="login-label">Password</label>
           <input
             className="login-input"
-            id={'login-input-2'}
+            id={"login-input-2"}
             onChange={(event) => setPassword(event.target.value)}
             autoComplete="off"
             type="password"
@@ -97,16 +96,25 @@ function Login() {
       </form>
       <div className="form-buttons">
         <div className="form-buttons-box">
-          <button style={user ? STYLE_LOGGED_IN_NONE : null } className="login-button" onClick={signIn}>
+          <button
+            style={user ? STYLE_LOGGED_IN_NONE : null}
+            className="login-button"
+            onClick={signIn}
+          >
             Logga in
           </button>
-          <button style={user ? STYLE_LOGGED_IN_NONE : null } onClick={register} className="register-button login-button">
+          <button
+            style={user ? STYLE_LOGGED_IN_NONE : null}
+            onClick={register}
+            className="register-button login-button"
+          >
             Bli medlem
           </button>
 
           <>
             <br />
-            <button style={user ? null : STYLE_NOT_LOGGED_IN_FLEX}
+            <button
+              style={user ? null : STYLE_NOT_LOGGED_IN_FLEX}
               onClick={() => auth.signOut()}
               className="register-button login-button"
             >
