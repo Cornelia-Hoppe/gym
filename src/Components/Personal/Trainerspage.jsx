@@ -3,11 +3,9 @@ import "./Personal.css";
 import { buttons } from "./data";
 import { getTrainer, filterTrainer } from "./services";
 import Menu from "../Navbar/components/Menu";
-
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function App() {
-
   const [selected, setSelected] = useState(null);
 
   const [trainersPerson, setTrainersPerson] = useState(null);
@@ -16,12 +14,10 @@ export default function App() {
   }, []);
 
   function handleTrainer(e) {
-
     let typeTrainer = e.target.value;
 
     typeTrainer !== ""
       ? setTrainersPerson(filterTrainer(typeTrainer))
-
       : setTrainersPerson(getTrainer());
 
     setSelected(typeTrainer);
@@ -33,7 +29,6 @@ export default function App() {
       {/* Trainers nav  */}
       <div className="nav_con list">
         <h1> Vårat team</h1>
-
 
         {buttons &&
           buttons.map((type, index) => (
@@ -51,7 +46,6 @@ export default function App() {
               </button>
             </>
           ))}
-
       </div>
       {/* Trainers Info & img */}
 
@@ -62,8 +56,7 @@ export default function App() {
           {trainersPerson &&
             trainersPerson.map((type) => (
               <ul key={type.id}>
-               
-                <img src={type.img} alt="" />
+                <LazyLoadImage src={type.img} alt={type.id} />
 
                 <div className="details">
                   <p>{type.namn}</p>

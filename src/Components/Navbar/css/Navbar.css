@@ -4,7 +4,7 @@
   right: 0;
   width: 90%;
   height: 100vh;
-  background-color: rgba(0, 39, 84);
+  background-color: #4e78a9;
   z-index: 2;
 }
 .exit-button {
@@ -34,14 +34,12 @@
   width: 100%;
   height: 285px;
 }
-.icon {
-  width: 44px;
-  height: 44px;
-}
+
 .item-name {
   font-size: 28px;
   margin-left: 2rem;
 }
+
 
 .login-title {
   font-size: 28px;

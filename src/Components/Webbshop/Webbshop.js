@@ -5,6 +5,7 @@ import ItemList from "./components/ItemList"
 import Cart from "./components/Cart";
 import { CartProvider } from "react-use-cart" 
 
+
 function Webbshop() {
   const [openCart, setOpenCart] = useState(false);
 

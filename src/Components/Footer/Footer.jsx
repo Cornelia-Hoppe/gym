@@ -2,6 +2,7 @@ import React from "react";
 import "./Footer.css";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 const Footer = () => {
   return (
@@ -42,10 +43,12 @@ const Footer = () => {
           <div className="social">
             <strong className="footer-subheading">Följ oss!</strong>
             <div className="footer-icons">
-              <FaFacebook className="footer-icon" />
-              <FaInstagram className="footer-icon" />
-              <FaTwitter className="footer-icon" />
-              <FaLinkedin className="footer-icon" />
+
+                <FaFacebook className="footer-icon" />
+                <FaInstagram className="footer-icon" />
+                <FaTwitter className="footer-icon" />
+                <FaLinkedin className="footer-icon" />
+
             </div>
           </div>
 

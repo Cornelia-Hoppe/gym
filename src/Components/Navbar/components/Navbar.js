@@ -43,11 +43,7 @@ function NavBar({ closeNavbar }) {
       </div>
       <div className="navbar-list">
         <CustomLink to="/">
-          <ListItem
-  
-            name="Startsida"
-            icon={<IoMdHome className="icon" />}
-          />
+          <ListItem name="Startsida" icon={<IoMdHome className="icon" />} />
         </CustomLink>
         <CustomLink to="/bookingpage">
           <ListItem name="Boka pass" icon={<TbYoga className="icon" />} />
@@ -61,7 +57,9 @@ function NavBar({ closeNavbar }) {
         <CustomLink to="/staff">
           <ListItem name="Personal" icon={<BsFilePerson className="icon" />} />
         </CustomLink>
-        <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
+        <CustomLink to="/webshop">
+          <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
+        </CustomLink>
       </div>
 
       <div className="navbar-login">
@@ -76,5 +74,3 @@ export default NavBar;
 function CustomLink({ to, ...props }) {
   return <Link to={to} {...props}></Link>;
 }
-
-

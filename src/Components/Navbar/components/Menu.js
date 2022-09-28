@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../css/Menu.css";
 import Navbar from "./Navbar";
-import MobLogo from "../../../images/logo-mobile.png";
-import DeskLogo from "../../../images/logo-desktop.png";
+import MobLogo from "../../../images/sportix-logo-mobile.png";
+import DeskLogo from "../../../images/sportix-logo.png";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoIosCart } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -19,7 +19,13 @@ function Menu() {
       {openNavbar && <Navbar closeNavbar={setOpenNavbar} />}
       <ul className="menu-mobile">
         <IoIosCart className="menu-mobile-cart" />
-        <img className="menu-mobile-logo" src={MobLogo} alt="mobile-logo"></img>
+        <CustomLink to="/home">
+          <img
+            className="menu-mobile-logo"
+            src={MobLogo}
+            alt="mobile-logo"
+          ></img>
+        </CustomLink>
         <AiOutlineMenu
           className="menu-mobile-button"
           onClick={() => {
