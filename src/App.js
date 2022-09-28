@@ -15,7 +15,7 @@ import CheckUser from "./functions/CheckUser";
 
 function App() {
 
-  CheckUser()
+  // CheckUser()
 
   return (
     <>

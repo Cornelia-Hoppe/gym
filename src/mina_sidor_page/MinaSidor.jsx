@@ -12,8 +12,9 @@ import closeLoadingScreen from '../Components/loading_screen/CloseLoadingModal'
 import Login from '../Components/Navbar/components/Login'
 
 function MinaSidor() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
-  const [userBokadePassId, setUserBokadePassId] = useState(user ? user.bokadePass : '')
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : '')
+
+  const [userBokadePassId, setUserBokadePassId] = useState(user.bokadePass ? user.bokadePass : 'Inga bokade pass')
   const [userBokadePass, setUserBokadePass] = useState('')
 
   useEffect(() => {
@@ -40,25 +41,35 @@ function MinaSidor() {
 
   //  DEN VIKTIGA DATAN  //
   // console.log('pass: ', pass);
-  // console.log('userBokadePassId: ', userBokadePassId);
+
+  useEffect(() => {
+    if (!userBokadePassId == "Inga bokade pass") {
+      console.log('inloggd och pass bokade');
+      getPassAndSet()
+    } else if (user) {
+      console.log('Inga pass bokade');
+    } else if (!user) {
+      console.log('ej inloggad');
+    }
+  }, [])
+
 let HI = []
-  const getPassAndSet = () => {
+
+   const getPassAndSet = () => {
     userBokadePassId.map((bokatPass) => {
       
-pass.find((pass, index) => {
+      pass.find((pass, index) => {
         if (pass.id == bokatPass){
-     HI.push(pass)
-
+      HI.push(pass)
       } 
       })
-    
     })
-    
   }
-  
-  getPassAndSet()
-// ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
-console.log(HI)
+
+
+ 
+// ========================= END: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
+
   const openModal = () => {
     document.querySelector(`#${user.id}-update-modal`).style.display='flex'
   }

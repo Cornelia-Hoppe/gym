@@ -18,13 +18,15 @@ import Update_modal_pass from "./Update_modal_pass";
 import Menu from "../Components/Navbar/components/Menu";
 import openLoadingModal from "../Components/loading_screen/OpenLoadingModal";
 import closeLoadingModal from "../Components/loading_screen/CloseLoadingModal";
+import UpdateLocalStorage from "../functions/UpdateLocalStorage";
+import { async } from "@firebase/util";
 
 function BookingPage() {
   // HÄMTAR STAFF
   const passCollectionRef = collection(db, "pass");
   const [pass, setPass] = useState([]);
 
-  const getStaff = async () => {
+  const getPass = async () => {
     openLoadingModal()
     console.log('getPass körs');
     const data = await getDocs(passCollectionRef);
@@ -57,73 +59,16 @@ function BookingPage() {
    }, []);
 
    const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
+   
 
-  // BOKA-KNAPPEN
-
-  const [bokadText, setBokadText] = useState("");
-
-  const handleBokaBtn = async (passId, DBcollextion, platser, bokad) => {
-
-    addPassToProfile(passId)
-
-    if (bokad === true) {
-      platser--;
-      bokad = false;
-    } else {
-      platser++;
-      bokad = true;
-    }
-
-    // UPPDATERAR DATA
-    const staffDoc = doc(db, DBcollextion, passId);
-    const newFields = { platser: platser, bokad: bokad };
-    await updateDoc(staffDoc, newFields);
-// ---
-
-    document.querySelector("#check-modal").style.display = "flex";
-
-    setBokadText(bokad ? "bokat" : "avbokat");
-  };
-
-  const addPassToProfile = async (passId) => {
-
-    const inloggadId = inloggadUser.id
-    
-    const tidigarePass = inloggadUser.bokadePass
-
-    const newPassLista = []
-
-
-    if (tidigarePass) {
-      tidigarePass.map((item, index) => {
-        newPassLista.push(passId)
-        newPassLista.push(item)
-      })
-    } else {
-      newPassLista.push(passId)
-    }
-
-      // UPPDATERAR DATA
-      const staffDoc = doc(db, 'profiler', inloggadId);
-      const newFields = { bokadePass: newPassLista };
-      await updateDoc(staffDoc, newFields);
-    
-    };
-    
-
-//--
-
-  const openUpdateModal = (id) => {
-    document.querySelector(`#update-modal-${id}`).style.display = "flex";
-  };
-
- // KALENDER
+   // KALENDER
 
  const [date, setDate] = useState(new Date())
  const [passDenDagen, setPassDenDagen] = useState([])
 
 
  const sortPass = (e) => {
+  console.log(e);
 
   const filteredPass = pass.filter((pass) => {
       return pass.dag == e 
@@ -134,13 +79,61 @@ function BookingPage() {
  }
 
 
-// SORTERA PASSEN
 
-const [passKategorier, setPassKategorier] = useState()
+  // BOKA-KNAPPEN
+
+  const handleBokaBtn = async (passId, platser, ) => {
+
+    inloggadUser.bokadePass.find((item) => {
+      if (passId == item) avbokaPass() })
+      
+      
+      
+      openLoadingModal()
+
+      addPassToProfile(passId)
+      
+    };
+
+    const addPassToProfile = async (passId) => {
+
+      const inloggadId = inloggadUser.id
+      
+      const tidigarePass = inloggadUser.bokadePass
+
+      const newPassLista = []
+
+
+      if (tidigarePass) {
+        tidigarePass.map((item, index) => {
+          newPassLista.push(passId)
+          newPassLista.push(item)
+        })
+      } else {
+        newPassLista.push(passId)
+      }
+
+        // UPPDATERAR DATA PROFILER
+        const staffDoc = doc(db, 'profiler', inloggadId);
+        const newFields = { bokadePass: newPassLista };
+        await updateDoc(staffDoc, newFields);
+
+        UpdateLocalStorage(inloggadUser.id)
+
+        getPass()
+
+        closeLoadingModal()
+
+        document.querySelector("#check-modal").style.display = "flex";
+
+        
+    
+    };
+
+// SORTERA PASSEN
 
 const sortKategories = (selectedKategori) => {
 
- setPassKategorier(selectedKategori)
 
  const filteredPass = pass.filter((pass) => {
      return pass.kategori == selectedKategori
@@ -149,9 +142,42 @@ const sortKategories = (selectedKategori) => {
  setPassDenDagen(filteredPass)
 }
 
-
-
   const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
+
+// START: AVBOKA PASS  ====================================================
+
+const avbokaPass = async (passId, passPlatser) => {
+
+  let newBokadePass = []
+
+  inloggadUser.bokadePass.find((item) => {
+    if (passId == item) {
+    } else {
+      newBokadePass.push(item)
+    }
+  })
+
+    // UPPDATERAR DATA
+      const profulerDoc = doc(db, 'profiler', inloggadUser.id);
+      const newFields = { bokadePass: newBokadePass,};
+      await updateDoc(profulerDoc, newFields);
+
+      UpdateLocalStorage(inloggadUser.id)
+
+      passPlatser--
+
+      // UPPDATERAR DATA PASS
+      const passfDoc = doc(db, "pass", passId);
+      const newFields2 = { platser: passPlatser,};
+      await updateDoc(passfDoc, newFields2);
+
+getPass()
+
+}
+
+
+// END: AVBOKA PASS  ====================================================
+
 
   return (
     <>
@@ -184,6 +210,14 @@ const sortKategories = (selectedKategori) => {
             
             {passDenDagen.map((pass, index) => {
 
+                let BTN_TEXT = 'Boka'
+
+                  inloggadUser.bokadePass.map((item) => {
+                    if (pass.id == item) {
+                      BTN_TEXT = 'Avboka'
+                    } 
+                  })
+
                 return(
                     <>
                     <div key={index} className='pass-card center'>
@@ -195,14 +229,15 @@ const sortKategories = (selectedKategori) => {
                             {pass.tid}</p>
                         </div>
                         <h2>instruktör: {pass.instruktör}</h2>
-                        <button class="myButton booking-btn" onClick={() => handleBokaBtn(pass.id, "pass", pass.platser)}> {pass.bokad ? 'Avboka' : 'Boka'}</button>
+                        <button class="myButton booking-btn" onClick={() => handleBokaBtn(pass.id, pass.platser)}>{BTN_TEXT}</button>
+
                     </div>
 
                     </>
                 )
             })}
         
-                    <CheckModal bokadText={bokadText} />
+                    <CheckModal bokadText={'Bokat!'} />
 
         </section>
         </div>
