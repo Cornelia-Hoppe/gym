@@ -1,6 +1,6 @@
 import React from 'react'
 import style from "./HomeAbout.module.css";
-import {  ImArrowRight } from "react-icons/im";
+// import {  ImArrowRight } from "react-icons/im";
 const HomeAbout = () => {
   return (
     <>

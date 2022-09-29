@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Update_modal_Staff from './Update_modal_Staff';
 import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
-import { BsFillPencilFill } from 'react-icons/bs'
+import { FaPencilAlt } from "@react-icons/all-files/fa/FaPencilAlt";
 import Update_modal_product from './Update_modal_product';
 import Calendar from 'react-calendar';
 import Menu from '../Components/Navbar/components/Menu';
@@ -482,7 +482,7 @@ const search = (text) => {
                         <h2>instruktör: {pass.instruktör}</h2>
                         <button 
                             onClick={() => openUpdateModalPass(pass.id)}
-                            className='myButton admin-edit-btn'><BsFillPencilFill className='pen-icon'/>
+                            className='myButton admin-edit-btn'><FaPencilAlt className='pen-icon'/>
                         </button>
                         <button className='staff-btn-delete myButtonDelete' onClick={() => {deletePass(pass.id, 'pass')}}>Radera</button>
 
@@ -603,7 +603,7 @@ const search = (text) => {
                     <p className='m10'>{produkt.kategori}</p>
                   <img className='img-produkt' src={produkt.img} alt={`Bild på ${produkt.produktNamn}`} />
                 
-                  <button class="myButton admin-edit-btn" onClick={() => openProductUpdateModal(produkt.id)}><BsFillPencilFill className='pen-icon' /></button>
+                  <button class="myButton admin-edit-btn" onClick={() => openProductUpdateModal(produkt.id)}><FaPencilAlt className='pen-icon' /></button>
 
                   <button className='staff-btn-delete myButtonDelete' onClick={() => {deleteProdukter(produkt.id, 'produkter')}}>Radera</button>
                 </div>
@@ -700,7 +700,7 @@ const search = (text) => {
                             <h1 id={`${staff.id}-name`}>{staff.name}, {staff.age} år</h1>
                             <img className='staff-img' src={staff.img} alt={`bild på ${staff.name}`} />
                             <p className='staff-text'>{staff.text}</p>
-                            <button className='admin-edit-btn myButton' onClick={() => openUpdateModal(staff.id)}><BsFillPencilFill className='pen-icon' /></button>
+                            <button className='admin-edit-btn myButton' onClick={() => openUpdateModal(staff.id)}><FaPencilAlt className='pen-icon' /></button>
                             <button className='staff-btn-delete myButtonDelete' onClick={() => {deleteStaff(staff.id, 'staff')}}>Radera</button>
 
                         </div>

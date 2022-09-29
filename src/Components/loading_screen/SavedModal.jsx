@@ -1,7 +1,7 @@
 import React from 'react'
 import style from "./SavedModal.module.css"
 
-import { ImCross } from 'react-icons/im';
+import { ImCross } from '@react-icons/all-files/im/ImCross';
 export default function SavedModal(props) {
         return (
           <>  <div className={style.modal}>
