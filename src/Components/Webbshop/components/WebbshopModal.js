@@ -5,7 +5,6 @@ import { GrClose } from "@react-icons/all-files/gr/GrClose";
 import { IoIosArrowUp } from "@react-icons/all-files/io/IoIosArrowUp";
 import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
 import { IoIosCart } from "@react-icons/all-files/io/IoIosCart";
-
 import "../css/WebbshopModal.css";
 
 function WebbshopModal(props) {
@@ -27,6 +26,7 @@ function WebbshopModal(props) {
 
   props.item.chosenSize = global.chosenSize;
   console.log(props.item);
+
   function addItemToCart() {
     addItem(props.item);
     props.closeModal(false);

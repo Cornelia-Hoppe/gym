@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { CartProvider } from "react-use-cart" 
 import "react-calendar/dist/Calendar.css";
 import Homepage from "./Components/Home/Homepage";
 import Footer from "./Components/Footer/Footer";
@@ -29,7 +30,9 @@ function App() {
   }
   return (
     <>
+    {/* <AdminPage /> */}
       {/* <LoadingScreen /> */}
+      <CartProvider>
           <Menu setOpenCart={setOpenCart} updateAfterLogin={updateAfterLogin}/>
         {openCart && (
         <Cart
@@ -52,6 +55,7 @@ function App() {
         </Suspense>
       </ScrollToTop>
       <Footer />
+      </CartProvider>
     </>
   );
 }
