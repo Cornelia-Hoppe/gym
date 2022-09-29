@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import LoggedInModal from "./LoggedInModal";
-import { BiLock } from "react-icons/bi";
+// import { BiLock } from "react-icons/bi";
 
 function Login() {
   const navigate = useNavigate();
@@ -25,14 +25,14 @@ function Login() {
         //setIsLogedIn(true);
         //clearFields();
 
-        navigate("/home"); //dispaly.LoggedInModal(), lägg till denna innan navigate  setIsLogedIn(true)  clearFields()
+        navigate("/gym"); //dispaly.LoggedInModal(), lägg till denna innan navigate  setIsLogedIn(true)  clearFields()
       })
       .catch((error) => console.error(error));
   };
 
   const signOutClick = () => {
     auth.signOut();
-    navigate("/home");
+    navigate("/gym");
     console.log(auth);
   };
 

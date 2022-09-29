@@ -2,7 +2,7 @@ import React from 'react'
 import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useState, useEffect } from "react";
-import { GrFormClose } from 'react-icons/gr'
+import { GrFormClose } from "@react-icons/all-files/gr/GrFormClose";
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
 

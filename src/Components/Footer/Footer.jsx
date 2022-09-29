@@ -1,7 +1,11 @@
 import React from "react";
 import "./Footer.css";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";
+import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
+import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter";
+import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
 import { Link } from "react-router-dom";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 const Footer = () => {
   return (

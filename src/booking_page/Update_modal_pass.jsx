@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../admin_page/AdminPage.css'
-import { GrFormClose } from 'react-icons/gr'
+import { GrFormClose } from "@react-icons/all-files/gr/GrFormClose";
 import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useEffect } from 'react'
