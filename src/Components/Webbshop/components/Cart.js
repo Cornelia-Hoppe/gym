@@ -1,11 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useCart } from "react-use-cart";
-import { IoIosClose } from "react-icons/io";
-import { BsTrash } from "react-icons/bs";
-import { BiMinus, BiPlus } from "react-icons/bi";
-import { SiKlarna } from "react-icons/si";
-import emptyCart from "../images/empty-cart.png";
+import { GrClose } from "@react-icons/all-files/gr/GrClose";
+import { BsTrash } from "@react-icons/all-files/bs/BsTrash";
+import { BiMinus} from "@react-icons/all-files/bi/BiMinus";
+import { BiPlus } from "@react-icons/all-files/bi/BiPlus";
+// import { SiKlarna } from "@react-icons/all-files/si/SiKlarna";
 
 import "../css/Cart.css";
 
@@ -43,7 +43,7 @@ function Cart({ closeCart }) {
       <div className="cart-header">
         <div className="cart-header-1">
           <h1 className="cart-header-title">Kundvagn</h1>
-          <IoIosClose
+          <GrClose
             className="cart-header-exit"
             onClick={() => closeCart(false)}
             />
@@ -104,7 +104,7 @@ function Cart({ closeCart }) {
         <div className="cart-checkout-buttons">
           <button className="cart-checkout-button">Till kassan</button>
           <button className="cart-checkout-klarna">Fortsätt med <div className="klarna-container">
-            <SiKlarna className="klarna-icon"/>
+            <img src=""></img>
           </div></button>
         </div>
       </div>

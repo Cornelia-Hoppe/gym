@@ -1,26 +1,29 @@
-.Listitem{
-    width: 100%;
-    height: 60px;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+.Listitem {
+  width: 100%;
+  height: 60px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 0.4rem;
 }
-.item-name{
-    margin: 0;
-    font-size: 22px;
-    color: #CFEEFF;
+
+.item-name {
+  margin: 0;
+  font-size: 22px;
+  color: #cfeeff;
 }
-.item-icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    padding: 0 10px 0 20px;
-    color:#CFEEFF;
+.item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px 0 20px;
+  color: #cfeeff;
 }
-svg{
-    width: 25px;
-    height: 25px;
+.item-icon svg {
+  transform: scale(2.8);
+  
+}
+.item-icon path {
+  stroke: #cfeeff;
 }

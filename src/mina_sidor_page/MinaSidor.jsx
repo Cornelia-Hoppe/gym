@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { AiFillEdit } from 'react-icons/ai';
+import { AiFillEdit } from "@react-icons/all-files/ai/AiFillEdit";
 import './minaSidor.css'
 import UpdateProfileModal from './UpdateProfileModal';
 import { db } from '../firebase-config'

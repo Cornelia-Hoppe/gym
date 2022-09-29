@@ -9,7 +9,7 @@
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 10%;
   margin: 0;
   padding: 0;
@@ -26,16 +26,17 @@
   border-radius: 50%;
 }
 .menu-mobile-logo {
-  padding-top: 0.6rem;
-  color: white;
+  height: 4.4rem;
+  margin-bottom: 0.8rem;
+  transform: scale(1.2)
 }
 .menu-cart{
   position: relative;
 }
 .menu-mobile-cart {
   color: white;
-  width: 44px;
-  height: 44px;
+  width: 4rem;
+  height: 4rem;
 }
 .signup-section {
   position: absolute;
@@ -45,9 +46,12 @@
   justify-content: center;
 }
 .menu-mobile-button {
-  color: white;
-  width: 44px;
-  height: 44px;
+  width: 4rem;
+  height: 4rem;
+  margin: 0;
+}
+.menu-mobile-button path {
+  stroke: white;
 }
 svg {
   padding-left: 0.6rem;
@@ -58,7 +62,6 @@ svg {
 }
 .active p {
   text-decoration: underline;
-  
 }
 
 @media (min-width: 1000px) {
@@ -74,11 +77,13 @@ svg {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 55px;
+    margin: 0 50px;
   }
+
   .menu-desktop-logo {
-    padding-top: 1rem;
+    height: 4rem;
   }
+
   .menu-desktop-list {
     display: flex;
     margin-left: 100px;
@@ -89,12 +94,12 @@ svg {
     height: 44px;
   }
   .menu-desktop-list svg:hover {
-    color: rgba(115, 167, 193);
+    color: #cfeeff;
     transition: 0.2s;
   }
 
   .menu-desktop-list p:hover {
-    color: rgba(115, 167, 193);
+    color: #cfeeff;
     transition: 0.1s;
   }
 

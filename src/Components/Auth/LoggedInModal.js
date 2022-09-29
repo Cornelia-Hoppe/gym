@@ -1,6 +1,6 @@
 import React from "react";
 import "./LoggedInModal.css";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck } from "@react-icons/all-files/fa/FaCheck";
 
 function LoggedInModal() {
   const closeModal = () => {

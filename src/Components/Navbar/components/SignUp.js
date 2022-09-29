@@ -1,12 +1,16 @@
 import { useState } from "react";
 
 import FormInput from "./FormInput";
-import SimpleModal from "../../simpleModal/SimpleModal";
-import "../css/signUp.css";
-//Icons
-import { IoIosClose } from "react-icons/io";
-import { db } from '../../../firebase-config'
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+import { GrClose } from "@react-icons/all-files/gr/GrClose";
+import { db } from "../../../firebase-config";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 
 function SignUp({ closeSignup }) {
   const [values, setValues] = useState({
@@ -63,23 +67,44 @@ function SignUp({ closeSignup }) {
     {
       id: 6,
       name: "phoneNumber",
-      type: "number",
+      type: "numbers",
       placeholder: "Telefonnummer",
       lable: "Telefonnummer",
     },
+    {
+      id: 7,
+      name: "adress",
+      type: "text",
+      placeholder: "Ex. Gatavägen 1",
+      lable: "Adress",
+    },
+    {
+      id: 8,
+      name: "postNumber",
+      type: "numbers",
+      placeholder: "Postnummer",
+    },
+    {
+      id: 9,
+      name: "city",
+      type: "text",
+      placeholder: "Stad",
+    },
   ];
 
-  const emailAndPassword = inputs.slice(0, 3);
-  const personalInformation = inputs.slice(3, 9);
+  const firstThree = inputs.slice(0, 3);
+  const rest = inputs.slice(3, 9);
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-    const handleSubmit = (e) =>{
-      e.preventDefault();
-      console.log(values); //Console-logar ut värdena som skrivits in i fälten vid submit (Email och lösenord)
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(values); //Console-logar ut värdena som skrivits in i fälten vid submit (Email och lösenord)
+    createProfil();
+  };
 
   // const createProfil = async () => {
   //   await addDoc(profilerCollectionRef, {

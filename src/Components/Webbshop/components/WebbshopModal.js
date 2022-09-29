@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useCart } from "react-use-cart";
 import { motion } from "framer-motion";
-import {
-  IoIosArrowUp,
-  IoIosArrowDown,
-  IoIosCart,
-  IoIosClose,
-} from "react-icons/io";
+import { GrClose } from "@react-icons/all-files/gr/GrClose";
+import { IoIosArrowUp } from "@react-icons/all-files/io/IoIosArrowUp";
+import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
+import { IoIosCart } from "@react-icons/all-files/io/IoIosCart";
 
 import "../css/WebbshopModal.css";
 
@@ -70,17 +68,20 @@ function WebbshopModal(props) {
 
   return (
     <motion.div
+     
       initial={{
-        z: 1,
-        opacity: 0.3,
-      }}
-      animate={{
-        z: 0,
-        opacity: 1,
-      }}
+          z: 1,
+          opacity: 0.3,
+        }}
+        animate={{
+          z: 0,
+          opacity: 1,
+        }}
+     
       className="WebbshopModal"
+    
     >
-      <IoIosClose
+      <GrClose
         className="modal-exit"
         onClick={() => {
           props.closeModal(false);
