@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal'
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal'
 
-function Update_modal_product({ id, img, kategori, price, produktNamn, getProdukter, productBrand, productshortDesc, productColor, orderSise }) {
+function Update_modal_product({ id, img, kategori, price, produktNamn, getProdukter, productBrand, productshortDesc, productColor, orderSize }) {
 
     const [newProduktNamn, setNewProduktNamn] = useState({produktNamn})
     const [newKategori, setNewKategori] = useState({kategori})
@@ -18,7 +18,7 @@ function Update_modal_product({ id, img, kategori, price, produktNamn, getProduk
     const [newProductBrand, setNewProductBrand] = useState(productBrand)
     const [newProductColor, setNewProductColor] = useState(productColor)
     const [newProductshortDesc, setNewProductshortDesc] = useState(productshortDesc)
-    const [newOrderSise, setNewOrderSise] = useState(orderSise)
+    const [newOrderSise, setNewOrderSise] = useState(orderSize)
 
     useEffect(() => {
         setNewProduktNamn(produktNamn)

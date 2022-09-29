@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../css/signUp.css";
+
 import FormInput from "./FormInput";
 import { GrClose } from "@react-icons/all-files/gr/GrClose";
 import { db } from "../../../firebase-config";
@@ -106,44 +106,48 @@ function SignUp({ closeSignup }) {
     createProfil();
   };
 
-  // START: SPARAR I DATABASEN
-
-  // PASS
-  const createProfil = async () => {
-    const passCollectionRef = collection(db, "profiler");
-
-    await addDoc(passCollectionRef, {
-      email: values.email,
-      password: values.password,
-    });
-    alert("Sparat!");
-
-    // clearFields()
-  };
-
-  // END: SPARAR I DATABASEN
-
+  // const createProfil = async () => {
+  //   await addDoc(profilerCollectionRef, {
+  //     name: values.firstName,
+  //     lastName: values.lastName,
+  //     email: values.email,
+  //     phoneNumber: values.phoneNumber,
+  //     password: values.password,
+  //   });
+  // };
+  // LÄGGER TILL ANVÄNDAREN I DATABASEN - END
   return (
-    <article className="SignUpWrapper">
-      <div className="SignUp">
-        <GrClose
-          className="cancel-button"
-          onClick={() => closeSignup(false)}
-        />
-        <form className="signup-form" onSubmit={handleSubmit}>
-          <h1 className="signup-title">Skapa Konto</h1>
-          {firstThree.map((input) => (
-            <FormInput
-              key={input.id}
-              {...input}
-              value={values[inputs.name]}
-              onChange={onChange}
-            />
-          ))}
-          <button className="signup-button">Skapa Konto</button>
-        </form>
-      </div>
-    </article>
+    <div className="SignUp">
+      <IoIosClose
+        className="cancel-button"
+        onClick={() => closeSignup(false)}
+      />
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <h1 className="signup-title">Skapa Konto</h1>
+        {personalInformation.map((input) => (
+          <FormInput
+            className="signup-first-inputs"
+            key={input.id}
+            {...input}
+            value={values[inputs.name]}
+            onChange={onChange}
+          />
+        ))}
+        {emailAndPassword.map((input) => (
+          <FormInput
+            key={input.id}
+            {...input}
+            value={values[inputs.name]}
+            onChange={onChange}
+          />
+        ))}
+        <button className="signup-button">Skapa Konto</button>
+      </form>
+      <SimpleModal
+        modalText={`Välkommen till klubben ${values.firstName}!`}
+        // isOpen={modalIsOpen}
+      />
+    </div>
   );
 }
 

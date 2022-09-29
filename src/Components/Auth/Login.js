@@ -156,24 +156,24 @@ function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
         password: "",
     });
 
-    const inputs = [
-        {
-            id: 1,
-            name: "email",
-            type: "email",
-            placeholder: "Email",
-        },
-        {
-            id: 2,
-            name: "password",
-            type: "password",
-            placeholder: "Lösenord",
-        },
-    ];
+  const inputs = [
+    {
+      id: 1,
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+    },
+    {
+      id: 2,
+      name: "password",
+      type: "password",
+      placeholder: "Lösenord",
+    },
+  ];
 
-    const onChange = (e) => {
-        setValues({ ...values, [e.target.name]: e.target.value });
-    };
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
     let userProfile = []
 

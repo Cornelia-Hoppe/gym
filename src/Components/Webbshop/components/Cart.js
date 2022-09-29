@@ -8,7 +8,6 @@ import { BiPlus } from "@react-icons/all-files/bi/BiPlus";
 // import { SiKlarna } from "@react-icons/all-files/si/SiKlarna";
 
 import "../css/Cart.css";
-//INSTALLERA npm install react-use-car
 
 function Cart({ closeCart }) {
   const {
@@ -18,7 +17,18 @@ function Cart({ closeCart }) {
     cartTotal,
     updateItemQuantity,
     removeItem,
+    isEmpty
   } = useCart();
+
+  function ifEmptyCart() {
+    if (isEmpty) {
+      return(
+        <div className="empty-cart-container">
+          <img src={emptyCart} className="empty-cart-image"/>
+          <h1 className="empty-cart-title">Din varukorg är tom!</h1>
+        </div>);
+    }
+  }
 
   return (
     <motion.div
@@ -36,13 +46,14 @@ function Cart({ closeCart }) {
           <GrClose
             className="cart-header-exit"
             onClick={() => closeCart(false)}
-          />
+            />
         </div>
         <div className="cart-header-2">
-          <p className="cart-header-p">{totalUniqueItems} produkter</p>
+          <p className="cart-header-p">{totalUniqueItems} produkter ({totalItems} totalt)</p>
         </div>
       </div>
       <div className="cart-items">
+        {ifEmptyCart()}
         {items.map((item, index) => {
           return (
             <div className="cart-item" key={index}>
@@ -50,14 +61,14 @@ function Cart({ closeCart }) {
               <div className="cart-item-rows">
                 <div>
                   <div className="cart-item-row-1">
-                    <h4 className="cart-item-name">{item.name}</h4>
+                    <h3 className="cart-item-name">{item.produktNamn}</h3>
                     <BsTrash
                       onClick={() => removeItem(item.id)}
                       className="cart-item-delete"
-                    />
+                      />
                   </div>
                   <div className="cart-item-row-2">
-                    <p className="cart-item-size-color">S | {item.color}</p>
+                    <p className="cart-item-size-color">{item.chosenSize} | {item.color}</p>
                   </div>
                 </div>
                 <div className="cart-item-row-3">
@@ -87,7 +98,7 @@ function Cart({ closeCart }) {
         <div className="cart-checkout-price-container">
           <p>Totalt belopp</p>
           <div>
-          <h4 className="cart-checkout-price">{cartTotal}kr</h4>
+          <h3 className="cart-checkout-price">{cartTotal}kr</h3>
           </div>
         </div>
         <div className="cart-checkout-buttons">
@@ -97,9 +108,6 @@ function Cart({ closeCart }) {
           </div></button>
         </div>
       </div>
-        <h5>
-          Cart ({totalUniqueItems}) Total Items: ({totalItems})
-        </h5>
     </motion.div>
   );
 }
