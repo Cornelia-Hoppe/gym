@@ -6,7 +6,6 @@ import './minaSidor.css'
 import UpdateProfileModal from './UpdateProfileModal';
 import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
-import Menu from '../Components/Navbar/components/Menu';
 import icon from "./icon.png"
 import closeLoadingScreen from '../Components/loading_screen/CloseLoadingModal'
 import Login from '../Components/Auth/Login'
@@ -89,7 +88,6 @@ pass.find((pass, index) => {
 
    return user ? ( 
     <>
-      <Menu updateAfterLogin={updateAfterLogin} />
       <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
       <section className='profile-wrapper'>   
        <h2 className='Desktop-heading-mypages'>Mina sidor</h2>
@@ -141,7 +139,6 @@ pass.find((pass, index) => {
     </>
   ) : (
     <>
-      <Menu updateAfterLogin={updateAfterLogin} />
       <section className='profile-wrapper'>
         <article >
           

@@ -16,7 +16,6 @@ import {
 import CheckModal from "./CheckModal";
 // import { BsFillPencilFill } from "react-icons/bs";
 import Update_modal_pass from "./Update_modal_pass";
-import Menu from "../Components/Navbar/components/Menu";
 import openLoadingModal from "../Components/loading_screen/OpenLoadingModal";
 import closeLoadingModal from "../Components/loading_screen/CloseLoadingModal";
 
@@ -148,7 +147,6 @@ function BookingPage() {
 
     return (
       <>
-        <Menu />
         <article className="booking-page-container">
           <div className="booking-page-header-desktop">
             <h1>Boka Pass</h1>

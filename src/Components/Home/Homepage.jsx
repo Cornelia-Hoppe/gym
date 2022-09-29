@@ -4,7 +4,6 @@ import LandingHome from "../LandingHome/LandingHome";
 import HomeOffer from "../HomeOffer/HomeOffer";
 import HomeAbout from "../HomeAbout/HomeAbout";
 import HomeGallery from "../HomeGallery/HomeGallery";
-import Menu from "../Navbar/components/Menu";
 import HomePersonal from "../HomePersonal/HomePersonal";
 import Arrow from "../ScrollArrow/Arrow"
 import {useAuthState} from 'react-firebase-hooks/auth';
@@ -38,7 +37,6 @@ const Homepage = () => {
   return (
     <>
       <main>
-        <Menu />
         <LandingHome />
         <LazyLoadComponent>
           <Arrow />

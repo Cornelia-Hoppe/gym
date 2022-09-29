@@ -1,6 +1,6 @@
 import React from "react";
-import "../css/Item.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import "../css/Item.css";
 
 function Item(props) {
   

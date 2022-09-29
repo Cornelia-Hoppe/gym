@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Personal.css";
 import { buttons } from "./data";
 import { getTrainer, filterTrainer } from "./services";
-import Menu from "../Navbar/components/Menu";
 //import Edit from "./Edition";
 
 
@@ -48,7 +47,6 @@ useEffect(() => {
 
     return (
       <>
-        <Menu />
         {/* Trainers nav  */}
         <div className="nav_con list">
           <h1> Vårt team</h1>
