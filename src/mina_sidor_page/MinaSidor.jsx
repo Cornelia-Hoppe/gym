@@ -55,7 +55,7 @@ function MinaSidor() {
     }
   }, [])
 
-let HI = []
+let bokatPassArray = []
 
    const getPassAndSet = () => {
     userBokadePassId.map((bokatPass) => {
