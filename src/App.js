@@ -29,6 +29,7 @@ function App() {
   }
   return (
     <>
+    {/* <AdminPage /> */}
       {/* <LoadingScreen /> */}
           <Menu setOpenCart={setOpenCart} updateAfterLogin={updateAfterLogin}/>
         {openCart && (
