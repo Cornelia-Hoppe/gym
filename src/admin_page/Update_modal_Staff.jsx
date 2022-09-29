@@ -3,36 +3,31 @@ import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useState, useEffect } from "react";
 import { GrFormClose } from 'react-icons/gr'
+import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
+import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
 
-function Update_modal_staff({ id, staffName, age, img}) {
+function Update_modal_staff({ id, staffName, age, img, getStaff, text, kategori, level}) {
 
-    const [newName, setNewName] = useState("")
-    const [newAge, setNewAge] = useState(0)
-    const [newImg, setNewImg] = useState('')
-
-    useEffect(() => {
-        setNewName(staffName)
-        setNewAge(age)
-        setNewImg(img)
-    }, [])
-
+    const [newName, setNewName] = useState(staffName)
+    const [newAge, setNewAge] = useState(age)
+    const [newImg, setNewImg] = useState(img)
+    const [newText, setNewText] = useState(text)
+    const [newKategori, setNewKategori] = useState(kategori)
+    const [newLevel, setNewLevel] = useState(level)
 
 // UPPDATERAR DATA
 
   const updateStaff = async (DBcollextion) => {
+    openLoadingModal()
     const staffDoc = doc(db, DBcollextion, id)
-    const newFields = {age: newAge, img: newImg, name: newName}
+    const newFields = {age: Number(newAge), img: newImg, name: newName, text: newText, kategori: newKategori, level: Number(newLevel)}
     await updateDoc(staffDoc, newFields)
-        
-    alert('Sparat!')
+    
+    getStaff()
     closeModal()
+    getStaff()
+    closeLoadingModal()
   }
-
-// RADERAR DATA
-  const deleteStaff = async (id, DBcollextion) => {
-    const staffDoc = doc(db, DBcollextion, id);
-    await deleteDoc(staffDoc);
-  };
 
 
 //BILD
@@ -49,12 +44,13 @@ function previewImage() {
     }
 }
 
+
 const closeModal = () => {
-    document.querySelector(`#${id}-update-modal`).style.display="none"
+    document.querySelector(`#update-modal-${id}`).style.display="none"
 }
 
   return (
-    <section id={`${id}-update-modal`} className='update-modal-wrapper'>
+    <section id={`update-modal-${id}`} className='update-modal-wrapper'>
         <article className='update-modal'>
             <GrFormClose className='close-icon' onClick={closeModal} />
             <h1>{staffName}, {age} år</h1>
@@ -69,16 +65,6 @@ const closeModal = () => {
                     defaultValue={staffName}
                 />
             </div>
-            <div className='modal-img-wrapper'>
-                <h1>Uppdatera bild:</h1>
-                 <input 
-                    type="file" 
-                    name="file" 
-                    id={`${id}-file-modal`} 
-                    accept="image/*" 
-                    onChange={previewImage} 
-                ></input>
-            </div>
                
             <div className='input-div'>
                 <h1>Ändra ålder:</h1>
@@ -89,9 +75,45 @@ const closeModal = () => {
                     defaultValue={age}
                 />
             </div>
+
+            <div className='modal-input-wrapper'>
+                <h1 className='m10'>Ändra kategori:</h1>
+                <select className='drop-down input-select' name='välj pass' onChange={(e) => setNewKategori(e.target.value)}>
+                  <option value="null">Ange den anställdes kategori</option>
+                  <option value="ledning">Ledning</option>
+                  <option value="tränare">Tränare</option>
+                  <option value="reception">Reception</option>
+                  <option value="instruktör">Instruktör</option>
+                </select>
+              </div>
+
+              <div className='modal-input-wrapper'>
+              <h1>Ändra din beskrivning: </h1>
+              <textarea type="text" defaultValue={text} onChange={(e) => {setNewText(e.target.value)}}  />
+              </div>
+
+              <div className='modal-input-wrapper'>
+                <h1 className='m10'>Ändra level:</h1>
+                <select className='drop-down input-select' placeholder={level} defaultValue={level} name='välj pass' onChange={(e) => setNewLevel(e.target.value)}>
+                  <option value="1">Level 1</option>
+                  <option value="2">Level 2</option>
+                  <option value="3">Level 3</option>
+                </select>
+              </div>
+
+            <div className='modal-img-wrapper'>
+                <h1>Uppdatera bild:</h1>
+                 <input 
+                    type="file" 
+                    name="file" 
+                    id={`${id}-file-modal`} 
+                    accept="image/*" 
+                    onChange={previewImage} 
+                ></input>
+            </div>
+
             <div className="m30">
-                <button onClick={() => {updateStaff('staff')}}>Spara</button>
-                <button onClick={() => {deleteStaff(id, 'staff')}}>Radera anställd</button>
+                <button className='m3' onClick={() => {updateStaff('staff')}}>Spara</button>
             </div>
             
         </article>

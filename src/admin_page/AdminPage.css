@@ -6,8 +6,21 @@ input, select{
     margin: 10px;
 }
 
+.style-admin-add{
+    margin-top: 50px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .m10{
-    margin-right: 25px;
+    margin: 10px;
+}
+
+.left{
+    left: 20px;
 }
 
 .center{
@@ -19,37 +32,76 @@ input, select{
 
 }
 
+.center-newpass{
+    border-radius: 10px;
+    background: #DDE6E6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    margin: 15px auto 15px auto;
+    width: 90%;
+}
+
+.center-products{
+    border-radius: 10px;
+    background: #DDE6E6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    margin: 15px auto 15px auto;
+    width: 90%;
+}
+
+.center-employes{
+    border-radius: 10px;
+    background: #DDE6E6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    margin: 15px auto 15px auto;
+    width: 90%;
+}
+
 .update-modal-wrapper{
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
+  
     position: fixed;
     top: 0px;
     left: 0px;
+    padding: 0 0 40px 0;
     background-color: rgba(0, 0, 0, .5);
     display: flex;
     justify-content: center;
     align-items: center;
     display: none;
     z-index: 1;
-    
 }
 
 .update-modal{
-    margin-right: 195px;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(255, 255, 255);
-    position: fixed;
-    z-index: 3;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    
+    width: 90vw;
+    height: 87vh;
+    background-color: rgb(227 227 227);
+    border-radius: 3px;
+    position: relative;
+    overflow: auto;
+    top: 63px;
+    margin: 0 0 100px 0;
 }
 
-
+.update-modal h1{
+    margin: 10px;
+    font-size: 23px;
+}
 .input-div{
     margin-right: 25px;
     width: 50%;
@@ -57,18 +109,10 @@ input, select{
   margin: 5px 0;
  
   display: inline-block;
-  border: 1px solid #ccc;
+  
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 15px;
-  
-}
-.input-div input{
-    width: 50%;
-}
-
-.drop-down{
-    width: 50%;
+  font-size: 8px;
 }
 
 .input-div h1{
@@ -76,19 +120,12 @@ input, select{
 }
 
 .m30{
-    margin-top: 5px;
-    
-}
-.modal-button{
-    font-size: 20px;
-    margin: 5px;
-    width: 100%;
-    padding: 12px 12px 12px 12px;
-    background-color: rgb(226, 237, 237);
+    margin: 30px;
+    margin-top: -10px;
 }
 
 .m30 button{
-    margin:5;
+    margin: 5px;
 }
 
 .close-icon{
@@ -100,16 +137,22 @@ input, select{
 }
 
 .pen-icon{
-    font-size: 10px;
+    width: 19px;
+    height: 19px;
 }
 
 .staff-card{
-    border: solid 2px black;
+    border-radius: 10px;
     width: 250px;
     padding: 15px;
     margin: 15px;
-    border-radius: 3px;
+    border-radius: 10px;
     position: relative;
+    background-color: #FFFFFF;
+}
+
+.staff-text{
+    margin: 10px 0 65px 0;
 }
 
 .line{
@@ -120,38 +163,60 @@ input, select{
 }
 
 .staff-img{
-    width: 25%;
     
-    object-fit: contain;
-    border: 1px solid rgba(0, 39, 84, 0.5);
-    border-radius: 10px;
-    box-shadow: 8px 7px 5px 0px rgba(0,0,0,0.10);
-}
-
-.modal-produktNamn{
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: rgba(0, 39, 84);
+        width: 25%;
+        
+        object-fit: contain;
+        border: 1px solid rgba(0, 39, 84, 0.5);
+        border-radius: 10px;
+        box-shadow: 8px 7px 5px 0px rgba(0,0,0,0.10);
+    }
+    .staff-img1{
+        width: 55%;
+        
+        object-fit: contain;
+        border: 1px solid rgba(0, 39, 84, 0.5);
+        border-radius: 10px;
+        box-shadow: 8px 7px 5px 0px rgba(0,0,0,0.10);
     
+    }
+    .modal-produktNamn{
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: rgba(0, 39, 84);
+        
+    
+    
+    }
+    .modal-pris{
+        margin-top: -16px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: rgba(0, 39, 84);
+    
+    }
+    
+    .modal-kategori{
+        margin-top: -7px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: rgba(0, 39, 84);
+    
+    }
+    .m3{
+        padding: 10px;
+        font-size: 20px;
+        margin: 5px;
+        width: 100%;
+        background-color: rgb(226, 237, 237);
+        padding: 16px 32px;
+        text-align: center;
+        
+        display: inline-block;
+        font-size: 16px;
+    }
 
-
-}
-.modal-pris{
-    margin-top: -16px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: rgba(0, 39, 84);
-
-}
-
-.modal-kategori{
-    margin-top: -15px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: rgba(0, 39, 84);
-
-}
 
 #preview-modal{
     width: 80%;
@@ -164,45 +229,54 @@ input, select{
     max-height: 200px;
 }
 
-.modal-img-wrapper{
-    width: 50%;
-  padding: 12px 20px;
-  margin: 2px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 15px;
-  
-   
 
+
+.modal-input-wrapper{
+    min-height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 0 0 40px 0;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 1;
 }
 
 .modal-img-wrapper input{
-    margin-left: 35px;
-    font-size: 9px;
-    
+    margin-left: 72px;
+    font-size: 12px;
 }
-
-.modal-input-wrapper{
-    width: 85%;
-  padding: 12px 20px;
-  margin: 2px 0;
-  
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 15px;
-  
-    
+.drop-down{
+    margin-left: 20px;
+    padding: 8px;
 }
-
 .column{
     flex-direction: column;
 }
 
 .modal-input-wrapper input{
     height: 20px;
+    margin-left: 0px;
 }
+
+.modal-input-wrapper p{
+margin: 0px;
+}
+
+.modal-input-wrapper-level{
+display: flex;
+text-align: left;
+}
+
+.modal-input-wrapper-level input, select{
+    height: 10%;
+    display: flex;
+    text-align: left;
+    }
 
 .img-produkt{
     width: 40%;
@@ -219,56 +293,69 @@ height: 200px;
     width: auto;
 }
 
+.modal-button{
+    font-size: 20px;
+    
+    width: 100%;
+    padding: 12px 12px 12px 12px;
+    background-color: rgb(226, 237, 237);
+}
+
+
+
+
+
 
 @media (min-width: 800px){
 
     
-.update-modal{
-    margin-left: 195px;
-    width: 60%;
-    height: 100%;
-    background-color: rgb(249, 246, 246);
-    position: fixed;
-    z-index: 3;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    scrollbar-width: thin;
+    .update-modal{
+        margin-left: 195px;
+        width: 60%;
+        height: 100%;
+        background-color: rgb(242, 240, 240);
+        position: fixed;
+        z-index: 3;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        
+    }
     
+    
+    .input-div{
+        width: 50%;
+      padding: 10px 20px;
+      margin: 3px 0;
+     
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      
+    }
+    
+    
+    .modal-img-wrapper {
+        width: 50%;
+      padding: 12px 20px;
+      margin: 2px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+       
+    
+    }
+    
+    .modal-img-wrapper input{
+        margin-left: 72px;
+        font-size: 12px;
+    }
+    .drop-down{
+        margin-left: 125px;
+        padding: 8px;
+    }
 }
-
-
-.input-div{
-    width: 50%;
-  padding: 10px 20px;
-  margin: 3px 0;
- 
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  
-}
-
-
-.modal-img-wrapper {
-    width: 50%;
-  padding: 12px 20px;
-  margin: 2px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-   
-
-}
-
-.modal-img-wrapper input{
-    margin-left: 72px;
-    font-size: 12px;
-}
-
-  
-
-  }

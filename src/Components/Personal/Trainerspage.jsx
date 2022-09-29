@@ -77,15 +77,15 @@ useEffect(() => {
 
       </div>
       {/* Trainers Info & img */}
-
+                
       <div className=" container" >
-        <div className="text">
+    {/*    <div className="text">
       {trainersPerson &&
             trainersPerson.map((type) => (
               <h4 >{type.kategori}</h4>
             ))}
           </div>
-            
+            */ }
 
         <div className="image_box">
           {trainersPerson &&
