@@ -10,6 +10,7 @@ import ScrollToTop from "./Components/ScrollToTop";
 import "react-calendar/dist/Calendar.css";
 import LoadingScreen from "./Components/loading_screen/LoadingScreen";
 import Webbshop from "./Components/Webbshop/Webbshop";
+// import AdminPage from "./admin_page/AdminPage"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <>
+    {/* <AdminPage /> */}
       <LoadingScreen />
       <ScrollToTop>
         <Routes>

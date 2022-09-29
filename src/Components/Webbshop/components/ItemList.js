@@ -84,7 +84,7 @@ useEffect(() => {
             item={item}
             key={index}
             type={item.type}
-            orderSize={item.orderSise}
+            orderSize={item.orderSize}
           />
         ))}
       <div className="list-section">

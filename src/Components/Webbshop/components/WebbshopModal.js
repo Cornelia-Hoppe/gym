@@ -26,9 +26,9 @@ function WebbshopModal(props) {
     global.chosenSize = chosenSize;
     setSelected(chosenSize);
   }
-  
-  props.item.chosenSize = global.chosenSize;
 
+  props.item.chosenSize = global.chosenSize;
+  console.log(props.item);
   function addItemToCart() {
     addItem(props.item);
     props.closeModal(false);

@@ -1,5 +1,5 @@
 import "../css/DesktopLogin.css";
-import Login from "./Login";
+import Login from "../../Auth/Login";
 import { motion } from "framer-motion";
 
 function DesktopLogin({ setOpenSignUp }) {
