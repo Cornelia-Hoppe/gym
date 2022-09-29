@@ -61,7 +61,7 @@ function NavBar({ closeNavbar, updateAfterLogin }) {
           <ListItem name="Personal" icon={<MdPeopleOutline className="icon" />} />
         </CustomLink>
         <CustomLink to="/webshop">
-          <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
+        <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
         </CustomLink>
       </div>
 

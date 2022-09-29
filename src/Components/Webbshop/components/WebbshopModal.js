@@ -9,26 +9,77 @@ import { IoIosCart } from "@react-icons/all-files/io/IoIosCart";
 import "../css/WebbshopModal.css";
 
 function WebbshopModal(props) {
-  const [openDesc, setOpenDesc] = useState(false);
+  const sizes = ["S", "M", "L", "XL"];
+  const oneSize = ["Onesize"];
 
+  //Kommentera ut denna och lägg in newSizes på rad 61 när samtliga produkter har storlek inlagt på sig.
+  // let newSizes = props.orderSize.split(",");
+
+  const [openDesc, setOpenDesc] = useState(false);
+  const [selected, setSelected] = useState(null);
   const { addItem } = useCart();
 
+  function handleSizes(e) {
+    let chosenSize = e.target.innerText;
+    global.chosenSize = chosenSize;
+    setSelected(chosenSize);
+  }
+
+  props.item.chosenSize = global.chosenSize;
+  console.log(props.item);
   function addItemToCart() {
     addItem(props.item);
     props.closeModal(false);
   }
 
+
+  function renderSize() {
+    if (props.type === "equipment") {
+      return oneSize.map((size) => (
+        <div
+          className="modal-size-block modal-onesize"
+          onClick={handleSizes}
+          style={{
+            color: selected === size ? "white" : "",
+            border: selected === size ? "none" : "",
+            backgroundColor: selected === size ? "rgba(0, 39, 84, 0.5)" : "",
+          }}
+        >
+          {size}
+        </div>
+      ));
+    } else {
+      return sizes.map((size, index) => (
+        <div
+          className="modal-size-block"
+          key={index}
+          onClick={handleSizes}
+          style={{
+            color: selected === size ? "white" : "",
+            border: selected === size ? "none" : "",
+            backgroundColor: selected === size ? "rgba(0, 39, 84, 0.5)" : "",
+          }}
+        >
+          {size}
+        </div>
+      ));
+    }
+  }
+
   return (
     <motion.div
+     
       initial={{
-        z: 1,
-        opacity: 0.3,
-      }}
-      animate={{
-        z: 0,
-        opacity: 1,
-      }}
+          z: 1,
+          opacity: 0.3,
+        }}
+        animate={{
+          z: 0,
+          opacity: 1,
+        }}
+     
       className="WebbshopModal"
+    
     >
       <GrClose
         className="modal-exit"
@@ -40,12 +91,12 @@ function WebbshopModal(props) {
       <div className="desktop-info-container">
         <div className="modal-info-container">
           <div className="modal-info">
-            <h1 className="modal-info-title">{props.brand}</h1>
+            <h1 className="modal-info-title">{props.shortDesc}</h1>
             <h1 className="modal-info-price">{props.price}:-</h1>
           </div>
           <div>
             <p className="modal-info-desc">
-              {props.shortDesc} - {props.color}
+              {props.brand} - {props.color}
             </p>
           </div>
         </div>
@@ -98,12 +149,8 @@ function WebbshopModal(props) {
             </p>
           </div>
           <p className="modal-size-title">Tillgängliga storlekar:</p>
-          <div className="modal-size-block-container">
-            <div className="modal-size-block size-block-1">S</div>
-            <div className="modal-size-block">M</div>
-            <div className="modal-size-block">L</div>
-            <div className="modal-size-block">XL</div>
-          </div>
+          {/* {sizes.map(size => `<div>${size}</div>`).join('')} */}
+          <div className="modal-size-block-container">{renderSize()}</div>
         </div>
         <div className="modal-add-container">
           <motion.button

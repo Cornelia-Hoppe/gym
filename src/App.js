@@ -1,9 +1,11 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import "react-calendar/dist/Calendar.css";
 import Homepage from "./Components/Home/Homepage";
 import Footer from "./Components/Footer/Footer";
 import LoadingPage from "./LoadingPage/LoadingPage";
+import Menu from "../src/Components/Navbar/components/Menu"
+import Cart from "../src/Components/Webbshop/components/Cart"
 const BookingPage = lazy(() => import("./booking_page/BookingPage"));
 const Personal = lazy(() => import("./Components/Personal/Trainerspage"));
 const MinaSidor = lazy(() => import("./mina_sidor_page/MinaSidor"));
@@ -12,13 +14,28 @@ const ScrollToTop = lazy(() => import("./Components/ScrollToTop"));
 const Webbshop = lazy(() => import("./Components/Webbshop/Webbshop"));
 const AdminPage = lazy(() => import("./admin_page/AdminPage"));
 //Routen till Admin ska ej finnas vid launch, är bara tillfällig.
+
 function App() {
+  const [openCart, setOpenCart] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
- 
+  const updateAfterLogin = () => {
+    setUser(JSON.parse(localStorage.getItem('user')))
+    setTimeout(setImgDelay, 500)
+  }
 
+  const setImgDelay = () => {
+    console.log(user);
+  }
   return (
     <>
       {/* <LoadingScreen /> */}
+          <Menu setOpenCart={setOpenCart} updateAfterLogin={updateAfterLogin}/>
+        {openCart && (
+        <Cart
+         closeCart={setOpenCart}
+        />
+        )}
       <ScrollToTop>
         <Suspense fallback={<LoadingPage/>}>
           <Routes>

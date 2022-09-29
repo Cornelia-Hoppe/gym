@@ -1,10 +1,8 @@
 .Menu {
   background-color: #4e78a9;
   width: 100vw;
-  height: auto;
-  position: sticky;
-  top: 0;
-  left: 0;
+  height: 10vh;
+  position: fixed;
   z-index: 4;
 }
 .menu-mobile {
@@ -13,20 +11,32 @@
   align-items: center;
   justify-content: space-between;
   gap: 10%;
-  margin: 0;
-  padding: 0;
+  margin: 1rem 0 0 0;
+  padding: 0 1rem;
 }
-
+.menu-mobile-cart-totalitems{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  right: -20%;
+  top: -15%;
+  font-weight: 500;
+  background-color: white;
+  border-radius: 50%;
+}
 .menu-mobile-logo {
-  height: 4.4rem;
+  height: 4rem;
   margin-bottom: 0.8rem;
   transform: scale(1.2)
 }
-
+.menu-cart{
+  position: relative;
+}
 .menu-mobile-cart {
   color: white;
-  width: 4rem;
-  height: 4rem;
+  width: 2.6rem;
+  height: 2.6rem;
 }
 .signup-section {
   position: absolute;
@@ -36,16 +46,12 @@
   justify-content: center;
 }
 .menu-mobile-button {
-  width: 4rem;
-  height: 4rem;
+  width: 2.6rem;
+  height: 2.6rem;
   margin: 0;
 }
 .menu-mobile-button path {
   stroke: white;
-}
-svg {
-  padding-left: 0.6rem;
-  padding-right: 0.6rem;
 }
 .menu-desktop {
   display: none;

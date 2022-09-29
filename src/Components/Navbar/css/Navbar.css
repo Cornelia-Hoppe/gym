@@ -8,8 +8,8 @@
   z-index: 2;
 }
 .exit-button {
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   margin: 1rem;
   float: right;
   color: white;
@@ -28,6 +28,7 @@
 .navbar-list {
   width: 100%;
   height: 400px;
+  padding-left: 1rem;
 }
 .navbar-list a {
   text-decoration: none;

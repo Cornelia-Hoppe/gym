@@ -175,6 +175,7 @@ function Login() {
 
 export default Login;
 
+/*
 // import "./css/Login.css";
 // import { useState, useEffect } from "react";
 // import LoginInput from "./LoginInput";
@@ -189,10 +190,10 @@ export default Login;
 // } from "firebase/firestore";
 // import UpdateLocalStorage from "../../functions/UpdateLocalStorage";
 
-// function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
-//   // HÄMTAR PROFILER FRÅN DATABASEN START
-//   const profilerCollectionRef = collection(db, "profiler");
-//   const [profiler, setProfiler] = useState([]);
+    useEffect(() => {
+        if (!localStorage.getItem('user')) setIsLogedIn(false)
+        else setIsLogedIn(true)
+    }, [])
 
 //   useEffect(() => {
 //     const getProfiler = async () => {
@@ -204,58 +205,81 @@ export default Login;
 //   }, []);
 //   // HÄMTAR PROFILER FRÅN DATABASEN END
 
-//   const [values, setValues] = useState({
-//     email: "",
-//     password: "",
-//   });
 
-//   const inputs = [
-//     {
-//       id: 1,
-//       name: "email",
-//       type: "email",
-//       placeholder: "Email",
-//     },
-//     {
-//       id: 2,
-//       name: "password",
-//       type: "password",
-//       placeholder: "Lösenord",
-//     },
-//   ];
 
-//   const onChange = (e) => {
-//     setValues({ ...values, [e.target.name]: e.target.value });
-//   };
 
 //   let userProfile = [];
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
+function Login({ setOpenSignUp, updateAfterLogin, darkText }) {
 
-//     const profile = profiler.find((item) => {
-//       return item.email === values.email;
-//     });
+// HÄMTAR PROFILER FRÅN DATABASEN START
+    const profilerCollectionRef = collection(db, "profiler")
+    const [profiler, setProfiler] = useState([])
 
-//     if (!profile) {
-//       alert("Wrong email");
-//     } else {
-//       userProfile = profile;
-//       checkPassword();
-//     }
-//   };
+    useEffect(() => {
 
-//   const checkPassword = () => {
-//     if (userProfile.password == values.password) {
-//       alert("inloggad!");
-//       window.localStorage.setItem("user", JSON.stringify(userProfile));
-//       setIsLogedIn(true);
-//       updateAfterLogin();
-//       clearFields();
-//     } else {
-//       alert("fel lösenord");
-//     }
-//   };
+        const getProfiler = async () => {
+          const data = await getDocs(profilerCollectionRef)
+          setProfiler(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+        };
+    
+        getProfiler()
+      }, [])
+// HÄMTAR PROFILER FRÅN DATABASEN END
+
+    const [values, setValues] = useState({
+        email: "",
+        password: "",
+    });
+
+  const inputs = [
+    {
+      id: 1,
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+    },
+    {
+      id: 2,
+      name: "password",
+      type: "password",
+      placeholder: "Lösenord",
+    },
+  ];
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+    let userProfile = []
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const profile = profiler.find((item) => {
+            return item.email === values.email
+        })
+
+        if (!profile) {
+            alert('Wrong email')
+        } else {
+            userProfile = profile
+            checkPassword()
+        }
+    };
+
+    const checkPassword = () => {
+        if (userProfile.password == values.password) {
+            alert('inloggad!')
+            window.localStorage.setItem('user', JSON.stringify(userProfile))
+            setIsLogedIn(true)
+            updateAfterLogin()
+            clearFields()
+
+        } else {
+            alert('fel lösenord')
+        }
+    }
 
 //   // LOGGA UT
 //   const [isLogedIn, setIsLogedIn] = useState();
@@ -325,5 +349,4 @@ export default Login;
 //     </div>
 //   );
 // }
-
-// export default Login;
+*/
