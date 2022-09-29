@@ -28,7 +28,7 @@ function AdminPage() {
     const [kategori, setKategori] = useState('')
     const [price, setPris] = useState(0)
     const [produktNamn, setProduktNamn] = useState('')
-    const [orderSise, setOrderSise] = useState('')
+    const [orderSise, setOrderSise] = useState('S,M,L,XL')
     
     const [productBrand, setproductBrand] = useState('')
     const [productColor, setproductColor] = useState('')
@@ -555,7 +555,7 @@ const search = (text) => {
               <p>Storlek:</p>
               <select className='drop-down input-select' name='välj pass' onChange={(e) => setOrderSise(e.target.value)}>
                 <option value="S,M,L,XL">S,M,L,XL</option>
-                <option value="oneSise">One sise</option>
+                <option value="oneSize">One size</option>
               </select>
             </div>
 
