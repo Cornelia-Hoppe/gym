@@ -11,7 +11,7 @@
 }
 .gymImgDesktop img {
   width: 100%;
-  height: 30vh;
+  object-fit: cover;
 }
 
 .landingButton {
@@ -54,8 +54,8 @@
   }
 
   .gymImgDesktop img {
-    width: 100vw;
-    height: 80vh;
+    height: 62vh;
+    object-fit: cover;
   }
 
   .landingButton {

@@ -2,15 +2,18 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import ListItem from "./ListItem";
-import Login from "./Login";
+import Login from "../../Auth/Login";
 import "../css/Navbar.css";
 import SignUp from "./SignUp";
 import { motion } from "framer-motion";
 //Icons
-import { IoIosClose, IoMdHome, IoIosCart } from "react-icons/io";
+import { GrClose } from "@react-icons/all-files/gr/GrClose";
+import { IoMdHome } from "@react-icons/all-files/io/IoMdHome";
+import { IoIosCart } from "@react-icons/all-files/io/IoIosCart";
 //import { GrYoga } from "react-icons/gr";
-import { BsPersonCircle, BsFilePerson } from "react-icons/bs";
-import { TbYoga } from "react-icons/tb";
+import { BsPerson } from "@react-icons/all-files/bs/BsPerson";
+import { MdPeopleOutline } from "@react-icons/all-files/md/MdPeopleOutline";
+import { GrYoga } from "@react-icons/all-files/gr/GrYoga";
 
 //Routes
 
@@ -19,7 +22,7 @@ import { TbYoga } from "react-icons/tb";
 // npm install -S react-router-dom
 //nmp install framer-motion
 
-function NavBar({ closeNavbar }) {
+function NavBar({ closeNavbar, updateAfterLogin }) {
   const [openSignUp, setOpenSignUp] = useState(false);
 
   return (
@@ -36,7 +39,7 @@ function NavBar({ closeNavbar }) {
     >
       {openSignUp && <SignUp closeSignup={setOpenSignUp} />}
       <div className="navbar-header">
-        <IoIosClose
+        <GrClose color="white"
           className="exit-button"
           onClick={() => closeNavbar(false)}
         />
@@ -46,16 +49,16 @@ function NavBar({ closeNavbar }) {
           <ListItem name="Startsida" icon={<IoMdHome className="icon" />} />
         </CustomLink>
         <CustomLink to="/bookingpage">
-          <ListItem name="Boka pass" icon={<TbYoga className="icon" />} />
+          <ListItem name="Boka pass" icon={<GrYoga className="icon" />} />
         </CustomLink>
         <CustomLink to="/myprofile">
           <ListItem
             name="Mina sidor"
-            icon={<BsPersonCircle className="icon" />}
+            icon={<BsPerson className="icon" />}
           />
         </CustomLink>
         <CustomLink to="/staff">
-          <ListItem name="Personal" icon={<BsFilePerson className="icon" />} />
+          <ListItem name="Personal" icon={<MdPeopleOutline className="icon" />} />
         </CustomLink>
         <CustomLink to="/webshop">
           <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
@@ -63,7 +66,10 @@ function NavBar({ closeNavbar }) {
       </div>
 
       <div className="navbar-login">
-        <Login setOpenSignUp={setOpenSignUp} />
+        <Login
+          setOpenSignUp={setOpenSignUp}
+          updateAfterLogin={updateAfterLogin}
+        />
       </div>
     </motion.div>
   );

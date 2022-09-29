@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import style from "./HomeGallery.module.css";
 import { imgs } from "./GalleryImgs";
-import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
+import { MdArrowBack } from "@react-icons/all-files/md/MdArrowBack";
+import { MdArrowForward } from "@react-icons/all-files/md/MdArrowForward";
 import { transform } from "framer-motion";
-import { LazyLoadImage, LazyLoadComponent } from "react-lazy-load-image-component";
+// import {
+//   LazyLoadImage,
+//   LazyLoadComponent,
+// } from "react-lazy-load-image-component";
 
 const HomeGallery = () => {
   const [sliderData, setSliderData] = useState(imgs[0]);
@@ -40,12 +44,12 @@ const HomeGallery = () => {
         </div>
         <div className={style.galleryImg}>
           <div onClick={PrevBtn} className={style.prevBtn}>
-            <LazyLoadComponent>
-              <MdArrowBackIosNew />
-            </LazyLoadComponent>
+  
+              <MdArrowBack />
+
           </div>
 
-          <LazyLoadImage
+          <img
             src={sliderData.value}
             alt={sliderData.value}
             height="300vh"
@@ -53,10 +57,10 @@ const HomeGallery = () => {
           />
 
           <div onClick={NextBtn} className={style.nextBtn}>
-            <LazyLoadComponent>
-              <MdArrowForwardIos />
-            </LazyLoadComponent>
-          </div>
+            {/* <LazyLoadComponent> */}
+              <MdArrowForward />
+ 
+          </div> 
         </div>
         <div className={style.flexrow}>
           {imgs.map((data, i) => (
@@ -65,7 +69,7 @@ const HomeGallery = () => {
                 data === sliderData ? style.selectedImg : style.nonSelected
               }
             >
-              <LazyLoadImage
+              <img
                 alt={data.value}
                 key={data.id}
                 src={data.value}

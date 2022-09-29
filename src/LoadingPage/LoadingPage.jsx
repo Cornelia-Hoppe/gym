@@ -9,7 +9,6 @@ export default function LoadingPage() {
     <>
       <Menu />
       <div className="loadingPage">
-        <h1>Loading...</h1>
       </div>
     </>
   );

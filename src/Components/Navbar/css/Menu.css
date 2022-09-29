@@ -11,20 +11,22 @@
   height: 10vh;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 10%;
   margin: 0;
   padding: 0;
 }
 
 .menu-mobile-logo {
-  height: 4rem;
-  color: white;
+  height: 4.4rem;
+  margin-bottom: 0.8rem;
+  transform: scale(1.2)
 }
+
 .menu-mobile-cart {
   color: white;
-  width: 44px;
-  height: 44px;
+  width: 4rem;
+  height: 4rem;
 }
 .signup-section {
   position: absolute;
@@ -34,9 +36,12 @@
   justify-content: center;
 }
 .menu-mobile-button {
-  color: white;
-  width: 44px;
-  height: 44px;
+  width: 4rem;
+  height: 4rem;
+  margin: 0;
+}
+.menu-mobile-button path {
+  stroke: white;
 }
 svg {
   padding-left: 0.6rem;

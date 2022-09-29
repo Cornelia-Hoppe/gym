@@ -50,7 +50,6 @@
 }
 
 .footer-icon:hover {
-  transform: scale(1.2);
   color: #cfeeff;
 }
 
@@ -62,7 +61,6 @@
 }
 
 #footer-link:hover {
-  text-decoration: underline;
   color: #cfeeff;
 }
 
