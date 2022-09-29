@@ -20,6 +20,7 @@ import {
   doc,
   deleteDoc,
 } from "firebase/firestore";
+import SignUp from "./SignUp";
 
 function Login() {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [isLogedIn, setIsLogedIn] = useState();
   const [user, loading, error] = useAuthState(auth);
+  const [openSignUp, setOpenSignUp] = useState(false);
 
   // ============ START: SET LOCAL STORAGE ============ //
 
@@ -77,8 +79,6 @@ function Login() {
   };
 
   const register = () => {
-    document.querySelector("#SignUpWrapperId").style.display = "flex";
-
     createUserWithEmailAndPassword(auth, email, password)
       .then((auth) => {
         console.log(auth);
@@ -107,63 +107,68 @@ function Login() {
   if (!user) STYLE_NOT_LOGGED_IN_FLEX = { display: "none" };
 
   return (
-    <div className="Login">
-      <h1 className="login-title">
-        {user ? `Välkommen ${user.email}` : "Logga in?"}
-      </h1>
-      <form style={user ? STYLE_LOGGED_IN_NONE : null} className="login-form">
-        <div className="LoginInput">
-          <label className="login-label">E-mail</label>
-          <input
-            className="login-input"
-            id={"login-input-1"}
-            onChange={(event) => setEmail(event.target.value)}
-            autoComplete="off"
-            type="email"
-            name="email"
-          />
-          <label className="login-label">Password</label>
-          <input
-            className="login-input"
-            id={"login-input-2"}
-            onChange={(event) => setPassword(event.target.value)}
-            autoComplete="off"
-            type="password"
-            name="password"
-          />
-        </div>
-      </form>
-      <div className="form-buttons">
-        <div className="form-buttons-box">
-          <button
-            style={user ? STYLE_LOGGED_IN_NONE : null}
-            className="login-button"
-            onClick={signIn}
-          >
-            Logga in
-          </button>
-          <button
-            style={user ? STYLE_LOGGED_IN_NONE : null}
-            onClick={register}
-            className="register-button login-button"
-          >
-            Bli medlem
-          </button>
-
-          <>
-            <br />
+    <>
+      {openSignUp && <SignUp closeSignUp={setOpenSignUp} />}
+      <div className="Login">
+        <h1 className="login-title">
+          {user ? `Välkommen ${user.email}` : "Logga in?"}
+        </h1>
+        <form style={user ? STYLE_LOGGED_IN_NONE : null} className="login-form">
+          <div className="LoginInput">
+            <label className="login-label">E-mail</label>
+            <input
+              className="login-input"
+              id={"login-input-1"}
+              onChange={(event) => setEmail(event.target.value)}
+              autoComplete="off"
+              type="email"
+              name="email"
+            />
+            <label className="login-label">Password</label>
+            <input
+              className="login-input"
+              id={"login-input-2"}
+              onChange={(event) => setPassword(event.target.value)}
+              autoComplete="off"
+              type="password"
+              name="password"
+            />
+          </div>
+        </form>
+        <div className="form-buttons">
+          <div className="form-buttons-box">
             <button
-              style={user ? null : STYLE_NOT_LOGGED_IN_FLEX}
-              onClick={signOutClick}
+              style={user ? STYLE_LOGGED_IN_NONE : null}
+              className="login-button"
+              onClick={signIn}
+            >
+              Logga in
+            </button>
+            <button
+              style={user ? STYLE_LOGGED_IN_NONE : null}
+              onClick={() => {
+                setOpenSignUp(true);
+              }}
               className="register-button login-button"
             >
-              Logga ut
+              Bli medlem
             </button>
-          </>
+
+            <>
+              <br />
+              <button
+                style={user ? null : STYLE_NOT_LOGGED_IN_FLEX}
+                onClick={signOutClick}
+                className="register-button login-button"
+              >
+                Logga ut
+              </button>
+            </>
+          </div>
+          <p className="login-forgot-password"></p>
         </div>
-        <p className="login-forgot-password"></p>
       </div>
-    </div>
+    </>
   );
 }
 

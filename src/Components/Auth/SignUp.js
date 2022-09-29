@@ -12,7 +12,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-function SignUp({ closeSignup }) {
+function SignUp({ closeSignUp }) {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -128,7 +128,7 @@ function SignUp({ closeSignup }) {
       <div className="SignUp">
         <IoIosClose
           className="cancel-button"
-          onClick={() => closeSignup(false)}
+          onClick={() => closeSignUp(false)}
         />
         <form className="signup-form" onSubmit={handleSubmit}>
           <h1 className="signup-title">Skapa Konto</h1>
