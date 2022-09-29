@@ -33,10 +33,12 @@ function UpdateProfileModal({
   const [newLastName, setNewLastName] = useState(lastName ? lastName : "");
   const [newPassword, setNewPassword] = useState(password ? password : "");
 
-  // UPPDATERAR DATA
-
-  const updateStaff = async (DBcollextion) => {
-    openLoadingModal();
+    const [newName, setNewName] = useState(name ? name : '')
+    const [newEmail, setNewEmail] = useState(email ? email : '')
+    const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber ? phoneNumber : '')
+    const [newImg, setNewImg] = useState(img ? img : '')
+    const [newLastName, setNewLastName] = useState(lastName ? lastName : '')
+    const [newPassword, setNewPassword] = useState(password ? password : '')
 
     const staffDoc = doc(db, DBcollextion, id);
     const newFields = {

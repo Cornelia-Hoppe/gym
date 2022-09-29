@@ -58,7 +58,7 @@ function BookingPage() {
     getProfiler();
   }, []);
 
-  const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
+   const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
 
   // BOKA-KNAPPEN
 

@@ -13,6 +13,9 @@ const Webbshop = lazy(() => import("./Components/Webbshop/Webbshop"));
 const AdminPage = lazy(() => import("./admin_page/AdminPage"));
 //Routen till Admin ska ej finnas vid launch, är bara tillfällig.
 function App() {
+
+ 
+
   return (
     <>
       {/* <LoadingScreen /> */}

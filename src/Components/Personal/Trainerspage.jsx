@@ -9,6 +9,11 @@ import Menu from "../Navbar/components/Menu";
 import { db } from '../../firebase-config'
 import { collection, getDocs } from 'firebase/firestore'
 
+
+
+import { db } from '../../firebase-config'
+import { collection, getDocs } from 'firebase/firestore'
+
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function App() {
