@@ -9,7 +9,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import { GrFormClose } from "@react-icons/all-files/gr/GrFormClose";
+import { GrFormClose } from "react-icons/gr";
 import "../admin_page/AdminPage.css";
 import UpdateLocalStorage from "../functions/UpdateLocalStorage";
 import openLoadingModal from "../Components/loading_screen/OpenLoadingModal";
@@ -33,12 +33,10 @@ function UpdateProfileModal({
   const [newLastName, setNewLastName] = useState(lastName ? lastName : "");
   const [newPassword, setNewPassword] = useState(password ? password : "");
 
-    const [newName, setNewName] = useState(name ? name : '')
-    const [newEmail, setNewEmail] = useState(email ? email : '')
-    const [newPhoneNumber, setNewPhoneNumber] = useState(phoneNumber ? phoneNumber : '')
-    const [newImg, setNewImg] = useState(img ? img : '')
-    const [newLastName, setNewLastName] = useState(lastName ? lastName : '')
-    const [newPassword, setNewPassword] = useState(password ? password : '')
+  // UPPDATERAR DATA
+
+  const updateStaff = async (DBcollextion) => {
+    openLoadingModal();
 
     const staffDoc = doc(db, DBcollextion, id);
     const newFields = {
