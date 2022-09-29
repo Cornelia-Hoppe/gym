@@ -7,7 +7,6 @@ import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase
 import { FaPencilAlt } from "@react-icons/all-files/fa/FaPencilAlt";
 import Update_modal_product from './Update_modal_product';
 import Calendar from 'react-calendar';
-import Menu from '../Components/Navbar/components/Menu';
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
 import Update_modal_pass from '../booking_page/Update_modal_pass';
@@ -406,7 +405,6 @@ const search = (text) => {
 
   return (
     <>
-      <Menu />
 {/* ------------------------------ PASS -------------------------------- */}
 
 <section className='center-newpass'>

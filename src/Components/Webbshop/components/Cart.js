@@ -5,6 +5,7 @@ import { GrClose } from "@react-icons/all-files/gr/GrClose";
 import { BsTrash } from "@react-icons/all-files/bs/BsTrash";
 import { BiMinus} from "@react-icons/all-files/bi/BiMinus";
 import { BiPlus } from "@react-icons/all-files/bi/BiPlus";
+import emptyCart from "../images/empty-cart.png"
 // import { SiKlarna } from "@react-icons/all-files/si/SiKlarna";
 
 import "../css/Cart.css";
