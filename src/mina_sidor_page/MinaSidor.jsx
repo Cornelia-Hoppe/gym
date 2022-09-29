@@ -48,23 +48,35 @@ function MinaSidor() {
 
   //  DEN VIKTIGA DATAN  //
   // console.log('pass: ', pass);
-  // console.log('userBokadePassId: ', userBokadePassId);
+
+  useEffect(() => {
+    if (!userBokadePassId == "Inga bokade pass") {
+      console.log('inloggd och pass bokade');
+      getPassAndSet()
+    } else if (user) {
+      console.log('Inga pass bokade');
+    } else if (!user) {
+      console.log('ej inloggad');
+    }
+  }, [])
+
 let bokatPassArray = []
-  const getPassAndSet = () => {
+
+   const getPassAndSet = () => {
     userBokadePassId.map((bokatPass) => {
       
-pass.find((pass, index) => {
+      pass.find((pass, index) => {
         if (pass.id == bokatPass){
      bokatPassArray.push(pass)
 
       } 
       })
-    
     })
-    
   }
-  
-// ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
+
+
+ 
+// ========================= END: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
   const openModal = () => {
     document.querySelector(`#${user.id}-update-modal`).style.display='flex'

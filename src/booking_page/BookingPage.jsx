@@ -7,17 +7,16 @@ import { db } from "../firebase-config";
 import {
   collection,
   getDocs,
-  addDoc,
   updateDoc,
   doc,
-  deleteDoc,
-  refEqual,
 } from "firebase/firestore";
 import CheckModal from "./CheckModal";
 // import { BsFillPencilFill } from "react-icons/bs";
 import Update_modal_pass from "./Update_modal_pass";
 import openLoadingModal from "../Components/loading_screen/OpenLoadingModal";
 import closeLoadingModal from "../Components/loading_screen/CloseLoadingModal";
+import UpdateLocalStorage from "../functions/UpdateLocalStorage";
+import { async } from "@firebase/util";
 
 function BookingPage() {
   const ref = useRef(null);
@@ -25,7 +24,7 @@ function BookingPage() {
   const passCollectionRef = collection(db, "pass");
   const [pass, setPass] = useState([]);
 
-  const getStaff = async () => {
+  const getPass = async () => {
     openLoadingModal()
     console.log('getPass körs');
     const data = await getDocs(passCollectionRef);
@@ -58,39 +57,48 @@ function BookingPage() {
   }, []);
 
    const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
+   
 
-  // BOKA-KNAPPEN
+   // KALENDER
 
-  const [bokadText, setBokadText] = useState("");
+ const [date, setDate] = useState(new Date())
+ const [passDenDagen, setPassDenDagen] = useState([])
 
   const handleBokaBtn = async (passId, DBcollextion, platser, bokad) => {
     addPassToProfile(passId);
 
-    if (bokad === true) {
-      platser--;
-      bokad = false;
-    } else {
-      platser++;
-      bokad = true;
-    }
+ const sortPass = async (e) => {
+  console.log(e);
 
+  const filteredPass = pass.filter((pass) => {
+      return pass.dag == e 
+  })
     // UPPDATERAR DATA
     const staffDoc = doc(db, DBcollextion, passId);
     const newFields = { platser: platser, bokad: bokad };
     await updateDoc(staffDoc, newFields);
     // ---
 
-    document.querySelector("#check-modal").style.display = "flex";
+  setPassDenDagen(filteredPass)
 
-    setBokadText(bokad ? "bokat" : "avbokat");
-  };
+ }
 
-  const addPassToProfile = async (passId) => {
+  // BOKA-KNAPPEN
 
-    const inloggadId = inloggadUser.id
-    
-    const tidigarePass = inloggadUser.bokadePass
+  const handleBokaBtn = async (passId, platser, ) => {
 
+    inloggadUser.bokadePass.find((item) => {
+      if (passId == item) avbokaPass() })
+      
+      
+      
+      openLoadingModal()
+
+      addPassToProfile(passId)
+      
+    };
+
+    const addPassToProfile = async (passId) => {
     const newPassLista = [];
 
     if (tidigarePass) {
@@ -110,39 +118,117 @@ function BookingPage() {
 
   //--
 
-  const openUpdateModal = (id) => {
-    document.querySelector(`#update-modal-${id}`).style.display = "flex";
-  };
+      const inloggadId = inloggadUser.id
+      
+      const tidigarePass = inloggadUser.bokadePass
 
-  // KALENDER
+      const newPassLista = []
 
-  const [date, setDate] = useState(new Date());
-  const [passDenDagen, setPassDenDagen] = useState([]);
 
-  const sortPass = (e) => {
+      if (tidigarePass) {
+        tidigarePass.map((item, index) => {
+          newPassLista.push(passId)
+          newPassLista.push(item)
+        })
+      } else {
+        newPassLista.push(passId)
+      }
+
+        // UPPDATERAR DATA PROFILER
+        const staffDoc = doc(db, 'profiler', inloggadId);
+        const newFields = { bokadePass: newPassLista };
+        await updateDoc(staffDoc, newFields);
+
+        UpdateLocalStorage(inloggadUser.id)
+
+        getPass()
+
+        closeLoadingModal()
+
+        document.querySelector("#check-modal").style.display = "flex";
+
+    };
+
+// SORTERA PASSEN
+const sortPass = (e) => {
     const filteredPass = pass.filter((pass) => {
       return pass.dag == e;
     });
 
+    console.log('pass: ', pass);
+
+    console.log('filteredPass: ', filteredPass);
+
     setPassDenDagen(filteredPass);
 
-    const scrollToPass = () => {
-      ref.current?.scrollIntoView({ behavior: "smooth" });
-    };
     scrollToPass();
   };
 
-  // SORTERA PASSEN
+  // START: AVBOKA PASS  ====================================================
 
-  const [passKategorier, setPassKategorier] = useState();
+const avbokaPass = async (passId, passPlatser) => {
 
-  const sortKategories = (selectedKategori) => {
-    setPassKategorier(selectedKategori);
+  let newBokadePass = []
+
+  inloggadUser.bokadePass.find((item) => {
+    if (passId == item) {
+    } else {
+      newBokadePass.push(item)
+    }
+  })
+
+    // UPPDATERAR DATA
+      const profulerDoc = doc(db, 'profiler', inloggadUser.id);
+      const newFields = { bokadePass: newBokadePass,};
+      await updateDoc(profulerDoc, newFields);
+
+      UpdateLocalStorage(inloggadUser.id)
+
+      passPlatser--
+
+      // UPPDATERAR DATA PASS
+      const passfDoc = doc(db, "pass", passId);
+      const newFields2 = { platser: passPlatser,};
+      await updateDoc(passfDoc, newFields2);
+
+getPass()
+
+}
+
+// END: AVBOKA PASS  ====================================================
+
+const scrollToPass = () => {
+  ref.current?.scrollIntoView({ behavior: "smooth" });
+};
+
+const [passKategorier, setPassKategorier] = useState();
+
+const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
+
+const sortKategories = (selectedKategori) => {
+  
+  const filteredKategoryPass = pass.filter((pass) => {
+    return pass.kategori == selectedKategori;
+  });
+
+  console.log('pass: ', pass);
+
+  console.log('filteredKategoryPass: ', filteredKategoryPass);
+
+  setPassDenDagen(filteredKategoryPass);
+
+
+  scrollToPass();
+
+
+  setPassKategorier(selectedKategori);
 
     const filteredPass = pass.filter((pass) => {
       return pass.kategori == selectedKategori;
     });
 
+    
+  }
     // const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
 
     return (
@@ -212,14 +298,14 @@ function BookingPage() {
                 );
               })}
 
-              <CheckModal bokadText={bokadText} />
+              <CheckModal bokadText={'Bokat'} />
             </section>
           </div>
         </article>
       </>
     );
   }
-}
+
   
 
 export default BookingPage;
