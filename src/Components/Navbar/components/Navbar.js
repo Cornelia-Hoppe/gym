@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import ListItem from "./ListItem";
 import Login from "../../Auth/Login";
 import "../css/Navbar.css";
-import SignUp from "./SignUp";
+import SignUp from "../../Auth/SignUp";
 import { motion } from "framer-motion";
 //Icons
 import { GrClose } from "@react-icons/all-files/gr/GrClose";

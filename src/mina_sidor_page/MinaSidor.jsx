@@ -11,12 +11,18 @@ import closeLoadingScreen from '../Components/loading_screen/CloseLoadingModal'
 import Login from '../Components/Auth/Login'
 import SavedModal from '../Components/loading_screen/SavedModal';
 import Memberships from './Memberships';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase-config";
 
 function MinaSidor() {
   const [showModal, setshowModal] = useState(false)
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+  const [userAuth, loading, error] = useAuthState(auth); 
+
+  const [user, setUser] = useState(userAuth? JSON.parse(localStorage.getItem('user')) : '')
+
   const [userBokadePassId, setUserBokadePassId] = useState(user ? user.bokadePass : '')
   const [userBokadePass, setUserBokadePass] = useState('')
+
 
   useEffect(() => {
     if (userBokadePass) getPassAndSet()
