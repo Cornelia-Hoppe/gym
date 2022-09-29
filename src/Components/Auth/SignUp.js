@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./css/signUp.css";
 import FormInput from "./FormInput";
-import { IoIosClose } from "react-icons/io";
+import { IoIosClose } from "@react-icons/all-files/io/IoIosClose";
 import { db } from "../../firebase-config";
 import {
   collection,

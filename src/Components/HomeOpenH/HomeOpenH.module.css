@@ -6,21 +6,15 @@
     margin: 10px 10px 10px 10px ;
     padding-bottom: 8px;
     padding-top: 8px;
-    display: flex;
-    flex-direction: column;
 }
 
 /* öppettider */
 .OpenHEnd{
     margin-top: 0px;
+    text-align: center;
 }
 
-.OpenHEnd p, h4{
-margin: 4px;
+.OpenHEnd p, h3{
 font-size: 24px;
-
-}
-
-.OpenHEndOne {
-font-weight: bolder !important;
-}
+margin: 2px;
+} 
