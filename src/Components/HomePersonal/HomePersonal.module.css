@@ -43,9 +43,11 @@
   width: 90%;
 }
 
-#personal-image {
-  width: 40px;
-  height: 40px;
+.HeaderPersonal h3{
+    margin-top: 0px;
+    margin-bottom: 4px;
+    text-align: left;
+    font-size: 40px;
 }
 
 .PersonalButtons button {
@@ -112,7 +114,7 @@
   }
 
   .PersonalButtons button {
-    width: 290px;
+    width: 260px;
     height: 240px;
     border-radius: 10px;
     background-size: cover;
