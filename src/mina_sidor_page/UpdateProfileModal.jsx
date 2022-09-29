@@ -9,7 +9,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import { GrFormClose } from "react-icons/gr";
+import { GrFormClose } from "@react-icons/all-files/gr/GrFormClose";
 import "../admin_page/AdminPage.css";
 import UpdateLocalStorage from "../functions/UpdateLocalStorage";
 import openLoadingModal from "../Components/loading_screen/OpenLoadingModal";
