@@ -28,7 +28,7 @@ function AdminPage() {
     const [kategori, setKategori] = useState('')
     const [price, setPris] = useState(0)
     const [produktNamn, setProduktNamn] = useState('')
-    const [orderSise, setOrderSise] = useState('')
+    const [orderSize, setOrderSize] = useState('S,M,L,XL')
     
     const [productBrand, setproductBrand] = useState('')
     const [productColor, setproductColor] = useState('')
@@ -120,7 +120,7 @@ function previewImageProdukt() {
     // PRODUKTER
   const createProduct = async () => {
     openLoadingModal()
-    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, price: Number(price), produktNamn: produktNamn, type: kategori, brand: productBrand, shortDesc: productshortDesc, color: productColor, orderSise: orderSise});
+    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, price: Number(price), produktNamn: produktNamn, type: kategori, brand: productBrand, shortDesc: productshortDesc, color: productColor, orderSise: orderSize});
 
 
     getProdukter()
@@ -555,9 +555,9 @@ const search = (text) => {
 
             <div className='modal-input-wrapper'>
               <p>Storlek:</p>
-              <select className='drop-down input-select' name='välj pass' onChange={(e) => setOrderSise(e.target.value)}>
+              <select className='drop-down input-select' name='välj pass' onChange={(e) => setOrderSize(e.target.value)}>
                 <option value="S,M,L,XL">S,M,L,XL</option>
-                <option value="oneSise">One sise</option>
+                <option value="oneSize">One size</option>
               </select>
             </div>
 
@@ -618,7 +618,7 @@ const search = (text) => {
                     productBrand={produkt.brand}
                     productshortDesc={produkt.shortDesc}
                     productColor={productColor}
-                    setOrderSise={orderSise}
+                    setOrderSize={orderSize}
                 />
               </>
               )
