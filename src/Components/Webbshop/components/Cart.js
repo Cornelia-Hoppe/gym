@@ -8,7 +8,6 @@ import { SiKlarna } from "react-icons/si";
 import emptyCart from "../images/empty-cart.png";
 
 import "../css/Cart.css";
-//INSTALLERA npm install react-use-car
 
 function Cart({ closeCart }) {
   const {

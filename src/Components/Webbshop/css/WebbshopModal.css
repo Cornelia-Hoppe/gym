@@ -80,11 +80,6 @@
 .modal-onesize{
     width: 120px;
 }
-.size-block-1{
-    background: rgba(0, 39, 84, 0.5);
-    color: white;
-    border: none;
-}
 .modal-add-container{
     display: flex;
     justify-content: center;

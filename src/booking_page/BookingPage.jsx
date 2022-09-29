@@ -151,27 +151,6 @@ const sortKategories = (selectedKategori) => {
 
 
 
-
-  // GÖM KNAPPEN FÖR VANLIGA ANVÄNDARE
-  const normalUser = 0;
-  const admin = 1;
-
-  const user = admin;
-
-  const [BTN_STYLE, setBTN_STYLE] = useState({});
-
-  useEffect(() => {
-    if (user === 1) {
-      setBTN_STYLE({ display: "block" });
-    } else {
-      setBTN_STYLE({ display: "none" });
-    }
-  }, []);
-
-  // ÄR MAN 
-
-  // STYLING - RÖD TEXT
-
   const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
 
   return (

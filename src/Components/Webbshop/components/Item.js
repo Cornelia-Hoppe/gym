@@ -4,7 +4,6 @@ import "../css/Item.css"
 
 
 function Item(props) {
-  
   return (
     <div className="Item">
         <div onClick={() => props.itemModal(props.id)} className="item-card">

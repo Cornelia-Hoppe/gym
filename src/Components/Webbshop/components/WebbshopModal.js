@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useCart } from "react-use-cart";
 import { motion } from "framer-motion";
 import {
@@ -8,72 +8,65 @@ import {
   IoIosClose,
 } from "react-icons/io";
 
-import { db } from '../../../firebase-config'
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
-
 import "../css/WebbshopModal.css";
 
 function WebbshopModal(props) {
-
-// START UPDATE PRODUCTS
-
-  const updateChosenSize = async (id) => {
-    const staffDoc = doc(db, 'produkter', id)
-    const newFields = { chosenSize: global.chosenSize }
-    await updateDoc(staffDoc, newFields)
-  }
-
-// END UPDATE PRODUCTS
+  const sizes = ["S", "M", "L", "XL"];
   const oneSize = ["Onesize"];
-  
-  let newSizes = props.orderSize.split(",");
-  
+
+  //Kommentera ut denna och lägg in newSizes på rad 61 när samtliga produkter har storlek inlagt på sig.
+  // let newSizes = props.orderSize.split(",");
 
   const [openDesc, setOpenDesc] = useState(false);
   const [selected, setSelected] = useState(null);
   const { addItem } = useCart();
-  
-  
+
   function handleSizes(e) {
     let chosenSize = e.target.innerText;
-    set()
     global.chosenSize = chosenSize;
     setSelected(chosenSize);
-    updateChosenSize(props.item.id)
   }
   
-  
+  props.item.chosenSize = global.chosenSize;
+
   function addItemToCart() {
-      addItem(props.item);
+    addItem(props.item);
     props.closeModal(false);
   }
-  
-  
-  
+
+
   function renderSize() {
     if (props.type === "equipment") {
       return oneSize.map((size) => (
-        <div className="modal-size-block size-block-1 modal-onesize">
+        <div
+          className="modal-size-block modal-onesize"
+          onClick={handleSizes}
+          style={{
+            color: selected === size ? "white" : "",
+            border: selected === size ? "none" : "",
+            backgroundColor: selected === size ? "rgba(0, 39, 84, 0.5)" : "",
+          }}
+        >
           {size}
         </div>
       ));
     } else {
-      return newSizes.map((size, index) => (
-        <div className="modal-size-block"
-        key={index}
-        onClick={handleSizes}
-        style={{
-          color: selected === size ? "white" : "",
-          border: selected === size ? "none" : "",
-          backgroundColor:
-            selected === size ? "rgba(0, 39, 84, 0.5)" : "",
-            
-        }}
-        >{size}</div>
+      return sizes.map((size, index) => (
+        <div
+          className="modal-size-block"
+          key={index}
+          onClick={handleSizes}
+          style={{
+            color: selected === size ? "white" : "",
+            border: selected === size ? "none" : "",
+            backgroundColor: selected === size ? "rgba(0, 39, 84, 0.5)" : "",
+          }}
+        >
+          {size}
+        </div>
       ));
     }
   }
-
 
   return (
     <motion.div

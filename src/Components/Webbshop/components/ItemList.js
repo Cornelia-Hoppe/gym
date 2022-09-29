@@ -8,7 +8,6 @@ import { collection, getDocs } from 'firebase/firestore'
 function ItemList() {
 
 //   // START: HÄMTAR PRODUKTER 
-
   const produkterCollectionRef = collection(db, "produkter")
     const [database, setDatabase ] = useState([])
 
@@ -20,9 +19,6 @@ function ItemList() {
 useEffect(() => {
     getProdukter()
   }, []);
-
-  console.log(database);
-
   // END: HÄMTAR PRODUKTER 
 
 
@@ -89,7 +85,6 @@ useEffect(() => {
             key={index}
             type={item.type}
             orderSize={item.orderSise}
-
           />
         ))}
       <div className="list-section">

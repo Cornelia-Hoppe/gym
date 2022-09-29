@@ -8,7 +8,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { IoIosCart } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
 import { HiOutlineUserCircle } from "react-icons/hi";
-import Login from "./Login";
+import Login from "../../Auth/Login";
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "react-use-cart";
 
