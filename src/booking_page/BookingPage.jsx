@@ -7,11 +7,8 @@ import { db } from "../firebase-config";
 import {
   collection,
   getDocs,
-  addDoc,
   updateDoc,
   doc,
-  deleteDoc,
-  refEqual,
 } from "firebase/firestore";
 import CheckModal from "./CheckModal";
 // import { BsFillPencilFill } from "react-icons/bs";
@@ -154,34 +151,21 @@ function BookingPage() {
     };
 
 // SORTERA PASSEN
-
-const sortKategories = (selectedKategori) => {
-
-  // KALENDER
-
-  const [date, setDate] = useState(new Date());
-  const [passDenDagen, setPassDenDagen] = useState([]);
-
-  const sortPass = (e) => {
+const sortPass = (e) => {
     const filteredPass = pass.filter((pass) => {
       return pass.dag == e;
     });
 
+    console.log('pass: ', pass);
+
+    console.log('filteredPass: ', filteredPass);
+
     setPassDenDagen(filteredPass);
 
-    const scrollToPass = () => {
-      ref.current?.scrollIntoView({ behavior: "smooth" });
-    };
     scrollToPass();
   };
 
-  // SORTERA PASSEN
-
-  const [passKategorier, setPassKategorier] = useState();
-
-  const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
-
-// START: AVBOKA PASS  ====================================================
+  // START: AVBOKA PASS  ====================================================
 
 const avbokaPass = async (passId, passPlatser) => {
 
@@ -212,15 +196,39 @@ getPass()
 
 }
 
-
 // END: AVBOKA PASS  ====================================================
 
-  const sortKategories = (selectedKategori) => {
-    setPassKategorier(selectedKategori);
+const scrollToPass = () => {
+  ref.current?.scrollIntoView({ behavior: "smooth" });
+};
+
+const [passKategorier, setPassKategorier] = useState();
+
+const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
+
+const sortKategories = (selectedKategori) => {
+  
+  const filteredKategoryPass = pass.filter((pass) => {
+    return pass.kategori == selectedKategori;
+  });
+
+  console.log('pass: ', pass);
+
+  console.log('filteredKategoryPass: ', filteredKategoryPass);
+
+  setPassDenDagen(filteredKategoryPass);
+
+
+  scrollToPass();
+
+
+  setPassKategorier(selectedKategori);
 
     const filteredPass = pass.filter((pass) => {
       return pass.kategori == selectedKategori;
     });
+
+    
   }
     // const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
 
@@ -292,14 +300,14 @@ getPass()
                 );
               })}
 
-              <CheckModal bokadText={bokadText} />
+              <CheckModal bokadText={'Bokat'} />
             </section>
           </div>
         </article>
       </>
     );
   }
-}
+
   
 
 export default BookingPage;
