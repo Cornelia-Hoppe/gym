@@ -79,46 +79,51 @@ function BookingPage() {
 
   const handleBokaBtn = async (passId, platser, ) => {
 
-    inloggadUser.bokadePass.find((item) => {
+    if (!inloggadUser) alert('go to login / sign up')
+    else {
+      inloggadUser.bokadePass.find((item) => {
       if (passId == item) avbokaPass() })
-            
-      openLoadingModal()
+              
+        openLoadingModal()
 
-      addPassToProfile(passId)
-      
-    };
+        addPassToProfile(passId)
+        
+      };
 
 
 // START: UPPDATERAR PASS DATA OCH LOCALSTORAGE
 
-  const addPassToProfile = async (passId) => {
-    
-    const inloggadId = inloggadUser.id
-    
-    const tidigarePass = inloggadUser.bokadePass
+      const addPassToProfile = async (passId) => {
+      
+      const inloggadId = inloggadUser.id
+      
+      const tidigarePass = inloggadUser.bokadePass
 
-    const newPassLista = []
+      const newPassLista = []
 
-    if (tidigarePass) {
-      tidigarePass.map((item, index) => {
+      if (tidigarePass) {
+        tidigarePass.map((item, index) => {
+          newPassLista.push(passId)
+          newPassLista.push(item)
+        })
+      } else {
         newPassLista.push(passId)
-        newPassLista.push(item)
-      })
-    } else {
-      newPassLista.push(passId)
-    }
+      }
 
-    const passDoc = doc(db, 'profiler', inloggadId);
-    const newFields = { bokadePass: newPassLista };
-    await updateDoc(passDoc, newFields);
+      const passDoc = doc(db, 'profiler', inloggadId);
+      const newFields = { bokadePass: newPassLista };
+      await updateDoc(passDoc, newFields);
 
-    UpdateLocalStorage(inloggadUser.id)
+      UpdateLocalStorage(inloggadUser.id)
 
-    getPass()
+      getPass()
 
-    closeLoadingModal()
+      closeLoadingModal()
 
-    document.querySelector("#check-modal").style.display = "flex";
+      document.querySelector("#check-modal").style.display = "flex";
+      }
+
+   
 
   };
 
@@ -245,11 +250,8 @@ const scrollToPass = () => {
                       <button
                         class="myButton booking-btn"
                         onClick={() =>
-                          handleBokaBtn(pass.id, "pass", pass.platser)
-                        }
-                      >
-                        {" "}
-                        {pass.bokad ? "Avboka" : "Boka"}
+                          handleBokaBtn(pass.id, "pass", pass.platser)}>
+                        Boka
                       </button>
                     </div>
                   </>
