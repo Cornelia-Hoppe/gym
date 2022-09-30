@@ -3,18 +3,17 @@ import "./Personal.css";
 import { buttons } from "./data";
 import { getTrainer, filterTrainer } from "./services";
 //import Edit from "./Edition";
-
-
 import { db } from '../../firebase-config'
 import { collection, getDocs } from 'firebase/firestore'
-
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
+import { NavFilter } from "./GetLink";
 export default function App() {
   
 
   const staffCollectionRef = collection(db, "staff")
   const [staff, setStaff] = useState([])
+  const [selected, setSelected] = useState(null);
+  const [trainersPerson, setTrainersPerson] = useState(null);
 
   const getStaff = async () => {
     const data = await getDocs(staffCollectionRef)
@@ -26,14 +25,19 @@ useEffect(() => {
     getStaff()
   }, [])
 
-  console.log(staff);
-
-  const [selected, setSelected] = useState(null);
-
-    const [trainersPerson, setTrainersPerson] = useState(null);
-    useEffect(() => {
-      setTrainersPerson(getTrainer());
-    }, []);
+  useEffect(() => {
+    const Cards = () =>{  
+     type !== null
+     ? setTrainersPerson(filterTrainer(type))
+     : setTrainersPerson(getTrainer());
+   
+     setSelected(type);
+      }
+      Cards()
+      }, []);
+   
+       let type = NavFilter()
+   
 
   function handleTrainer(e) {
     let typeTrainer = e.target.value;
