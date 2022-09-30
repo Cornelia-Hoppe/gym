@@ -1,7 +1,6 @@
 import React, {lazy} from "react";
 import "./Home.module.css"
 import LandingHome from "../LandingHome/LandingHome";
-import HomeOffer from "../HomeOffer/HomeOffer";
 import HomeAbout from "../HomeAbout/HomeAbout";
 import HomeGallery from "../HomeGallery/HomeGallery";
 import HomePersonal from "../HomePersonal/HomePersonal";
@@ -9,10 +8,10 @@ import Arrow from "../ScrollArrow/Arrow"
 import {useAuthState} from 'react-firebase-hooks/auth';
 import { auth } from "../../firebase-config";
 import HomeOpenH from "../HomeOpenH/HomeOpenH";
-import {
-  LazyLoadImage,
-  LazyLoadComponent,
-} from "react-lazy-load-image-component";
+// import {
+//   LazyLoadImage,
+//   LazyLoadComponent,
+// } from "react-lazy-load-image-component";
 // const HomeAbout = lazy(() => import("../HomeAbout/HomeAbout"));
 // const HomeGallery = lazy(() => import("../HomeGallery/HomeGallery"));
 // const HomePersonal = lazy(() => import("../HomePersonal/HomePersonal"));
@@ -39,21 +38,21 @@ const Homepage = () => {
       <main id="home-section"
 >
         <LandingHome />
-        <LazyLoadComponent>
+        {/* <LazyLoadComponent> */}
           <Arrow />
-        </LazyLoadComponent>
-        <LazyLoadComponent>
+        {/* </LazyLoadComponent> */}
+        {/* <LazyLoadComponent> */}
           <HomeOpenH />
-        </LazyLoadComponent>
-        <LazyLoadComponent>
+        {/* </LazyLoadComponent> */}
+        {/* <LazyLoadComponent> */}
           <HomeAbout />
-        </LazyLoadComponent>
-        <LazyLoadComponent>
+        {/* </LazyLoadComponent>
+        <LazyLoadComponent> */}
           <HomeGallery />
-        </LazyLoadComponent>
-        <LazyLoadComponent>
+        {/* </LazyLoadComponent>
+        <LazyLoadComponent> */}
           <HomePersonal />
-        </LazyLoadComponent>
+        {/* </LazyLoadComponent> */}
       </main>
     </>
   );

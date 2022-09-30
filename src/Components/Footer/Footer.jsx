@@ -62,7 +62,10 @@ const Footer = () => {
                 Telefon: 070-111 22 33 <br></br>
                 E-post: info@sportix.se <br></br>
                 Pusterviksgatan 3 <br></br>
-                413 01 Göteborg
+                413 01 Göteborg <br></br>
+              </p>
+              <p>
+                Öppettider: <br></br> Måndag-söndag 07:00-21:00
               </p>
             </span>
           </div>
