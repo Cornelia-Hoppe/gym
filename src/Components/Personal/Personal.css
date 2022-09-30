@@ -1,7 +1,11 @@
 * {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-
+.personal-section{
+  position: relative;
+  top: 11vh;
+  margin-bottom: 12vh;
+}
 .active-btn {
   background-color: salmon;
   color: white;
@@ -11,6 +15,7 @@
   cursor: pointer;
   width: 124px;
   height: 42px;
+  margin: 5px;
   border-radius: 10px;
   font-weight: 600;
   border: none;
@@ -25,23 +30,16 @@
 .container {
   text-align: center;
   background: #dde6e6;
-  margin: auto;
+  margin: 0 10px;
   border-radius: 10px;
-  margin: 20px 10px auto 10px;
   padding-bottom: 8px;
   padding-top: 8px;
-  
-    
- 
 }
 
 .container h1 {
   margin-left: 1rem;
-  display:table-caption;
-  
+  display:table-caption; 
 }
-
-
 
 .image_box {
   display: flex;
@@ -75,32 +73,33 @@
 .nav_con {
   text-align: center;
   background: #dde6e6;
-  margin: auto;
+  margin: 0 10px;
   border-radius: 10px;
-  margin: 20px 10px auto 10px;
   padding-bottom: 8px;
   padding-top: 8px;
+  margin-bottom: 10px;
 }
 
 .nav_con h1 {
   margin-left: 1rem;
   margin-bottom: 1rem;
-  
 }
 h4{
   display:table-caption;
-  
-  
 }
 .text{
   display: inline-block;
 }
-
-
-
+.personal-image{
+  object-fit: cover;
+}
 @media (min-width: 800px) {
-  .image_box {
-    justify-content: left;
+  .nav_con{
+    margin: 0 30px;
+    margin-bottom: 10px;
+  }
+  .container{
+    margin: 10px 30px;
   }
 }
 

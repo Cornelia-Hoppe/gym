@@ -1,26 +1,33 @@
 *{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-
+.booking-page-container{
+  position: relative;
+  top: 10vh;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10vh;
+}
 
 .blue-wrapper{
   background: #DDE6E6;;
   padding: 10px 2px 60px 2px;
   border-radius: 10px;
-
+  margin-top: 10px;
 }
 .blue-wrapper h1{
 font-size: 30px;
+margin-bottom: 1rem;
 }
 .center{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-margin: 20px auto auto auto;
-width: 95%;
 }
-
+.choose-workout-section{
+  margin-bottom: 10px;
+}
 .drop-down{
   width: 140px;
   padding: 2px 5px;
@@ -32,39 +39,45 @@ width: 95%;
 .pass-card{
   padding: 10px;
   background: rgba(44, 77, 126, 0.75);
-  width: 400px;
-  max-width: 90%;
+  width: 90%;
   color: #e5e5e5;
   margin: 5px 0;
   position: relative;
-  border-radius: 5px;
-}
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
-.pass-card h1{
-  font-size: 23px;
-  font-weight: 500;
-  margin: 10px 0 0 0;
 }
-
-.pass-card h2{
-  font-size: 20px;
-  font-weight: 500;
+.aktv-tid-div h1{
+  font-size: 26px;
+  margin-bottom: 0.5rem;
 }
-
+.aktv-tid-div p {
+  font-size: 18px;
+  margin-bottom: 0.1rem;
+}
+.pass-button-container{
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+}
 .booking-antal{
-  position: absolute;
-  top: 0px;
-  right: 42px;
-}
+  font-size: 18px;
+  text-align: right;
 
+}
 .booking-btn{
-  position: absolute;
-  bottom: 10px;
-  right: 10px;   
-  cursor: pointer;
-  letter-spacing: 1px;
+  width: 4.5rem;
+  margin: 5px 0 0 0;
+  font-size: 18px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: none;
+  color: #548CA8;
+  padding: 0.5rem;
+  text-decoration: none;
 }
-
 .admin-edit-btn{
 position: absolute;
 bottom: 10px;
@@ -82,7 +95,7 @@ left: 10px;
 .aktv-tid-div{
   display: flex;
   flex-direction: column;
-
+  text-align: left;
 }
 
 
@@ -357,21 +370,24 @@ background:linear-gradient(to bottom, #cfe0e9 5%, #b3b4cd 100%);
   }
   .booking-page-header-desktop {
       display: flex;
-height: fit-content;
- width: fit-content;
+      margin-left: 20px;
+      margin-top: 4vh;
+      font-size: 30px;
   }
   .center {
       display: flex;
       justify-content:flex-start;
   }
-  
+  abbr{
+    font-size: 1.1rem;
+  }
   .booking-page-container{
-      margin: 40px auto auto auto;
-    background-color: #DDE6E6; 
-    width: 97%;
+    margin: 0 30px;
+    margin-bottom: 12vh;
+    background-color: #DDE6E6;
     border-radius: 10px;
-
-
+    display: flex;
+    flex-direction: column;
   }
 
 .booking-page-header-desktop h1{

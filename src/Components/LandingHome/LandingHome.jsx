@@ -5,7 +5,6 @@ import gymDesktop from "../../images/desktop-img1.jpg";
 const LandingHome = () => {
   return (
     <>
-      <main>
         <div className={style.LandingPage}>
           <div className={style.gymImgDesktop}>
             <img src={gymDesktop} rel="preload" fetchpriority="high" alt="gym-desktop" />
@@ -15,7 +14,6 @@ const LandingHome = () => {
             <h3>från 300:-/månad</h3>
           </button>
         </div>
-      </main>
     </>
   );
 };

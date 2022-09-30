@@ -18,22 +18,25 @@ const AdminPage = lazy(() => import("./admin_page/AdminPage"));
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+  // const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
-  const updateAfterLogin = () => {
-    setUser(JSON.parse(localStorage.getItem('user')))
-    setTimeout(setImgDelay, 500)
-  }
+  // const updateAfterLogin = () => {
+  //   setUser(JSON.parse(localStorage.getItem('user')))
+  //   setTimeout(setImgDelay, 500)
+  // }
 
-  const setImgDelay = () => {
-    console.log(user);
-  }
+  // const setImgDelay = () => {
+  //   console.log(user);
+  // }
+  
+  // updateAfterLogin={updateAfterLogin}
+  
   return (
     <>
     {/* <AdminPage /> */}
       {/* <LoadingScreen /> */}
       <CartProvider>
-          <Menu setOpenCart={setOpenCart} updateAfterLogin={updateAfterLogin}/>
+          <Menu setOpenCart={setOpenCart} />
         {openCart && (
         <Cart
          closeCart={setOpenCart}

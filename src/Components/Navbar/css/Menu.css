@@ -136,4 +136,10 @@
     background: rgba(0, 39, 84, 0.5);
     float: right;
   }
+  .menu-mobile-cart-totalitems{
+    width: 20px;
+    height: 20px;
+    right: 2.5%;
+    top: 10%;
+  }
 }

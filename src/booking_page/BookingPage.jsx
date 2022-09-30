@@ -234,9 +234,9 @@ const sortKategories = (selectedKategori) => {
     return (
       <>
         <article className="booking-page-container">
-          <div className="booking-page-header-desktop">
-            <h1>Boka Pass</h1>
-          </div>
+          {/* <div className="booking-page-header-desktop">
+          </div> */}
+            <h1 className="booking-page-header-desktop">Boka Pass</h1>
           <div className="booking-content">
             <section className='blue-wrapper center'>
         
@@ -245,7 +245,7 @@ const sortKategories = (selectedKategori) => {
               <Calendar onChange={setDate} value={date} onClickDay={sortPass} />
             </section>
 
-            <section className='blue-wrapper center'>
+            <section className='blue-wrapper center choose-workout-section'>
               <div className="booking-page-header-mobile"> <h1>Pass</h1> </div>
               <select className='drop-down' name='välj pass' onChange={(e) => sortKategories(e.target.value)}>
                 <option value="null">Välj pass</option>
@@ -263,7 +263,19 @@ const sortKategories = (selectedKategori) => {
 
                 return (
                   <>
-                    <div key={index} className="pass-card center" ref={ref}>
+                    <div key={index} className="pass-card" ref={ref}>
+                      
+                      {/* <img clasName='booking-icon' src={require("./"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/> */}
+                      <div className="aktv-tid-div">
+                        <h1>{pass.aktivitet}</h1>
+                        <p>
+                          {pass.dayString}, {pass.dateString} {pass.monthString}{" "}
+                          <br />
+                          {pass.tid}
+                        </p>
+                      <p>Av: {pass.instruktör}</p>
+                      </div>
+                      <div className="pass-button-container">
                       <h2
                         className="booking-antal"
                         style={
@@ -274,18 +286,8 @@ const sortKategories = (selectedKategori) => {
                       >
                         {!pass.platser ? 0 : pass.platser}/{pass.maxAntal}
                       </h2>
-                      {/* <img clasName='booking-icon' src={require("./"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/> */}
-                      <div className="aktv-tid-div">
-                        <h1>{pass.aktivitet}</h1>
-                        <p>
-                          {pass.dayString}, {pass.dateString} {pass.monthString}{" "}
-                          <br />
-                          {pass.tid}
-                        </p>
-                      </div>
-                      <h2>instruktör: {pass.instruktör}</h2>
                       <button
-                        class="myButton booking-btn"
+                        class="booking-btn"
                         onClick={() =>
                           handleBokaBtn(pass.id, "pass", pass.platser)
                         }
@@ -293,6 +295,7 @@ const sortKategories = (selectedKategori) => {
                         {" "}
                         {pass.bokad ? "Avboka" : "Boka"}
                       </button>
+                      </div>
                     </div>
                   </>
                 );

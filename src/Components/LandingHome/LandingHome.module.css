@@ -3,7 +3,7 @@
   z-index: 1;
   display: inline-block;
   position: relative;
-  width: 100vw;
+  width: 100%;
 }
 
 .gymImgDesktop {
@@ -26,7 +26,8 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
+  justify-content: center;
 }
 .landingButton:hover {
   background-color: rgba(115, 167, 193, 0.75);
@@ -50,7 +51,6 @@
 @media (min-width: 800px) {
   .gymImgDesktop {
     display: flex;
-    width: 100vw;
   }
 
   .gymImgDesktop img {
@@ -59,17 +59,16 @@
   }
 
   .landingButton {
-    width: 30rem;
+    width: 20rem;
+    padding: 10px;
+    border-radius: 10px;
   }
 
   .landingButton h2 {
-    padding-top: 2rem;
     font-size: 40px;
-    padding-left: 2rem;
   }
 
   .landingButton h3 {
     font-size: 30px;
-    padding-left: 2rem;
   }
 }

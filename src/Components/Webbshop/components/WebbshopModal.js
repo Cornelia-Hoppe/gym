@@ -91,12 +91,12 @@ function WebbshopModal(props) {
       <div className="desktop-info-container">
         <div className="modal-info-container">
           <div className="modal-info">
-            <h1 className="modal-info-title">{props.shortDesc}</h1>
+            <h1 className="modal-info-title">{props.brand}</h1>
             <h1 className="modal-info-price">{props.price}:-</h1>
           </div>
           <div>
             <p className="modal-info-desc">
-              {props.brand} - {props.color}
+              {props.shortDesc} - {props.color}
             </p>
           </div>
         </div>

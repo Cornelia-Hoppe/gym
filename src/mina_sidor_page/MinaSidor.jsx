@@ -147,7 +147,7 @@ let bokatPassArray = []
                 <h1>{pass.aktivitet}</h1>
                 <h2>{pass.tid}</h2>
             </div>
-            <p>instruktör: {pass.instruktör}</p>
+            <p>Instruktör: {pass.instruktör}</p>
         </div>
            )
        })} 

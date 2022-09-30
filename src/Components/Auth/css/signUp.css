@@ -11,6 +11,7 @@
 }
 
 .SignUp {
+    width: 85%;
     display: flex;
     justify-content: center;
     align-items: center;
