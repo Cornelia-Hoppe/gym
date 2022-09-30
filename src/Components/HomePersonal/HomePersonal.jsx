@@ -13,7 +13,7 @@ import {
 const HomePersonal = () => {
   return (
     <>
-      <div className={style.PersonalSection}>
+      <div className="Sportix-Section">
         <div className={style.HeaderPersonal}>
           <h3>Personal</h3>
           <p>
