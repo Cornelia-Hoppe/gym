@@ -14,7 +14,7 @@ import Memberships from './Memberships';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase-config";
 
-function MinaSidor() {
+  function MinaSidor() {
   const [showModal, setshowModal] = useState(false)
   const [userAuth, loading, error] = useAuthState(auth); 
 
@@ -24,57 +24,96 @@ function MinaSidor() {
   const [userBokadePass, setUserBokadePass] = useState('')
 
 
-  useEffect(() => {
-    if (userBokadePass) getPassAndSet()
-
-  }, [])
-
 // START - HÄMTAR ANVÄNDARENS BOKADE PASS 
 
   const passCollectionRef = collection(db, "pass")
   const [pass, setPass] = useState([])
 
+  const getPass = async () => {
+    const data = await getDocs(passCollectionRef)
+    setPass(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+  };
+
+  console.log('pass: ', pass);
+
   useEffect(() => {
-
-    const getPass = async () => {
-      const data = await getDocs(passCollectionRef)
-      setPass(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    };
-
     getPass()
   }, [])
+
 
 // ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
   //  DEN VIKTIGA DATAN  //
   // console.log('pass: ', pass);
+        // IF SATSEN FUNGERAR EJ
+    
 
-  useEffect(() => {
-    if (!userBokadePassId == "Inga bokade pass") {
-      console.log('inloggd och pass bokade');
-      getPassAndSet()
-    } else if (user) {
-      console.log('Inga pass bokade');
-    } else if (!user) {
-      console.log('ej inloggad');
-    }
-  }, [])
+  //   useEffect(() => {
+  //     if (!userBokadePassId == "Inga bokade pass") {
+  //       console.log('inloggd och pass bokade');
+  //     } else if (userBokadePassId) {
+  //       console.log('Inga pass bokade');
+  //       getPassAndSet()
+  //     } else if (!user) {
+  //       console.log('ej inloggad');
+  //     }
+  //   }, [])
 
-let bokatPassArray = []
+  // useEffect(() => {
+  //   if (!userBokadePassId == "Inga bokade pass") {
+  //     console.log('inloggd och pass bokade');
+  //   } else if (userBokadePassId) {
+  //     console.log('Inga pass bokade');
+  //     getPassAndSet()
+  //   } else if (!user) {
+  //     console.log('ej inloggad');
+  //   }
+  // }, [userBokadePassId])
+
+    const [bokatPassArray, setbokatPassArray] = useState('')
 
    const getPassAndSet = () => {
+
+    let newBokatPassArray = []
+
+    console.log('getPassAndSet körs');
+    console.log('pass i getPassAndSet: ', pass);
+
     userBokadePassId.map((bokatPass) => {
       
-      pass.find((pass, index) => {
+      pass.map((pass, index) => {
         if (pass.id == bokatPass){
-     bokatPassArray.push(pass)
-
+          console.log('yessssss');
+          newBokatPassArray.push(pass)
       } 
       })
     })
+
+    console.log('newBokatPassArray: ', newBokatPassArray);
+
+    setbokatPassArray(newBokatPassArray)
+
+    console.log('bokatPassArray: ', bokatPassArray);
   }
 
+  const wait4s = () => {
+    if (userBokadePassId) getPassAndSet()
+    else setTimeout(wait4s, 2000)
+  }
 
+  const wait2s = () => {
+    if (userBokadePassId) getPassAndSet()
+    else setTimeout(wait4s, 2000)
+  }
+
+  useEffect(() => {
+    console.log('userBokadePassId i useEffect: ', userBokadePassId);
+    if (userBokadePassId) {
+      getPassAndSet()
+      console.log('true is ');
+    }
+    else setTimeout(wait2s, 2000)
+  }, [])
  
 // ========================= END: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
@@ -104,7 +143,7 @@ let bokatPassArray = []
     console.log(user);
   }
 
-   return user ? ( 
+  return user ? ( 
     <>
       <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
       <section className='profile-wrapper'>   
@@ -138,19 +177,24 @@ let bokatPassArray = []
         </div>
         <div className='bokade-pass'>
                 <h3>Mina pass</h3>
-                {bokatPassArray.map(pass => {
-           return (
-            <div key={pass.id} className='pass-card center'>
-            <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
-            <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
-            <div className='aktv-tid-div'>
-                <h1>{pass.aktivitet}</h1>
-                <h2>{pass.tid}</h2>
-            </div>
-            <p>instruktör: {pass.instruktör}</p>
-        </div>
-           )
-       })} 
+                {bokatPassArray ? bokatPassArray.map(pass => {
+                  return pass
+        //    return (
+            
+        //     <div key={pass.id} className='pass-card center'>
+        //     <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
+        //     <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
+        //     <div className='aktv-tid-div'>
+        //         <h1>{pass.aktivitet}</h1>
+        //         <h2>{pass.tid}</h2>
+        //     </div>
+        //     <p>instruktör: {pass.instruktör}</p>
+        // </div>
+        //    )
+       })
+      :
+      <h1>hej! du har inga pass bokade, du får boka lite pass och bli av med fettet!</h1>
+      } 
             </div>
             </div>
       </section>
