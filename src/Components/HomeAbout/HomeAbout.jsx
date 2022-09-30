@@ -5,7 +5,8 @@ const HomeAbout = () => {
   return (
     <>
     
-        <div className={style.AboutSection}>
+        <div className="Sportix-Section">
+            <div className={style.desktopWrapper}>
             <div className={style.AboutInfo}>
                 <h3>Om gymmet</h3>
                 <p>Vårt gym & anläggning är inte som någon annan och vi gör allting för att din upplevelse ska bli så perfekt som möjligt. Vi prioriterar det som vi tror är viktigt för dig och för att du ska få ut mesta möjliga av ditt besök hos oss:</p>
@@ -24,6 +25,7 @@ const HomeAbout = () => {
 
                     <div className={style.AboutBox}><p>Kompetent och hjälpsam personal som finns där för dig.</p></div>
                 </div>
+            </div>
             </div>
         </div>
     </>    

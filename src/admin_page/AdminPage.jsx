@@ -652,7 +652,8 @@ const search = (text) => {
 
               <div className='modal-input-wrapper'>
                 <p>Kort beskrivning om dig: </p>
-                <textarea id='staff-input-3' type="text" placeholder='Skriv om dig...' onChange={(e) => {setNewText(e.target.value)}}  />
+                <textarea id='staff-input-3' maxlength="500" type="text" placeholder='Skriv om dig...' onChange={(e) => {setNewText(e.target.value)}}  />
+                <p>max 500 tecken</p>
               </div>
               <p style={{fontWeight:'bold'}}>Ange level: </p>
               <div className='modal-input-wrapper-level'>

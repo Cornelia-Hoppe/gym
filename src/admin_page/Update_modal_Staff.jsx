@@ -89,7 +89,8 @@ const closeModal = () => {
 
               <div className='modal-input-wrapper'>
               <h1>Ändra din beskrivning: </h1>
-              <textarea type="text" defaultValue={text} onChange={(e) => {setNewText(e.target.value)}}  />
+              <textarea type="text" maxlength="500" defaultValue={text} onChange={(e) => {setNewText(e.target.value)}}  />
+              <p>max 500 tecken</p>
               </div>
 
               <div className='modal-input-wrapper'>
