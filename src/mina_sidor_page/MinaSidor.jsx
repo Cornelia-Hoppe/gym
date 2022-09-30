@@ -13,6 +13,7 @@ import SavedModal from '../Components/loading_screen/SavedModal';
 import Memberships from './Memberships';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase-config";
+import '../booking_page/bookingPage.css'
 
   function MinaSidor() {
   const [showModal, setshowModal] = useState(false)
@@ -34,11 +35,11 @@ import { auth } from "../firebase-config";
     setPass(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
   };
 
-  console.log('pass: ', pass);
-
   useEffect(() => {
     getPass()
   }, [])
+
+  console.log('pass: ', pass);
 
 
 // ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
@@ -70,7 +71,7 @@ import { auth } from "../firebase-config";
   //   }
   // }, [userBokadePassId])
 
-    const [bokatPassArray, setbokatPassArray] = useState('')
+    const [bokatPassArray, setbokatPassArray] = useState([])
 
    const getPassAndSet = () => {
 
@@ -96,24 +97,25 @@ import { auth } from "../firebase-config";
     console.log('bokatPassArray: ', bokatPassArray);
   }
 
-  const wait4s = () => {
-    if (userBokadePassId) getPassAndSet()
-    else setTimeout(wait4s, 2000)
-  }
-
-  const wait2s = () => {
-    if (userBokadePassId) getPassAndSet()
-    else setTimeout(wait4s, 2000)
-  }
-
+ 
   useEffect(() => {
     console.log('userBokadePassId i useEffect: ', userBokadePassId);
-    if (userBokadePassId) {
+    if (userBokadePassId && pass.length !== 0) {
+      console.log('pass i useEffect: ', pass);
       getPassAndSet()
-      console.log('true is ');
     }
-    else setTimeout(wait2s, 2000)
   }, [])
+
+  useEffect(() => {
+    console.log('user.bokadePass i useEffect: ', user.bokadePass);
+    setUserBokadePassId(user ? user.bokadePass : '')
+    console.log('userBokadePassId i useEffect: ', userBokadePassId);
+    console.log('pass i useEffect: ', pass);
+
+    if (userBokadePassId && pass.length !== 0 ) {
+      getPassAndSet()
+    }
+  }, [userBokadePassId, pass])
  
 // ========================= END: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
@@ -178,19 +180,18 @@ import { auth } from "../firebase-config";
         <div className='bokade-pass'>
                 <h3>Mina pass</h3>
                 {bokatPassArray ? bokatPassArray.map(pass => {
-                  return pass
-        //    return (
+           return (
             
-        //     <div key={pass.id} className='pass-card center'>
-        //     <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
-        //     <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
-        //     <div className='aktv-tid-div'>
-        //         <h1>{pass.aktivitet}</h1>
-        //         <h2>{pass.tid}</h2>
-        //     </div>
-        //     <p>instruktör: {pass.instruktör}</p>
-        // </div>
-        //    )
+            <div key={pass.id} className='pass-card center'>
+            <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
+            {/* <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/> */}
+            <div className='aktv-tid-div'>
+                <h1>{pass.aktivitet}</h1>
+                <h2>{pass.tid}</h2>
+            </div>
+            <p>{pass.instruktör}</p>
+        </div>
+           )
        })
       :
       <h1>hej! du har inga pass bokade, du får boka lite pass och bli av med fettet!</h1>

@@ -21,7 +21,6 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import SignUp from "./SignUp";
-import signIn from "./signIn";
 
 function Login() {
   const navigate = useNavigate();
