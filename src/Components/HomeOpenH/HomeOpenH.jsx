@@ -5,8 +5,10 @@ const HomeOpenH = () => {
   return (
     <>
 
-        <div className={style.OpenHSection}>
+        <div className="Sportix-Section">
+
             <div className={style.OpenHEnd}>
+      
                 <h3>Öppettider:</h3>
                 <p>Måndag-söndag 07:00-21:00</p>
             </div>
