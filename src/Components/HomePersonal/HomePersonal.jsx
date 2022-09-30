@@ -22,9 +22,10 @@ const HomePersonal = () => {
             vägen fram för dig och för din hälsa.{" "}
           </p>
         </div>
-        <div className={style.PersonalButtons}>
-          <CustomLink to="/staff">
-            <LazyLoadComponent>
+        <div className={style.PersonalButtons}>         
+         <LazyLoadComponent>
+        <CustomLink to="/staff" state={{ from: "Ledning" }} >
+  
               <button
                 className={style.persona1}
                 style={{
@@ -37,7 +38,9 @@ const HomePersonal = () => {
                   <p>Ledning</p>
                 </div>
               </button>
+              </CustomLink>
 
+<CustomLink to="/staff" state={{ from: "Tränare" }} >
               <button
                 className={style.persona2}
                 style={{
@@ -48,6 +51,10 @@ const HomePersonal = () => {
               >
                 <p>Tränare</p>
               </button>
+
+          </CustomLink>
+
+<CustomLink to="/staff" state={{ from: "Reception" }} >
               <button
                 className={style.persona3}
                 style={{
@@ -58,6 +65,9 @@ const HomePersonal = () => {
               >
                 <p>Reception</p>
               </button>
+              </CustomLink>
+          <CustomLink to="/staff" state={{ from: "Instruktör" }} >
+
               <button
                 className={style.persona4}
                 style={{
@@ -68,8 +78,10 @@ const HomePersonal = () => {
               >
                 <p>Instruktörer</p>
               </button>
-            </LazyLoadComponent>
+
           </CustomLink>
+            </LazyLoadComponent>
+
         </div>
       </div>
     </>
