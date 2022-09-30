@@ -19,8 +19,21 @@ import UpdateLocalStorage from "../functions/UpdateLocalStorage";
 import { async } from "@firebase/util";
 
 function BookingPage() {
+
+  const [passKategorier, setPassKategorier] = useState();
+  const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
+
+  const [date, setDate] = useState(new Date())
+  const [passDenDagen, setPassDenDagen] = useState([])
+
+  // SÄTTER inloggaUser. DENNA KOMMER UPPDATERAS
+  const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
+
   const ref = useRef(null);
-  // HÄMTAR STAFF
+
+
+// START: HÄMTAR PASS
+
   const passCollectionRef = collection(db, "pass");
   const [pass, setPass] = useState([]);
 
@@ -29,21 +42,25 @@ function BookingPage() {
     console.log('getPass körs');
     const data = await getDocs(passCollectionRef);
     setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    sortPass()
+
     closeLoadingModal()
   };
 
+    // HÄMTAR PASS FÖRSTA GÅNGEN
   const getStaffFirstTime = async () => {
     const data = await getDocs(passCollectionRef);
     setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    sortPass()
   };
 
   useEffect(() => {
     getStaffFirstTime()
   }, []);
 
-  // HÄMTAR PROFILER
+// END: HÄMTAR PASS
+
+
+// START: HÄMTAR PROFILER
+
   const profilerCollectionRef = collection(db, "profiler");
   const [profiler, setProfiler] = useState([]);
  
@@ -56,32 +73,7 @@ function BookingPage() {
     getProfiler();
   }, []);
 
-   const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
-   
-
-   // KALENDER
-
- const [date, setDate] = useState(new Date())
- const [passDenDagen, setPassDenDagen] = useState([])
-
-  const handleBokaBtn = async (passId, DBcollextion, platser, bokad) => {
-    addPassToProfile(passId);
-
- const sortPass = async (e) => {
-  console.log(e);
-
-  const filteredPass = pass.filter((pass) => {
-      return pass.dag == e 
-  })
-    // UPPDATERAR DATA
-    const staffDoc = doc(db, DBcollextion, passId);
-    const newFields = { platser: platser, bokad: bokad };
-    await updateDoc(staffDoc, newFields);
-    // ---
-
-  setPassDenDagen(filteredPass)
-
- }
+// END: HÄMTAR PROFILER
 
   // BOKA-KNAPPEN
 
@@ -89,82 +81,76 @@ function BookingPage() {
 
     inloggadUser.bokadePass.find((item) => {
       if (passId == item) avbokaPass() })
-      
-      
-      
+            
       openLoadingModal()
 
       addPassToProfile(passId)
       
     };
 
-    const addPassToProfile = async (passId) => {
-    const newPassLista = [];
+
+// START: UPPDATERAR PASS DATA OCH LOCALSTORAGE
+
+  const addPassToProfile = async (passId) => {
+    
+    const inloggadId = inloggadUser.id
+    
+    const tidigarePass = inloggadUser.bokadePass
+
+    const newPassLista = []
 
     if (tidigarePass) {
       tidigarePass.map((item, index) => {
-        newPassLista.push(passId);
-        newPassLista.push(item);
-      });
+        newPassLista.push(passId)
+        newPassLista.push(item)
+      })
     } else {
-      newPassLista.push(passId);
+      newPassLista.push(passId)
     }
 
-    // UPPDATERAR DATA
-    const staffDoc = doc(db, "profiler", inloggadId);
+    const passDoc = doc(db, 'profiler', inloggadId);
     const newFields = { bokadePass: newPassLista };
-    await updateDoc(staffDoc, newFields);
+    await updateDoc(passDoc, newFields);
+
+    UpdateLocalStorage(inloggadUser.id)
+
+    getPass()
+
+    closeLoadingModal()
+
+    document.querySelector("#check-modal").style.display = "flex";
+
   };
 
-  //--
-
-      const inloggadId = inloggadUser.id
-      
-      const tidigarePass = inloggadUser.bokadePass
-
-      const newPassLista = []
+// END: UPPDATERAR PASS DATA OCH LOCALSTORAGE
 
 
-      if (tidigarePass) {
-        tidigarePass.map((item, index) => {
-          newPassLista.push(passId)
-          newPassLista.push(item)
-        })
-      } else {
-        newPassLista.push(passId)
-      }
+// START: SORTERA PASSEN
 
-        // UPPDATERAR DATA PROFILER
-        const staffDoc = doc(db, 'profiler', inloggadId);
-        const newFields = { bokadePass: newPassLista };
-        await updateDoc(staffDoc, newFields);
-
-        UpdateLocalStorage(inloggadUser.id)
-
-        getPass()
-
-        closeLoadingModal()
-
-        document.querySelector("#check-modal").style.display = "flex";
-
-    };
-
-// SORTERA PASSEN
-const sortPass = (e) => {
+  // PER DAG
+  const sortPassDay = (e) => {
     const filteredPass = pass.filter((pass) => {
       return pass.dag == e;
     });
-
-    console.log('pass: ', pass);
-
-    console.log('filteredPass: ', filteredPass);
-
     setPassDenDagen(filteredPass);
-
     scrollToPass();
   };
 
-  // START: AVBOKA PASS  ====================================================
+  // PER KATEGORI
+  const sortKategories = (selectedKategori) => {
+    const filteredKategoryPass = pass.filter((pass) => {
+      return pass.kategori == selectedKategori;
+    });
+    setPassDenDagen(filteredKategoryPass);
+    scrollToPass();
+    setPassKategorier(selectedKategori);
+    
+  }
+  
+// END: SORTERA PASSEN
+
+
+// START: AVBOKA PASS 
 
 const avbokaPass = async (passId, passPlatser) => {
 
@@ -177,7 +163,7 @@ const avbokaPass = async (passId, passPlatser) => {
     }
   })
 
-    // UPPDATERAR DATA
+    // UPPDATERAR DATA PROFILER
       const profulerDoc = doc(db, 'profiler', inloggadUser.id);
       const newFields = { bokadePass: newBokadePass,};
       await updateDoc(profulerDoc, newFields);
@@ -195,41 +181,13 @@ getPass()
 
 }
 
-// END: AVBOKA PASS  ====================================================
+// END: AVBOKA PASS  
 
+// SCROLL FUNCTION
 const scrollToPass = () => {
   ref.current?.scrollIntoView({ behavior: "smooth" });
 };
 
-const [passKategorier, setPassKategorier] = useState();
-
-const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
-
-const sortKategories = (selectedKategori) => {
-  
-  const filteredKategoryPass = pass.filter((pass) => {
-    return pass.kategori == selectedKategori;
-  });
-
-  console.log('pass: ', pass);
-
-  console.log('filteredKategoryPass: ', filteredKategoryPass);
-
-  setPassDenDagen(filteredKategoryPass);
-
-
-  scrollToPass();
-
-
-  setPassKategorier(selectedKategori);
-
-    const filteredPass = pass.filter((pass) => {
-      return pass.kategori == selectedKategori;
-    });
-
-    
-  }
-    // const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
 
     return (
       <>
@@ -242,7 +200,7 @@ const sortKategories = (selectedKategori) => {
         
               <div className="booking-page-header-mobile">
                 <h1>Kalender</h1></div>
-              <Calendar onChange={setDate} value={date} onClickDay={sortPass} />
+              <Calendar onChange={setDate} value={date} onClickDay={sortPassDay} />
             </section>
 
             <section className='blue-wrapper center'>
