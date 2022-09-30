@@ -4,10 +4,10 @@ import { imgs } from "./GalleryImgs";
 import { MdArrowBack } from "@react-icons/all-files/md/MdArrowBack";
 import { MdArrowForward } from "@react-icons/all-files/md/MdArrowForward";
 import { transform } from "framer-motion";
-// import {
-//   LazyLoadImage,
-//   LazyLoadComponent,
-// } from "react-lazy-load-image-component";
+import {
+  LazyLoadImage,
+  LazyLoadComponent,
+} from "react-lazy-load-image-component";
 
 const HomeGallery = () => {
   const [sliderData, setSliderData] = useState(imgs[0]);
@@ -49,7 +49,7 @@ const HomeGallery = () => {
 
           </div>
 
-          <img
+          <LazyLoadImage
             src={sliderData.value}
             alt={sliderData.value}
             height="300vh"
@@ -69,7 +69,7 @@ const HomeGallery = () => {
                 data === sliderData ? style.selectedImg : style.nonSelected
               }
             >
-              <img
+              <LazyLoadImage
                 alt={data.value}
                 key={data.id}
                 src={data.value}

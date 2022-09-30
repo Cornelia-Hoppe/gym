@@ -76,6 +76,10 @@
   color: white;
 }
 
+.footer-desc p {
+  margin-top: 1rem;
+}
+
 #social-section {
   text-align: center;
 }
