@@ -14,6 +14,7 @@ import Memberships from './Memberships';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase-config";
 import '../booking_page/bookingPage.css'
+import UpdateLocalStorage from '../functions/UpdateLocalStorage';
 
   function MinaSidor() {
   const [showModal, setshowModal] = useState(false)
@@ -39,37 +40,9 @@ import '../booking_page/bookingPage.css'
     getPass()
   }, [])
 
-  console.log('pass: ', pass);
 
 
 // ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
-
-  //  DEN VIKTIGA DATAN  //
-  // console.log('pass: ', pass);
-        // IF SATSEN FUNGERAR EJ
-    
-
-  //   useEffect(() => {
-  //     if (!userBokadePassId == "Inga bokade pass") {
-  //       console.log('inloggd och pass bokade');
-  //     } else if (userBokadePassId) {
-  //       console.log('Inga pass bokade');
-  //       getPassAndSet()
-  //     } else if (!user) {
-  //       console.log('ej inloggad');
-  //     }
-  //   }, [])
-
-  // useEffect(() => {
-  //   if (!userBokadePassId == "Inga bokade pass") {
-  //     console.log('inloggd och pass bokade');
-  //   } else if (userBokadePassId) {
-  //     console.log('Inga pass bokade');
-  //     getPassAndSet()
-  //   } else if (!user) {
-  //     console.log('ej inloggad');
-  //   }
-  // }, [userBokadePassId])
 
     const [bokatPassArray, setbokatPassArray] = useState([])
 
@@ -77,40 +50,29 @@ import '../booking_page/bookingPage.css'
 
     let newBokatPassArray = []
 
-    console.log('getPassAndSet körs');
-    console.log('pass i getPassAndSet: ', pass);
-
     userBokadePassId.map((bokatPass) => {
       
       pass.map((pass, index) => {
         if (pass.id == bokatPass){
-          console.log('yessssss');
           newBokatPassArray.push(pass)
       } 
       })
     })
 
-    console.log('newBokatPassArray: ', newBokatPassArray);
 
     setbokatPassArray(newBokatPassArray)
 
-    console.log('bokatPassArray: ', bokatPassArray);
   }
 
  
   useEffect(() => {
-    console.log('userBokadePassId i useEffect: ', userBokadePassId);
     if (userBokadePassId && pass.length !== 0) {
-      console.log('pass i useEffect: ', pass);
       getPassAndSet()
     }
   }, [])
 
   useEffect(() => {
-    console.log('user.bokadePass i useEffect: ', user.bokadePass);
     setUserBokadePassId(user ? user.bokadePass : '')
-    console.log('userBokadePassId i useEffect: ', userBokadePassId);
-    console.log('pass i useEffect: ', pass);
 
     if (userBokadePassId && pass.length !== 0 ) {
       getPassAndSet()
@@ -142,8 +104,42 @@ import '../booking_page/bookingPage.css'
   }
 
   const setImgDelay = () => {
-    console.log(user);
   }
+
+  // AVBOKA
+
+  // START: AVBOKA PASS 
+
+const avbokaPass = async (passId, passPlatser) => {
+
+  let newBokadePass = []
+
+  user.bokadePass.find((item) => {
+    if (passId == item) {
+    } else {
+      newBokadePass.push(item)
+    }
+  })
+
+    // UPPDATERAR DATA PROFILER
+      const profulerDoc = doc(db, 'profiler', user.id);
+      const newFields = { bokadePass: newBokadePass,};
+      await updateDoc(profulerDoc, newFields);
+
+      UpdateLocalStorage(user.id)
+
+      passPlatser--
+
+      // UPPDATERAR DATA PASS
+      const passfDoc = doc(db, "pass", passId);
+      const newFields2 = { platser: passPlatser,};
+      await updateDoc(passfDoc, newFields2);
+
+getPass()
+
+}
+
+// END: AVBOKA PASS  
 
   return user ? ( 
     <>
@@ -190,6 +186,12 @@ import '../booking_page/bookingPage.css'
                 <h2>{pass.tid}</h2>
             </div>
             <p>{pass.instruktör}</p>
+            <button
+                        class="myButton booking-btn"
+                        onClick={() =>
+                          avbokaPass(pass.id, "pass", pass.platser)}>
+                        Avboka
+                      </button>
         </div>
            )
        })
