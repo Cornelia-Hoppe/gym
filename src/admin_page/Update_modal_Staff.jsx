@@ -2,7 +2,7 @@ import React from 'react'
 import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useState, useEffect } from "react";
-import { GrFormClose } from 'react-icons/gr'
+import { GrFormClose } from "@react-icons/all-files/gr/GrFormClose";
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
 
@@ -76,9 +76,9 @@ const closeModal = () => {
                 />
             </div>
 
-            <div className='modal-input-wrapper'>
+            <div className='modal-input-wrapper-ka'>
                 <h1 className='m10'>Ändra kategori:</h1>
-                <select className='drop-down input-select' name='välj pass' onChange={(e) => setNewKategori(e.target.value)}>
+                <select className='drop-down-k' name='välj pass' onChange={(e) => setNewKategori(e.target.value)}>
                   <option value="null">Ange den anställdes kategori</option>
                   <option value="ledning">Ledning</option>
                   <option value="tränare">Tränare</option>
@@ -87,21 +87,22 @@ const closeModal = () => {
                 </select>
               </div>
 
-              <div className='modal-input-wrapper'>
+              <div className='drop-down-bes'>
               <h1>Ändra din beskrivning: </h1>
-              <textarea type="text" defaultValue={text} onChange={(e) => {setNewText(e.target.value)}}  />
+              <textarea type="text" maxlength="500" defaultValue={text} onChange={(e) => {setNewText(e.target.value)}}  />
+              <p>max 500 tecken</p>
               </div>
 
-              <div className='modal-input-wrapper'>
+              <div className='drop-down-le'>
                 <h1 className='m10'>Ändra level:</h1>
-                <select className='drop-down input-select' placeholder={level} defaultValue={level} name='välj pass' onChange={(e) => setNewLevel(e.target.value)}>
+                <select className='drop-down-k' placeholder={level} defaultValue={level} name='välj pass' onChange={(e) => setNewLevel(e.target.value)}>
                   <option value="1">Level 1</option>
                   <option value="2">Level 2</option>
                   <option value="3">Level 3</option>
                 </select>
               </div>
 
-            <div className='modal-img-wrapper'>
+            <div className='drop-down-k'>
                 <h1>Uppdatera bild:</h1>
                  <input 
                     type="file" 
@@ -113,7 +114,8 @@ const closeModal = () => {
             </div>
 
             <div className="m30">
-                <button className='m3' onClick={() => {updateStaff('staff')}}>Spara</button>
+              
+                <button className='product-button' onClick={() => {updateStaff('staff')}}>Spara</button>
             </div>
             
         </article>

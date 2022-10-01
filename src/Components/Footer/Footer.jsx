@@ -1,7 +1,11 @@
 import React from "react";
 import "./Footer.css";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook } from "@react-icons/all-files/fa/FaFacebook";
+import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
+import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter";
+import { FaLinkedin } from "@react-icons/all-files/fa/FaLinkedin";
 import { Link } from "react-router-dom";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 const Footer = () => {
   return (
@@ -58,7 +62,10 @@ const Footer = () => {
                 Telefon: 070-111 22 33 <br></br>
                 E-post: info@sportix.se <br></br>
                 Pusterviksgatan 3 <br></br>
-                413 01 Göteborg
+                413 01 Göteborg <br></br>
+              </p>
+              <p>
+                Öppettider: <br></br> Måndag-söndag 07:00-21:00
               </p>
             </span>
           </div>

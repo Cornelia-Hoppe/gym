@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import Update_modal_Staff from './Update_modal_Staff';
 import { db } from '../firebase-config'
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
-import { BsFillPencilFill } from 'react-icons/bs'
+import { FaPencilAlt } from "@react-icons/all-files/fa/FaPencilAlt";
 import Update_modal_product from './Update_modal_product';
 import Calendar from 'react-calendar';
-import Menu from '../Components/Navbar/components/Menu';
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
 import Update_modal_pass from '../booking_page/Update_modal_pass';
@@ -28,7 +27,7 @@ function AdminPage() {
     const [kategori, setKategori] = useState('')
     const [price, setPris] = useState(0)
     const [produktNamn, setProduktNamn] = useState('')
-    const [orderSise, setOrderSise] = useState('')
+    const [orderSize, setOrderSize] = useState('S,M,L,XL')
     
     const [productBrand, setproductBrand] = useState('')
     const [productColor, setproductColor] = useState('')
@@ -120,7 +119,7 @@ function previewImageProdukt() {
     // PRODUKTER
   const createProduct = async () => {
     openLoadingModal()
-    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, price: Number(price), produktNamn: produktNamn, type: kategori, brand: productBrand, shortDesc: productshortDesc, color: productColor, orderSise: orderSise});
+    await addDoc(produkterCollectionRef, {img: IMG_SRC_produkt, kategori: kategori, price: Number(price), produktNamn: produktNamn, type: kategori, brand: productBrand, shortDesc: productshortDesc, color: productColor, orderSise: orderSize});
 
 
     getProdukter()
@@ -406,7 +405,6 @@ const search = (text) => {
 
   return (
     <>
-      <Menu />
 {/* ------------------------------ PASS -------------------------------- */}
 
 <section className='center-newpass'>
@@ -482,7 +480,7 @@ const search = (text) => {
                         <h2>instruktör: {pass.instruktör}</h2>
                         <button 
                             onClick={() => openUpdateModalPass(pass.id)}
-                            className='myButton admin-edit-btn'><BsFillPencilFill className='pen-icon'/>
+                            className='myButton admin-edit-btn'><FaPencilAlt className='pen-icon'/>
                         </button>
                         <button className='staff-btn-delete myButtonDelete' onClick={() => {deletePass(pass.id, 'pass')}}>Radera</button>
 
@@ -555,9 +553,9 @@ const search = (text) => {
 
             <div className='modal-input-wrapper'>
               <p>Storlek:</p>
-              <select className='drop-down input-select' name='välj pass' onChange={(e) => setOrderSise(e.target.value)}>
+              <select className='drop-down input-select' name='välj pass' onChange={(e) => setOrderSize(e.target.value)}>
                 <option value="S,M,L,XL">S,M,L,XL</option>
-                <option value="oneSise">One sise</option>
+                <option value="oneSize">One size</option>
               </select>
             </div>
 
@@ -603,7 +601,7 @@ const search = (text) => {
                     <p className='m10'>{produkt.kategori}</p>
                   <img className='img-produkt' src={produkt.img} alt={`Bild på ${produkt.produktNamn}`} />
                 
-                  <button class="myButton admin-edit-btn" onClick={() => openProductUpdateModal(produkt.id)}><BsFillPencilFill className='pen-icon' /></button>
+                  <button class="myButton admin-edit-btn" onClick={() => openProductUpdateModal(produkt.id)}><FaPencilAlt className='pen-icon' /></button>
 
                   <button className='staff-btn-delete myButtonDelete' onClick={() => {deleteProdukter(produkt.id, 'produkter')}}>Radera</button>
                 </div>
@@ -618,7 +616,7 @@ const search = (text) => {
                     productBrand={produkt.brand}
                     productshortDesc={produkt.shortDesc}
                     productColor={productColor}
-                    setOrderSise={orderSise}
+                    setOrderSize={orderSize}
                 />
               </>
               )
@@ -654,7 +652,8 @@ const search = (text) => {
 
               <div className='modal-input-wrapper'>
                 <p>Kort beskrivning om dig: </p>
-                <textarea id='staff-input-3' type="text" placeholder='Skriv om dig...' onChange={(e) => {setNewText(e.target.value)}}  />
+                <textarea id='staff-input-3' maxlength="500" type="text" placeholder='Skriv om dig...' onChange={(e) => {setNewText(e.target.value)}}  />
+                <p>max 500 tecken</p>
               </div>
               <p style={{fontWeight:'bold'}}>Ange level: </p>
               <div className='modal-input-wrapper-level'>
@@ -700,7 +699,7 @@ const search = (text) => {
                             <h1 id={`${staff.id}-name`}>{staff.name}, {staff.age} år</h1>
                             <img className='staff-img' src={staff.img} alt={`bild på ${staff.name}`} />
                             <p className='staff-text'>{staff.text}</p>
-                            <button className='admin-edit-btn myButton' onClick={() => openUpdateModal(staff.id)}><BsFillPencilFill className='pen-icon' /></button>
+                            <button className='admin-edit-btn myButton' onClick={() => openUpdateModal(staff.id)}><FaPencilAlt className='pen-icon' /></button>
                             <button className='staff-btn-delete myButtonDelete' onClick={() => {deleteStaff(staff.id, 'staff')}}>Radera</button>
 
                         </div>

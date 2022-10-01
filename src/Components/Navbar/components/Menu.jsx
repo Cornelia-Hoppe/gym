@@ -1,35 +1,48 @@
-import React from 'react'
+import React from "react";
 import { useState } from "react";
 import "../css/Menu.css";
 import Navbar from "./Navbar";
-import MobLogo from "../../../images/logo-mobile.png";
-import DeskLogo from "../../../images/logo-desktop.png";
-import { AiOutlineMenu } from "react-icons/ai";
-import { IoIosCart } from "react-icons/io";
-import { FaRegUserCircle } from "react-icons/fa";
-import { HiOutlineUserCircle } from "react-icons/hi";
-import Login from "./Login";
+import MobLogo from "../../../images/sportix-logo-mobile.png";
+import DeskLogo from "../../../images/sportix-logo.png";
+import { GrMenu } from "@react-icons/all-files/gr/GrMenu";
+import { IoIosCart } from "@react-icons/all-files/io/IoIosCart";
+// import { FaRegUserCircle } from "react-icons/fa";
+import { HiOutlineUserCircle } from "@react-icons/all-files/hi/HiOutlineUserCircle";
+import Login from "../../Auth/Login";
 import { Link, NavLink } from "react-router-dom";
+import { useCart } from "react-use-cart";
 
-function Menu({ updateAfterLogin }) {
+function Menu({ updateAfterLogin, setOpenCart} ) {
+  const { totalItems } = useCart();
+
   const [openNavbar, setOpenNavbar] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
 
   return (
     <div className="Menu">
-      {openNavbar && <Navbar closeNavbar={setOpenNavbar} updateAfterLogin={updateAfterLogin} />}
+      {openNavbar && (
+        <Navbar
+          closeNavbar={setOpenNavbar}
+          updateAfterLogin={updateAfterLogin}
+        />
+      )}
       <ul className="menu-mobile">
-        <IoIosCart className="menu-mobile-cart" />
+        <span className="menu-cart">
+        <IoIosCart className="menu-mobile-cart" 
+        onClick={() => {
+          setOpenCart(true)
+        }}/>
+        <span className="menu-mobile-cart-totalitems">{totalItems}</span>
+          </span>
         <img className="menu-mobile-logo" src={MobLogo} alt="mobile-logo"></img>
-        <AiOutlineMenu
+        <GrMenu
           className="menu-mobile-button"
           onClick={() => {
             setOpenNavbar(true);
-          }}
-        />
+          }}/>
       </ul>
       <nav className="menu-desktop">
-        <CustomLink to="/home">
+        <CustomLink to="/gym">
           <img
             className="menu-desktop-logo"
             src={DeskLogo}
@@ -38,7 +51,7 @@ function Menu({ updateAfterLogin }) {
         </CustomLink>
         <ul className="menu-desktop-list">
           <li className="menu-desktop-items">
-            <CustomLink to="/home">
+            <CustomLink to="/gym">
               <p className="menu-desktop-item">Startsida</p>
             </CustomLink>
           </li>
@@ -68,7 +81,9 @@ function Menu({ updateAfterLogin }) {
               }}
             />
           </CustomLink>
-          <IoIosCart className="menu-desktop-cart" />
+          <IoIosCart className="menu-desktop-cart" onClick={() => {
+          setOpenCart(true)
+        }}/>
         </ul>
       </nav>
       {/* <div className="menu-desktop-login">

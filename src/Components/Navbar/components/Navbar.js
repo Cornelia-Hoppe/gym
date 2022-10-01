@@ -2,15 +2,18 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import ListItem from "./ListItem";
-import Login from "./Login";
+import Login from "../../Auth/Login";
 import "../css/Navbar.css";
-import SignUp from "./SignUp";
+import SignUp from "../../Auth/SignUp";
 import { motion } from "framer-motion";
 //Icons
-import { IoIosClose, IoMdHome, IoIosCart } from "react-icons/io";
+import { GrClose } from "@react-icons/all-files/gr/GrClose";
+import { IoMdHome } from "@react-icons/all-files/io/IoMdHome";
+import { IoIosCart } from "@react-icons/all-files/io/IoIosCart";
 //import { GrYoga } from "react-icons/gr";
-import { BsPersonCircle, BsFilePerson } from "react-icons/bs";
-import { TbYoga } from "react-icons/tb";
+import { BsPerson } from "@react-icons/all-files/bs/BsPerson";
+import { MdPeopleOutline } from "@react-icons/all-files/md/MdPeopleOutline";
+import { GrYoga } from "@react-icons/all-files/gr/GrYoga";
 
 //Routes
 
@@ -36,38 +39,37 @@ function NavBar({ closeNavbar, updateAfterLogin }) {
     >
       {openSignUp && <SignUp closeSignup={setOpenSignUp} />}
       <div className="navbar-header">
-        <IoIosClose
+        <GrClose color="white"
           className="exit-button"
           onClick={() => closeNavbar(false)}
         />
       </div>
       <div className="navbar-list">
         <CustomLink to="/">
-          <ListItem
-  
-            name="Startsida"
-            icon={<IoMdHome className="icon" />}
-          />
+          <ListItem name="Startsida" icon={<IoMdHome className="icon" />} />
         </CustomLink>
         <CustomLink to="/bookingpage">
-          <ListItem name="Boka pass" icon={<TbYoga className="icon" />} />
+          <ListItem name="Boka pass" icon={<GrYoga className="icon" />} />
         </CustomLink>
         <CustomLink to="/myprofile">
           <ListItem
             name="Mina sidor"
-            icon={<BsPersonCircle className="icon" />}
+            icon={<BsPerson className="icon" />}
           />
         </CustomLink>
         <CustomLink to="/staff">
-          <ListItem name="Personal" icon={<BsFilePerson className="icon" />} />
+          <ListItem name="Personal" icon={<MdPeopleOutline className="icon" />} />
         </CustomLink>
+        <CustomLink to="/webshop">
         <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
-
-        
+        </CustomLink>
       </div>
 
       <div className="navbar-login">
-        <Login setOpenSignUp={setOpenSignUp} updateAfterLogin={updateAfterLogin} />
+        <Login
+          setOpenSignUp={setOpenSignUp}
+          updateAfterLogin={updateAfterLogin}
+        />
       </div>
     </motion.div>
   );
@@ -78,5 +80,3 @@ export default NavBar;
 function CustomLink({ to, ...props }) {
   return <Link to={to} {...props}></Link>;
 }
-
-

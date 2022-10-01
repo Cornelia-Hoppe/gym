@@ -2,22 +2,18 @@ import React, { useState, useEffect } from "react";
 import "./Personal.css";
 import { buttons } from "./data";
 import { getTrainer, filterTrainer } from "./services";
-import Menu from "../Navbar/components/Menu";
-import Edit from "./Edition";
-
-
+//import Edit from "./Edition";
 import { db } from '../../firebase-config'
 import { collection, getDocs } from 'firebase/firestore'
-
-
-
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { NavFilter } from "./GetLink";
 export default function App() {
   
- /*const [newTittle] = useState(text ? text : '')*/
 
   const staffCollectionRef = collection(db, "staff")
   const [staff, setStaff] = useState([])
+  const [selected, setSelected] = useState(null);
+  const [trainersPerson, setTrainersPerson] = useState(null);
 
   const getStaff = async () => {
     const data = await getDocs(staffCollectionRef)
@@ -29,34 +25,35 @@ useEffect(() => {
     getStaff()
   }, [])
 
-  console.log(staff);
-
-  const [selected, setSelected] = useState(null);
-
-  const [trainersPerson, setTrainersPerson] = useState(null);
   useEffect(() => {
-    setTrainersPerson(getTrainer());
-  }, []);
+    const Cards = () =>{  
+     type !== null
+     ? setTrainersPerson(filterTrainer(type))
+     : setTrainersPerson(getTrainer());
+   
+     setSelected(type);
+      }
+      Cards()
+      }, []);
+   
+       let type = NavFilter()
+   
 
   function handleTrainer(e) {
-
     let typeTrainer = e.target.value;
 
     typeTrainer !== ""
       ? setTrainersPerson(filterTrainer(typeTrainer))
-
       : setTrainersPerson(getTrainer());
 
-    setSelected(typeTrainer);
-  }
+      setSelected(typeTrainer);
+    }
 
-  return (
-    <>
-      <Menu />
-      {/* Trainers nav  */}
-      <div className="nav_con list">
-        <h1> Vårat team</h1>
-
+    return (
+      <>
+        {/* Trainers nav  */}
+        <div className="nav_con list">
+          <h1> Vårt team</h1>
 
         {buttons &&
           buttons.map((type, index) => (
@@ -74,49 +71,31 @@ useEffect(() => {
               </button>
             </>
           ))}
-
       </div>
       {/* Trainers Info & img */}
                 
       <div className=" container" >
-    {/*    <div className="text">
+      {/* <div className="text">
       {trainersPerson &&
             trainersPerson.map((type) => (
               <h4 >{type.kategori}</h4>
             ))}
-          </div>
-            */ }
+            </div>*/}
+            
 
         <div className="image_box">
           {trainersPerson &&
             trainersPerson.map((type) => (
              
               <ul key={type.id}>
-             
-              <img src={type.img} alt="" />
-                
+                <LazyLoadImage src={type.img} alt={type.id} />
+
                 <div className="details">
                   <p>{type.name}, {type.age}</p>
                   
                   <p>{type.kategori}</p>
 
-                  <div className='input'>
-
-                   {/* <input  type="text" 
-                    placeholder={type.text} 
-                    onChange={(e) => {newTittle(e.target.value)}} 
-                    defaultValue={type.text}>
-                   
-                      
-                    </input>
-                    */}
-                    
-                    
-                    
                   
-                    
-                
-            </div>
                 
              
                   
@@ -130,3 +109,4 @@ useEffect(() => {
     </>
   );
 }
+

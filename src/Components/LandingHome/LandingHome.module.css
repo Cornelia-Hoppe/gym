@@ -3,18 +3,10 @@
   z-index: 1;
   display: inline-block;
   position: relative;
+  width: 100vw;
 }
 
 .gymImgDesktop {
-  display: none;
-  width: 100%;
-}
-
-.gymImgOne {
-  width: 100%;
-}
-
-.gymImgOne img {
   width: 100vw;
 }
 
@@ -32,10 +24,10 @@
   flex-direction: column;
   align-items: left;
 }
- .landingButton:hover {
-    background-color: rgba(115, 167, 193, 0.75);
-    transition: 0.2s;
-  }
+.landingButton:hover {
+  background-color: rgba(115, 167, 193, 0.75);
+  transition: 0.2s;
+}
 
 .landingButton h2 {
   padding-top: 0.6rem;
@@ -50,6 +42,10 @@
   font-size: 24px;
   margin-top: 0;
 }
+.landingImage img {
+  width: 100vw;
+  height: 40vh;
+}
 
 @media (min-width: 800px) {
   .gymImgDesktop {
@@ -58,18 +54,13 @@
   }
 
   .gymImgDesktop img {
-    width: 100vw;
-    height: 80vh;
-  }
-
-  .gymImgOne {
-    display: none;
+    height: 62vh;
+    object-fit: cover;
   }
 
   .landingButton {
     width: 30rem;
   }
- 
 
   .landingButton h2 {
     padding-top: 2rem;
