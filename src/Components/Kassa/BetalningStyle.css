@@ -1,125 +1,128 @@
 
 .kassa{
-    
-    position: absolute;
-    width: 344px;
-    height: 130px;
-    left: 26px;
-    top: 456px;
-    
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+  position: absolute;
+  width: 344px;
+  height: 130px;
+  left: 18px;
+  top: 164px;
+  
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
         
     }
     
     .kassa1{
+      
+  position: absolute;
+  width: 344px;
+  height: 130px;
+  left: 18px;
+  top: 304px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+    }
+    
+    .visaText{
     position: absolute;
-    width: 344px;
-    height: 130px;
-    left: 26px;
-    top: 616px;
-    
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    width: 109px;
+    height: 36px;
+    left: 10px;
+    top: 47px;
+
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.02em;
+
+    color: #548CA8;
     }
-    
-    .kassa1 h3{
-        position: absolute;
-        width: 109px;
-        height: 34px;
-        left: -110px;
-        top: 48px;
-        
-        font-family: 'Work Sans';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 35px;
-        display: flex;
-        align-items: center;
-        letter-spacing: -0.02em;
-        
-        color: #548CA8;
-    }
+
     .kassa2{
-    position: absolute;
-    width: 344px;
-    height: 130px;
-    left: 26px;
-    top: 776px;
-    
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+      position: absolute;
+      width: 344px;
+      height: 130px;
+      left: 18px;
+      top: 454px;
+      
+      background: #FFFFFF;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
     }
     
-    .kassa2 h3{
-        position: absolute;
-        width: 109px;
-        height: 34px;
-        left: -110px;
-        top: 48px;
-        
-        font-family: 'Work Sans';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 35px;
-        display: flex;
-        align-items: center;
-        letter-spacing: -0.02em;
-        
-        color: #548CA8;
+    .swishText{
+    position: absolute;
+    width: 109px;
+    height: 36px;
+    left: 10px;
+    top: 47px;
+
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.02em;
+
+    color: #548CA8;
     }
     
     .klarna-Logo{
-        
-    width: 175px;
-    height: 111px;
-    background: url(../../images/klarna.png);
-    margin-left: 150px;
-    top: 766px;
+    position: absolute;
+    width: 215px;
+    height: 72px;
+    margin-left: 120px;
+    top: 24px;
+    background: url(../../images/klarna.jpg);
+      
     
     }
-    
-    .kassa h3{
-        position: absolute;
-        width: 109px;
-        height: 34px;
-        left: 10px;
-        top: 48px;
-        
-        font-family: 'Work Sans';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 35px;
-        display: flex;
-        align-items: center;
-        letter-spacing: -0.02em;
-        
-        color: #548CA8;
-    
+    .klarnaText{
+  position: absolute;
+  width: 109px;
+  height: 34px;
+  
+  top: 48px;
+
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.02em;
+
+  color: #548CA8;
     }
+    
+    
     
     .visa{
-    position: absolute;
-    width: 165px;
-    height: 56px;
-    margin-left: 150px;
-    
-    
-    background: url(../../images/master.png);
+      position: absolute;
+    width: 215px;
+    height: 72px;
+    margin-left: 120px;
+    top: 24px;
+      
+      
+    background: url(../../images/visa.jpg);
     }
     .swish{
     position: absolute;
-    width: 175px;
-    height: 52px;
-    margin-left: 150px;
-    
-    background: url(../../images/Swish.png);
+    width: 215px;
+    height: 72px;
+    margin-left: 120px;
+    top: 24px;
+    background: url(../../images/swish.jpg);
     }
     
     
@@ -136,13 +139,13 @@
 
       /* Modal Style */
 .modal{
-    position: absolute;
-    width: 398px;
-    height: 1175px;
-    left: 985px;
-    top: 0px;
-    
-    background: #DDE6E6;
+  position: absolute;
+width: 388px;
+height: 646px;
+left: 20px;
+top: 140px;
+
+background: #DDE6E6;
     
     }
     .modal-overlay {
@@ -215,5 +218,25 @@
     color: rgba(0, 112, 244, 0.75);
     
           }
+.text{
+
+  position: absolute;
+  width: 284px;
+  height: 30px;
+  left: 20px;
+  top: 20px;
+
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.02em;
+
+  color: #000000;
+
+}
           
       

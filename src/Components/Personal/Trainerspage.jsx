@@ -12,9 +12,9 @@ import { collection, getDocs } from 'firebase/firestore'
 
 
 
-export default function App(text) {
+export default function App() {
   
-  const [newTittle] = useState(text ? text : '')
+ /*const [newTittle] = useState(text ? text : '')*/
 
   const staffCollectionRef = collection(db, "staff")
   const [staff, setStaff] = useState([])
@@ -102,14 +102,14 @@ useEffect(() => {
 
                   <div className='input'>
 
-                    <input  type="text" 
+                   {/* <input  type="text" 
                     placeholder={type.text} 
                     onChange={(e) => {newTittle(e.target.value)}} 
                     defaultValue={type.text}>
                    
                       
                     </input>
-                    
+                    */}
                     
                     
                     
