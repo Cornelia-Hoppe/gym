@@ -39,29 +39,63 @@ function NavBar({ closeNavbar, updateAfterLogin }) {
     >
       {openSignUp && <SignUp closeSignup={setOpenSignUp} />}
       <div className="navbar-header">
-        <GrClose color="white"
+        <GrClose
+          color="white"
           className="exit-button"
-          onClick={() => closeNavbar(false)}
+          onClick={() => {
+            closeNavbar(false);
+            document.body.style.overflow = "visible";
+          }}
         />
       </div>
       <div className="navbar-list">
-        <CustomLink to="/">
+        <CustomLink
+          to="/gym"
+          onClick={() => {
+            closeNavbar(false);
+            document.body.style.overflow = "visible";
+          }}
+        >
           <ListItem name="Startsida" icon={<IoMdHome className="icon" />} />
         </CustomLink>
-        <CustomLink to="/bookingpage">
+        <CustomLink
+          to="/bookingpage"
+          onClick={() => {
+            closeNavbar(false);
+            document.body.style.overflow = "visible";
+          }}
+        >
           <ListItem name="Boka pass" icon={<GrYoga className="icon" />} />
         </CustomLink>
-        <CustomLink to="/myprofile">
+        <CustomLink
+          to="/myprofile"
+          onClick={() => {
+            closeNavbar(false);
+            document.body.style.overflow = "visible";
+          }}
+        >
+          <ListItem name="Mina sidor" icon={<BsPerson className="icon" />} />
+        </CustomLink>
+        <CustomLink
+          to="/staff"
+          onClick={() => {
+            closeNavbar(false);
+            document.body.style.overflow = "visible";
+          }}
+        >
           <ListItem
-            name="Mina sidor"
-            icon={<BsPerson className="icon" />}
+            name="Personal"
+            icon={<MdPeopleOutline className="icon" />}
           />
         </CustomLink>
-        <CustomLink to="/staff">
-          <ListItem name="Personal" icon={<MdPeopleOutline className="icon" />} />
-        </CustomLink>
-        <CustomLink to="/webshop">
-        <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
+        <CustomLink
+          to="/webshop"
+          onClick={() => {
+            closeNavbar(false);
+            document.body.style.overflow = "visible";
+          }}
+        >
+          <ListItem name="Webbshop" icon={<IoIosCart className="icon" />} />
         </CustomLink>
       </div>
 

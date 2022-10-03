@@ -12,7 +12,7 @@ import Login from "../../Auth/Login";
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "react-use-cart";
 
-function Menu({ updateAfterLogin, setOpenCart} ) {
+function Menu({ updateAfterLogin, setOpenCart }) {
   const { totalItems } = useCart();
 
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -28,18 +28,28 @@ function Menu({ updateAfterLogin, setOpenCart} ) {
       )}
       <ul className="menu-mobile">
         <span className="menu-cart">
-        <IoIosCart className="menu-mobile-cart" 
-        onClick={() => {
-          setOpenCart(true)
-        }}/>
-        <span className="menu-mobile-cart-totalitems">{totalItems}</span>
-          </span>
-        <img className="menu-mobile-logo" src={MobLogo} alt="mobile-logo"></img>
+          <IoIosCart
+            className="menu-mobile-cart"
+            onClick={() => {
+              setOpenCart(true);
+            }}
+          />
+          <span className="menu-mobile-cart-totalitems">{totalItems}</span>
+        </span>
+        <CustomLink to="/gym">
+          <img
+            className="menu-mobile-logo"
+            src={MobLogo}
+            alt="mobile-logo"
+          ></img>
+        </CustomLink>
         <GrMenu
           className="menu-mobile-button"
           onClick={() => {
             setOpenNavbar(true);
-          }}/>
+            document.body.style.overflow = "hidden";
+          }}
+        />
       </ul>
       <nav className="menu-desktop">
         <CustomLink to="/gym">
@@ -79,9 +89,12 @@ function Menu({ updateAfterLogin, setOpenCart} ) {
               }}
             />
           </CustomLink>
-          <IoIosCart className="menu-desktop-cart" onClick={() => {
-          setOpenCart(true)
-        }}/>
+          <IoIosCart
+            className="menu-desktop-cart"
+            onClick={() => {
+              setOpenCart(true);
+            }}
+          />
         </ul>
       </nav>
       {/* <div className="menu-desktop-login">
