@@ -15,6 +15,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase-config";
 import '../booking_page/bookingPage.css'
 import UpdateLocalStorage from '../functions/UpdateLocalStorage';
+import CheckModal from '../booking_page/CheckModal';
+import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
+import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
 
   function MinaSidor() {
   const [showModal, setshowModal] = useState(false)
@@ -112,6 +115,8 @@ import UpdateLocalStorage from '../functions/UpdateLocalStorage';
 
 const avbokaPass = async (passId, passPlatser) => {
 
+  openLoadingModal()
+
   let newBokadePass = []
 
   user.bokadePass.find((item) => {
@@ -135,14 +140,22 @@ const avbokaPass = async (passId, passPlatser) => {
       const newFields2 = { platser: passPlatser,};
       await updateDoc(passfDoc, newFields2);
 
-getPass()
+      closeLoadingModal()
+      
+      document.querySelector("#check-modal").style.display = "flex";
+
 
 }
 
 // END: AVBOKA PASS  
 
+useEffect(() => {
+  setUser(JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : '')
+}, [])
+
   return user ? ( 
     <>
+      <CheckModal bokadText='avbokat' /> 
       <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
       <section className='profile-wrapper'>   
        <h2 className='Desktop-heading-mypages'>Mina sidor</h2>
@@ -183,7 +196,11 @@ getPass()
             {/* <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/> */}
             <div className='aktv-tid-div'>
                 <h1>{pass.aktivitet}</h1>
-                <h2>{pass.tid}</h2>
+                <p>
+                          {pass.dayString}, {pass.dateString} {pass.monthString}{" "}
+                          <br />
+                          {pass.tid}
+                        </p>
             </div>
             <p>{pass.instruktör}</p>
             <button
