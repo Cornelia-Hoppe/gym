@@ -58,7 +58,7 @@ useEffect(() => {
       <StaffBtn handleTrainer={handleTrainer} selected={selected} />
       </div>
       {/* Trainers Info & img */}
-
+                
       <div className=" container" >
       {/* <div className="text">
       {trainersPerson &&

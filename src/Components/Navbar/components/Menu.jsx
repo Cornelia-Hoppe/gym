@@ -71,6 +71,8 @@ function Menu({ updateAfterLogin, setOpenCart} ) {
               <p className="menu-desktop-item">Webbshop</p>
             </CustomLink>
           </li>
+
+          
           <CustomLink to="/myprofile">
             <HiOutlineUserCircle
               className="menu-desktop-user"

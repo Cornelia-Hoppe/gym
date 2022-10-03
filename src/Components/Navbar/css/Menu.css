@@ -4,6 +4,8 @@
   height: 10vh;
   position: fixed;
   z-index: 4;
+
+ 
 }
 .menu-mobile {
   height: 50px;
@@ -55,6 +57,7 @@
 }
 .menu-desktop {
   display: none;
+  
 }
 .active p {
   text-decoration: underline;
@@ -67,6 +70,11 @@
 
   .Menu {
     width: 100vw;
+    height: 77px;
+   position: static;
+  
+    
+   
   }
 
   .menu-desktop {

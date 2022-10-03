@@ -7,6 +7,7 @@ import Footer from "./Components/Footer/Footer";
 import LoadingPage from "./LoadingPage/LoadingPage";
 import Menu from "../src/Components/Navbar/components/Menu"
 import Cart from "../src/Components/Webbshop/components/Cart"
+
 const BookingPage = lazy(() => import("./booking_page/BookingPage"));
 const Personal = lazy(() => import("./Components/Personal/Trainerspage"));
 const MinaSidor = lazy(() => import("./mina_sidor_page/MinaSidor"));
@@ -15,6 +16,10 @@ const ScrollToTop = lazy(() => import("./Components/ScrollToTop"));
 const Webbshop = lazy(() => import("./Components/Webbshop/Webbshop"));
 const AdminPage = lazy(() => import("./admin_page/AdminPage"));
 //Routen till Admin ska ej finnas vid launch, är bara tillfällig.
+
+
+
+
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
@@ -29,7 +34,9 @@ function App() {
     console.log(user);
   }
   return (
+
     <>
+      
     {/* <AdminPage /> */}
       {/* <LoadingScreen /> */}
       <CartProvider>
