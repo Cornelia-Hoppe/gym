@@ -73,7 +73,7 @@ useEffect(() => {
           ))}
       </div>
       {/* Trainers Info & img */}
-
+                
       <div className=" container" >
       {/* <div className="text">
       {trainersPerson &&

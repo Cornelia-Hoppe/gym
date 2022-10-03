@@ -75,6 +75,36 @@ function BookingPage() {
 
 // END: HÄMTAR PROFILER
 
+const addPassToProfile = async (passId) => {
+      
+  const inloggadId = inloggadUser.id
+  
+  const tidigarePass = inloggadUser.bokadePass
+
+  const newPassLista = []
+
+  if (tidigarePass.length !== 0) {
+    tidigarePass.map((item, index) => {
+      newPassLista.push(passId)
+      newPassLista.push(item)
+    })
+  } else {
+    newPassLista.push(passId)
+  }
+
+  const passDoc = doc(db, 'profiler', inloggadId);
+  const newFields = { bokadePass: newPassLista };
+  await updateDoc(passDoc, newFields);
+
+  UpdateLocalStorage(inloggadUser.id)
+
+  getPass()
+
+  closeLoadingModal()
+
+  document.querySelector("#check-modal").style.display = "flex";
+  }
+
   // BOKA-KNAPPEN
 
   const handleBokaBtn = async (passId, platser, ) => {
@@ -93,35 +123,7 @@ function BookingPage() {
 
 // START: UPPDATERAR PASS DATA OCH LOCALSTORAGE
 
-      const addPassToProfile = async (passId) => {
-      
-      const inloggadId = inloggadUser.id
-      
-      const tidigarePass = inloggadUser.bokadePass
-
-      const newPassLista = []
-
-      if (tidigarePass) {
-        tidigarePass.map((item, index) => {
-          newPassLista.push(passId)
-          newPassLista.push(item)
-        })
-      } else {
-        newPassLista.push(passId)
-      }
-
-      const passDoc = doc(db, 'profiler', inloggadId);
-      const newFields = { bokadePass: newPassLista };
-      await updateDoc(passDoc, newFields);
-
-      UpdateLocalStorage(inloggadUser.id)
-
-      getPass()
-
-      closeLoadingModal()
-
-      document.querySelector("#check-modal").style.display = "flex";
-      }
+     
 
    
 
@@ -153,6 +155,21 @@ function BookingPage() {
   }
   
 // END: SORTERA PASSEN
+
+const addBokadToPassDenDagen = () => {
+
+  console.log('inloggadUser.bokadePass: ', inloggadUser.bokadePass);
+
+  passDenDagen.map((pass) => {
+
+  })
+}
+
+useEffect(() => {
+  if (passDenDagen !== 0 || !passDenDagen) {
+    addBokadToPassDenDagen()
+  }
+}, [])
 
 
 // START: AVBOKA PASS 

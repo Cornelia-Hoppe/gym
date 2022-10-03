@@ -30,7 +30,17 @@
 
 .container h1 {
   margin-left: 1rem;
-  display: table-caption;
+
+  
+}
+
+h4{
+  display:table-caption;
+  
+  
+}
+.text{
+  display: inline-block;
 }
 
 .image_box {

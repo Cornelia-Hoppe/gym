@@ -55,6 +55,7 @@
 }
 .menu-desktop {
   display: none;
+  
 }
 .active p {
   text-decoration: underline;

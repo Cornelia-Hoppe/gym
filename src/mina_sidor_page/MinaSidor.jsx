@@ -13,8 +13,10 @@ import SavedModal from '../Components/loading_screen/SavedModal';
 import Memberships from './Memberships';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase-config";
+import '../booking_page/bookingPage.css'
+import UpdateLocalStorage from '../functions/UpdateLocalStorage';
 
-function MinaSidor() {
+  function MinaSidor() {
   const [showModal, setshowModal] = useState(false)
   const [userAuth, loading, error] = useAuthState(auth); 
 
@@ -24,57 +26,58 @@ function MinaSidor() {
   const [userBokadePass, setUserBokadePass] = useState('')
 
 
-  useEffect(() => {
-    if (userBokadePass) getPassAndSet()
-
-  }, [])
-
 // START - HÄMTAR ANVÄNDARENS BOKADE PASS 
 
   const passCollectionRef = collection(db, "pass")
   const [pass, setPass] = useState([])
 
+  const getPass = async () => {
+    const data = await getDocs(passCollectionRef)
+    setPass(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+  };
+
   useEffect(() => {
-
-    const getPass = async () => {
-      const data = await getDocs(passCollectionRef)
-      setPass(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    };
-
     getPass()
   }, [])
 
+
+
 // ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
-  //  DEN VIKTIGA DATAN  //
-  // console.log('pass: ', pass);
-
-  useEffect(() => {
-    if (!userBokadePassId == "Inga bokade pass") {
-      console.log('inloggd och pass bokade');
-      getPassAndSet()
-    } else if (user) {
-      console.log('Inga pass bokade');
-    } else if (!user) {
-      console.log('ej inloggad');
-    }
-  }, [])
-
-let bokatPassArray = []
+    const [bokatPassArray, setbokatPassArray] = useState([])
 
    const getPassAndSet = () => {
+
+    let newBokatPassArray = []
+
     userBokadePassId.map((bokatPass) => {
       
-      pass.find((pass, index) => {
+      pass.map((pass, index) => {
         if (pass.id == bokatPass){
-     bokatPassArray.push(pass)
-
+          newBokatPassArray.push(pass)
       } 
       })
     })
+
+
+    setbokatPassArray(newBokatPassArray)
+
   }
 
+ 
+  useEffect(() => {
+    if (userBokadePassId && pass.length !== 0) {
+      getPassAndSet()
+    }
+  }, [])
 
+  useEffect(() => {
+    setUserBokadePassId(user ? user.bokadePass : '')
+
+    if (userBokadePassId && pass.length !== 0 ) {
+      getPassAndSet()
+    }
+  }, [userBokadePassId, pass])
  
 // ========================= END: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
@@ -101,10 +104,44 @@ let bokatPassArray = []
   }
 
   const setImgDelay = () => {
-    console.log(user);
   }
 
-   return user ? ( 
+  // AVBOKA
+
+  // START: AVBOKA PASS 
+
+const avbokaPass = async (passId, passPlatser) => {
+
+  let newBokadePass = []
+
+  user.bokadePass.find((item) => {
+    if (passId == item) {
+    } else {
+      newBokadePass.push(item)
+    }
+  })
+
+    // UPPDATERAR DATA PROFILER
+      const profulerDoc = doc(db, 'profiler', user.id);
+      const newFields = { bokadePass: newBokadePass,};
+      await updateDoc(profulerDoc, newFields);
+
+      UpdateLocalStorage(user.id)
+
+      passPlatser--
+
+      // UPPDATERAR DATA PASS
+      const passfDoc = doc(db, "pass", passId);
+      const newFields2 = { platser: passPlatser,};
+      await updateDoc(passfDoc, newFields2);
+
+getPass()
+
+}
+
+// END: AVBOKA PASS  
+
+  return user ? ( 
     <>
       <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
       <section className='profile-wrapper'>   
@@ -138,19 +175,29 @@ let bokatPassArray = []
         </div>
         <div className='bokade-pass'>
                 <h3>Mina pass</h3>
-                {bokatPassArray.map(pass => {
+                {bokatPassArray ? bokatPassArray.map(pass => {
            return (
+            
             <div key={pass.id} className='pass-card center'>
             <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
-            <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
+            {/* <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/> */}
             <div className='aktv-tid-div'>
                 <h1>{pass.aktivitet}</h1>
                 <h2>{pass.tid}</h2>
             </div>
-            <p>instruktör: {pass.instruktör}</p>
+            <p>{pass.instruktör}</p>
+            <button
+                        class="myButton booking-btn"
+                        onClick={() =>
+                          avbokaPass(pass.id, "pass", pass.platser)}>
+                        Avboka
+                      </button>
         </div>
            )
-       })} 
+       })
+      :
+      <h1>hej! du har inga pass bokade, du får boka lite pass och bli av med fettet!</h1>
+      } 
             </div>
             </div>
       </section>

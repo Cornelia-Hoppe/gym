@@ -29,18 +29,18 @@ export default function App() {
               >
          
         
-                 <div className="">
-            <h2> Betalningssätt</h2>
+                 <div >
+            <h2 className="text"> Betalningssätt</h2>
             <h2 className="m-h2">3 månader: Kostnad 1300:-</h2>
             <div className="kassa">
-              <button className="klarna-Logo" ><h3 >Faktura</h3></button>
+              <img className="klarna-Logo" /><h3 className="klarnaText">Faktura</h3>
             </div>
             <div className="kassa1">
-              <button className="visa" ><h3>Kort</h3></button>
+              <img className="visa" /><h3 className="visaText">Kort</h3>
             </div>
             
             <div className="kassa2">
-                      <button className="swish" ><h3>Swish</h3></button>
+                      <img className="swish" /><h3 className="swishText">Swish</h3>
             </div>
             </div>
         </Modal>

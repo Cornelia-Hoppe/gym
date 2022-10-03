@@ -1,3 +1,5 @@
+/*
+
 import "./LoginInput.css";
 
 const LoginInput = (props) => {
@@ -17,3 +19,4 @@ const LoginInput = (props) => {
 };
 
 export default LoginInput;
+*/
