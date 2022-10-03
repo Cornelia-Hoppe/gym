@@ -428,6 +428,10 @@ width: 50px;
 bottom: 80px;
 }
 
+.pass-card img{
+  bottom: 37px !important;
+}
+
 /* START: KNAPP */
 
 .myButton {

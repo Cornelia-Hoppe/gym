@@ -149,6 +149,8 @@ const avbokaPass = async (passId, passPlatser) => {
 
 // END: AVBOKA PASS  
 
+const h1Style = {textAlign: 'center', marginTop: '20px'}
+
 useEffect(() => {
   setUser(JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : '')
 }, [])
@@ -161,12 +163,7 @@ useEffect(() => {
        <h2 className='Desktop-heading-mypages'>Mina sidor</h2>
        <div className='mypages-container'>
         <div className='left-container'>
-        <article className='profile-left'>
-        {/* <div className='flex-between update-and-title'>
-            <h2>Mina sidor</h2>
-            <AiFillEdit id='update-btn' onClick={openModal} />
-          </div> */}
-      
+        <article className='profile-left'>      
             
               <h3 >Mitt konto</h3> 
 
@@ -188,14 +185,15 @@ useEffect(() => {
         </div>
         <div className='bokade-pass'>
                 <h3>Mina pass</h3>
-                {bokatPassArray ? bokatPassArray.map(pass => {
+                {bokatPassArray.length !== 0 ? bokatPassArray.map(pass => {
            return (
             
             <div key={pass.id} className='pass-card center'>
             <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
-            {/* <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/> */}
+            <img className='booking-icon' src={require(".././booking_page/"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/>
             <div className='aktv-tid-div'>
                 <h1>{pass.aktivitet}</h1>
+                
                 <p>
                           {pass.dayString}, {pass.dateString} {pass.monthString}{" "}
                           <br />
@@ -213,7 +211,7 @@ useEffect(() => {
            )
        })
       :
-      <h1>hej! du har inga pass bokade, du får boka lite pass och bli av med fettet!</h1>
+      <h1 style={h1Style}>Inga pass bokade <br /> <a href="/bookingpage">Boka pass</a></h1>
       } 
             </div>
             </div>

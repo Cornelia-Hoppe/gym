@@ -73,9 +73,6 @@ setTimeout(() => alert('Sparat!'), 5)
       <article className='update-modal'>
       
             <GrFormClose className='close-icon' onClick={closeModal} />
-            <h1 className='modal-produktNamn'>{produktNamn}</h1>
-            <h1 className='modal-pris'>Pris: {price} kr</h1>
-        <h1 className='modal-kategori'>Kategori: {kategori}</h1>
         <div className='input-con'>
         <img className='staff-img-pr' id={`${id}-preview-modal`} src={img} alt={`bild på ${produktNamn}`} />
         
