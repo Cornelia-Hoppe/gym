@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Personal.css";
-import { buttons } from "./data";
+import StaffBtn from "./StaffBtn";
 import { getTrainer, filterTrainer } from "./services";
 //import Edit from "./Edition";
 import { db } from '../../firebase-config'
@@ -55,22 +55,7 @@ useEffect(() => {
         <div className="nav_con list">
           <h1> Vårt team</h1>
 
-        {buttons &&
-          buttons.map((type, index) => (
-            <>
-              <button
-                key={index}
-                value={type.value}
-                onClick={handleTrainer}
-                style={{
-                  backgroundColor:
-                    selected === type.value ? "rgba(115, 167, 193)" : "",
-                }}
-              >
-                {type.name}
-              </button>
-            </>
-          ))}
+      <StaffBtn handleTrainer={handleTrainer} selected={selected} />
       </div>
       {/* Trainers Info & img */}
 
