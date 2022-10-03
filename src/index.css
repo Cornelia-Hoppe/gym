@@ -6,13 +6,13 @@ html {
   background-color: #fffcf5;
 }
 .Sportix-Section {
-  position: relative;
+
   text-align: center;
   background: rgba(84, 140, 168, 0.2);
   width: 95%;
   margin: auto;
   border-radius: 10px;
-  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
   padding-bottom: 8px;
   padding-top: 8px;
 }

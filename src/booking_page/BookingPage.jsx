@@ -17,6 +17,7 @@ import openLoadingModal from "../Components/loading_screen/OpenLoadingModal";
 import closeLoadingModal from "../Components/loading_screen/CloseLoadingModal";
 import UpdateLocalStorage from "../functions/UpdateLocalStorage";
 import { async } from "@firebase/util";
+import { reload } from "firebase/auth";
 
 function BookingPage() {
 
@@ -27,7 +28,8 @@ function BookingPage() {
   const [passDenDagen, setPassDenDagen] = useState([])
 
   // SÄTTER inloggaUser. DENNA KOMMER UPPDATERAS
-  const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')))
+  const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : '')
+
 
   const ref = useRef(null);
 
@@ -39,7 +41,6 @@ function BookingPage() {
 
   const getPass = async () => {
     openLoadingModal()
-    console.log('getPass körs');
     const data = await getDocs(passCollectionRef);
     setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
@@ -75,34 +76,57 @@ function BookingPage() {
 
 // END: HÄMTAR PROFILER
 
-const addPassToProfile = async (passId) => {
-      
-  const inloggadId = inloggadUser.id
-  
-  const tidigarePass = inloggadUser.bokadePass
+const bookPass = async (passId, platser) => {
 
-  const newPassLista = []
+  console.log('boka pass körs');
 
-  if (tidigarePass.length !== 0) {
-    tidigarePass.map((item, index) => {
+    openLoadingModal()
+        
+      // LÄGGER IN PASSET TILL PROFILEN
+    const inloggadId = inloggadUser.id
+    
+    const tidigarePass = inloggadUser.bokadePass
+
+    const newPassLista = []
+
+    console.log('tidigarePass: ', tidigarePass, 'tidigarePass.length: ', tidigarePass.length);
+
+    if (tidigarePass.length !== 0) {
+      tidigarePass.map((item, index) => {
+        newPassLista.push(item)
+      })
+    } else {
       newPassLista.push(passId)
-      newPassLista.push(item)
-    })
-  } else {
+    }
+
     newPassLista.push(passId)
-  }
 
-  const passDoc = doc(db, 'profiler', inloggadId);
-  const newFields = { bokadePass: newPassLista };
-  await updateDoc(passDoc, newFields);
+    const passDoc = doc(db, 'profiler', inloggadId);
+    const newFields = { bokadePass: newPassLista };
+    await updateDoc(passDoc, newFields);
 
-  UpdateLocalStorage(inloggadUser.id)
+    UpdateLocalStorage(inloggadUser.id)    
 
-  getPass()
+        // LÄGGER TILL +1 TILL PASSET.PLATSER
+    
+    let newPlatser = 0
 
-  closeLoadingModal()
+    if (!platser) {
+      console.log('platser = false');
+      newPlatser = 1
+    } else if (platser) {
+      newPlatser = platser + 1
+    }
 
-  document.querySelector("#check-modal").style.display = "flex";
+    console.log('newPlatser: ', newPlatser);
+
+      const staffDoc = doc(db, 'pass', passId)
+      const newFieldsPass = {platser: Number(newPlatser)}
+      await updateDoc(staffDoc, newFieldsPass)
+
+    closeLoadingModal()
+
+    document.querySelector("#check-modal").style.display = "flex";
   }
 
   // BOKA-KNAPPEN
@@ -111,23 +135,31 @@ const addPassToProfile = async (passId) => {
 
     if (!inloggadUser) alert('go to login / sign up')
     else {
-      inloggadUser.bokadePass.find((item) => {
-      if (passId == item) avbokaPass() })
-              
-        openLoadingModal()
 
-        addPassToProfile(passId)
+      let x = 0
+
+        if (inloggadUser.bokadePass.length !== 0 || !inloggadUser.bokadePass){
+            inloggadUser.bokadePass.map((item) => {
+              if (passId == item) {
+                avbokaPass(passId, platser) 
+              } else {
+                bookPass(passId, platser)
+                x = 1
+              }
+          })
+        } else if (x === 0) {
+          bookPass(passId, platser)
+        } 
+      
         
       };
+
+      }
 
 
 // START: UPPDATERAR PASS DATA OCH LOCALSTORAGE
 
-     
 
-   
-
-  };
 
 // END: UPPDATERAR PASS DATA OCH LOCALSTORAGE
 
@@ -140,7 +172,7 @@ const addPassToProfile = async (passId) => {
       return pass.dag == e;
     });
     setPassDenDagen(filteredPass);
-    scrollToPass();
+    // scrollToPass();
   };
 
   // PER KATEGORI
@@ -149,7 +181,7 @@ const addPassToProfile = async (passId) => {
       return pass.kategori == selectedKategori;
     });
     setPassDenDagen(filteredKategoryPass);
-    scrollToPass();
+    // scrollToPass();
     setPassKategorier(selectedKategori);
     
   }
@@ -157,8 +189,6 @@ const addPassToProfile = async (passId) => {
 // END: SORTERA PASSEN
 
 const addBokadToPassDenDagen = () => {
-
-  console.log('inloggadUser.bokadePass: ', inloggadUser.bokadePass);
 
   passDenDagen.map((pass) => {
 
@@ -199,7 +229,8 @@ const avbokaPass = async (passId, passPlatser) => {
       const newFields2 = { platser: passPlatser,};
       await updateDoc(passfDoc, newFields2);
 
-getPass()
+      document.querySelector("#check-modal").style.display = "flex";
+
 
 }
 
@@ -241,8 +272,23 @@ const scrollToPass = () => {
             
               {passDenDagen.map((pass, index) => {
 
+                let btn_text = 'Boka'
+                let bokadText = 'bokat!'
+
+                if (inloggadUser) {
+                    inloggadUser.bokadePass.map((item) => {
+                    if (pass.id === item) {
+                      btn_text = 'Avboka'
+                      bokadText = 'avbokat'
+                    }
+                  })
+                }
+
+                
+               
                 return (
                   <>
+                  <CheckModal bokadText={bokadText} />
                     <div key={index} className="pass-card center" ref={ref}>
                       <h2
                         className="booking-antal"
@@ -255,7 +301,7 @@ const scrollToPass = () => {
                         {!pass.platser ? 0 : pass.platser}/{pass.maxAntal}
                       </h2>
                       {/* <img clasName='booking-icon' src={require("./"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/> */}
-                      <div className="aktv-tid-div">
+                      <div key={Math.random()} className="aktv-tid-div">
                         <h1>{pass.aktivitet}</h1>
                         <p>
                           {pass.dayString}, {pass.dateString} {pass.monthString}{" "}
@@ -263,19 +309,18 @@ const scrollToPass = () => {
                           {pass.tid}
                         </p>
                       </div>
-                      <h2>instruktör: {pass.instruktör}</h2>
+                      <h2>{pass.instruktör}</h2>
                       <button
                         class="myButton booking-btn"
                         onClick={() =>
-                          handleBokaBtn(pass.id, "pass", pass.platser)}>
-                        Boka
+                          handleBokaBtn(pass.id, pass.platser)}>
+                        {btn_text}
                       </button>
                     </div>
                   </>
                 );
               })}
 
-              <CheckModal bokadText={'Bokat'} />
             </section>
           </div>
         </article>

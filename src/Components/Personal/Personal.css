@@ -44,9 +44,35 @@
 }
 .details p:nth-child(2) {
   color: grey;
-  font-size: 16px;
+  font-size: 0.8rem;
+}
+.details p:nth-child(3) {
+  font-weight: bold;
+  color: grey;
+}
+
+.nav_con {
+  text-align: center;
+  background: #dde6e6;
+  margin: auto;
+  border-radius: 10px;
+  margin: auto;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.nav_con h1 {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+h4 {
+  display: table-caption;
+}
+.text {
+  display: inline-block;
 }
 
 @media (min-width: 800px) {
-
+  .image_box {
+  }
 }

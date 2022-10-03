@@ -1,22 +1,24 @@
-.LoginInput{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.login-input{
-    border-radius: 10px;
-    width: 80%;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(93, 114, 139, 0.75);
-    margin: 5px 15px;
+.LoginInput {
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
     padding-left: 10px;
+    margin: 15px;
+
 }
-.login-label{
-    color: white;
+.login-input {
+  border-radius: 10px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(93, 114, 139, 0.75);
+  margin: 0.4rem;
 }
-.login-input::placeholder{
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.5);
+.login-label {
+  color: white;
+
+}
+.login-input::placeholder {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.5);
 }
