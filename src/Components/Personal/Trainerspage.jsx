@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from "react";
 import "./Personal.css";
 import StaffBtn from "./StaffBtn";
@@ -52,14 +54,15 @@ useEffect(() => {
     return (
       <>
         {/* Trainers nav  */}
-        <div className="nav_con list">
-          <h1> Vårt team</h1>
-
+        <div className="Sportix-Section">
+          <div className="personal-header">
+          <h3> Vårt team</h3>
+</div>
       <StaffBtn handleTrainer={handleTrainer} selected={selected} />
       </div>
       {/* Trainers Info & img */}
                 
-      <div className=" container" >
+      <div className="Sportix-Section" >
       {/* <div className="text">
       {trainersPerson &&
             trainersPerson.map((type) => (

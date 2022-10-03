@@ -6,7 +6,7 @@ export default function StaffBtn(props) {
     {buttons &&
         buttons.map((type, index) => (
           <>
-            <button
+            <button className='StaffBtn'
               key={index}
               value={type.value}
               onClick={props.handleTrainer}

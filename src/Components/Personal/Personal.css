@@ -1,55 +1,24 @@
-* {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
 
-.active-btn {
-  background-color: salmon;
-  color: white;
-}
-
-.list button {
+.StaffBtn{
   cursor: pointer;
   width: 124px;
   height: 42px;
   border-radius: 10px;
   font-weight: 600;
   border: none;
+  margin: 10px;
 }
 
-.list button:hover {
+.StaffBtn:hover {
   border: 4px solid rgba(115, 167, 193);
-
   transition: 0.1s;
 }
-
-.container {
-  text-align: center;
-  background: #dde6e6;
-  margin: auto;
-  border-radius: 10px;
-  margin: 20px 10px auto 10px;
-  padding-bottom: 8px;
-  padding-top: 8px;
-  
-    
- 
+.personal-header{
+  padding-top: 10px;
+  padding-left: 20px;
+  color: black;
+  text-align: left;
 }
-
-.container h1 {
-  margin-left: 1rem;
-
-  
-}
-
-h4{
-  display:table-caption;
-  
-  
-}
-.text{
-  display: inline-block;
-}
-
 
 
 .image_box {
@@ -57,13 +26,11 @@ h4{
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .image_box ul {
   width: 140px;
   padding: 0;
   margin: 10px;
 }
-
 .image_box img {
   width: 140px;
   height: 160px;
@@ -72,49 +39,14 @@ h4{
 }
 
 .details p:nth-child(1) {
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 20px;
 }
 .details p:nth-child(2) {
   color: grey;
-  font-size: 0.8rem;
+  font-size: 16px;
 }
-.details p:nth-child(3) {
-  font-weight: bold;
-  color: grey;
-}
-
-.nav_con {
-  text-align: center;
-  background: #dde6e6;
-  margin: auto;
-  border-radius: 10px;
-  margin: 20px 10px auto 10px;
-  padding-bottom: 8px;
-  padding-top: 8px;
-}
-
-.nav_con h1 {
-  margin-left: 1rem;
-  margin-bottom: 1rem;
-  
-}
-h4{
-  display:table-caption;
-  
-  
-}
-.text{
-  display: inline-block;
-}
-
-
-
-
 
 @media (min-width: 800px) {
-  .image_box {
 
-  }
 }
-
-
