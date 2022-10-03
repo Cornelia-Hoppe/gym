@@ -25,23 +25,23 @@
   border-radius: 10px;
     }
     
-    .visaText{
-    position: absolute;
-    width: 109px;
-    height: 36px;
-    left: 10px;
-    top: 47px;
-
-    font-family: 'Work Sans';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 28px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.02em;
-
-    color: #548CA8;
+    .kassa1 h3{
+        position: absolute;
+        width: 109px;
+        height: 34px;
+        left: -110px;
+        top: 48px;
+        
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        letter-spacing: -0.02em;
+        
+        color: #548CA8;
     }
 
     .kassa2{
@@ -56,23 +56,23 @@
       border-radius: 10px;
     }
     
-    .swishText{
-    position: absolute;
-    width: 109px;
-    height: 36px;
-    left: 10px;
-    top: 47px;
-
-    font-family: 'Work Sans';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 28px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.02em;
-
-    color: #548CA8;
+    .kassa2 h3{
+        position: absolute;
+        width: 109px;
+        height: 34px;
+        left: -110px;
+        top: 48px;
+        
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        letter-spacing: -0.02em;
+        
+        color: #548CA8;
     }
     
     .klarna-Logo{
@@ -85,23 +85,25 @@
       
     
     }
-    .klarnaText{
-  position: absolute;
-  width: 109px;
-  height: 34px;
-  
-  top: 48px;
-
-  font-family: 'Work Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
-  display: flex;
-  align-items: center;
-  letter-spacing: -0.02em;
-
-  color: #548CA8;
+    
+    .kassa h3{
+        position: absolute;
+        width: 109px;
+        height: 34px;
+        left: 10px;
+        top: 48px;
+        
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 35px;
+        display: flex;
+        align-items: center;
+        letter-spacing: -0.02em;
+        
+        color: #548CA8;
+    
     }
     
     
@@ -203,8 +205,6 @@ background: #DDE6E6;
     left: 14px;
     top: 80px;
     float: left;
-    
-    font-family: 'Work Sans';
     font-style: normal;
     font-weight: 500;
     font-size: 30px;
