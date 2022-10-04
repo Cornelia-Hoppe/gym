@@ -1,17 +1,5 @@
-* {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-.personal-section{
-  position: relative;
-  top: 11vh;
-  margin-bottom: 12vh;
-}
-.active-btn {
-  background-color: salmon;
-  color: white;
-}
 
-.list button {
+.StaffBtn{
   cursor: pointer;
   width: 124px;
   height: 42px;
@@ -19,47 +7,41 @@
   border-radius: 10px;
   font-weight: 600;
   border: none;
+  margin: 10px;
 }
 
-.list button:hover {
+.StaffBtn:hover {
   border: 4px solid rgba(115, 167, 193);
-
   transition: 0.1s;
 }
-
-.container {
-  text-align: center;
-  background: #dde6e6;
-  margin: 0 10px;
-  border-radius: 10px;
-  padding-bottom: 8px;
-  padding-top: 8px;
+.personal-header{
+  padding-top: 10px;
+  padding-left: 20px;
+  color: black;
+  text-align: left;
 }
 
-.container h1 {
-  margin-left: 1rem;
-  display:table-caption; 
-}
 
 .image_box {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .image_box ul {
   width: 140px;
   padding: 0;
   margin: 10px;
 }
-
 .image_box img {
   width: 140px;
   height: 160px;
+  object-fit: cover;
+  align-items: center;
 }
 
 .details p:nth-child(1) {
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 20px;
 }
 .details p:nth-child(2) {
   color: grey;
@@ -75,6 +57,7 @@
   background: #dde6e6;
   margin: 0 10px;
   border-radius: 10px;
+  margin: auto;
   padding-bottom: 8px;
   padding-top: 8px;
   margin-bottom: 10px;
@@ -84,23 +67,14 @@
   margin-left: 1rem;
   margin-bottom: 1rem;
 }
-h4{
-  display:table-caption;
+h4 {
+  display: table-caption;
 }
-.text{
+.text {
   display: inline-block;
 }
-.personal-image{
-  object-fit: cover;
-}
+
 @media (min-width: 800px) {
-  .nav_con{
-    margin: 0 30px;
-    margin-bottom: 10px;
-  }
-  .container{
-    margin: 10px 30px;
+  .image_box {
   }
 }
-
-

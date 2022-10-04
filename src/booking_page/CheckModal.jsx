@@ -6,7 +6,7 @@ import { FaCheck } from "@react-icons/all-files/fa/FaCheck";
 function CheckModal({ bokadText }) {
 
     const closeModal = () => {
-        document.querySelector('#check-modal').style.display="none"
+        window.location.reload()
     }
 
   return (
@@ -14,8 +14,8 @@ function CheckModal({ bokadText }) {
     <div id='check-modal'>
         <div className='booking-modal'>
             <FaCheck className='check-icon' />
-            <h1>Pass {bokadText}!</h1>
-            <p>Se dina bokade pass under <a href="#">Min sidor</a></p>
+            <h1>Pass {bokadText}</h1>
+            <p>Se dina bokade pass under <a href="/myprofile">Min sidor</a></p>
             <button onClick={closeModal}>OK</button>
         </div>
     </div>

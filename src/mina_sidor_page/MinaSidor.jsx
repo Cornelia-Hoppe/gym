@@ -13,8 +13,13 @@ import SavedModal from '../Components/loading_screen/SavedModal';
 import Memberships from './Memberships';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase-config";
+import '../booking_page/bookingPage.css'
+import UpdateLocalStorage from '../functions/UpdateLocalStorage';
+import CheckModal from '../booking_page/CheckModal';
+import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
+import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
 
-function MinaSidor() {
+  function MinaSidor() {
   const [showModal, setshowModal] = useState(false)
   const [userAuth, loading, error] = useAuthState(auth); 
 
@@ -24,57 +29,58 @@ function MinaSidor() {
   const [userBokadePass, setUserBokadePass] = useState('')
 
 
-  useEffect(() => {
-    if (userBokadePass) getPassAndSet()
-
-  }, [])
-
 // START - HÄMTAR ANVÄNDARENS BOKADE PASS 
 
   const passCollectionRef = collection(db, "pass")
   const [pass, setPass] = useState([])
 
+  const getPass = async () => {
+    const data = await getDocs(passCollectionRef)
+    setPass(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+  };
+
   useEffect(() => {
-
-    const getPass = async () => {
-      const data = await getDocs(passCollectionRef)
-      setPass(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    };
-
     getPass()
   }, [])
 
+
+
 // ========================= START: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
-  //  DEN VIKTIGA DATAN  //
-  // console.log('pass: ', pass);
-
-  useEffect(() => {
-    if (!userBokadePassId == "Inga bokade pass") {
-      console.log('inloggd och pass bokade');
-      getPassAndSet()
-    } else if (user) {
-      console.log('Inga pass bokade');
-    } else if (!user) {
-      console.log('ej inloggad');
-    }
-  }, [])
-
-let bokatPassArray = []
+    const [bokatPassArray, setbokatPassArray] = useState([])
 
    const getPassAndSet = () => {
+
+    let newBokatPassArray = []
+
     userBokadePassId.map((bokatPass) => {
       
-      pass.find((pass, index) => {
+      pass.map((pass, index) => {
         if (pass.id == bokatPass){
-     bokatPassArray.push(pass)
-
+          newBokatPassArray.push(pass)
       } 
       })
     })
+
+
+    setbokatPassArray(newBokatPassArray)
+
   }
 
+ 
+  useEffect(() => {
+    if (userBokadePassId && pass.length !== 0) {
+      getPassAndSet()
+    }
+  }, [])
 
+  useEffect(() => {
+    setUserBokadePassId(user ? user.bokadePass : '')
+
+    if (userBokadePassId && pass.length !== 0 ) {
+      getPassAndSet()
+    }
+  }, [userBokadePassId, pass])
  
 // ========================= END: LÄGG TILL BOKADE PASS I MINA SIDOR ======================= //
 
@@ -101,22 +107,63 @@ let bokatPassArray = []
   }
 
   const setImgDelay = () => {
-    console.log(user);
   }
 
-   return user ? ( 
+  // AVBOKA
+
+  // START: AVBOKA PASS 
+
+const avbokaPass = async (passId, passPlatser) => {
+
+  openLoadingModal()
+
+  let newBokadePass = []
+
+  user.bokadePass.find((item) => {
+    if (passId == item) {
+    } else {
+      newBokadePass.push(item)
+    }
+  })
+
+    // UPPDATERAR DATA PROFILER
+      const profulerDoc = doc(db, 'profiler', user.id);
+      const newFields = { bokadePass: newBokadePass,};
+      await updateDoc(profulerDoc, newFields);
+
+      UpdateLocalStorage(user.id)
+
+      passPlatser--
+
+      // UPPDATERAR DATA PASS
+      const passfDoc = doc(db, "pass", passId);
+      const newFields2 = { platser: passPlatser,};
+      await updateDoc(passfDoc, newFields2);
+
+      closeLoadingModal()
+      
+      document.querySelector("#check-modal").style.display = "flex";
+
+
+}
+
+// END: AVBOKA PASS  
+
+const h1Style = {textAlign: 'center', marginTop: '20px'}
+
+useEffect(() => {
+  setUser(JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : '')
+}, [])
+
+  return user ? ( 
     <>
+      <CheckModal bokadText='avbokat' /> 
       <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
       <section className='profile-wrapper'>   
        <h2 className='Desktop-heading-mypages'>Mina sidor</h2>
        <div className='mypages-container'>
         <div className='left-container'>
-        <article className='profile-left'>
-        {/* <div className='flex-between update-and-title'>
-            <h2>Mina sidor</h2>
-            <AiFillEdit id='update-btn' onClick={openModal} />
-          </div> */}
-      
+        <article className='profile-left'>      
             
               <h3 >Mitt konto</h3> 
 
@@ -138,19 +185,34 @@ let bokatPassArray = []
         </div>
         <div className='bokade-pass'>
                 <h3>Mina pass</h3>
-                {bokatPassArray.map(pass => {
+                {bokatPassArray.length !== 0 ? bokatPassArray.map(pass => {
            return (
+            
             <div key={pass.id} className='pass-card center'>
             <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
-            <img className='booking-icon' src={require(".././booking_page/"+pass.aktivitet +".png")} alt="no img" height="40px" width="30px"/>
+            <img className='booking-icon' src={require(".././booking_page/"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/>
             <div className='aktv-tid-div'>
                 <h1>{pass.aktivitet}</h1>
-                <h2>{pass.tid}</h2>
+                
+                <p>
+                          {pass.dayString}, {pass.dateString} {pass.monthString}{" "}
+                          <br />
+                          {pass.tid}
+                        </p>
             </div>
-            <p>Instruktör: {pass.instruktör}</p>
+            <p>{pass.instruktör}</p>
+            <button
+                        class="myButton booking-btn"
+                        onClick={() =>
+                          avbokaPass(pass.id, "pass", pass.platser)}>
+                        Avboka
+                      </button>
         </div>
            )
-       })} 
+       })
+      :
+      <h1 style={h1Style}>Inga pass bokade <br /> <a href="/bookingpage">Boka pass</a></h1>
+      } 
             </div>
             </div>
       </section>

@@ -43,16 +43,11 @@ function Login() {
 
   const setLocalStorage = () => {
     const inloggadUser = profiler.find((item) => {
-      console.log("item.email: ", item.email);
-      console.log("auth: ", auth.currentUser.email);
-
       return item.email == auth.currentUser.email;
     });
     setInloggadUser(inloggadUser);
     localStorage.setItem("user", JSON.stringify(inloggadUser));
   };
-
-  console.log("inloggadUser: ", inloggadUser);
 
   // ============ END: SET LOCAL STORAGE ============ //
 
@@ -76,13 +71,11 @@ function Login() {
     auth.signOut();
     localStorage.removeItem("user");
     navigate("/gym");
-    console.log(auth);
   };
 
   const register = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((auth) => {
-        console.log(auth);
         // clearFields();
         // setIsLogedIn(true);
         navigate("/home");

@@ -2,15 +2,14 @@
 /* ------------------------------------------------------------------------ */
 
 .footer {
-  font-family: sans-serif;
   background: #6595ca;
-  font-family: inherit;
   font-size: 1rem;
   color: black;
   height: auto;
   position: relative;
   bottom: 0;
   left: 0;
+  margin-top: 1rem;
 }
 
 .wrapper {

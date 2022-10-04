@@ -3,6 +3,10 @@ import useModal from "./AddForm";
 import Modal from "./Modal";
 import "./formStyle.css";
 
+
+
+
+
 /* Form page*/ 
 
 export default function App() {
@@ -41,46 +45,50 @@ export default function App() {
         <Modal
           isShowing={isRegistrationFormShowed}
           hide={toggleRegistrationForm}
-          title="Kassa"
-              >
-               <h5>Personuppgifter</h5>
+          title=""
+        >
+          <h2 className="titleKassa">Kassa</h2>
+               <h5 className="infoKassa">Personuppgifter</h5>
           <form>
                       <div className="form-group">
-                      Förnamn
-              <input type="text" placeholder="Förnamn" />
+                     <h3 className="namnKassa"> Förnamn</h3>
+              <input className="namnInput"  type="text" placeholder="Förnamn" />
             </div>
                       <div className="form-group">
-                      Efternamn
-              <input type="text" placeholder="Efternamn" />
+                      <h3 className="eftKassa">Efternamn</h3>
+              <input className="eftInput" type="text" placeholder="Efternamn" />
             </div>
                       <div className="form-group">
-                      Telefonummer
-              <input type="text" placeholder="Telefonummer" />
+                      <h3 className="telKassa">Telefonummer</h3>
+              <input className="telInput" type="text" placeholder="Telefonummer" />
             </div>
                       <div className="form-group">
-                          Adress
-                          <input type="text"  placeholder="Ex. Gatavägen 1" />
-                          <input type="text"  placeholder="Postnummer" />
-                          <input type="text" placeholder="Stad" />
+                      <h3 className="adressKassa"> Adress </h3>
+                          <input className="GataInput" type="text"  placeholder="Ex. Gatavägen 1" />
+                          <input className="postInput" type="text"  placeholder="Postnummer" />
+                          <input  className="stadInput" type="text" placeholder="Stad" />
             </div>
           </form>
-          <hr/>
-                 <div className="">
-                  <h2> Betalningssätt</h2>
-            <div className="kassa">
-              <button className="klarna-Logo" ><h3 >Faktura</h3></button>
+          <hr />
+
+          <h2 className="textForm"> Betalningssätt</h2>
+           
+            <div className="kassaForm">
+              <img className="klarnaIm" /><h3 className="klarnaTextForm">Faktura</h3>
             </div>
-            <div className="kassa1">
-              <button className="visa" ><h3>Kort</h3></button>
+            <div className="kassaFormV">
+              <img className="visaIm" /><h3 className="visaTextForm">Kort</h3>
             </div>
             
-            <div className="kassa2">
-                      <button className="swish" ><h3>Swish</h3></button>
+            <div className="kassaFormS">
+                      <img className="swishIm" /><h3 className="swishTextForm">Swish</h3>
             </div>
-            </div>
+          
+          
+             
         </Modal>
       </div>
-
+      
     </>
   );
 }

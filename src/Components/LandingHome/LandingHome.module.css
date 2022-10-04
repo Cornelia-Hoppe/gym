@@ -1,5 +1,6 @@
 .LandingPage {
   top: 0px;
+  margin-bottom: 0.7rem;
   z-index: 1;
   display: inline-block;
   position: relative;
@@ -11,19 +12,19 @@
 }
 
 .landingButton {
-  background-color: rgba(115, 167, 193, 0.25);
+  background-color: hsl(200, 33%, 49%, 0.5);
   position: absolute;
   border: none;
   left: 4%;
   bottom: 6%;
   border-radius: 10px;
   width: 14rem;
-  color: #ffffff;
+  color: #fffcf5;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  padding: 0.4rem;
 }
 .landingButton:hover {
   background-color: rgba(115, 167, 193, 0.75);
@@ -31,16 +32,14 @@
 }
 
 .landingButton h2 {
-  padding-top: 0.6rem;
+  font-weight: lighter;
   text-decoration: underline;
-  font-size: 30px;
-  margin: 0px;
-  font-weight: 600;
+  font-size: 26px;
 }
 
 .landingButton h3 {
-  font-weight: 600;
-  font-size: 24px;
+  font-weight: lighter;
+  font-size: 22px;
   margin-top: 0;
 }
 .landingImage img {
@@ -54,14 +53,12 @@
   }
 
   .gymImgDesktop img {
-    height: 62vh;
+    height: 80vh;
     object-fit: cover;
   }
 
   .landingButton {
-    width: 20rem;
-    padding: 10px;
-    border-radius: 10px;
+    width: 26rem;
   }
 
   .landingButton h2 {

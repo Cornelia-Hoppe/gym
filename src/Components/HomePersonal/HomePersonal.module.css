@@ -1,15 +1,3 @@
-.PersonalSection {
-  position: relative;
-  text-align: center;
-  background: rgba(84, 140, 168, 0.2);
-  margin: 10px;
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  padding-top: 8px;
-  font-family: sans-serif;
-}
 
 .PersonalButtons p {
   font-weight: 500;
@@ -17,32 +5,16 @@
   background-color: hsl(201, 100%, 91%, 75%);
   border-radius: 6px;
   text-align: center;
+  margin: auto;
+  font-size: 20px;
+  opacity: 1;
+  z-index: 1;
 }
 
 .HeaderPersonal {
   padding-top: 10px;
   padding-left: 20px;
   color: black;
-  text-align: left;
-}
-
-.HeaderPersonal h3 {
-  margin-top: 0px;
-  margin-bottom: 4px;
-  font-family: sans-serif;
-  width: 90%;
-  text-align: left;
-}
-
-.HeaderPersonal p {
-  font-size: 16px;
-  font-weight: lighter;
-  width: 90%;
-}
-
-.HeaderPersonal h3 {
-  margin-top: 0px;
-  margin-bottom: 4px;
   text-align: left;
 }
 
@@ -113,17 +85,10 @@
   opacity: 1;
 }
 
-.PersonalButtons p {
-  margin: auto;
-  font-size: 22px;
-  opacity: 1;
-  z-index: 1;
-}
+
 
 @media screen and (min-width: 800px) {
-  .PersonalSection {
-    margin: 10px 30px;
-  }
+
 
   .HeaderPersonal p{
     width: 90%;
@@ -152,12 +117,5 @@
     width: 90%;
   }
 
-  .PersonalSection p {
-    font-size: 24px;
-  }
-
-  .HeaderPersonal h3 {
-    font-size: 40px;
-  }
 
 }
