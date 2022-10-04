@@ -92,7 +92,8 @@ function Menu({ updateAfterLogin, setOpenCart }) {
             />
           </CustomLink>
           <IoIosCart className="menu-desktop-cart" onClick={() => {
-          setOpenCart(true)
+            setOpenCart(true)
+            document.body.style.overflow = "hidden";
         }}/>
         <span className="menu-mobile-cart-totalitems">{totalItems}</span>
         </ul>

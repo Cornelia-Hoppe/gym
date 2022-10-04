@@ -37,12 +37,13 @@ function SignUp({ closeSignUp }) {
   // END: SPARAR I DATABASEN
 
   return (
-    <article className="SignUpWrapper" id="SignUpWrapperId">
+    <article className="SignUpWrapper" >
       <div className="SignUp">
         <GrClose
           className="cancel-button"
           onClick={() => {
             closeSignUp(false);
+            document.body.style.overflow = "visible";
           }}
         />
 
