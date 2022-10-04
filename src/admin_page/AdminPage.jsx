@@ -471,7 +471,7 @@ const search = (text) => {
                 <>
                 <div key={index} className='pass-card center'>
                         <h2 className='booking-antal' >Max: {pass.maxAntal}</h2>
-                        {/* <img clasName='booking-icon' src={require(pass.kategori ? "../booking_page/"+pass.kategori +".png" : "../booking_page/baseIcon.png" )} alt="" height="40px" width="30px"/> */}
+                        <img clasName='booking-icon' src={require(pass.kategori ? "../booking_page/"+pass.kategori +".png" : "../booking_page/baseIcon.png" )} alt="" height="40px" width="30px"/>
                         <div className='aktv-tid-div'>
                             <h1>{pass.aktivitet}</h1>
                             <p>{pass.dayString}, {pass.dateString} {pass.monthString} <br />
