@@ -148,6 +148,7 @@ function Login() {
               style={user ? STYLE_LOGGED_IN_NONE : null}
               onClick={() => {
                 setOpenSignUp(true);
+                document.body.style.overflow = "hidden";
               }}
               className="register-button login-button"
             >

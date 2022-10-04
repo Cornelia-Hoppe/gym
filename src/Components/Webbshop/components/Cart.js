@@ -46,7 +46,10 @@ function Cart({ closeCart }) {
           <h1 className="cart-header-title">Kundvagn</h1>
           <GrClose
             className="cart-header-exit"
-            onClick={() => closeCart(false)}
+            onClick={() => {
+              closeCart(false)
+              document.body.style.overflow = "visible";
+            }}
             />
         </div>
         <div className="cart-header-2">
