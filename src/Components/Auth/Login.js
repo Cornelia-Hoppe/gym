@@ -8,13 +8,13 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import LoggedInModal from "./LoggedInModal";
 // import { BiLock } from "react-icons/bi";
 
 import { db } from "../../firebase-config";
 import {
   collection,
   getDocs,
+  admin,
   addDoc,
   updateDoc,
   doc,
@@ -36,6 +36,11 @@ function Login() {
   const [profiler, setProfiler] = useState();
   const [inloggadUser, setInloggadUser] = useState();
 
+  const clearFields = () => {
+    document.querySelector("#login-input-1").value = "";
+    document.querySelector("#login-input-2").value = "";
+  };
+
   const getProfiler = async () => {
     const data = await getDocs(profilerCollectionRef);
     setProfiler(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -45,9 +50,17 @@ function Login() {
     const inloggadUser = profiler.find((item) => {
       return item.email == auth.currentUser.email;
     });
+    console.log('inloggadUser i setLocalStorage: ', inloggadUser);
     setInloggadUser(inloggadUser);
     localStorage.setItem("user", JSON.stringify(inloggadUser));
   };
+
+  // const Admin = () => {
+  //   const adminUser = profiler.find((item) => {
+  //     return item.admin;
+  //   });
+  //   Admin(adminUser);
+  // };
 
   // ============ END: SET LOCAL STORAGE ============ //
 
@@ -56,13 +69,26 @@ function Login() {
   }, []);
 
   const signIn = () => {
+    console.log('signIn körs');
+
     signInWithEmailAndPassword(auth, email, password)
-      .then((auth) => {
-        setLocalStorage();
+      .then(() => {
+
+        const inloggadUserLocal = profiler.find((item) => {
+          return item.email == auth.currentUser.email;
+        });
+        setInloggadUser(inloggadUserLocal);
+        localStorage.setItem("user", JSON.stringify(inloggadUserLocal));
+
         //LoggedInModal.style.set("block");
         clearFields();
 
-        navigate("/gym"); //dispaly.LoggedInModal(), lägg till denna innan navigate  setIsLogedIn(true)  clearFields()
+        if (inloggadUserLocal.admin === true) {
+      navigate("/admin");
+    } else {
+      navigate("/gym");
+    }
+    
       })
       .catch((error) => console.error(error));
   };
@@ -78,7 +104,7 @@ function Login() {
       .then((auth) => {
         // clearFields();
         // setIsLogedIn(true);
-        navigate("/home");
+        navigate("/gym");
       })
       .catch((error) => console.error(error));
   };
@@ -88,11 +114,6 @@ function Login() {
   // LOGGA UT
 
   // CLEAR FEILDS
-
-  const clearFields = () => {
-    document.querySelector("#login-input-1").value = "";
-    document.querySelector("#login-input-2").value = "";
-  };
 
   let STYLE_LOGGED_IN_NONE = {};
   let STYLE_NOT_LOGGED_IN_FLEX = {};
