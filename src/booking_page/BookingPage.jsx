@@ -237,9 +237,9 @@ const scrollToPass = () => {
     return (
       <>
         <article className="booking-page-container">
-          <div className="booking-page-header-desktop">
-            <h1>Boka Pass</h1>
-          </div>
+          {/* <div className="booking-page-header-desktop">
+          </div> */}
+            <h1 className="booking-page-header-desktop">Boka Pass</h1>
           <div className="booking-content">
             <section className='blue-wrapper center'>
         
@@ -248,7 +248,7 @@ const scrollToPass = () => {
               <Calendar onChange={setDate} value={date} onClickDay={sortPassDay} />
             </section>
 
-            <section className='blue-wrapper center'>
+            <section className='blue-wrapper center choose-workout-section'>
               <div className="booking-page-header-mobile"> <h1>Pass</h1> </div>
               <select className='drop-down' name='välj pass' onChange={(e) => sortKategories(e.target.value)}>
                 <option value="null">Välj pass</option>

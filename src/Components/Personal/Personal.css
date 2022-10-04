@@ -3,6 +3,7 @@
   cursor: pointer;
   width: 124px;
   height: 42px;
+  margin: 5px;
   border-radius: 10px;
   font-weight: 600;
   border: none;
@@ -54,11 +55,12 @@
 .nav_con {
   text-align: center;
   background: #dde6e6;
-  margin: auto;
+  margin: 0 10px;
   border-radius: 10px;
   margin: auto;
   padding-bottom: 8px;
   padding-top: 8px;
+  margin-bottom: 10px;
 }
 
 .nav_con h1 {

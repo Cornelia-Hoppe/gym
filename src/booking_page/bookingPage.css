@@ -29,13 +29,15 @@
 .pass-card {
   padding: 10px;
   background: rgba(44, 77, 126, 0.75);
-  width: 400px;
-  max-width: 90%;
+  width: 90%;
   color: #e5e5e5;
   margin: 5px 0;
   position: relative;
-  border-radius: 5px;
-}
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  }
 
 .pass-card h1 {
   font-size: 23px;
@@ -53,7 +55,15 @@
   top: 0px;
   right: 42px;
 }
-
+.pass-button-container{
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+}
+.booking-antal{
+  font-size: 18px;
+  text-align: right;
+}
 .booking-btn {
   position: absolute;
   bottom: 10px;
@@ -344,12 +354,6 @@
     justify-content: space-evenly;
   }
   .booking-page-header-desktop {
-    display: flex;
-    height: fit-content;
-    width: fit-content;
-  }
-  .center {
-    display: flex;
     justify-content: flex-start;
   }
 
