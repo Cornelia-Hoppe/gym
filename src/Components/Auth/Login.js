@@ -50,16 +50,17 @@ function Login() {
     const inloggadUser = profiler.find((item) => {
       return item.email == auth.currentUser.email;
     });
+    console.log('inloggadUser i setLocalStorage: ', inloggadUser);
     setInloggadUser(inloggadUser);
     localStorage.setItem("user", JSON.stringify(inloggadUser));
   };
 
-  const Admin = () => {
-    const adminUser = profiler.find((item) => {
-      return item.admin;
-    });
-    Admin(adminUser);
-  };
+  // const Admin = () => {
+  //   const adminUser = profiler.find((item) => {
+  //     return item.admin;
+  //   });
+  //   Admin(adminUser);
+  // };
 
   // ============ END: SET LOCAL STORAGE ============ //
 
@@ -68,21 +69,26 @@ function Login() {
   }, []);
 
   const signIn = () => {
+    console.log('signIn körs');
+
     signInWithEmailAndPassword(auth, email, password)
-      .then((auth) => {
-        setLocalStorage();
+      .then(() => {
+
+        const inloggadUserLocal = profiler.find((item) => {
+          return item.email == auth.currentUser.email;
+        });
+        setInloggadUser(inloggadUserLocal);
+        localStorage.setItem("user", JSON.stringify(inloggadUserLocal));
+
         //LoggedInModal.style.set("block");
         clearFields();
 
-        console.log(Admin);
-
-        if (Admin === true) {
-          navigate("/admin");
-          console.log(Admin);
-        } else {
-          navigate("/gym");
-          console.log(Admin);
-        }
+        if (inloggadUserLocal.admin === true) {
+      navigate("/admin");
+    } else {
+      navigate("/gym");
+    }
+    
       })
       .catch((error) => console.error(error));
   };
