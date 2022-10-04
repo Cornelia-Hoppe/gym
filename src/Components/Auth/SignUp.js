@@ -2,7 +2,6 @@ import "./css/signUp.css";
 import { GrClose } from "@react-icons/all-files/gr/GrClose";
 import React from "react";
 import { useState } from "react";
-import Login from "./Login";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -17,7 +16,6 @@ function SignUp({ closeSignUp }) {
 
   const register = () => {
     if (password1 === password2) {
-
       setPassword(password1);
 
       createUserWithEmailAndPassword(auth, email, password).then((auth) => {
