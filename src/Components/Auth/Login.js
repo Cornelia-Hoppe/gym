@@ -8,13 +8,13 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import LoggedInModal from "./LoggedInModal";
 // import { BiLock } from "react-icons/bi";
 
 import { db } from "../../firebase-config";
 import {
   collection,
   getDocs,
+  admin,
   addDoc,
   updateDoc,
   doc,
@@ -36,6 +36,11 @@ function Login() {
   const [profiler, setProfiler] = useState();
   const [inloggadUser, setInloggadUser] = useState();
 
+  const clearFields = () => {
+    document.querySelector("#login-input-1").value = "";
+    document.querySelector("#login-input-2").value = "";
+  };
+
   const getProfiler = async () => {
     const data = await getDocs(profilerCollectionRef);
     setProfiler(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -47,6 +52,13 @@ function Login() {
     });
     setInloggadUser(inloggadUser);
     localStorage.setItem("user", JSON.stringify(inloggadUser));
+  };
+
+  const Admin = () => {
+    const adminUser = profiler.find((item) => {
+      return item.admin;
+    });
+    Admin(adminUser);
   };
 
   // ============ END: SET LOCAL STORAGE ============ //
@@ -62,7 +74,15 @@ function Login() {
         //LoggedInModal.style.set("block");
         clearFields();
 
-        navigate("/gym"); //dispaly.LoggedInModal(), lägg till denna innan navigate  setIsLogedIn(true)  clearFields()
+        console.log(Admin);
+
+        if (Admin === true) {
+          navigate("/admin");
+          console.log(Admin);
+        } else {
+          navigate("/gym");
+          console.log(Admin);
+        }
       })
       .catch((error) => console.error(error));
   };
@@ -78,7 +98,7 @@ function Login() {
       .then((auth) => {
         // clearFields();
         // setIsLogedIn(true);
-        navigate("/home");
+        navigate("/gym");
       })
       .catch((error) => console.error(error));
   };
@@ -88,11 +108,6 @@ function Login() {
   // LOGGA UT
 
   // CLEAR FEILDS
-
-  const clearFields = () => {
-    document.querySelector("#login-input-1").value = "";
-    document.querySelector("#login-input-2").value = "";
-  };
 
   let STYLE_LOGGED_IN_NONE = {};
   let STYLE_NOT_LOGGED_IN_FLEX = {};
