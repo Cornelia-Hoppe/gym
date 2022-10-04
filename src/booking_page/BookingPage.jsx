@@ -78,8 +78,6 @@ function BookingPage() {
 
 const bookPass = async (passId, platser) => {
 
-  console.log('boka pass körs');
-
     openLoadingModal()
         
       // LÄGGER IN PASSET TILL PROFILEN
@@ -89,15 +87,11 @@ const bookPass = async (passId, platser) => {
 
     const newPassLista = []
 
-    console.log('tidigarePass: ', tidigarePass, 'tidigarePass.length: ', tidigarePass.length);
-
     if (tidigarePass.length !== 0) {
       tidigarePass.map((item, index) => {
         newPassLista.push(item)
       })
-    } else {
-      newPassLista.push(passId)
-    }
+    } 
 
     newPassLista.push(passId)
 
@@ -112,13 +106,11 @@ const bookPass = async (passId, platser) => {
     let newPlatser = 0
 
     if (!platser) {
-      console.log('platser = false');
       newPlatser = 1
     } else if (platser) {
       newPlatser = platser + 1
     }
 
-    console.log('newPlatser: ', newPlatser);
 
       const staffDoc = doc(db, 'pass', passId)
       const newFieldsPass = {platser: Number(newPlatser)}
@@ -133,7 +125,7 @@ const bookPass = async (passId, platser) => {
 
   const handleBokaBtn = async (passId, platser, ) => {
 
-    if (!inloggadUser) alert('go to login / sign up')
+    if (!inloggadUser) window.location.href = '/myprofile'
     else {
 
       let x = 0
@@ -261,12 +253,9 @@ const scrollToPass = () => {
               <select className='drop-down' name='välj pass' onChange={(e) => sortKategories(e.target.value)}>
                 <option value="null">Välj pass</option>
                 <option value="kondition">Kondition</option>
-                <option value="spinning">Styrka</option>
-                <option value="styrka">Crossfit</option>
-                <option value="flexebilitet">Funktionell Träning</option>
-                <option value="mindfullnes">Mindfullnes</option>
+                <option value="styrka">Styrka</option>
+                <option value="flexebilitet">Flexebilitet</option>
                 <option value="crossfit">Crossfit</option>
-                <option value="funktionell-träning">Funktionell träning</option>
 
               </select>
             
@@ -274,17 +263,24 @@ const scrollToPass = () => {
 
                 let btn_text = 'Boka'
                 let bokadText = 'bokat!'
+                // let FULLBOKAT_NONE = {display: 'none'}
+                // let FULLBOKAT_BLOCK = {display: 'block'}
 
                 if (inloggadUser) {
                     inloggadUser.bokadePass.map((item) => {
+
                     if (pass.id === item) {
                       btn_text = 'Avboka'
                       bokadText = 'avbokat'
-                    }
+                    } 
+                    
+                    // if (pass.platser == pass.maxAntal && pass.id === item) {
+                    //   console.log(pass.aktivitet, pass, item);
+                    //   FULLBOKAT_NONE = {display: 'block'}
+                    //   FULLBOKAT_BLOCK = {display: 'none'}
+                    // }
                   })
                 }
-
-                
                
                 return (
                   <>
@@ -294,13 +290,13 @@ const scrollToPass = () => {
                         className="booking-antal"
                         style={
                           pass.platser == pass.maxAntal
-                            ? { color: "red" }
+                            ? { color: "#ff6161" }
                             : { color: "white" }
                         }
                       >
                         {!pass.platser ? 0 : pass.platser}/{pass.maxAntal}
                       </h2>
-                      {/* <img clasName='booking-icon' src={require("./"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/> */}
+                      <img clasName='booking-icon' src={require("./"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/>
                       <div key={Math.random()} className="aktv-tid-div">
                         <h1>{pass.aktivitet}</h1>
                         <p>
@@ -310,12 +306,20 @@ const scrollToPass = () => {
                         </p>
                       </div>
                       <h2>{pass.instruktör}</h2>
+
                       <button
+                        // style={FULLBOKAT_BLOCK}
                         class="myButton booking-btn"
                         onClick={() =>
                           handleBokaBtn(pass.id, pass.platser)}>
                         {btn_text}
                       </button>
+
+                      {/* <button
+                        style={FULLBOKAT_NONE}
+                        class="myButton booking-btn">
+                        Full
+                      </button> */}
                     </div>
                   </>
                 );

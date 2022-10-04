@@ -95,10 +95,14 @@ function UpdateProfileModal({
     }
   }
 
+  const closeModalNow = () => {
+    document.querySelector(`#${id}-update-modal`).style.display='none'
+  }
+
   return (
     <section id={`${id}-update-modal`} className="update-modal-wrapper">
       <article className="update-modal">
-        <GrFormClose className="close-icon" onClick={closeModal} />
+        <GrFormClose className="close-icon" onClick={closeModalNow} />
 
         <img
           className="staff-img"
@@ -160,23 +164,23 @@ function UpdateProfileModal({
               type="text"
               placeholder={phoneNumber}
               onChange={(e) => {
-                setNewLastName(e.target.value);
+                setNewPhoneNumber(e.target.value);
               }}
               defaultValue={phoneNumber}
             />
           </div>
 
-          <div className="input-div">
+          {/* <div className="input-div">
             <h1> Lösenord</h1>
             <input
               type="password"
               placeholder={password}
               onChange={(e) => {
-                setNewLastName(e.target.value);
+                setNewPassword(e.target.value);
               }}
               defaultValue={password}
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="m30">

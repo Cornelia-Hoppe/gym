@@ -655,7 +655,7 @@ const search = (text) => {
                 <textarea id='staff-input-3' maxlength="500" type="text" placeholder='Skriv om dig...' onChange={(e) => {setNewText(e.target.value)}}  />
                 <p>max 500 tecken</p>
               </div>
-              <p style={{fontWeight:'bold'}}>Ange level: </p>
+              {/* <p style={{fontWeight:'bold'}}>Ange level: </p>
               <div className='modal-input-wrapper-level'>
                 <p className='m10'> Level 1: Kundnivå <br /> Level 2: Kan skapa pass <br /> Level 3: Kan skapa pass, anställda och produkter </p>
                 <select className='drop-down input-select' name='välj pass' onChange={(e) => setLevel(e.target.value)}>
@@ -663,7 +663,7 @@ const search = (text) => {
                   <option value="2">Level 2</option>
                   <option value="3">Level 3</option>
                 </select>
-              </div>
+              </div> */}
 
               <input 
                 type="file" 
