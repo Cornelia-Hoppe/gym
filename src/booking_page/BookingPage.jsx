@@ -216,7 +216,7 @@ function BookingPage() {
           <h1>Boka Pass</h1>
         </div>
         <div className="booking-content">
-          <section className="Sportix-Section">
+          <section className="Sportix-Section" id="calender-flex">
             <div className="booking-page-header-mobile">
               <h3>Kalender</h3>
             </div>
@@ -227,7 +227,7 @@ function BookingPage() {
             />
           </section>
 
-          <section className="Sportix-Section">
+          <section className="Sportix-Section" id="mobile-style">
             <div className="booking-page-header-mobile">
               {" "}
               <h3>Pass</h3>{" "}
