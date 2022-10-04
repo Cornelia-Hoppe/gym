@@ -10,7 +10,7 @@ import icon from "./icon.png"
 import closeLoadingScreen from '../Components/loading_screen/CloseLoadingModal'
 import Login from '../Components/Auth/Login'
 import SavedModal from '../Components/loading_screen/SavedModal';
-import Memberships from './Memberships';
+import App from './Kassa/Betalning';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase-config";
 import '../booking_page/bookingPage.css'
@@ -18,7 +18,7 @@ import UpdateLocalStorage from '../functions/UpdateLocalStorage';
 import CheckModal from '../booking_page/CheckModal';
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
-
+import style from "./Kassa/BetalningStyle.module.css"
   function MinaSidor() {
   const [showModal, setshowModal] = useState(false)
   const [userAuth, loading, error] = useAuthState(auth); 
@@ -181,7 +181,7 @@ useEffect(() => {
        
             </div>
         </article>
-<Memberships />
+        <App />
         </div>
         <div className='bokade-pass'>
                 <h3>Mina pass</h3>
@@ -211,7 +211,7 @@ useEffect(() => {
            )
        })
       :
-      <h1 style={h1Style}>Inga pass bokade <br /> <a href="/bookingpage">Boka pass</a></h1>
+      <p style={h1Style}>Inga pass bokade <br /> <a href="/bookingpage">Boka pass</a></p>
       } 
             </div>
             </div>

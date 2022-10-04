@@ -10,7 +10,9 @@ import {
 } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { GrFormClose } from "@react-icons/all-files/gr/GrFormClose";
-import "../admin_page/AdminPage.css";
+// import "../admin_page/AdminPage.css";
+import "./minaSidor.css";
+import style from "./Kassa/BetalningStyle.module.css"
 import UpdateLocalStorage from "../functions/UpdateLocalStorage";
 import openLoadingModal from "../Components/loading_screen/OpenLoadingModal";
 
@@ -100,9 +102,9 @@ function UpdateProfileModal({
   }
 
   return (
-    <section id={`${id}-update-modal`} className="update-modal-wrapper">
-      <article className="update-modal">
-        <GrFormClose className="close-icon" onClick={closeModalNow} />
+    <section id={`${id}-update-modal`} className="update-modal-wrapper-mypages">
+      <article className="update-modal-mypages">
+        <GrFormClose className="close-icon-mypages" onClick={closeModalNow} />
 
         <img
           className="staff-img"
@@ -111,8 +113,8 @@ function UpdateProfileModal({
           alt={`Ingen bild tillagd`}
         />
 
-        <div className="modal-img-wrapper">
-          <h1>Uppdatera bild:</h1>
+        <div className="modal-img-wrapper-mypages">
+          <h4>Uppdatera bild:</h4>
           <input
             type="file"
             name="file"
@@ -123,7 +125,7 @@ function UpdateProfileModal({
         </div>
         <div className="input-divs">
           <div className="input-div">
-            <h1> Namn</h1>
+            <h4> Namn</h4>
             <input
               type="text"
               placeholder={name}
@@ -135,7 +137,7 @@ function UpdateProfileModal({
           </div>
 
           <div className="input-div">
-            <h1> Efternamn</h1>
+            <h4> Efternamn</h4>
             <input
               type="text"
               placeholder={lastName}
@@ -147,7 +149,7 @@ function UpdateProfileModal({
           </div>
 
           <div className="input-div">
-            <h1> Email</h1>
+            <h4> Email</h4>
             <input
               type="text"
               placeholder={email}
@@ -159,7 +161,7 @@ function UpdateProfileModal({
           </div>
 
           <div className="input-div">
-            <h1> Telefonnummer</h1>
+            <h4> Telefonnummer</h4>
             <input
               type="text"
               placeholder={phoneNumber}
@@ -183,7 +185,7 @@ function UpdateProfileModal({
           </div> */}
         </div>
 
-        <div className="m30">
+        <div className="m30-mypages">
           <button
             onClick={() => {
               updateStaff("profiler");
