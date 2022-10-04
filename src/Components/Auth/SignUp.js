@@ -11,14 +11,13 @@ function SignUp({ closeSignUp }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [password1, setPassword1] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const register = () => {
-    if (password1 === password2) {
-      setPassword(password1);
-
+    if (password === passwordConfirm) {
       createUserWithEmailAndPassword(auth, email, password).then((auth) => {
+        setPassword("");
+        setPasswordConfirm("");
         navigate("/gym");
       });
     } else {
@@ -37,7 +36,7 @@ function SignUp({ closeSignUp }) {
   // END: SPARAR I DATABASEN
 
   return (
-    <article className="SignUpWrapper" >
+    <article className="SignUpWrapper">
       <div className="SignUp">
         <GrClose
           className="cancel-button"
@@ -65,7 +64,7 @@ function SignUp({ closeSignUp }) {
                   <input
                     className="login-input"
                     id={"login-input-2"}
-                    onChange={(event) => setPassword1(event.target.value)}
+                    onChange={(event) => setPassword(event.target.value)}
                     autoComplete="off"
                     type="password"
                     name="password"
@@ -74,8 +73,8 @@ function SignUp({ closeSignUp }) {
                   <label className="login-label">Confirm Password</label>
                   <input
                     className="login-input"
-                    id={"login-input-2"}
-                    onChange={(event) => setPassword2(event.target.value)}
+                    id={"login-input-3"}
+                    onChange={(event) => setPasswordConfirm(event.target.value)}
                     autoComplete="off"
                     type="password"
                     name="password"
