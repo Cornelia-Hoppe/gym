@@ -8,7 +8,6 @@ const LandingHome = () => {
 
   return (
     <>
-      <main>
         <div className={style.LandingPage}>
           <div className={style.gymImgDesktop}>
             <picture className={style.landingImage}>
@@ -21,7 +20,6 @@ const LandingHome = () => {
             <h3>från 300:-/månad</h3>
           </button>
         </div>
-      </main>
     </>
   );
 };

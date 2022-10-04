@@ -4,7 +4,12 @@ import "react-calendar/dist/Calendar.css";
 import "./bookingPage.css";
 import "../admin_page/AdminPage.css";
 import { db } from "../firebase-config";
-import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  updateDoc,
+  doc
+} from "firebase/firestore";
 import CheckModal from "./CheckModal";
 // import { BsFillPencilFill } from "react-icons/bs";
 import Update_modal_pass from "./Update_modal_pass";
@@ -15,6 +20,7 @@ import { async } from "@firebase/util";
 import { reload } from "firebase/auth";
 
 function BookingPage() {
+
   const [passKategorier, setPassKategorier] = useState();
   const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
 
@@ -22,13 +28,11 @@ function BookingPage() {
   const [passDenDagen, setPassDenDagen] = useState([]);
 
   // SÄTTER inloggaUser. DENNA KOMMER UPPDATERAS
-  const [inloggadUser, setInloggadUser] = useState(
-    JSON.parse(localStorage.getItem("user"))
-      ? JSON.parse(localStorage.getItem("user"))
-      : ""
-  );
+  const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "");
+
 
   const ref = useRef(null);
+
 
   // START: HÄMTAR PASS
 
@@ -55,6 +59,7 @@ function BookingPage() {
 
   // END: HÄMTAR PASS
 
+
   // START: HÄMTAR PROFILER
 
   const profilerCollectionRef = collection(db, "profiler");
@@ -72,6 +77,7 @@ function BookingPage() {
   // END: HÄMTAR PROFILER
 
   const bookPass = async (passId, platser) => {
+
     openLoadingModal();
 
     // LÄGGER IN PASSET TILL PROFILEN
@@ -105,6 +111,7 @@ function BookingPage() {
       newPlatser = platser + 1;
     }
 
+
     const staffDoc = doc(db, "pass", passId);
     const newFieldsPass = { platser: Number(newPlatser) };
     await updateDoc(staffDoc, newFieldsPass);
@@ -117,8 +124,10 @@ function BookingPage() {
   // BOKA-KNAPPEN
 
   const handleBokaBtn = async (passId, platser) => {
+
     if (!inloggadUser) window.location.href = "/myprofile";
     else {
+
       let x = 0;
 
       if (inloggadUser.bokadePass.length !== 0 || !inloggadUser.bokadePass) {
@@ -129,16 +138,23 @@ function BookingPage() {
             bookPass(passId, platser);
             x = 1;
           }
-        });
+        })
       } else if (x === 0) {
         bookPass(passId, platser);
       }
-    }
-  };
+
+
+    };
+
+  }
+  
 
   // START: UPPDATERAR PASS DATA OCH LOCALSTORAGE
 
+
+
   // END: UPPDATERAR PASS DATA OCH LOCALSTORAGE
+
 
   // START: SORTERA PASSEN
 
@@ -159,12 +175,16 @@ function BookingPage() {
     setPassDenDagen(filteredKategoryPass);
     // scrollToPass();
     setPassKategorier(selectedKategori);
+
   };
 
   // END: SORTERA PASSEN
 
   const addBokadToPassDenDagen = () => {
-    passDenDagen.map((pass) => {});
+
+    passDenDagen.map((pass) => { 
+
+    });
   };
 
   useEffect(() => {
@@ -173,9 +193,11 @@ function BookingPage() {
     }
   }, []);
 
+
   // START: AVBOKA PASS
 
   const avbokaPass = async (passId, passPlatser) => {
+
     let newBokadePass = [];
 
     inloggadUser.bokadePass.find((item) => {
@@ -200,6 +222,8 @@ function BookingPage() {
     await updateDoc(passfDoc, newFields2);
 
     document.querySelector("#check-modal").style.display = "flex";
+
+
   };
 
   // END: AVBOKA PASS
@@ -209,6 +233,7 @@ function BookingPage() {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  
   return (
     <>
       <article className="booking-page-container" id="top-section">

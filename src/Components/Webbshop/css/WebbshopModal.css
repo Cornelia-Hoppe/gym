@@ -77,6 +77,10 @@
     height: 55px;
     border-radius: 10px;
 }
+.modal-choose-size-popup{
+    color: red;
+    font-weight: 600;
+}
 .modal-onesize{
     width: 120px;
 }
@@ -196,6 +200,9 @@
         width: 45px;
         height: 40px;
         cursor: pointer;
+    }
+    .modal-onesize{
+        width: 70px;
     }
     .modal-add{
         height: 45px;
