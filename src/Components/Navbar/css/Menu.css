@@ -4,6 +4,7 @@
   position: fixed;
   z-index: 4;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: 12rem;
 }
 .menu-mobile {
   height: 5rem;
@@ -136,5 +137,11 @@
     height: 300px;
     background: rgba(0, 39, 84, 0.5);
     float: right;
+  }
+  .menu-mobile-cart-totalitems{
+    width: 20px;
+    height: 20px;
+    right: 2.5%;
+    top: 10%;
   }
 }

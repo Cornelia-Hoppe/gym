@@ -1,5 +1,5 @@
 import React, {lazy} from "react";
-import style from "./Home.module.css";
+import "./Home.module.css"
 import LandingHome from "../LandingHome/LandingHome";
 import HomeAbout from "../HomeAbout/HomeAbout";
 import HomeGallery from "../HomeGallery/HomeGallery";
@@ -35,7 +35,8 @@ const Homepage = () => {
 
   return (
     <>
-      <main>
+      <main id="home-section"
+>
         <LandingHome />
         {/* <LazyLoadComponent> */}
           <Arrow />

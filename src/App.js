@@ -46,7 +46,7 @@ function App() {
     {/* <AdminPage /> */}
       <LoadingScreen />
       <CartProvider>
-          <Menu setOpenCart={setOpenCart} updateAfterLogin={updateAfterLogin}/>
+          <Menu setOpenCart={setOpenCart} />
         {openCart && (
         <Cart
          closeCart={setOpenCart}

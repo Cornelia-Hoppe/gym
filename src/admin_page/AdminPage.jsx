@@ -10,6 +10,7 @@ import Calendar from 'react-calendar';
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
 import Update_modal_pass from '../booking_page/Update_modal_pass';
+import bace_icon from '../booking_page/styrka.png'
 
 function AdminPage() {
   // TILL ANSTÄLLDA
@@ -471,7 +472,6 @@ const search = (text) => {
                 <>
                 <div key={index} className='pass-card center'>
                         <h2 className='booking-antal' >Max: {pass.maxAntal}</h2>
-                        {/* <img clasName='booking-icon' src={require(pass.kategori ? "../booking_page/"+pass.kategori +".png" : "../booking_page/baseIcon.png" )} alt="" height="40px" width="30px"/> */}
                         <div className='aktv-tid-div'>
                             <h1>{pass.aktivitet}</h1>
                             <p>{pass.dayString}, {pass.dateString} {pass.monthString} <br />
@@ -595,7 +595,7 @@ const search = (text) => {
             {produkter.map((produkt, index) => {
               return( 
                 <>
-                <div key={index} className='center staff-card' id={`${produkt.id}-div`}>
+                <div key={index} className='center staff-card-admin' id={`${produkt.id}-div`}>
                     <h1 className='m10'>{produkt.produktNamn}</h1>
                     <h1 className='m10'>{produkt.price} kr</h1>
                     <p className='m10'>{produkt.kategori}</p>

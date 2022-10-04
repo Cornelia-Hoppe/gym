@@ -8,7 +8,7 @@ import {
   collection,
   getDocs,
   updateDoc,
-  doc,
+  doc
 } from "firebase/firestore";
 import CheckModal from "./CheckModal";
 // import { BsFillPencilFill } from "react-icons/bs";
@@ -24,139 +24,139 @@ function BookingPage() {
   const [passKategorier, setPassKategorier] = useState();
   const [maxAntal_STYLE, setmaxAntal_STYLE] = useState({});
 
-  const [date, setDate] = useState(new Date())
-  const [passDenDagen, setPassDenDagen] = useState([])
+  const [date, setDate] = useState(new Date());
+  const [passDenDagen, setPassDenDagen] = useState([]);
 
   // SÄTTER inloggaUser. DENNA KOMMER UPPDATERAS
-  const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : '')
+  const [inloggadUser, setInloggadUser] = useState(JSON.parse(localStorage.getItem("user")) ? JSON.parse(localStorage.getItem("user")) : "");
 
 
   const ref = useRef(null);
 
 
-// START: HÄMTAR PASS
+  // START: HÄMTAR PASS
 
   const passCollectionRef = collection(db, "pass");
   const [pass, setPass] = useState([]);
 
   const getPass = async () => {
-    openLoadingModal()
+    openLoadingModal();
     const data = await getDocs(passCollectionRef);
     setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
-    closeLoadingModal()
+    closeLoadingModal();
   };
 
-    // HÄMTAR PASS FÖRSTA GÅNGEN
+  // HÄMTAR PASS FÖRSTA GÅNGEN
   const getStaffFirstTime = async () => {
     const data = await getDocs(passCollectionRef);
     setPass(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   useEffect(() => {
-    getStaffFirstTime()
+    getStaffFirstTime();
   }, []);
 
-// END: HÄMTAR PASS
+  // END: HÄMTAR PASS
 
 
-// START: HÄMTAR PROFILER
+  // START: HÄMTAR PROFILER
 
   const profilerCollectionRef = collection(db, "profiler");
   const [profiler, setProfiler] = useState([]);
- 
+
   useEffect(() => {
     const getProfiler = async () => {
       const data = await getDocs(profilerCollectionRef);
       setProfiler(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
- 
+
     getProfiler();
   }, []);
 
-// END: HÄMTAR PROFILER
+  // END: HÄMTAR PROFILER
 
-const bookPass = async (passId, platser) => {
+  const bookPass = async (passId, platser) => {
 
-    openLoadingModal()
-        
-      // LÄGGER IN PASSET TILL PROFILEN
-    const inloggadId = inloggadUser.id
-    
-    const tidigarePass = inloggadUser.bokadePass
+    openLoadingModal();
 
-    const newPassLista = []
+    // LÄGGER IN PASSET TILL PROFILEN
+    const inloggadId = inloggadUser.id;
+
+    const tidigarePass = inloggadUser.bokadePass;
+
+    const newPassLista = [];
 
     if (tidigarePass.length !== 0) {
       tidigarePass.map((item, index) => {
-        newPassLista.push(item)
-      })
-    } 
+        newPassLista.push(item);
+      });
+    }
 
-    newPassLista.push(passId)
+    newPassLista.push(passId);
 
-    const passDoc = doc(db, 'profiler', inloggadId);
+    const passDoc = doc(db, "profiler", inloggadId);
     const newFields = { bokadePass: newPassLista };
     await updateDoc(passDoc, newFields);
 
-    UpdateLocalStorage(inloggadUser.id)    
+    UpdateLocalStorage(inloggadUser.id);
 
-        // LÄGGER TILL +1 TILL PASSET.PLATSER
-    
-    let newPlatser = 0
+    // LÄGGER TILL +1 TILL PASSET.PLATSER
+
+    let newPlatser = 0;
 
     if (!platser) {
-      newPlatser = 1
+      newPlatser = 1;
     } else if (platser) {
-      newPlatser = platser + 1
+      newPlatser = platser + 1;
     }
 
 
-      const staffDoc = doc(db, 'pass', passId)
-      const newFieldsPass = {platser: Number(newPlatser)}
-      await updateDoc(staffDoc, newFieldsPass)
+    const staffDoc = doc(db, "pass", passId);
+    const newFieldsPass = { platser: Number(newPlatser) };
+    await updateDoc(staffDoc, newFieldsPass);
 
-    closeLoadingModal()
+    closeLoadingModal();
 
     document.querySelector("#check-modal").style.display = "flex";
-  }
+  };
 
   // BOKA-KNAPPEN
 
-  const handleBokaBtn = async (passId, platser, ) => {
+  const handleBokaBtn = async (passId, platser) => {
 
-    if (!inloggadUser) window.location.href = '/myprofile'
+    if (!inloggadUser) window.location.href = "/myprofile";
     else {
 
-      let x = 0
+      let x = 0;
 
-        if (inloggadUser.bokadePass.length !== 0 || !inloggadUser.bokadePass){
-            inloggadUser.bokadePass.map((item) => {
-              if (passId == item) {
-                avbokaPass(passId, platser) 
-              } else {
-                bookPass(passId, platser)
-                x = 1
-              }
-          })
-        } else if (x === 0) {
-          bookPass(passId, platser)
-        } 
-      
-        
-      };
-
+      if (inloggadUser.bokadePass.length !== 0 || !inloggadUser.bokadePass) {
+        inloggadUser.bokadePass.map((item) => {
+          if (passId == item) {
+            avbokaPass(passId, platser);
+          } else {
+            bookPass(passId, platser);
+            x = 1;
+          }
+        })
+      } else if (x === 0) {
+        bookPass(passId, platser);
       }
 
 
-// START: UPPDATERAR PASS DATA OCH LOCALSTORAGE
+    };
+
+  }
+  
+
+  // START: UPPDATERAR PASS DATA OCH LOCALSTORAGE
 
 
 
-// END: UPPDATERAR PASS DATA OCH LOCALSTORAGE
+  // END: UPPDATERAR PASS DATA OCH LOCALSTORAGE
 
 
-// START: SORTERA PASSEN
+  // START: SORTERA PASSEN
 
   // PER DAG
   const sortPassDay = (e) => {
@@ -175,116 +175,125 @@ const bookPass = async (passId, platser) => {
     setPassDenDagen(filteredKategoryPass);
     // scrollToPass();
     setPassKategorier(selectedKategori);
-    
-  }
-  
-// END: SORTERA PASSEN
 
-const addBokadToPassDenDagen = () => {
+  };
 
-  passDenDagen.map((pass) => {
+  // END: SORTERA PASSEN
 
-  })
-}
+  const addBokadToPassDenDagen = () => {
 
-useEffect(() => {
-  if (passDenDagen !== 0 || !passDenDagen) {
-    addBokadToPassDenDagen()
-  }
-}, [])
+    passDenDagen.map((pass) => { 
 
+    });
+  };
 
-// START: AVBOKA PASS 
-
-const avbokaPass = async (passId, passPlatser) => {
-
-  let newBokadePass = []
-
-  inloggadUser.bokadePass.find((item) => {
-    if (passId == item) {
-    } else {
-      newBokadePass.push(item)
+  useEffect(() => {
+    if (passDenDagen !== 0 || !passDenDagen) {
+      addBokadToPassDenDagen();
     }
-  })
+  }, []);
+
+
+  // START: AVBOKA PASS
+
+  const avbokaPass = async (passId, passPlatser) => {
+
+    let newBokadePass = [];
+
+    inloggadUser.bokadePass.find((item) => {
+      if (passId == item) {
+      } else {
+        newBokadePass.push(item);
+      }
+    });
 
     // UPPDATERAR DATA PROFILER
-      const profulerDoc = doc(db, 'profiler', inloggadUser.id);
-      const newFields = { bokadePass: newBokadePass,};
-      await updateDoc(profulerDoc, newFields);
+    const profulerDoc = doc(db, "profiler", inloggadUser.id);
+    const newFields = { bokadePass: newBokadePass };
+    await updateDoc(profulerDoc, newFields);
 
-      UpdateLocalStorage(inloggadUser.id)
+    UpdateLocalStorage(inloggadUser.id);
 
-      passPlatser--
+    passPlatser--;
 
-      // UPPDATERAR DATA PASS
-      const passfDoc = doc(db, "pass", passId);
-      const newFields2 = { platser: passPlatser,};
-      await updateDoc(passfDoc, newFields2);
+    // UPPDATERAR DATA PASS
+    const passfDoc = doc(db, "pass", passId);
+    const newFields2 = { platser: passPlatser };
+    await updateDoc(passfDoc, newFields2);
 
-      document.querySelector("#check-modal").style.display = "flex";
-
-
-}
-
-// END: AVBOKA PASS  
-
-// SCROLL FUNCTION
-const scrollToPass = () => {
-  ref.current?.scrollIntoView({ behavior: "smooth" });
-};
+    document.querySelector("#check-modal").style.display = "flex";
 
 
-    return (
-      <>
-        <article className="booking-page-container">
-          <div className="booking-page-header-desktop">
-            <h1>Boka Pass</h1>
-          </div>
-          <div className="booking-content">
-            <section className='blue-wrapper center'>
-        
-              <div className="booking-page-header-mobile">
-                <h1>Kalender</h1></div>
-              <Calendar onChange={setDate} value={date} onClickDay={sortPassDay} />
-            </section>
+  };
 
-            <section className='blue-wrapper center'>
-              <div className="booking-page-header-mobile"> <h1>Pass</h1> </div>
-              <select className='drop-down' name='välj pass' onChange={(e) => sortKategories(e.target.value)}>
+  // END: AVBOKA PASS
+
+  // SCROLL FUNCTION
+  const scrollToPass = () => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  
+  return (
+    <>
+      <article className="booking-page-container" id="top-section">
+        <div className="booking-page-header-desktop">
+          <h1>Boka Pass</h1>
+        </div>
+        <div className="booking-content">
+          <section className="Sportix-Section" id="calender-flex">
+            <div className="booking-page-header-mobile">
+              <h3>Kalender</h3>
+            </div>
+            <Calendar
+              onChange={setDate}
+              value={date}
+              onClickDay={sortPassDay}
+            />
+          </section>
+
+          <section className="Sportix-Section" id="mobile-style">
+            <div className="booking-page-header-mobile">
+              {" "}
+              <h3>Pass</h3>{" "}
+            </div>
+            <div className="blue-wrapper">
+              <select
+                className="drop-down"
+                name="välj pass"
+                onChange={(e) => sortKategories(e.target.value)}
+              >
                 <option value="null">Välj pass</option>
                 <option value="kondition">Kondition</option>
                 <option value="styrka">Styrka</option>
                 <option value="flexebilitet">Flexebilitet</option>
                 <option value="crossfit">Crossfit</option>
-
               </select>
-            
-              {passDenDagen.map((pass, index) => {
 
-                let btn_text = 'Boka'
-                let bokadText = 'bokat!'
+              {passDenDagen.map((pass, index) => {
+                let btn_text = "Boka";
+                let bokadText = "bokat!";
                 // let FULLBOKAT_NONE = {display: 'none'}
                 // let FULLBOKAT_BLOCK = {display: 'block'}
 
                 if (inloggadUser) {
-                    inloggadUser.bokadePass.map((item) => {
-
+                  inloggadUser.bokadePass.map((item) => {
                     if (pass.id === item) {
-                      btn_text = 'Avboka'
-                      bokadText = 'avbokat'
-                    } 
-                    
+                      btn_text = "Avboka";
+                      bokadText = "avbokat";
+                    }
+
                     // if (pass.platser == pass.maxAntal && pass.id === item) {
                     //   console.log(pass.aktivitet, pass, item);
                     //   FULLBOKAT_NONE = {display: 'block'}
                     //   FULLBOKAT_BLOCK = {display: 'none'}
                     // }
-                  })
+                  });
                 }
-               
+
                 return (
                   <>
-                  <CheckModal bokadText={bokadText} />
+                    <CheckModal bokadText={bokadText} />
                     <div key={index} className="pass-card center" ref={ref}>
                       <h2
                         className="booking-antal"
@@ -296,7 +305,13 @@ const scrollToPass = () => {
                       >
                         {!pass.platser ? 0 : pass.platser}/{pass.maxAntal}
                       </h2>
-                      <img clasName='booking-icon' src={require("./"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/>
+                      <img
+                        clasName="booking-icon"
+                        src={require("./" + pass.kategori + ".png")}
+                        alt="no img"
+                        height="40px"
+                        width="30px"
+                      />
                       <div key={Math.random()} className="aktv-tid-div">
                         <h1>{pass.aktivitet}</h1>
                         <p>
@@ -310,8 +325,8 @@ const scrollToPass = () => {
                       <button
                         // style={FULLBOKAT_BLOCK}
                         class="myButton booking-btn"
-                        onClick={() =>
-                          handleBokaBtn(pass.id, pass.platser)}>
+                        onClick={() => handleBokaBtn(pass.id, pass.platser)}
+                      >
                         {btn_text}
                       </button>
 
@@ -324,14 +339,12 @@ const scrollToPass = () => {
                   </>
                 );
               })}
-
-            </section>
-          </div>
-        </article>
-      </>
-    );
-  }
-
-  
+            </div>
+          </section>
+        </div>
+      </article>
+    </>
+  );
+}
 
 export default BookingPage;

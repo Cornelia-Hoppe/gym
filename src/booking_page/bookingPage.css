@@ -1,31 +1,177 @@
-.blue-wrapper {
-  background: #dde6e6;
-  padding: 10px 2px 60px 2px;
-  border-radius: 10px;
+.booking-page-header-desktop {
+  display: none;
 }
-.blue-wrapper h1 {
-  font-size: 30px;
-}
-.center {
+
+#top-section {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
- margin: auto;
-  width: 95%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.booking-page-header-mobile h3 {
+  text-align: center;
+  padding-bottom: 1rem;
 }
 
 .drop-down {
-  width: 140px;
+  width: 10rem;
   padding: 2px 5px;
   color: #6c6c6c;
-  margin: 0 0 20px 0;
+  margin: 0 0 1rem 0;
   font-size: 18px;
 }
-.booking-page-container {
-  margin: auto;
+
+.blue-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+#calender-flex {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.pass-card {
+  padding: 10px;
+  background: rgba(44, 77, 126, 0.75);
+  width: 90%;
+  max-width: 90%;
+  color: #e5e5e5;
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 0.4rem;
+  position: relative;
+}
+
+.pass-card h1 {
+  font-size: 23px;
+  font-weight: 500;
+  margin: 10px 0 0 0;
+}
+
+.pass-card h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.booking-antal {
+  position: absolute;
+  top: 0px;
+  right: 42px;
+}
+
+.booking-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.admin-edit-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.booking-btn-delete {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.aktv-tid-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.aktv-tid-div p {
+  text-align: center;
+  padding: 0;
+}
+
+#check-modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.booking-modal {
+  background-color: #344257;
+  padding: 30px;
+  color: white;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-modal button {
+  font-size: 16px;
+  width: 50px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.check-icon {
+  color: green;
+  align-self: center;
+  font-size: 120px;
+}
+
+.booking-modal a {
+  color: white;
+}
+
+.pass-redigera-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  padding: 3px !important;
+  cursor: pointer;
+  font-size: 11px;
+  border-radius: 10px;
+}
+
+.staff-btn-delete {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  padding: 8px !important;
+  cursor: pointer;
+  font-size: 11px;
+  border-radius: 10px;
+}
+
+.update-modal-wrapper-pass {
+  width: 90vw;
+  height: 87vh;
+  background-color: rgb(227 227 227);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  overflow: auto;
+  position: relative;
+  top: 30px;
+  position: fixed;
+}
+
+/* 
 .pass-card {
   padding: 10px;
   background: rgba(44, 77, 126, 0.75);
@@ -36,6 +182,7 @@
   position: relative;
   border-radius: 5px;
 }
+
 
 .pass-card h1 {
   font-size: 23px;
@@ -150,6 +297,170 @@
   position: relative;
   top: 30px;
   position: fixed;
+} */
+
+/* .blue-wrapper {
+  background: #dde6e6;
+  padding: 10px 2px 60px 2px;
+  border-radius: 10px;
+}
+.blue-wrapper h1 {
+  font-size: 30px;
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+ margin: auto;
+  width: 95%;
+}
+
+.drop-down {
+  width: 140px;
+  padding: 2px 5px;
+  color: #6c6c6c;
+  margin: 0 0 20px 0;
+  font-size: 18px;
+}
+.booking-page-container {
+  margin: auto;
+}
+
+.pass-card {
+  padding: 10px;
+  background: rgba(44, 77, 126, 0.75);
+  width: 90%;
+  color: #e5e5e5;
+  margin: 5px 0;
+  position: relative;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  }
+
+.pass-card h1 {
+  font-size: 23px;
+  font-weight: 500;
+  margin: 10px 0 0 0;
+}
+
+.pass-card h2 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.booking-antal {
+  position: absolute;
+  top: 0px;
+  right: 42px;
+}
+.pass-button-container{
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+}
+.booking-antal{
+  font-size: 18px;
+  text-align: right;
+}
+.booking-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.admin-edit-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.booking-btn-delete {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.aktv-tid-div {
+  display: flex;
+  flex-direction: column;
+}
+
+#check-modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.booking-modal {
+  background-color: #344257;
+  padding: 30px;
+  color: white;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-modal button {
+  font-size: 16px;
+  width: 50px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.check-icon {
+  color: green;
+  align-self: center;
+  font-size: 120px;
+}
+
+.booking-modal a {
+  color: white;
+}
+
+.pass-redigera-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  padding: 3px !important;
+  cursor: pointer;
+  font-size: 11px;
+  border-radius: 10px;
+}
+
+.staff-btn-delete {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  padding: 8px !important;
+  cursor: pointer;
+  font-size: 11px;
+  border-radius: 10px;
+}
+
+.update-modal-wrapper-pass {
+  width: 90vw;
+  height: 87vh;
+  background-color: rgb(227 227 227);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  overflow: auto;
+  position: relative;
+  top: 30px;
+  position: fixed;
 }
 .booking-page-header-desktop {
   display: none;
@@ -157,13 +468,14 @@
 .booking-page-header-mobile {
   width: 90%;
   text-align: left;
-}
+} */
 
 /*  */
 
 .react-calendar {
-  width: 370px;
-  max-width: 100%;
+  width: 90%;
+  height: auto;
+  margin-bottom: 1rem;
   border-radius: 10px;
   border: 1px solid transparent;
   background: white;
@@ -330,26 +642,46 @@
 /* END: KNAPP */
 
 @media screen and (min-width: 800px) {
-  .react-calendar__navigation button {
-    min-width: 44px;
-    font-size: 27px;
+.booking-page-container {
+  width: 100vw;
+}
+
+   .react-calendar__navigation button {
+    min-width: 2rem;
+    font-size: 26px;
     background: none;
     text-transform: capitalize;
-  }
+  } 
   .booking-page-header-mobile {
     display: none;
   }
+  
   .booking-content {
+    background: rgba(84, 140, 168, 0.2);
+    width: 97%;
+    display: flex;
+    margin: auto;
+    text-align: center;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  }
+  
+ #calender-flex, #mobile-style {
+    background: none;
+  }
+
+  #mobile-style {
+    height: 100%
+  }
+
+  /* .booking-content {
     display: flex;
     justify-content: space-evenly;
   }
   .booking-page-header-desktop {
-    display: flex;
-    height: fit-content;
-    width: fit-content;
-  }
-  .center {
-    display: flex;
     justify-content: flex-start;
   }
 
@@ -371,15 +703,14 @@
   }
   .blue-wrapper.center h1 {
     width: 90%;
-  }
+  } */
   .react-calendar {
-    width: 700px;
-    height: 65vh;
-    max-width: 100%;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    background: white;
-    line-height: 1.125em;
-    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+
+  } 
+
+  .react-calendar__viewContainer {
+    margin: 0;
+    padding: 0;
   }
 }
