@@ -11,28 +11,11 @@ function WebbshopModal(props) {
   const sizes = ["S", "M", "L", "XL"];
   const oneSize = ["Onesize"];
 
-  //Kommentera ut denna och lägg in newSizes på rad 61 när samtliga produkter har storlek inlagt på sig.
-  // let newSizes = props.orderSize.split(",");
-
   const [openDesc, setOpenDesc] = useState(false);
+  const [openSizePopup, setOpenSizePopup] = useState(false);
   const [selected, setSelected] = useState(null);
   const { addItem } = useCart();
-
-  function handleSizes(e) {
-    let chosenSize = e.target.innerText;
-    global.chosenSize = chosenSize;
-    setSelected(chosenSize);
-  }
-
-  props.item.chosenSize = global.chosenSize;
-  console.log(props.item);
-
-  function addItemToCart() {
-    addItem(props.item);
-    props.closeModal(false);
-  }
-
-
+  
   function renderSize() {
     if (props.type === "equipment") {
       return oneSize.map((size) => (
@@ -66,9 +49,30 @@ function WebbshopModal(props) {
     }
   }
 
+  function handleSizes(e) {
+    let choosenSize = e.target.innerText;
+    global.choosenSize = choosenSize;
+    setSelected(choosenSize);
+  }
+
+  props.item.choosenSize = global.choosenSize;
+
+  function checkChoosenSize(){
+    if(global.choosenSize === undefined){
+      setOpenSizePopup(true)
+    }else{
+      addItemToCart();
+      global.choosenSize = undefined;
+    }
+  }
+
+  function addItemToCart() {
+    addItem(props.item);
+    props.closeModal(false);
+  }
+
   return (
     <motion.div
-     
       initial={{
           z: 1,
           opacity: 0.3,
@@ -77,26 +81,25 @@ function WebbshopModal(props) {
           z: 0,
           opacity: 1,
         }}
-     
       className="WebbshopModal"
-    
     >
       <GrClose
         className="modal-exit"
         onClick={() => {
           props.closeModal(false);
+          global.choosenSize = undefined;
         }}
       />
       <img className="modal-img" alt="Product" src={props.img} />
       <div className="desktop-info-container">
         <div className="modal-info-container">
           <div className="modal-info">
-            <h1 className="modal-info-title">{props.shortDesc}</h1>
+            <h1 className="modal-info-title">{props.brand}</h1>
             <h1 className="modal-info-price">{props.price}:-</h1>
           </div>
           <div>
             <p className="modal-info-desc">
-              {props.brand} - {props.color}
+              {props.shortDesc} - {props.color}
             </p>
           </div>
         </div>
@@ -151,12 +154,13 @@ function WebbshopModal(props) {
           <p className="modal-size-title">Tillgängliga storlekar:</p>
           {/* {sizes.map(size => `<div>${size}</div>`).join('')} */}
           <div className="modal-size-block-container">{renderSize()}</div>
+          {openSizePopup && <span className="modal-choose-size-popup">Välj en storlek</span>}
         </div>
         <div className="modal-add-container">
           <motion.button
             whileTap={{ scale: 0.8 }}
             onClick={() => {
-              addItemToCart();
+              checkChoosenSize();
             }}
             className="modal-add"
           >

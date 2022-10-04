@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import "./Personal.css";
 import StaffBtn from "./StaffBtn";
@@ -10,7 +8,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { NavFilter } from "./GetLink";
 export default function App() {
-  
+
 
   const staffCollectionRef = collection(db, "staff")
   const [staff, setStaff] = useState([])
@@ -28,18 +26,18 @@ useEffect(() => {
   }, [])
 
   useEffect(() => {
-    const Cards = () =>{  
+    const Cards = () =>{
      type !== null
      ? setTrainersPerson(filterTrainer(type))
      : setTrainersPerson(getTrainer());
-   
+
      setSelected(type);
       }
       Cards()
       }, []);
-   
+
        let type = NavFilter()
-   
+
 
   function handleTrainer(e) {
     let typeTrainer = e.target.value;
@@ -53,48 +51,41 @@ useEffect(() => {
 
     return (
       <>
-        {/* Trainers nav  */}
         <div className="Sportix-Section">
           <div className="personal-header">
           <h3> Vårt team</h3>
 </div>
       <StaffBtn handleTrainer={handleTrainer} selected={selected} />
       </div>
-      {/* Trainers Info & img */}
-                
+      
+
       <div className="Sportix-Section" >
-      {/* <div className="text">
-      {trainersPerson &&
-            trainersPerson.map((type) => (
-              <h4 >{type.kategori}</h4>
-            ))}
-            </div>*/}
-            
+   
+
 
         <div className="image_box">
           {trainersPerson &&
             trainersPerson.map((type) => (
-             
+
               <ul key={type.id}>
                 <LazyLoadImage src={type.img} alt={type.id} />
 
                 <div className="details">
                   <p>{type.name}, {type.age}</p>
-                  
+
                   <p>{type.kategori}</p>
 
-                  
-                
-             
-                  
-                  
+
+
+
+
+
                 </div>
               </ul>
             ))}
         </div>
-      
+
         </div>
     </>
   );
 }
-

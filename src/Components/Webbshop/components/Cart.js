@@ -69,7 +69,7 @@ function Cart({ closeCart }) {
                       />
                   </div>
                   <div className="cart-item-row-2">
-                    <p className="cart-item-size-color">{item.chosenSize} | {item.color}</p>
+                    <p className="cart-item-size-color">{item.choosenSize} | {item.color}</p>
                   </div>
                 </div>
                 <div className="cart-item-row-3">

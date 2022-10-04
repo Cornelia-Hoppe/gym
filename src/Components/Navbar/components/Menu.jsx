@@ -91,12 +91,10 @@ function Menu({ updateAfterLogin, setOpenCart }) {
               }}
             />
           </CustomLink>
-          <IoIosCart
-            className="menu-desktop-cart"
-            onClick={() => {
-              setOpenCart(true);
-            }}
-          />
+          <IoIosCart className="menu-desktop-cart" onClick={() => {
+          setOpenCart(true)
+        }}/>
+        <span className="menu-mobile-cart-totalitems">{totalItems}</span>
         </ul>
       </nav>
       {/* <div className="menu-desktop-login">

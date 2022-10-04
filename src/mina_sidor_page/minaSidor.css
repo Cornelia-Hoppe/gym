@@ -1,11 +1,14 @@
 
 /*  */
 .profile-wrapper{
+    position: relative;
+    top: 10vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
-    margin: auto;
-    width: 95%;
+    height: 50vh;
+    margin-bottom: 10vh;
 }
 .profile-wrapper h3{
     font-size: 30px;
@@ -181,10 +184,8 @@ margin-right: 30px;
         flex-direction: row;
     }
 .profile-wrapper{
-   width: 97%;
    border-radius: 10px;
    background: #DDE6E6;
-   margin: 40px auto 40px auto;
   flex-direction: column;
   align-items: baseline;
 }
