@@ -11,14 +11,13 @@ function SignUp({ closeSignUp }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [password1, setPassword1] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const register = () => {
-    if (password1 === password2) {
-      setPassword(password1);
-
+    if (password === passwordConfirm) {
       createUserWithEmailAndPassword(auth, email, password).then((auth) => {
+        setPassword("");
+        setPasswordConfirm("");
         navigate("/gym");
       });
     } else {
@@ -65,7 +64,7 @@ function SignUp({ closeSignUp }) {
                   <input
                     className="login-input"
                     id={"login-input-2"}
-                    onChange={(event) => setPassword1(event.target.value)}
+                    onChange={(event) => setPassword(event.target.value)}
                     autoComplete="off"
                     type="password"
                     name="password"
@@ -75,7 +74,7 @@ function SignUp({ closeSignUp }) {
                   <input
                     className="login-input"
                     id={"login-input-3"}
-                    onChange={(event) => setPassword2(event.target.value)}
+                    onChange={(event) => setPasswordConfirm(event.target.value)}
                     autoComplete="off"
                     type="password"
                     name="password"
