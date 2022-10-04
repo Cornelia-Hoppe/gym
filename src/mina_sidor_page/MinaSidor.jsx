@@ -155,75 +155,116 @@ useEffect(() => {
   setUser(JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : '')
 }, [])
 
-  return user ? ( 
+  return user ? (
     <>
-      <CheckModal bokadText='avbokat' /> 
-      <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
-      <section className='profile-wrapper'>   
-       <h2 className='Desktop-heading-mypages'>Mina sidor</h2>
-       <div className='mypages-container'>
-        <div className='left-container'>
-        <article className='profile-left'>      
-            
-              <h3 >Mitt konto</h3> 
+      <CheckModal bokadText="avbokat" />
+      <UpdateProfileModal
+        closeModal={closeModal}
+        id={user.id}
+        img={user ? user.img : icon}
+        email={user.email}
+        name={user.name}
+        lastName={user.lastName}
+        password={user.password}
+        phoneNumber={user.phoneNumber}
+      />
+      <section className="profile-wrapper">
+        <h2 className="Desktop-heading-mypages">Mina sidor</h2>
+        <div className="mypages-container">
+          <div className="left-container">
+            <article className="profile-left">
+              <h3>Mitt konto</h3>
 
-            <div className='flex-between'>
-              <img className='profile-img' src={user ? user.img : icon} alt="No image" />
-              <div className='user-information'>
-                <p>{user.name} {user.lastName}</p>
-                <p>{user.email}</p>
-                <p>{user.phoneNumber}</p>
-                 
+              <div className="flex-between">
+                <img
+                  className="profile-img"
+                  src={user ? user.img : icon}
+                  alt="No image"
+                />
+                <div className="user-information">
+                  <p>
+                    {user.name} {user.lastName}
+                  </p>
+                  <p>{user.email}</p>
+                  <p>{user.phoneNumber}</p>
+                </div>
+                {showModal && <SavedModal setshowModal={setshowModal} />}
+                <AiFillEdit id="update-btn" onClick={openModal} />
+                <UpdateProfileModal
+                  closeModal={closeModal}
+                  id={user.id}
+                  img={user ? user.img : icon}
+                  email={user.email}
+                  name={user.name}
+                  lastName={user.lastName}
+                  password={user.password}
+                  phoneNumber={user.phoneNumber}
+                />
               </div>
-              {showModal && <SavedModal setshowModal={setshowModal}/> }
-               <AiFillEdit id='update-btn' onClick={openModal} />
-              <UpdateProfileModal closeModal={closeModal} id={user.id} img={user ? user.img : icon} email={user.email} name={user.name} lastName={user.lastName} password={user.password} phoneNumber={user.phoneNumber}  />
-       
-            </div>
-        </article>
-        <App />
+            </article>
+            <App />
+          </div>
+          <div className="bokade-pass">
+            <h3>Mina pass</h3>
+            {bokatPassArray.length !== 0 ? (
+              bokatPassArray.map((pass) => {
+                return (
+                  <div key={pass.id} className="pass-card center">
+                    <h2
+                      className="booking-antal"
+                      style={
+                        pass.platser == pass.maxAntal
+                          ? { color: "red" }
+                          : { color: "white" }
+                      }
+                    >
+                      {!pass.platser ? 0 : pass.platser}/{pass.maxAntal}
+                    </h2>
+                    <img
+                      className="booking-icon"
+                      src={require(".././booking_page/" +
+                        pass.kategori +
+                        ".png")}
+                      alt="no img"
+                      height="40px"
+                      width="30px"
+                    />
+                    <div className="aktv-tid-div">
+                      <h1>{pass.aktivitet}</h1>
+
+                      <p>
+                        {pass.dayString}, {pass.dateString} {pass.monthString}{" "}
+                        <br />
+                        {pass.tid}
+                      </p>
+                    </div>
+                    <p>{pass.instruktör}</p>
+                    <button
+                      class="myButton booking-btn"
+                      onClick={() => avbokaPass(pass.id, "pass", pass.platser)}
+                    >
+                      Avboka
+                    </button>
+                  </div>
+                );
+              })
+            ) : (
+              <p style={h1Style}>
+                Inga pass bokade <br /> <a href="/bookingpage">Boka pass</a>
+              </p>
+            )}
+          </div>
         </div>
-        <div className='bokade-pass'>
-                <h3>Mina pass</h3>
-                {bokatPassArray.length !== 0 ? bokatPassArray.map(pass => {
-           return (
-            
-            <div key={pass.id} className='pass-card center'>
-            <h2 className='booking-antal' style={pass.platser == pass.maxAntal ? { color:'red'} : {color:'white'}} >{!pass.platser ? 0 : pass.platser }/{pass.maxAntal}</h2>
-            <img className='booking-icon' src={require(".././booking_page/"+pass.kategori +".png")} alt="no img" height="40px" width="30px"/>
-            <div className='aktv-tid-div'>
-                <h1>{pass.aktivitet}</h1>
-                
-                <p>
-                          {pass.dayString}, {pass.dateString} {pass.monthString}{" "}
-                          <br />
-                          {pass.tid}
-                        </p>
-            </div>
-            <p>{pass.instruktör}</p>
-            <button
-                        class="myButton booking-btn"
-                        onClick={() =>
-                          avbokaPass(pass.id, "pass", pass.platser)}>
-                        Avboka
-                      </button>
-        </div>
-           )
-       })
-      :
-      <p style={h1Style}>Inga pass bokade <br /> <a href="/bookingpage">Boka pass</a></p>
-      } 
-            </div>
-            </div>
       </section>
     </>
   ) : (
     <>
-      <section className='login-wrapper'>
-        <article className="Sportix-Section">
-          
-          <Login updateAfterLogin={updateAfterLogin} darkText={{color:'black'}} />
-
+      <section className="login-wrapper">
+        <article className="Sportix-Section" id="desktop-login">
+          <Login
+            updateAfterLogin={updateAfterLogin}
+            darkText={{ color: "black" }}
+          />
         </article>
 
         {/* <article className='profile-right'>
@@ -239,10 +280,9 @@ useEffect(() => {
                 </div>
 
         </article> */}
-
       </section>
     </>
-  ) 
+  ); 
 }
 
 export default MinaSidor

@@ -109,7 +109,7 @@ function Login() {
   return (
     <>
       {openSignUp && <SignUp closeSignUp={setOpenSignUp} />}
-      <div className="Login">
+      <div className="Login" >
         <h1 className="login-title">
           {user ? `Välkommen ${user.email}` : "Logga in?"}
         </h1>
