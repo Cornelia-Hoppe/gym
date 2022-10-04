@@ -37,7 +37,7 @@ function SignUp({ closeSignUp }) {
   // END: SPARAR I DATABASEN
 
   return (
-    <article className="SignUpWrapper" >
+    <article className="SignUpWrapper">
       <div className="SignUp">
         <GrClose
           className="cancel-button"
@@ -74,7 +74,7 @@ function SignUp({ closeSignUp }) {
                   <label className="login-label">Confirm Password</label>
                   <input
                     className="login-input"
-                    id={"login-input-2"}
+                    id={"login-input-3"}
                     onChange={(event) => setPassword2(event.target.value)}
                     autoComplete="off"
                     type="password"
