@@ -4,6 +4,7 @@
   position: fixed;
   z-index: 4;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: 12rem;
 }
 .menu-mobile {
   height: 5rem;

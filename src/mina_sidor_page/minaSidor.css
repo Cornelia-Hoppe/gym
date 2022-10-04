@@ -1,28 +1,34 @@
 
 /*  */
+
 .profile-wrapper{
     position: relative;
     top: 10vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 50vh;
-    margin-bottom: 10vh;
-}
-.profile-wrapper h3{
-    font-size: 30px;
-  margin-left: 20px;
-}
-.profile-left h3{
-    margin-bottom: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    top: 11vh;
+    margin-bottom: 11vh;
 }
 
+.profile-wrapper h3{
+    font-size: 26px;
+    padding-left: 20px;
+} 
 .profile-left, .profile-right, .bokade-pass{
     border-radius: 10px;
     margin-bottom: 20px;
     background: #DDE6E6;
-width: 100%;
+width: 95%;
+text-align: center;
+    margin: auto;
+    margin-bottom: 0.7rem;
+    padding-bottom: 18px;
+    padding-top: 8px;
+
+  
+    
 }
 
 .profile-img{
@@ -38,28 +44,58 @@ width: 100%;
 
 
 /* modal  */
+.update-modal-wrapper-mypages {
+    min-height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 1;
+}
 #update-btn{
     cursor: pointer;
 }
-
-.update-modal{
+ .modal-img-wrapper-mypages {
+    width: 50%;
+    text-align: center;
+} 
+.update-modal-mypages{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50vw;
+    width: 90%;
+padding-bottom: 10px;
     background-color: #DDE6E6;
 }
  .input-div {
 display: flex;
 flex-direction: column;
-width: 40%;
+width: 70%;
+margin: 5px;
 }
+.staff-img {
+    margin-top: 20px;
+}
+.close-icon-mypages {
+    position: absolute;
+    right: 15px;
+    font-size: 35px;
+    cursor: pointer;
+
+
+}
+
 .input-div input {
 width: 90%;
   height: 44px;
   background-color: #05060f1b;
   border-radius: .5rem;
-  padding: 0 1rem;
+  margin: 0;
   border: 2px solid transparent;
   font-size: 1rem;
   transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
@@ -76,7 +112,25 @@ width: 90%;
 .input-divs{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
+.update-modal h4{
+    font-size: 18px;
+    }
+
+    .m30-mypages button{ 
+     width: 130px;
+    height: 44px;
+    background: rgba(84, 140, 168, 0.5);
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    font-size: 18px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    }
+
 /* modal */
 
 
@@ -153,13 +207,10 @@ font-size: 20px;
     display: flex;
     flex-direction: row;
 }
-.user-information {
-    width: max-content;
-    font-size: 20px;
-
-}
-.profile-left svg{
+.profile-wrapper svg{
     color: #548CA8;
+    padding: 20px;
+    font-size: 30px;
 }
 
 .profile-img{
@@ -170,12 +221,22 @@ margin-right: 30px;
 }
 
 @media screen and (min-width: 800px) {
+    .close-icon-mypages {
+        position: absolute;
+        right: 30%;
+        font-size: 35px;
+        cursor: pointer;
+    
+    
+    }
     .Desktop-heading-mypages {
         display: flex;
-       
+       font-size: 30px;
+       margin-left: 20px;
     }
     .profile-wrapper h3{
-        font-size: 30px;
+        font-size: 22px;
+        padding: 10px;
         font-weight:100; 
     }
     .mypages-container{
@@ -183,17 +244,43 @@ margin-right: 30px;
         display: flex;
         flex-direction: row;
     }
+
 .profile-wrapper{
-   border-radius: 10px;
-   background: #DDE6E6;
-  flex-direction: column;
-  align-items: baseline;
-}
+    background: #DDE6E6;
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    margin: auto;
+    border-radius: 10px;
+    top: 11vh;
+    margin-bottom: 13vh;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+  
 .bokade-pass{
     display: flex;
     flex-direction: column;
     align-items: center;
 
+}
+.update-modal-mypages{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #DDE6E6;
+width: 40%;
+}
+.input-div {
+    width: 40%;
+
+    }
+    
+
+.profile-left, .profile-right, .bokade-pass{
+margin-top: 0;
 }
 
  

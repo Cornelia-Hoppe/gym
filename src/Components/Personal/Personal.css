@@ -1,3 +1,12 @@
+ 
+.personal-main{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  top: 11vh;
+  margin-bottom: 11vh;
+}
 
 .StaffBtn{
   cursor: pointer;
@@ -73,8 +82,13 @@ h4 {
 .text {
   display: inline-block;
 }
-
 @media (min-width: 800px) {
-  .image_box {
+  .personal-main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    top: 11vh;
+    margin-bottom: 11vh;
   }
 }

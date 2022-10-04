@@ -51,6 +51,8 @@ useEffect(() => {
 
     return (
       <>
+        {/* Trainers nav  */}
+        <div className="personal-main">
         <div className="Sportix-Section">
           <div className="personal-header">
           <h3> Vårt team</h3>
@@ -84,7 +86,8 @@ useEffect(() => {
               </ul>
             ))}
         </div>
-
+      
+        </div>
         </div>
     </>
   );

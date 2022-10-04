@@ -6,7 +6,6 @@ html {
   background-color: #fffcf5;
 }
 .Sportix-Section {
-
   text-align: center;
   background: rgba(84, 140, 168, 0.2);
   width: 95%;
@@ -16,6 +15,7 @@ html {
   padding-bottom: 8px;
   padding-top: 8px;
 }
+
 h3 {
   font-size: 26px;
   margin-top: 0px;
