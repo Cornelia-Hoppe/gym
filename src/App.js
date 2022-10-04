@@ -43,7 +43,7 @@ function App() {
 
     <>
       
-    {/* <AdminPage /> */}
+    <AdminPage />
       <LoadingScreen />
       <CartProvider>
           <Menu setOpenCart={setOpenCart} updateAfterLogin={updateAfterLogin}/>
