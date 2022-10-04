@@ -3,10 +3,7 @@ import "./LoginInput.css";
 import { auth } from "../../firebase-config";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 // import { BiLock } from "react-icons/bi";
 
@@ -50,7 +47,7 @@ function Login() {
     const inloggadUser = profiler.find((item) => {
       return item.email == auth.currentUser.email;
     });
-    console.log('inloggadUser i setLocalStorage: ', inloggadUser);
+    console.log("inloggadUser i setLocalStorage: ", inloggadUser);
     setInloggadUser(inloggadUser);
     localStorage.setItem("user", JSON.stringify(inloggadUser));
   };
@@ -69,11 +66,10 @@ function Login() {
   }, []);
 
   const signIn = () => {
-    console.log('signIn körs');
+    console.log("signIn körs");
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-
         const inloggadUserLocal = profiler.find((item) => {
           return item.email == auth.currentUser.email;
         });
@@ -84,11 +80,10 @@ function Login() {
         clearFields();
 
         if (inloggadUserLocal.admin === true) {
-      navigate("/admin");
-    } else {
-      navigate("/gym");
-    }
-    
+          navigate("/admin");
+        } else {
+          navigate("/gym");
+        }
       })
       .catch((error) => console.error(error));
   };
@@ -97,16 +92,6 @@ function Login() {
     auth.signOut();
     localStorage.removeItem("user");
     navigate("/gym");
-  };
-
-  const register = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((auth) => {
-        // clearFields();
-        // setIsLogedIn(true);
-        navigate("/gym");
-      })
-      .catch((error) => console.error(error));
   };
 
   // HÄMTAR PROFILER FRÅN DATABASEN START
