@@ -219,8 +219,8 @@ useEffect(() => {
     </>
   ) : (
     <>
-      <section className='profile-wrapper'>
-        <article >
+      <section className='login-wrapper'>
+        <article className="Sportix-Section">
           
           <Login updateAfterLogin={updateAfterLogin} darkText={{color:'black'}} />
 
@@ -239,7 +239,7 @@ useEffect(() => {
                 </div>
 
         </article> */}
-gi
+
       </section>
     </>
   ) 
