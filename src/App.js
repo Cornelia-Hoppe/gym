@@ -8,6 +8,8 @@ import LoadingPage from "./LoadingPage/LoadingPage";
 import Menu from "../src/Components/Navbar/components/Menu"
 import Cart from "../src/Components/Webbshop/components/Cart"
 import LoadingScreen from "./Components/loading_screen/LoadingScreen";
+import { db } from './firebase-config'
+import { collection, getDocs } from 'firebase/firestore'
 
 const BookingPage = lazy(() => import("./booking_page/BookingPage"));
 const Personal = lazy(() => import("./Components/Personal/Trainerspage"));
@@ -30,6 +32,7 @@ function App() {
     setUser(JSON.parse(localStorage.getItem('user')))
     setTimeout(setImgDelay, 500)
   }
+
 
   const setImgDelay = () => {
     console.log(user);

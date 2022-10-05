@@ -19,6 +19,7 @@ export default function App() {
   let staffLocal = []
 
   const getStaff = async () => {
+    console.log('getStaff körs');
     const data = await getDocs(staffCollectionRef)
     setStaff(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
 
@@ -48,7 +49,9 @@ function filterTrainer(persionType, staffLocal) {
   let staffArrayUpperCase = staffLocal ? staffLocal : staff
   let staffArray = staffArrayUpperCase
 
+
   let trainersPersion = staffArray.filter(type => type.kategori.toLowerCase() === persionType.toLowerCase());
+  console.log('trainersPersion: ', trainersPersion);
   return trainersPersion;
 }
 
@@ -58,6 +61,8 @@ function filterTrainer(persionType, staffLocal) {
 
   function handleTrainer(e) {
     let typeTrainer = e.target.value;
+
+
 
     typeTrainer !== ""
       ? setTrainersPerson(filterTrainer(typeTrainer, staff))
