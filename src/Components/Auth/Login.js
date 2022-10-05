@@ -128,23 +128,26 @@ function Login() {
         </h1>
         <form style={user ? STYLE_LOGGED_IN_NONE : null} className="login-form">
           <div className="LoginInput">
-            <label className="login-label">E-mail</label>
+            <label className="login-label" htmlFor="email">E-mail</label>
             <input
               className="login-input"
               id={"login-input-1"}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(event) => setEmail(event.target.value) }
               autoComplete="off"
               type="email"
               name="email"
+              placeholder="test@test.se"
+              
             />
-            <label className="login-label">Password</label>
+            <label className="login-label" htmlFor="password">Password</label>
             <input
               className="login-input"
               id={"login-input-2"}
-              onChange={(event) => setPassword(event.target.value)}
+              onChange={(event) => setPassword(event.target.value) }
               autoComplete="off"
               type="password"
               name="password"
+              
             />
           </div>
 
