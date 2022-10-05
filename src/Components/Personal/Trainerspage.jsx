@@ -76,7 +76,7 @@ useEffect(() => {
                   <p>{type.name}, {type.age}</p>
 
                   <p>{type.kategori}</p>
-
+                  <p>{type.text}</p>
 
 
 

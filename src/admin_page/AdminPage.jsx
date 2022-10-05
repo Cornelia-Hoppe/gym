@@ -108,7 +108,7 @@ function previewImageProdukt() {
     // ANSTÄLLDA
 
     // LÄGG TILL KATEGORI
-
+ 
   const createStaff = async () => {
     openLoadingModal()
     await addDoc(staffCollectionRef, {name: newName, age: Number(newAge), img: IMG_SRC, text: newText, kategori: newStaffCategory, level: Number(level)});
