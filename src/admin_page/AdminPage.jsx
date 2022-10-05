@@ -434,7 +434,10 @@ const search = (text) => {
             </div>
     
             <p>Dag: </p>
-            <Calendar value={date} onClickDay={fixDays}/>
+            <div className='calendar-div'>
+              <Calendar value={date} onClickDay={fixDays}/>
+            </div>
+            
             <div className='style-admin-add'>
             <div className='modal-input-wrapper'>
               <p>Tid:</p>
@@ -477,7 +480,7 @@ const search = (text) => {
                             <p>{pass.dayString}, {pass.dateString} {pass.monthString} <br />
                             {pass.tid}</p>
                         </div>
-                        <h2>instruktör: {pass.instruktör}</h2>
+                        <h2>{pass.instruktör}</h2>
                         <button 
                             onClick={() => openUpdateModalPass(pass.id)}
                             className='myButton admin-edit-btn'><FaPencilAlt className='pen-icon'/>
@@ -595,7 +598,7 @@ const search = (text) => {
             {produkter.map((produkt, index) => {
               return( 
                 <>
-                <div key={index} className='center staff-card-admin' id={`${produkt.id}-div`}>
+                <div key={index} className='staff-card-admin' id={`${produkt.id}-div`}>
                     <h1 className='m10'>{produkt.produktNamn}</h1>
                     <h1 className='m10'>{produkt.price} kr</h1>
                     <p className='m10'>{produkt.kategori}</p>
@@ -695,7 +698,7 @@ const search = (text) => {
                   {staff.map((staff, index) => {
                     return (
                       <>
-                        <div key={index} className='center staff-card' id={`${staff.id}-div`}>
+                        <div key={index} className='staff-card-admin' id={`${staff.id}-div`}>
                             <h1 id={`${staff.id}-name`}>{staff.name}, {staff.age} år</h1>
                             <img className='staff-img' src={staff.img} alt={`bild på ${staff.name}`} />
                             <p className='staff-text'>{staff.text}</p>

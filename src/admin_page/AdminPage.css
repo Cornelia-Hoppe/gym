@@ -133,7 +133,7 @@ input, select{
   height: 19px;
 }
 
-.staff-card{
+.staff-card-admin{
   border-radius: 10px;
   width: 250px;
   padding: 15px;
@@ -187,6 +187,8 @@ input, select{
         color: rgba(0, 39, 84);
     
     }
+
+
    
     
 
@@ -248,7 +250,7 @@ text-align: left;
   }
 
 .img-produkt{
-  width: 40%;
+  width: 21%;
 }
 
 .map-article{
@@ -265,7 +267,12 @@ height: 200px;
 /*KAENDER*/
 
 
-.admin-react-calendar {
+.calendar-div{
+  width: 480px;
+  max-width: 90vw;
+}
+
+.react-calendar {
   width: 370px;
   max-width: 100%;
   border-radius: 10px;
@@ -536,7 +543,3 @@ background-color:#9c471f;
   border-radius: 14px;
 }
 
-
-.staff-card-admin{
-  
-}
