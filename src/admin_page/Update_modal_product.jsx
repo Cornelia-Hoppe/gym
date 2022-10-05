@@ -20,18 +20,9 @@ function Update_modal_product({ id, img, kategori, price, produktNamn, getProduk
     const [newProductshortDesc, setNewProductshortDesc] = useState(productshortDesc)
     const [newOrderSise, setNewOrderSise] = useState(orderSize)
 
-    useEffect(() => {
-        setNewProduktNamn(produktNamn)
-        setNewKategori(kategori)
-        setNewPris(price)
-        setNewImg(img)
-    }, [])
-
-
     const closeModal = () => {
         document.querySelector(`#update-modal-${id}`).style.display="none"
     }
-
     
 //BILD
 function previewImage() {
@@ -47,6 +38,17 @@ function previewImage() {
     }
 }
 
+
+// useEffect(() => {
+//   console.log(newImg.img);
+//   console.log(newKategori);
+//   console.log(newProduktNamn);
+//   console.log(newProductBrand);
+//   console.log(newProductshortDesc);
+//   console.log(newProductColor);
+//   console.log(newOrderSise);
+// })
+
 // ====================================================== //
 
 
@@ -54,6 +56,8 @@ function previewImage() {
 const updateProdukter = async (DBcollextion) => {
 openLoadingModal()
 const staffDoc = doc(db, DBcollextion, id)
+
+
 const newFields = {img: newImg, kategori: newKategori, price: Number(newPris), produktNamn: newProduktNamn, brand: newProductBrand, shortDesc: newProductshortDesc, color: newProductColor, orderSise: newOrderSise }
 await updateDoc(staffDoc, newFields)
 
