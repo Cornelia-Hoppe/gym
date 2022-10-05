@@ -2,7 +2,7 @@ import "../css/ListItem.css";
 
 
 function ListItem(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <div className="Listitem">
       <i className="item-icon">{props.icon}</i>

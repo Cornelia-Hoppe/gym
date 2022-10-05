@@ -14,6 +14,8 @@ export default function UpdateLocalStorage(id) {
         const data = await getDocs(profilerCollectionRef)
         profiler = (data.docs.map((doc) => ({...doc.data(), id: doc.id })));
 
+        console.log('profiler i updateLocalStorage: ', profiler );
+
         const updatedProfile = profiler.find((profil) => {
             return profil.id == id
         })
