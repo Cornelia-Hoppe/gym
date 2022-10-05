@@ -226,6 +226,8 @@ useEffect(() => {
           </div>
           <div className="bokade-pass">
             <h3>Mina pass</h3>
+            <div className='
+bokade-pass-box'>
             {bokatPassArray.length !== 0 ? (
               bokatPassArray.map((pass) => {
                 return (
@@ -273,6 +275,7 @@ useEffect(() => {
                 Inga pass bokade <br /> <a href="/bookingpage">Boka pass</a>
               </p>
             )}
+            </div>
           </div>
         </div>
       </section>

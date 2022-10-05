@@ -17,13 +17,18 @@ height: 40px;
 
 .profile-wrapper h3{
     font-size: 26px;
-    padding-left: 20px;
-  
+  width: 70%;
+  padding-left: 20px;
+
 } 
-.profile-wrapper h2{
-    width: 100%;
-    
+.bokade-pass-box{
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  align-items: center;
+  justify-content: center;
 }
+
 
 .profile-left,
 .profile-right,
@@ -38,12 +43,8 @@ height: 40px;
   padding-bottom: 18px;
   padding-top: 8px;
 }
-.bokade-pass
-{width: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;}
+
+
 
 .profile-img {
   width: 200px;
@@ -146,7 +147,7 @@ align-items: center;}
   font-size: 18px;
 }
 
-.m30-mypages button {
+.m30-mypages button, .m30-mypages-continue button{
   width: 130px;
   height: 44px;
   background: rgba(84, 140, 168, 0.5);
@@ -157,6 +158,12 @@ align-items: center;}
   color: white;
   cursor: pointer;
   margin-top: 10px;
+}
+
+.m30-mypages-continue{
+ width: 100%;
+ display: flex;
+ justify-content: center;
 }
 
 /* modal */
@@ -255,6 +262,9 @@ flex-wrap: wrap;
 }
 
 @media screen and (min-width: 800px) {
+  .bokade-pass-box {
+     width: 70%;
+  }
     .left-container{
         width: 50%;
     }
@@ -277,11 +287,13 @@ flex-wrap: wrap;
     display: flex;
     font-size: 30px;
     margin-left: 20px;
+    width: 100%;
   }
   .profile-wrapper h3 {
     font-size: 22px;
     padding: 10px;
     font-weight: 100;
+    width: max-content;
   }
   .mypages-container {
     width: 100%;

@@ -19,7 +19,6 @@ export default function App() {
     toggle: toggleRegistrationForm
   } = useModal();
   const [isShown, setIsShown] = useState(false);
-  const [selected, setSelected] = useState(false);
   const handleClick = (event) => {
 setIsShown(true)
   };
@@ -52,7 +51,7 @@ setIsShown(true)
                       <div className={style.alternativeImg}  > <img src={img} /></div>
             </div>
             </div>
-           <PaymentBtn />
+            {isShown && <PaymentBtn />}
         </Modal>
         
       </div>
