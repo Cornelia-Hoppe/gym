@@ -89,7 +89,7 @@ const closeModal = () => {
 
               <div className='drop-down-bes'>
               <h1>Ändra din beskrivning: </h1>
-              <textarea type="text" maxlength="500" defaultValue={text} onChange={(e) => {setNewText(e.target.value)}}  />
+              <textarea type="text" maxlength="500" defaultValue={newText} onChange={(e) => {setNewText(e.target.value)}}  />
               <p>max 500 tecken</p>
               </div>
 
