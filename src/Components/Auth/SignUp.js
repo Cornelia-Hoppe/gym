@@ -17,22 +17,24 @@ function SignUp({ closeSignUp, auth }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [name, setName] = useState("");
+  const [Lname, setLName] = useState("");
 
   const profilerCollectionRef = collection(db, "profiler")
-  const [pass, setPass ] = useState([])
-
 
   const register = async () => {
     if (password === passwordConfirm) {
       openLoadingModal()
       createUserWithEmailAndPassword(auth, email, password).then((auth) => {
+        setName("");
+        setLName("");
         setPassword("");
         setPasswordConfirm("");
         navigate("/gym");
 
         let Aid = auth.user.uid
 
-        addDoc(profilerCollectionRef, {email: email, Aid: Aid});
+        addDoc(profilerCollectionRef, {email: email, Aid: Aid, name: name, lastName: Lname});
 
       // =======================
 
@@ -94,6 +96,24 @@ function SignUp({ closeSignUp, auth }) {
             <article>
               <form className="login-form">
                 <div className="LoginInput">
+                  <label className="login-label">Namn</label>
+                  <input
+                    className="login-input"
+                    id={"login-input-name"}
+                    onChange={(event) => setName(event.target.value)}
+                    autoComplete="off"
+                    type="text"
+                    name="name"
+                  />
+                  <label className="login-label">Efternamn</label>
+                  <input
+                    className="login-input"
+                    id={"login-input-Lmane"}
+                    onChange={(event) => setLName(event.target.value)}
+                    autoComplete="off"
+                    type="text"
+                    name="Lname"
+                  />
                   <label className="login-label">E-mail</label>
                   <input
                     className="login-input"
