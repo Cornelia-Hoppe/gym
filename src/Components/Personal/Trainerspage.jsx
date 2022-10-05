@@ -16,14 +16,13 @@ export default function App() {
   const staffCollectionRef = collection(db, "staff")
   const [staff, setStaff] = useState([])
 
-  
+  let staffLocal = []
 
   const getStaff = async () => {
-    console.log('getStaff körs');
     const data = await getDocs(staffCollectionRef)
     setStaff(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
 
-    let staffLocal = data.docs.map((doc) => ({...doc.data(), id: doc.id }))
+    staffLocal = data.docs.map((doc) => ({...doc.data(), id: doc.id }))
     Cards(staffLocal ? staffLocal : staff)
 
   };
@@ -45,13 +44,11 @@ const Cards = (staffLocal) => {
    }
 
 function filterTrainer(persionType, staffLocal) {
-  let staffArray = staffLocal ? staffLocal : staff
-  console.log('staffArray: ', staffArray);
-  console.log('type: ', type);
-  console.log('persionType: ', persionType);
 
-  let trainersPersion = staffArray.filter(type => type.kategori === persionType);
-  console.log('trainersPersion: ', trainersPersion);
+  let staffArrayUpperCase = staffLocal ? staffLocal : staff
+  let staffArray = staffArrayUpperCase
+
+  let trainersPersion = staffArray.filter(type => type.kategori.toLowerCase() === persionType.toLowerCase());
   return trainersPersion;
 }
 
@@ -63,7 +60,7 @@ function filterTrainer(persionType, staffLocal) {
     let typeTrainer = e.target.value;
 
     typeTrainer !== ""
-      ? setTrainersPerson(filterTrainer(typeTrainer))
+      ? setTrainersPerson(filterTrainer(typeTrainer, staff))
       : setTrainersPerson(staff);
 
       setSelected(typeTrainer);
