@@ -199,9 +199,16 @@ useEffect(() => {
                   </p>
                   <p>{user.email}</p>
                   <p>{user.phoneNumber}</p>
+                  <button
+                onClick={signOutClick}
+                className="register-button-mypages login-button"
+              >
+                Logga ut
+              </button>
                 </div>
                 {showModal && <SavedModal setshowModal={setshowModal} />}
                 <AiFillEdit id="update-btn" onClick={openModal} />
+                
                 <UpdateProfileModal
                   closeModal={closeModal}
                   id={user.id}
@@ -212,12 +219,7 @@ useEffect(() => {
                   password={user.password}
                   phoneNumber={user.phoneNumber}
                 />
-                <button
-                onClick={signOutClick}
-                className="register-button login-button"
-              >
-                Logga ut
-              </button>
+                
               </div>
             </article>
             <App />
