@@ -27,6 +27,9 @@ function Login() {
   const [user, loading, error] = useAuthState(auth);
   const [openSignUp, setOpenSignUp] = useState(false);
 
+  let redTextStyle = {color: 'red', marginLeft: '37px', display: 'none'}
+
+
   // ============ START: SET LOCAL STORAGE ============ //
 
   const profilerCollectionRef = collection(db, "profiler");
@@ -47,7 +50,6 @@ function Login() {
     const inloggadUser = profiler.find((item) => {
       return item.email == auth.currentUser.email;
     });
-    console.log("inloggadUser i setLocalStorage: ", inloggadUser);
     setInloggadUser(inloggadUser);
     localStorage.setItem("user", JSON.stringify(inloggadUser));
   };
@@ -65,11 +67,11 @@ function Login() {
     getProfiler();
   }, []);
 
-  const signIn = () => {
-    console.log("signIn körs");
 
+  const signIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
+
         const inloggadUserLocal = profiler.find((item) => {
           return item.email == auth.currentUser.email;
         });
@@ -84,9 +86,20 @@ function Login() {
         } else {
           navigate("/gym");
         }
+
+        redTextStyle = {color: 'red', marginLeft: '37px', display: 'none'}
+
       })
-      .catch((error) => console.error(error));
+      .catch((error) => errorMessage())
+      
   };
+
+  const errorMessage = () => {
+    alert('Fel E-mail eller lösenord')
+          
+          // Funkar inte
+    redTextStyle = {color: 'red', marginLeft: '37px', display: 'block'}
+  }
 
   const signOutClick = () => {
     auth.signOut();
@@ -108,7 +121,7 @@ function Login() {
 
   return (
     <>
-      {openSignUp && <SignUp closeSignUp={setOpenSignUp} />}
+      {openSignUp && <SignUp closeSignUp={setOpenSignUp} auth={auth}/>}
       <div className="Login">
         <h1 className="login-title">
           {user ? `Välkommen ${user.email}` : "Logga in?"}
@@ -134,6 +147,9 @@ function Login() {
               name="password"
             />
           </div>
+
+          <p style={redTextStyle}>Fel lösenord eller email</p>
+
         </form>
         <div className="form-buttons">
           <div className="form-buttons-box">
