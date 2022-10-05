@@ -6,8 +6,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { db } from '../../firebase-config.js'
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore'
+import { db } from "../../firebase-config.js";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import openLoadingModal from "../loading_screen/OpenLoadingModal";
 import closeLoadingModal from "../loading_screen/CloseLoadingModal";
 import UpdateLocalStorage from "../../functions/UpdateLocalStorage";
@@ -20,11 +27,11 @@ function SignUp({ closeSignUp, auth }) {
   const [name, setName] = useState("");
   const [Lname, setLName] = useState("");
 
-  const profilerCollectionRef = collection(db, "profiler")
+  const profilerCollectionRef = collection(db, "profiler");
 
   const register = async () => {
     if (password === passwordConfirm) {
-      openLoadingModal()
+      openLoadingModal();
       createUserWithEmailAndPassword(auth, email, password).then((auth) => {
         setName("");
         setLName("");
@@ -32,43 +39,52 @@ function SignUp({ closeSignUp, auth }) {
         setPasswordConfirm("");
         navigate("/gym");
 
-        let Aid = auth.user.uid
+        let Aid = auth.user.uid;
 
-        addDoc(profilerCollectionRef, {email: email, Aid: Aid, name: name, lastName: Lname});
+        addDoc(profilerCollectionRef, {
+          email: email,
+          Aid: Aid,
+          name: name,
+          lastName: Lname,
+        });
 
-      // =======================
+        // =======================
 
-      setLocalStorageAfterRegister(Aid)
+        setLocalStorageAfterRegister(Aid);
 
-      // ========================
+        // ========================
 
         // UpdateLocalStorage(Aid)
 
-        closeLoadingModal()
+        closeLoadingModal();
         alert("ditt konto har skapats");
       });
     } else {
-      closeLoadingModal()
+      closeLoadingModal();
       alert("lösenorden matchar ej");
     }
   };
 
-
   const setLocalStorageAfterRegister = async (Aid) => {
-        let profiler = []
-        const profilerCollectionRef = collection(db, 'profiler')
+    let profiler = [];
+    const profilerCollectionRef = collection(db, "profiler");
 
-        const data = await getDocs(profilerCollectionRef)
-        profiler = (data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+    console.log(profiler);
+    console.log(profilerCollectionRef);
 
-        console.log('profiler i updateLocalStorage: ', profiler );
+    const data = await getDocs(profilerCollectionRef);
+    profiler = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 
-        const updatedProfile = profiler.find((profil) => {
-            return profil.Aid == Aid
-        })
+    console.log("profiler i updateLocalStorage: ", profiler);
 
-        localStorage.setItem('user', JSON.stringify(updatedProfile))
-  }
+    const updatedProfile = profiler.find((profil) => {
+      return profil.Aid == Aid;
+    });
+
+    console.log(updatedProfile);
+
+    localStorage.setItem("user", JSON.stringify(updatedProfile));
+  };
 
   const [userAuth, loading, error] = useAuthState(auth);
 
