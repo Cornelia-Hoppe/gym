@@ -173,7 +173,7 @@ useEffect(() => {
       <UpdateProfileModal
         closeModal={closeModal}
         id={user.id}
-        img={user ? user.img : icon}
+        img={user ? user.img ||  icon :""}
         email={user.email}
         name={user.name}
         lastName={user.lastName}
@@ -190,7 +190,7 @@ useEffect(() => {
               <div className="flex-between">
                 <img
                   className="profile-img"
-                  src={user ? user.img : icon}
+                  src={user ? user.img ||  icon :""}
                   alt="No image"
                 />
                 <div className="user-information">
@@ -212,7 +212,7 @@ useEffect(() => {
                 <UpdateProfileModal
                   closeModal={closeModal}
                   id={user.id}
-                  img={user ? user.img : icon}
+                  img={user ? user.img ||  icon :""}
                   email={user.email}
                   name={user.name}
                   lastName={user.lastName}
@@ -243,7 +243,7 @@ bokade-pass-box'>
                       {!pass.platser ? 0 : pass.platser}/{pass.maxAntal}
                     </h2>
                     <img
-                      className="booking-icon"
+                      className="booking-icon-mypages"
                       src={require(".././booking_page/" +
                         pass.kategori +
                         ".png")}

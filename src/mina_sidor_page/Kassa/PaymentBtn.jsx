@@ -10,12 +10,10 @@ export function PaymentBtn() {
   const [cardId, setCardId]  = useState("") 
   
   const TypeOfMembership = () =>{
-    console.log('TypeOfMembership körs');
     console.log(Offerbuttons);
   }
   
   const CardContinue = ( ) => {
-    console.log('CardContineue körs');
         setIsShown(true)
         console.log(setMembership())  
 SetCard(JSON.parse(localStorage.getItem("Kort")) ? JSON.parse(localStorage.getItem("Kort")) : '')
@@ -26,8 +24,8 @@ console.log(Card)
   TypeOfMembership();
 
   return (
-    <div className='m30-mypages'>
-  <button  onClick={CardContinue}>
+    <div className='m30-mypages-continue'>
+  <button onClick={CardContinue}>
     Fortsätt
   </button>
 
