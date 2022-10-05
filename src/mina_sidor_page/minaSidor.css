@@ -299,7 +299,7 @@ flex-wrap: wrap;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40%;
+    width: 100%;
 
 }
 .update-modal-mypages{
@@ -319,3 +319,4 @@ flex-wrap: wrap;
     margin-top: 0;
   }
 }
+

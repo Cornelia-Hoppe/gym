@@ -10,11 +10,9 @@ export function PaymentBtn() {
   const [IsShown, setIsShown] = useState(false)
     const CardContinue = ( ) => {
         setIsShown(true)
-        console.log(setMembership())
-        // localStorage.setItem('Kort',JSON.stringify(setMembership()));
-        // console.log(setMembership())      
+        console.log(setMembership())  
 SetCard(JSON.parse(localStorage.getItem("Kort")) ? JSON.parse(localStorage.getItem("Kort")) : '')
-  console.log(Card)
+console.log(Card)
 
 }
 console.log(Card)
