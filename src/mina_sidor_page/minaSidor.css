@@ -26,7 +26,6 @@ text-align: center;
     margin-bottom: 0.7rem;
     padding-bottom: 18px;
     padding-top: 8px;
-
   
     
 }
@@ -117,6 +116,16 @@ width: 90%;
 .update-modal h4{
     font-size: 18px;
     }
+    .chosen-card{
+        border: solid transparent;
+    border-radius: 10px;
+    border-width: 0 0 4px;
+    color: #FFFFFF;
+    text-align: center;
+    width: 41%; 
+    height: 13vh;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
 
     .m30-mypages button{ 
      width: 130px;
@@ -135,6 +144,10 @@ width: 90%;
 
 
 /* offer member cards start */
+#ChoosenBtn {
+    width: 70%;
+ margin: 10px auto;
+}
 .OfferSection{
     text-align: center;
     background: #DDE6E6;
@@ -209,7 +222,6 @@ font-size: 20px;
 }
 .profile-wrapper svg{
     color: #548CA8;
-    padding: 20px;
     font-size: 30px;
 }
 
@@ -221,6 +233,13 @@ margin-right: 30px;
 }
 
 @media screen and (min-width: 800px) {
+    .left-container{
+        width: 50%;
+    }
+    #ChoosenBtn {
+        width: 50%;
+     margin: 10px auto;
+    }
     .close-icon-mypages {
         position: absolute;
         right: 30%;
@@ -264,6 +283,7 @@ margin-right: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 40%;
 
 }
 .update-modal-mypages{

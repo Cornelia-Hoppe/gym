@@ -18,7 +18,7 @@ import UpdateLocalStorage from '../functions/UpdateLocalStorage';
 import CheckModal from '../booking_page/CheckModal';
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
-import style from "./Kassa/BetalningStyle.module.css"
+
   function MinaSidor() {
   const [showModal, setshowModal] = useState(false)
   const [userAuth, loading, error] = useAuthState(auth); 
