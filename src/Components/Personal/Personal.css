@@ -50,14 +50,15 @@
 
 .details p:nth-child(1) {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 .details p:nth-child(2) {
-  color: grey;
-  font-size: 0.8rem;
+  color: rgb(48, 47, 47);
+  font-size: 1rem;
 }
 .details p:nth-child(3) {
-  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 7px;
   color: grey;
 }
 

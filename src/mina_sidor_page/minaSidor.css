@@ -1,5 +1,8 @@
 /*  */
-
+.register-button-mypages {
+width: 130px;
+height: 40px;
+}
 .profile-wrapper,
 .login-wrapper {
   position: relative;
@@ -12,10 +15,16 @@
   margin-bottom: 11vh;
 }
 
-.profile-wrapper h3 {
-  font-size: 26px;
-  padding-left: 20px;
+.profile-wrapper h3{
+    font-size: 26px;
+    padding-left: 20px;
+  
+} 
+.profile-wrapper h2{
+    width: 100%;
+    
 }
+
 .profile-left,
 .profile-right,
 .bokade-pass {
@@ -29,6 +38,12 @@
   padding-bottom: 18px;
   padding-top: 8px;
 }
+.bokade-pass
+{width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;}
 
 .profile-img {
   width: 200px;
@@ -104,6 +119,19 @@
   outline: none;
   border-color: #05060f64;
 }
+.update-modal h4{
+    font-size: 18px;
+    }
+    .chosen-card{
+        border: solid transparent;
+    border-radius: 10px;
+    border-width: 0 0 4px;
+    color: #FFFFFF;
+    text-align: center;
+    width: 41%; 
+    height: 13vh;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
 
 .input-div:hover .label,
 .input-div:focus {
@@ -134,13 +162,18 @@
 /* modal */
 
 /* offer member cards start */
-.OfferSection {
-  text-align: center;
-  background: #dde6e6;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+#ChoosenBtn {
+    width: 70%;
+ margin: 10px auto;
+}
+.OfferSection{
+    text-align: center;
+    background: #DDE6E6;
+border-radius: 10px;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+
 }
 
 .OfferInfo {
@@ -209,10 +242,9 @@
   display: flex;
   flex-direction: row;
 }
-.profile-wrapper svg {
-  color: #548ca8;
-  padding: 20px;
-  font-size: 30px;
+.profile-wrapper svg{
+    color: #548CA8;
+    font-size: 30px;
 }
 
 .profile-img {
@@ -223,6 +255,13 @@
 }
 
 @media screen and (min-width: 800px) {
+    .left-container{
+        width: 50%;
+    }
+    #ChoosenBtn {
+        width: 50%;
+     margin: 10px auto;
+    }
   #desktop-login {
     display: flex;
     justify-content: center;
@@ -269,8 +308,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .update-modal-mypages {
+    width: 100%;
+
+}
+.update-modal-mypages{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -287,3 +328,4 @@
     margin-top: 0;
   }
 }
+

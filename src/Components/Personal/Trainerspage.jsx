@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Personal.css";
 import StaffBtn from "./StaffBtn";
-import { getTrainer, filterTrainer } from "./services";
 //import Edit from "./Edition";
 import { db } from '../../firebase-config'
 import { collection, getDocs } from 'firebase/firestore'
@@ -10,41 +9,64 @@ import { NavFilter } from "./GetLink";
 export default function App() {
 
 
-  const staffCollectionRef = collection(db, "staff")
-  const [staff, setStaff] = useState([])
+
   const [selected, setSelected] = useState(null);
   const [trainersPerson, setTrainersPerson] = useState(null);
 
+  const staffCollectionRef = collection(db, "staff")
+  const [staff, setStaff] = useState([])
+
+  let staffLocal = []
+
   const getStaff = async () => {
+    console.log('getStaff körs');
     const data = await getDocs(staffCollectionRef)
     setStaff(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+
+    staffLocal = data.docs.map((doc) => ({...doc.data(), id: doc.id }))
+    Cards(staffLocal ? staffLocal : staff)
+
   };
 
 useEffect(() => {
+  getStaff()
+  
 
-    getStaff()
-  }, [])
+}, [])
 
-  useEffect(() => {
-    const Cards = () =>{
-     type !== null
-     ? setTrainersPerson(filterTrainer(type))
-     : setTrainersPerson(getTrainer());
+// do stuff
 
-     setSelected(type);
-      }
-      Cards()
-      }, []);
+const Cards = (staffLocal) => { 
+  type !== null
+  ? setTrainersPerson(filterTrainer(type, staffLocal))
+  : setTrainersPerson(staffLocal);
 
-       let type = NavFilter()
+  setSelected(type);
+   }
 
+function filterTrainer(persionType, staffLocal) {
+
+  let staffArrayUpperCase = staffLocal ? staffLocal : staff
+  let staffArray = staffArrayUpperCase
+
+
+  let trainersPersion = staffArray.filter(type => type.kategori.toLowerCase() === persionType.toLowerCase());
+  console.log('trainersPersion: ', trainersPersion);
+  return trainersPersion;
+}
+
+// done
+
+  let type = NavFilter()
 
   function handleTrainer(e) {
     let typeTrainer = e.target.value;
 
+
+
     typeTrainer !== ""
-      ? setTrainersPerson(filterTrainer(typeTrainer))
-      : setTrainersPerson(getTrainer());
+      ? setTrainersPerson(filterTrainer(typeTrainer, staff))
+      : setTrainersPerson(staff);
 
       setSelected(typeTrainer);
     }
@@ -76,7 +98,7 @@ useEffect(() => {
                   <p>{type.name}, {type.age}</p>
 
                   <p>{type.kategori}</p>
-
+                  <p>{type.text}</p>
 
 
 

@@ -112,8 +112,8 @@ function AdminPage() {
   // LÄGGER TILL DATA
   // ANSTÄLLDA
 
-  // LÄGG TILL KATEGORI
-
+    // LÄGG TILL KATEGORI
+ 
   const createStaff = async () => {
     openLoadingModal();
     await addDoc(staffCollectionRef, {
@@ -869,9 +869,9 @@ function AdminPage() {
                     age={staff.age}
                     img={staff.img}
                     getStaff={getStaff}
-                    text={newText}
-                    kategori={newStaffCategory}
-                    level={level}
+                    text={staff.text}
+                    kategori={staff.kategori}
+                    level={staff.level}
                   />
                 </div>
               </>

@@ -19,6 +19,10 @@ import CheckModal from '../booking_page/CheckModal';
 import openLoadingModal from '../Components/loading_screen/OpenLoadingModal';
 import closeLoadingModal from '../Components/loading_screen/CloseLoadingModal';
 import style from "./Kassa/BetalningStyle.module.css"
+import { useNavigate } from "react-router-dom";
+
+
+
   function MinaSidor() {
   const [showModal, setshowModal] = useState(false)
   const [userAuth, loading, error] = useAuthState(auth); 
@@ -27,6 +31,8 @@ import style from "./Kassa/BetalningStyle.module.css"
 
   const [userBokadePassId, setUserBokadePassId] = useState(user ? user.bokadePass : '')
   const [userBokadePass, setUserBokadePass] = useState('')
+
+  const navigate = useNavigate();
 
 
 // START - HÄMTAR ANVÄNDARENS BOKADE PASS 
@@ -147,6 +153,12 @@ const avbokaPass = async (passId, passPlatser) => {
 
 }
 
+const signOutClick = () => {
+  auth.signOut();
+  localStorage.removeItem("user");
+  navigate("/gym");
+};
+
 // END: AVBOKA PASS  
 
 const h1Style = {textAlign: 'center', marginTop: '20px'}
@@ -187,9 +199,16 @@ useEffect(() => {
                   </p>
                   <p>{user.email}</p>
                   <p>{user.phoneNumber}</p>
+                  <button
+                onClick={signOutClick}
+                className="register-button-mypages login-button"
+              >
+                Logga ut
+              </button>
                 </div>
                 {showModal && <SavedModal setshowModal={setshowModal} />}
                 <AiFillEdit id="update-btn" onClick={openModal} />
+                
                 <UpdateProfileModal
                   closeModal={closeModal}
                   id={user.id}
@@ -200,6 +219,7 @@ useEffect(() => {
                   password={user.password}
                   phoneNumber={user.phoneNumber}
                 />
+                
               </div>
             </article>
             <App />

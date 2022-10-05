@@ -83,17 +83,23 @@ function BookingPage() {
     // LÄGGER IN PASSET TILL PROFILEN
     const inloggadId = inloggadUser.id;
 
-    const tidigarePass = inloggadUser.bokadePass;
+    const tidigarePass = inloggadUser.bokadePass ? inloggadUser.bokadePass : null
+
+    console.log('tidigarePass: ', tidigarePass);
 
     const newPassLista = [];
 
-    if (tidigarePass.length !== 0) {
+    if (tidigarePass === null || tidigarePass.length === 0) {
+      newPassLista.push(passId);
+    } 
+    
+    else if (tidigarePass.length !== 0) {
       tidigarePass.map((item, index) => {
         newPassLista.push(item);
       });
-    }
+      newPassLista.push(passId);
+    } 
 
-    newPassLista.push(passId);
 
     const passDoc = doc(db, "profiler", inloggadId);
     const newFields = { bokadePass: newPassLista };
@@ -130,33 +136,30 @@ function BookingPage() {
 
       let x = 0;
 
-      if (inloggadUser.bokadePass.length !== 0 || !inloggadUser.bokadePass) {
+      if (!inloggadUser.bokadePass) {
+        console.log('ne 1 körs');
+        bookPass(passId, platser);
+        x = 1
+      } else if (inloggadUser.bokadePass.length !== 0) {
+        console.log('nr 2 körs');
         inloggadUser.bokadePass.map((item) => {
           if (passId == item) {
+        console.log('nr 3 körs');
             avbokaPass(passId, platser);
           } else {
+        console.log('nr 4 körs');
             bookPass(passId, platser);
             x = 1;
           }
         })
       } else if (x === 0) {
+        console.log('nr 5 körs');
         bookPass(passId, platser);
       }
-
-
     };
-
   }
-  
 
-  // START: UPPDATERAR PASS DATA OCH LOCALSTORAGE
-
-
-
-  // END: UPPDATERAR PASS DATA OCH LOCALSTORAGE
-
-
-  // START: SORTERA PASSEN
+// START: SORTERA PASSEN
 
   // PER DAG
   const sortPassDay = (e) => {
@@ -178,7 +181,7 @@ function BookingPage() {
 
   };
 
-  // END: SORTERA PASSEN
+// END: SORTERA PASSEN
 
   const addBokadToPassDenDagen = () => {
 
@@ -276,7 +279,7 @@ function BookingPage() {
                 // let FULLBOKAT_NONE = {display: 'none'}
                 // let FULLBOKAT_BLOCK = {display: 'block'}
 
-                if (inloggadUser) {
+                if (inloggadUser.bokadePass) {
                   inloggadUser.bokadePass.map((item) => {
                     if (pass.id === item) {
                       btn_text = "Avboka";

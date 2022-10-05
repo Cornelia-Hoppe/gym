@@ -6,23 +6,84 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { db } from "../../firebase-config.js";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import openLoadingModal from "../loading_screen/OpenLoadingModal";
+import closeLoadingModal from "../loading_screen/CloseLoadingModal";
+import UpdateLocalStorage from "../../functions/UpdateLocalStorage";
 
-function SignUp({ closeSignUp }) {
+function SignUp({ closeSignUp, auth }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [name, setName] = useState("");
+  const [Lname, setLName] = useState("");
 
-  const register = () => {
+  const profilerCollectionRef = collection(db, "profiler");
+
+  const register = async () => {
     if (password === passwordConfirm) {
+      openLoadingModal();
       createUserWithEmailAndPassword(auth, email, password).then((auth) => {
+        setName("");
+        setLName("");
         setPassword("");
         setPasswordConfirm("");
         navigate("/gym");
+
+        let Aid = auth.user.uid;
+
+        addDoc(profilerCollectionRef, {
+          email: email,
+          Aid: Aid,
+          name: name,
+          lastName: Lname,
+        });
+
+        // =======================
+
+        setLocalStorageAfterRegister(Aid);
+
+        // ========================
+
+        // UpdateLocalStorage(Aid)
+
+        closeLoadingModal();
+        alert("ditt konto har skapats");
       });
     } else {
+      closeLoadingModal();
       alert("lösenorden matchar ej");
     }
+  };
+
+  const setLocalStorageAfterRegister = async (Aid) => {
+    let profiler = [];
+    const profilerCollectionRef = collection(db, "profiler");
+
+    console.log(profiler);
+    console.log(profilerCollectionRef);
+
+    const data = await getDocs(profilerCollectionRef);
+    profiler = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+
+    console.log("profiler i updateLocalStorage: ", profiler);
+
+    const updatedProfile = profiler.find((profil) => {
+      return profil.Aid == Aid;
+    });
+
+    console.log(updatedProfile);
+
+    localStorage.setItem("user", JSON.stringify(updatedProfile));
   };
 
   const [userAuth, loading, error] = useAuthState(auth);
@@ -51,6 +112,24 @@ function SignUp({ closeSignUp }) {
             <article>
               <form className="login-form">
                 <div className="LoginInput">
+                  <label className="login-label">Namn</label>
+                  <input
+                    className="login-input"
+                    id={"login-input-name"}
+                    onChange={(event) => setName(event.target.value)}
+                    autoComplete="off"
+                    type="text"
+                    name="name"
+                  />
+                  <label className="login-label">Efternamn</label>
+                  <input
+                    className="login-input"
+                    id={"login-input-Lmane"}
+                    onChange={(event) => setLName(event.target.value)}
+                    autoComplete="off"
+                    type="text"
+                    name="Lname"
+                  />
                   <label className="login-label">E-mail</label>
                   <input
                     className="login-input"
