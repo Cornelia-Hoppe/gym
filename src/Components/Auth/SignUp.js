@@ -1,31 +1,29 @@
 import "./css/signUp.css";
-import FormInput from "./FormInput";
 import { GrClose } from "@react-icons/all-files/gr/GrClose";
-
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
-
-import { db } from "../..//firebase-config";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  doc,
-  deleteDoc,
-} from "firebase/firestore";
-import Login from "./Login";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase-config";
-import UpdateLocalStorage from "../../functions/UpdateLocalStorage";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 function SignUp({ closeSignUp }) {
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  const register = () => {
+    if (password === passwordConfirm) {
+      createUserWithEmailAndPassword(auth, email, password).then((auth) => {
+        setPassword("");
+        setPasswordConfirm("");
+        navigate("/gym");
+      });
+    } else {
+      alert("lösenorden matchar ej");
+    }
+  };
 
   const [userAuth, loading, error] = useAuthState(auth);
 
@@ -38,19 +36,58 @@ function SignUp({ closeSignUp }) {
   // END: SPARAR I DATABASEN
 
   return (
-    <article className="SignUpWrapper" id="SignUpWrapperId">
+    <article className="SignUpWrapper">
       <div className="SignUp">
         <GrClose
           className="cancel-button"
           onClick={() => {
             closeSignUp(false);
+            document.body.style.overflow = "visible";
           }}
         />
 
         <>
           <section className="profile-wrapper">
             <article>
-              <Login />
+              <form className="login-form">
+                <div className="LoginInput">
+                  <label className="login-label">E-mail</label>
+                  <input
+                    className="login-input"
+                    id={"login-input-1"}
+                    onChange={(event) => setEmail(event.target.value)}
+                    autoComplete="off"
+                    type="email"
+                    name="email"
+                  />
+                  <label className="login-label">Password</label>
+                  <input
+                    className="login-input"
+                    id={"login-input-2"}
+                    onChange={(event) => setPassword(event.target.value)}
+                    autoComplete="off"
+                    type="password"
+                    name="password"
+                  />
+
+                  <label className="login-label">Confirm Password</label>
+                  <input
+                    className="login-input"
+                    id={"login-input-3"}
+                    onChange={(event) => setPasswordConfirm(event.target.value)}
+                    autoComplete="off"
+                    type="password"
+                    name="password"
+                  />
+                </div>
+              </form>
+
+              <button
+                onClick={register}
+                className="register-button login-button"
+              >
+                Bli medlem
+              </button>
             </article>
           </section>
         </>
