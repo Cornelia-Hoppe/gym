@@ -276,7 +276,7 @@ function BookingPage() {
                 // let FULLBOKAT_NONE = {display: 'none'}
                 // let FULLBOKAT_BLOCK = {display: 'block'}
 
-                if (inloggadUser) {
+                if (inloggadUser.bokadePass) {
                   inloggadUser.bokadePass.map((item) => {
                     if (pass.id === item) {
                       btn_text = "Avboka";
