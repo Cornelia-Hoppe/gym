@@ -167,12 +167,9 @@ function Update_modal_pass({ id, aktivitet, instruktör, maxAntal, platser, tid,
               <select className='drop-down input-select' name='välj pass' onChange={(e) => setNewPassKategori(e.target.value)}>
                 <option value="">Välj kategori</option>
                 <option value="kondition">Kondition</option>
-                <option value="spinning">Spinning</option>
+                <option value="flexibilitet">Flexibilitet</option>
                 <option value="styrka">Styrka</option>
-                <option value="flexebilitet">Flexebilitet</option>
-                <option value="mindfullnes">Mindfullnes</option>
                 <option value="crossfit">Crossfit</option>
-                <option value="funktionell-träning">Funktionell träning</option>
             </select>
             </div>
 

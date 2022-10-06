@@ -2,7 +2,6 @@ import React from 'react'
 import '../booking_page/bookingPage.css'
 import { FaCheck } from "@react-icons/all-files/fa/FaCheck";
 
-
 function CheckModal({ bokadText }) {
 
     const closeModal = () => {
