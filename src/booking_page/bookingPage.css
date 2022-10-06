@@ -329,3 +329,31 @@
     padding: 0;
   }
 }
+
+
+.check-modal-now-it-fucking-works{
+  background-color: #344257;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.check-modal-now-it-fucking-works svg {
+  color: green;
+  font-size: 180px;
+}
+
+.check-modal-now-it-fucking-works a {
+  color: white;
+}
+
+.check-modal-now-it-fucking-works button{
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  display: inline-block;
+  cursor: pointer;
+  color: #548ca8;
+  font-size: 13px;
+  padding: 6px 6px;
+  text-decoration: none;
+}
