@@ -14,7 +14,7 @@ export default function Memberships(props) {
       props.onclick()
     } 
   }
-//localStorage.removeItem("Kort")
+localStorage.removeItem("Kort")
   useEffect(() => {
     SetCard(JSON.parse(localStorage.getItem("Kort")) ? JSON.parse(localStorage.getItem("Kort")) : '')
   }, [])
@@ -49,7 +49,7 @@ export default function Memberships(props) {
             { Offerbuttons.map(button => {
   return (
   
-  <button value={button.id} key={button.id} onClick={ShowModal} className={button.class} role="button">{button.value} {button.price}</button>
+  <button value={button.id} key={button.id} onClick={ShowModal} className={button.class} role="button">{button.value}<br></br> {button.price}</button>
   
   )
   })}
