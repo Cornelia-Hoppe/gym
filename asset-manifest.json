@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/gym/static/css/main.f503090b.css",
-    "main.js": "/gym/static/js/main.ab951ac0.js",
+    "main.js": "/gym/static/js/main.c8aea472.js",
     "static/css/35.b469bbe8.chunk.css": "/gym/static/css/35.b469bbe8.chunk.css",
     "static/css/396.cafe964d.chunk.css": "/gym/static/css/396.cafe964d.chunk.css",
     "static/js/396.3e255bbb.chunk.js": "/gym/static/js/396.3e255bbb.chunk.js",
-    "static/css/335.d65aa4a5.chunk.css": "/gym/static/css/335.d65aa4a5.chunk.css",
-    "static/js/335.e37bd3f0.chunk.js": "/gym/static/js/335.e37bd3f0.chunk.js",
+    "static/css/335.e815fb1c.chunk.css": "/gym/static/css/335.e815fb1c.chunk.css",
+    "static/js/335.8400c2e1.chunk.js": "/gym/static/js/335.8400c2e1.chunk.js",
     "static/css/821.057f6ab4.chunk.css": "/gym/static/css/821.057f6ab4.chunk.css",
     "static/js/821.5a752a6a.chunk.js": "/gym/static/js/821.5a752a6a.chunk.js",
     "static/js/390.d9195664.chunk.js": "/gym/static/js/390.d9195664.chunk.js",
@@ -32,12 +32,12 @@
     "static/media/empty-cart.png": "/gym/static/media/empty-cart.b766480c6d9000dad93b.png",
     "index.html": "/gym/index.html",
     "main.f503090b.css.map": "/gym/static/css/main.f503090b.css.map",
-    "main.ab951ac0.js.map": "/gym/static/js/main.ab951ac0.js.map",
+    "main.c8aea472.js.map": "/gym/static/js/main.c8aea472.js.map",
     "35.b469bbe8.chunk.css.map": "/gym/static/css/35.b469bbe8.chunk.css.map",
     "396.cafe964d.chunk.css.map": "/gym/static/css/396.cafe964d.chunk.css.map",
     "396.3e255bbb.chunk.js.map": "/gym/static/js/396.3e255bbb.chunk.js.map",
-    "335.d65aa4a5.chunk.css.map": "/gym/static/css/335.d65aa4a5.chunk.css.map",
-    "335.e37bd3f0.chunk.js.map": "/gym/static/js/335.e37bd3f0.chunk.js.map",
+    "335.e815fb1c.chunk.css.map": "/gym/static/css/335.e815fb1c.chunk.css.map",
+    "335.8400c2e1.chunk.js.map": "/gym/static/js/335.8400c2e1.chunk.js.map",
     "821.057f6ab4.chunk.css.map": "/gym/static/css/821.057f6ab4.chunk.css.map",
     "821.5a752a6a.chunk.js.map": "/gym/static/js/821.5a752a6a.chunk.js.map",
     "390.d9195664.chunk.js.map": "/gym/static/js/390.d9195664.chunk.js.map",
@@ -50,6 +50,6 @@
   },
   "entrypoints": [
     "static/css/main.f503090b.css",
-    "static/js/main.ab951ac0.js"
+    "static/js/main.c8aea472.js"
   ]
 }
