@@ -1,4 +1,5 @@
 import React from "react";
+import klarna from "../images/klarna.png"
 import { motion } from "framer-motion";
 import { useCart } from "react-use-cart";
 import { GrClose } from "@react-icons/all-files/gr/GrClose";
@@ -108,7 +109,7 @@ function Cart({ closeCart }) {
         <div className="cart-checkout-buttons">
           <button className="cart-checkout-button">Till kassan</button>
           <button className="cart-checkout-klarna">Fortsätt med <div className="klarna-container">
-            <img src=""></img>
+            <img src={klarna} alt="klarna" id="klarna-logo"></img>
           </div></button>
         </div>
       </div>

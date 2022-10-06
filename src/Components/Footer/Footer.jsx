@@ -64,11 +64,12 @@ const Footer = () => {
                 Pusterviksgatan 3 <br></br>
                 413 01 Göteborg <br></br>
               </p>
-              <p>
-                Öppettider: <br></br> Måndag-söndag 07:00-21:00
-              </p>
             </span>
           </div>
+            <div className="contact">
+              <strong className="footer-subheading">Öppettider</strong>
+              <p className="footer-opening-hours">Måndag-söndag 07:00-21:00</p>
+            </div>
         </section>
       </div>
     </footer>

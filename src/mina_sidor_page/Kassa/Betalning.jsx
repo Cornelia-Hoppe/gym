@@ -19,10 +19,15 @@ export default function App() {
     toggle: toggleRegistrationForm
   } = useModal();
   const [isShown, setIsShown] = useState(false);
-  const [selected, setSelected] = useState(false);
   const handleClick = (event) => {
 setIsShown(true)
   };
+  const CardContinue = ()=>{
+    console.log('yes den körs');
+    toggleRegistrationForm()
+    // setIsShown(false)
+    window.location.reload();
+  }
 
 
   
@@ -39,20 +44,20 @@ setIsShown(true)
                  <div className={style.paymentContainer}>
             <h2 className={style.h2Payment}> Betalningssätt</h2>
             {/* <h3 className={style.h3Payment}>3 månader: Kostnad 1300:-</h3> */}
-            <div  onClick={handleClick} className={style.alternative}><h3 >Faktura</h3>
+            <div tabindex="0"  onClick={handleClick} className={style.alternative}><h3 >Faktura</h3>
               <div className={style.alternativeImg}> <img src={klarna} /> </div>
 
    
             </div>
-            <div onClick={handleClick} className={style.alternative}><h3>Kort</h3>
+            <div tabindex="0" onClick={handleClick} className={style.alternative}><h3>Kort</h3>
               <div className={style.alternativeImg}>  <img src={visa} /></div>
             </div>
             
-            <div onClick={handleClick} className={style.alternative}><h3>Swish</h3>
+            <div  tabindex="0" onClick={handleClick} className={style.alternative}><h3>Swish</h3>
                       <div className={style.alternativeImg}  > <img src={img} /></div>
             </div>
             </div>
-           <PaymentBtn />
+            {isShown && <PaymentBtn CardContinue={CardContinue} />}
         </Modal>
         
       </div>

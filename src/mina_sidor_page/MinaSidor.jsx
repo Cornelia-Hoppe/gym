@@ -156,6 +156,7 @@ const avbokaPass = async (passId, passPlatser) => {
 const signOutClick = () => {
   auth.signOut();
   localStorage.removeItem("user");
+  localStorage.removeItem("Kort");
   navigate("/gym");
 };
 
@@ -173,7 +174,7 @@ useEffect(() => {
       <UpdateProfileModal
         closeModal={closeModal}
         id={user.id}
-        img={user ? user.img : icon}
+        img={user ? user.img ||  icon :""}
         email={user.email}
         name={user.name}
         lastName={user.lastName}
@@ -190,7 +191,7 @@ useEffect(() => {
               <div className="flex-between">
                 <img
                   className="profile-img"
-                  src={user ? user.img : icon}
+                  src={user ? user.img ||  icon :""}
                   alt="No image"
                 />
                 <div className="user-information">
@@ -212,7 +213,7 @@ useEffect(() => {
                 <UpdateProfileModal
                   closeModal={closeModal}
                   id={user.id}
-                  img={user ? user.img : icon}
+                  img={user ? user.img ||  icon :""}
                   email={user.email}
                   name={user.name}
                   lastName={user.lastName}
@@ -226,6 +227,8 @@ useEffect(() => {
           </div>
           <div className="bokade-pass">
             <h3>Mina pass</h3>
+            <div className='
+bokade-pass-box'>
             {bokatPassArray.length !== 0 ? (
               bokatPassArray.map((pass) => {
                 return (
@@ -241,7 +244,7 @@ useEffect(() => {
                       {!pass.platser ? 0 : pass.platser}/{pass.maxAntal}
                     </h2>
                     <img
-                      className="booking-icon"
+                      className="booking-icon-mypages"
                       src={require(".././booking_page/" +
                         pass.kategori +
                         ".png")}
@@ -273,6 +276,7 @@ useEffect(() => {
                 Inga pass bokade <br /> <a href="/bookingpage">Boka pass</a>
               </p>
             )}
+            </div>
           </div>
         </div>
       </section>

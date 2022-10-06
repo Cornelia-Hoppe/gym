@@ -4,11 +4,12 @@
   z-index: 1;
   display: inline-block;
   position: relative;
-  width: 100%;
+  display: flex;
+  justify-content:center;
 }
 
 .gymImgDesktop {
-  width: 100vw;
+  width: 100%;
 }
 
 .landingButton {
@@ -45,11 +46,13 @@
 .landingImage img {
   width: 100vw;
   height: 40vh;
+  object-fit: cover;
 }
 
 @media (min-width: 800px) {
   .gymImgDesktop {
     display: flex;
+    justify-content: center;
   }
 
   .gymImgDesktop img {
@@ -68,4 +71,7 @@
   .landingButton h3 {
     font-size: 30px;
   }
+  .landingImage img {
+  width: 95vw;
+}
 }

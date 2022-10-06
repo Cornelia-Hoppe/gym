@@ -1,33 +1,15 @@
 import { useState } from 'react';
 import '../minaSidor.css'
+import style from "./BetalningStyle.module.css"
 import { setMembership } from '../Membership/SetMembership';
 import { Offerbuttons } from '../Membership/OfferBtns';
 
-
-export function PaymentBtn() {
-  const [Card, SetCard] = useState("");
-  const [IsShown, setIsShown] = useState(false)
-  const [cardId, setCardId]  = useState("") 
-  
-  const TypeOfMembership = () =>{
-    console.log('TypeOfMembership körs');
-    console.log(Offerbuttons);
-  }
-  
-  const CardContinue = ( ) => {
-    console.log('CardContineue körs');
-        setIsShown(true)
-        console.log(setMembership())  
-SetCard(JSON.parse(localStorage.getItem("Kort")) ? JSON.parse(localStorage.getItem("Kort")) : '')
-console.log(Card)
-
-}
-console.log(Card)
-  TypeOfMembership();
+export function PaymentBtn(props) {
+ 
 
   return (
-    <div className='m30-mypages'>
-  <button  onClick={CardContinue}>
+    <div className='m30-mypages-continue'>
+  <button onClick={props.CardContinue}>
     Fortsätt
   </button>
 
