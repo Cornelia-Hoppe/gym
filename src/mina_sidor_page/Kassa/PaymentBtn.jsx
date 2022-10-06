@@ -12,7 +12,6 @@ export function PaymentBtn(props) {
   <button onClick={props.CardContinue}>
     Fortsätt
   </button>
-
   
   </div>
   )
