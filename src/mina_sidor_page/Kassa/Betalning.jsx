@@ -23,7 +23,10 @@ export default function App() {
 setIsShown(true)
   };
   const CardContinue = ()=>{
-    setIsShown(false)
+    console.log('yes den körs');
+    toggleRegistrationForm()
+    // setIsShown(false)
+    window.location.reload();
   }
 
 
@@ -54,7 +57,7 @@ setIsShown(true)
                       <div className={style.alternativeImg}  > <img src={img} /></div>
             </div>
             </div>
-            {isShown && <PaymentBtn CardContinue={toggleRegistrationForm} />}
+            {isShown && <PaymentBtn CardContinue={CardContinue} />}
         </Modal>
         
       </div>

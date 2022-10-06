@@ -14,7 +14,7 @@ export default function Memberships(props) {
       props.onclick()
     } 
   }
-//localStorage.removeItem("Kort")
+  //localStorage.removeItem("Kort")
   useEffect(() => {
     SetCard(JSON.parse(localStorage.getItem("Kort")) ? JSON.parse(localStorage.getItem("Kort")) : '')
   }, [])

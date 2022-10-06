@@ -156,6 +156,7 @@ const avbokaPass = async (passId, passPlatser) => {
 const signOutClick = () => {
   auth.signOut();
   localStorage.removeItem("user");
+  localStorage.removeItem("Kort");
   navigate("/gym");
 };
 
