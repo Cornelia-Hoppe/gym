@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gym/static/css/main.7ad7cec4.css",
-    "main.js": "/gym/static/js/main.bff7338e.js",
+    "main.css": "/gym/static/css/main.d72ccf47.css",
+    "main.js": "/gym/static/js/main.3b32723c.js",
     "static/css/35.b4cbc424.chunk.css": "/gym/static/css/35.b4cbc424.chunk.css",
     "static/css/396.cafe964d.chunk.css": "/gym/static/css/396.cafe964d.chunk.css",
     "static/js/396.3e255bbb.chunk.js": "/gym/static/js/396.3e255bbb.chunk.js",
@@ -31,8 +31,8 @@
     "static/media/klarna.png": "/gym/static/media/klarna.2fd2a2544b6667b437ca.png",
     "static/media/empty-cart.png": "/gym/static/media/empty-cart.b766480c6d9000dad93b.png",
     "index.html": "/gym/index.html",
-    "main.7ad7cec4.css.map": "/gym/static/css/main.7ad7cec4.css.map",
-    "main.bff7338e.js.map": "/gym/static/js/main.bff7338e.js.map",
+    "main.d72ccf47.css.map": "/gym/static/css/main.d72ccf47.css.map",
+    "main.3b32723c.js.map": "/gym/static/js/main.3b32723c.js.map",
     "35.b4cbc424.chunk.css.map": "/gym/static/css/35.b4cbc424.chunk.css.map",
     "396.cafe964d.chunk.css.map": "/gym/static/css/396.cafe964d.chunk.css.map",
     "396.3e255bbb.chunk.js.map": "/gym/static/js/396.3e255bbb.chunk.js.map",
@@ -49,7 +49,7 @@
     "861.44c38441.chunk.js.map": "/gym/static/js/861.44c38441.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7ad7cec4.css",
-    "static/js/main.bff7338e.js"
+    "static/css/main.d72ccf47.css",
+    "static/js/main.3b32723c.js"
   ]
 }
