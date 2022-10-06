@@ -284,8 +284,7 @@ select {
 }
 
 #preview {
-  height: auto;
-  width: auto;
+  max-height: 200px;
 }
 
 /*KAENDER*/

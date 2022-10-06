@@ -25,8 +25,9 @@ function Update_modal_staff({ id, staffName, age, img, getStaff, text, kategori,
     
     getStaff()
     closeModal()
-    getStaff()
     closeLoadingModal()
+    
+    window.location.reload();
   }
 
 
