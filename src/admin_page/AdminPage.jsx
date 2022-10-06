@@ -455,12 +455,9 @@ function AdminPage() {
               >
                 <option value="">Välj kategori</option>
                 <option value="kondition">Kondition</option>
-                <option value="spinning">Spinning</option>
                 <option value="styrka">Styrka</option>
                 <option value="flexebilitet">Flexebilitet</option>
-                <option value="mindfullnes">Mindfullnes</option>
                 <option value="crossfit">Crossfit</option>
-                <option value="funktionell-träning">Funktionell träning</option>
               </select>
             </div>
           </div>
