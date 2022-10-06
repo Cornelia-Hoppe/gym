@@ -22,6 +22,9 @@ export default function App() {
   const handleClick = (event) => {
 setIsShown(true)
   };
+  const CardContinue = ()=>{
+    setIsShown(false)
+  }
 
 
   
@@ -51,7 +54,7 @@ setIsShown(true)
                       <div className={style.alternativeImg}  > <img src={img} /></div>
             </div>
             </div>
-            {isShown && <PaymentBtn />}
+            {isShown && <PaymentBtn CardContinue={toggleRegistrationForm} />}
         </Modal>
         
       </div>

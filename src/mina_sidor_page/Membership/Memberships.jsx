@@ -9,12 +9,12 @@ export default function Memberships(props) {
   const ShowModal = (e) =>{
   const CardId = e.target.value
    setMembership(CardId)
-    SetCard(JSON.parse(localStorage.getItem("Kort")) ? JSON.parse(localStorage.getItem("Kort")) : '')
+  
     {
       props.onclick()
     } 
   }
-localStorage.removeItem("Kort")
+//localStorage.removeItem("Kort")
   useEffect(() => {
     SetCard(JSON.parse(localStorage.getItem("Kort")) ? JSON.parse(localStorage.getItem("Kort")) : '')
   }, [])
