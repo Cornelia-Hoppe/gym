@@ -46,6 +46,7 @@
 .landingImage img {
   width: 100vw;
   height: 40vh;
+  object-fit: cover;
 }
 
 @media (min-width: 800px) {
