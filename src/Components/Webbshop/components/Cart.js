@@ -45,7 +45,7 @@ function Cart({ closeCart }) {
       <div className="cart-header">
         <div className="cart-header-1">
           <h1 className="cart-header-title">Kundvagn</h1>
-          <GrClose
+          <GrClose data-testid="exit-button"
             className="cart-header-exit"
             onClick={() => {
               closeCart(false)
@@ -107,7 +107,7 @@ function Cart({ closeCart }) {
           </div>
         </div>
         <div className="cart-checkout-buttons">
-          <button className="cart-checkout-button">Till kassan</button>
+          <button className="cart-checkout-button" data-testid="buy-button">Till kassan</button>
           <button className="cart-checkout-klarna">Fortsätt med <div className="klarna-container">
             <img src={klarna} alt="klarna" id="klarna-logo"></img>
           </div></button>
