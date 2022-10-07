@@ -128,7 +128,7 @@ function Login() {
         </h1>
         <form style={user ? STYLE_LOGGED_IN_NONE : null} className="login-form">
           <div className="LoginInput">
-            <label className="login-label" htmlFor="email">E-mail</label>
+            <label className="login-label" >E-mail</label>
             <input
               className="login-input"
               id={"login-input-1"}
@@ -139,7 +139,7 @@ function Login() {
               placeholder="test@test.se"
               
             />
-            <label className="login-label" htmlFor="password">Password</label>
+            <label className="login-label" >Password</label>
             <input
               className="login-input"
               id={"login-input-2"}
