@@ -136,6 +136,7 @@ function Login() {
               autoComplete="off"
               type="email"
               name="email"
+              placeholder="test@test.se"
             />
             <label className="login-label">Password</label>
             <input
