@@ -51,7 +51,7 @@ const HomeGallery = () => {
 
           <LazyLoadImage
             src={sliderData.value}
-            alt={sliderData.value}
+            alt={`main-${sliderData.id}`}
             height="300vh"
             width="100%"
           />
@@ -69,8 +69,8 @@ const HomeGallery = () => {
                 data === sliderData ? style.selectedImg : style.nonSelected
               }
             >
-              <LazyLoadImage
-                alt={data.value}
+              <LazyLoadImage 
+                alt={data.id}
                 key={data.id}
                 src={data.value}
                 onClick={() => handleClick(i)}
