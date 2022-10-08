@@ -54,7 +54,8 @@ const HomePersonal = () => {
 
           </CustomLink>
 
-<CustomLink to="/staff" state={{ from: "Reception" }} >
+<CustomLink to="/staff"
+ state={{ from: "Reception" }} >
               <button
                 className={style.persona3}
                 style={{

@@ -43,7 +43,7 @@ function Menu({ updateAfterLogin, setOpenCart }) {
             alt="mobile-logo"
           ></img>
         </CustomLink>
-        <GrMenu
+        <GrMenu data-testid="mobile-button"
           className="menu-mobile-button"
           onClick={() => {
             setOpenNavbar(true);
